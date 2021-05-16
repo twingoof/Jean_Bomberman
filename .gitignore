@@ -1,0 +1,8 @@
+#File extensions
+*.so
+*.o
+
+#Folders
+.vscode
+
+#Files
