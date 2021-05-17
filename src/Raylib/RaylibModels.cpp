@@ -7,342 +7,342 @@
 
 #include "RaylibModels.hpp"
 
-extern "C" void drawLine3D(Vector3 startPos, Vector3 endPos, Color color)
+extern "C" void Raylib::drawLine3D(Vector3 startPos, Vector3 endPos, Color color)
 {
     DrawLine3D(startPos, endPos, color);
 }
 
-extern "C" void drawPoint3D(Vector3 position, Color color)
+extern "C" void Raylib::drawPoint3D(Vector3 position, Color color)
 {
     DrawPoint3D(position, color);
 }
 
-extern "C" void drawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color)
+extern "C" void Raylib::drawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color)
 {
     DrawCircle3D(center, radius, rotationAxis, rotationAngle, color);
 }
 
-extern "C" void drawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color)
+extern "C" void Raylib::drawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color)
 {
     DrawTriangle3D(v1, v2, v3, color);
 }
 
-extern "C" void drawTriangleStrip3D(Vector3 *points, int pointsCount, Color color)
+extern "C" void Raylib::drawTriangleStrip3D(Vector3 *points, int pointsCount, Color color)
 {
     DrawTriangleStrip3D(points, pointsCount, color);
 }
 
-extern "C" void drawCube(Vector3 position, float width, float height, float length, Color color)
+extern "C" void Raylib::drawCube(Vector3 position, float width, float height, float length, Color color)
 {
     DrawCube(position, width, height, length, color);
 }
 
-extern "C" void drawCubeV(Vector3 position, Vector3 size, Color color)
+extern "C" void Raylib::drawCubeV(Vector3 position, Vector3 size, Color color)
 {
     DrawCubeV(position, size, color);
 }
 
-extern "C" void drawCubeWires(Vector3 position, float width, float height, float length, Color color)
+extern "C" void Raylib::drawCubeWires(Vector3 position, float width, float height, float length, Color color)
 {
     DrawCubeWires(position, width, height, length, color);
 }
 
-extern "C" void drawCubeWiresV(Vector3 position, Vector3 size, Color color)
+extern "C" void Raylib::drawCubeWiresV(Vector3 position, Vector3 size, Color color)
 {
     DrawCubeWiresV(position, size, color);
 }
 
-extern "C" void drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
+extern "C" void Raylib::drawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
 {
     DrawCubeTexture(texture, position, width, height, length, color);
 }
 
-extern "C" void drawSphere(Vector3 centerPos, float radius, Color color)
+extern "C" void Raylib::drawSphere(Vector3 centerPos, float radius, Color color)
 {
     DrawSphere(centerPos, radius, color);
 }
 
-extern "C" void drawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color)
+extern "C" void Raylib::drawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color)
 {
     DrawSphereEx(centerPos, radius, rings, slices, color);
 }
 
-extern "C" void drawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color)
+extern "C" void Raylib::drawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color)
 {
     DrawSphereWires(centerPos, radius, rings, slices, color);
 }
 
-extern "C" void drawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color)
+extern "C" void Raylib::drawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color)
 {
     DrawCylinder(position, radiusTop, radiusBottom, height, slices, color);
 }
 
-extern "C" void drawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color)
+extern "C" void Raylib::drawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color)
 {
     DrawCylinderWires(position, radiusTop, radiusBottom, height, slices, color);
 }
 
-extern "C" void drawPlane(Vector3 centerPos, Vector2 size, Color color)
+extern "C" void Raylib::drawPlane(Vector3 centerPos, Vector2 size, Color color)
 {
     DrawPlane(centerPos, size, color);
 }
 
-extern "C" void drawRay(Ray ray, Color color)
+extern "C" void Raylib::drawRay(Ray ray, Color color)
 {
     DrawRay(ray, color);
 }
 
-extern "C" void drawGrid(int slices, float spacing)
+extern "C" void Raylib::drawGrid(int slices, float spacing)
 {
     DrawGrid(slices, spacing);
 }
 
-/* extern "C" Model loadModel(const char *fileName)
+extern "C" Model Raylib::loadModel(const std::string &fileName)
 {
-    LoadModel(fileName);
-} */
-
-extern "C" Model loadModelFromMesh(Mesh mesh)
-{
-    return(LoadModelFromMesh(mesh));
+    LoadModel(fileName.c_str());
 }
 
-extern "C" void unloadModel(Model model)
+extern "C" Model Raylib::loadModelFromMesh(Mesh mesh)
+{
+    return (LoadModelFromMesh(mesh));
+}
+
+extern "C" void Raylib::unloadModel(Model model)
 {
     UnloadModel(model);
 }
 
-extern "C" void unloadModelKeepMeshes(Model model)
+extern "C" void Raylib::unloadModelKeepMeshes(Model model)
 {
     UnloadModelKeepMeshes(model);
 }
 
-extern "C" void uploadMesh(Mesh *mesh, bool dynamic)
+extern "C" void Raylib::uploadMesh(Mesh *mesh, bool dynamic)
 {
     UploadMesh(mesh, dynamic);
 }
 
-extern "C" void updateMeshBuffer(Mesh mesh, int index, void *data, int dataSize, int offset)
+extern "C" void Raylib::updateMeshBuffer(Mesh mesh, int index, void *data, int dataSize, int offset)
 {
     UpdateMeshBuffer(mesh, index, data, dataSize, offset);
 }
 
-extern "C" void drawMesh(Mesh mesh, Material material, Matrix transform)
+extern "C" void Raylib::drawMesh(Mesh mesh, Material material, Matrix transform)
 {
     DrawMesh(mesh, material, transform);
 }
 
-extern "C" void drawMeshInstanced(Mesh mesh, Material material, Matrix *transforms, int instances)
+extern "C" void Raylib::drawMeshInstanced(Mesh mesh, Material material, Matrix *transforms, int instances)
 {
     DrawMeshInstanced(mesh, material, transforms, instances);
 }
 
-extern "C" void unloadMesh(Mesh mesh)
+extern "C" void Raylib::unloadMesh(Mesh mesh)
 {
     UnloadMesh(mesh);
 }
 
-/* extern "C" bool exportMesh(Mesh mesh, const char *fileName)
+extern "C" bool Raylib::exportMesh(Mesh mesh, const std::string &fileName)
 {
-    return(ExportMesh(Mesh mesh, const char *fileName));
-} */
+    return (ExportMesh(mesh, fileName.c_str()));
+}
 
-/* extern "C" Material *loadMaterials(const char *fileName, int *materialCount)
+extern "C" std::unique_ptr<Material> loadMaterials(const std::string &fileName, int materialCount)
 {
-    return(LoadMaterials(fileName, materialCount));
-} */
+    return (std::make_unique<Material>(LoadMaterials(fileName.c_str(), &materialCount)));
+}
 
-extern "C" Material loadMaterialDefault(void)
+extern "C" Material Raylib::loadMaterialDefault(void)
 {
     return (LoadMaterialDefault());
 }
 
-extern "C" void unloadMaterial(Material material)
+extern "C" void Raylib::unloadMaterial(Material material)
 {
     UnloadMaterial(material);
 }
 
-extern "C" void setMaterialTexture(Material *material, int mapType, Texture2D texture)
+extern "C" void Raylib::setMaterialTexture(Material *material, int mapType, Texture2D texture)
 {
     SetMaterialTexture(material, mapType, texture);
 }
 
-extern "C" void setModelMeshMaterial(Model *model, int meshId, int materialId)
+extern "C" void Raylib::setModelMeshMaterial(Model *model, int meshId, int materialId)
 {
     SetModelMeshMaterial(model, meshId, materialId);
 }
 
-/* extern "C" ModelAnimation *loadModelAnimations(const char *fileName, int *animsCount)
+extern "C" std::unique_ptr<ModelAnimation> Raylib::loadModelAnimations(const std::string &fileName, int animsCount)
 {
-    ModelAnimation *loadModelAnimations(fileName, animsCount);
-} */
+    return (std::make_unique<ModelAnimation> loadModelAnimations(fileName.c_str(), &animsCount));
+}
 
-extern "C" void updateModelAnimation(Model model, ModelAnimation anim, int frame)
+extern "C" void Raylib::updateModelAnimation(Model model, ModelAnimation anim, int frame)
 {
     UpdateModelAnimation(model, anim, frame);
 }
 
-extern "C" void unloadModelAnimation(ModelAnimation anim)
+extern "C" void Raylib::unloadModelAnimation(ModelAnimation anim)
 {
     UnloadModelAnimation(anim);
 }
 
-extern "C" void unloadModelAnimations(ModelAnimation *animations, unsigned int count)
+extern "C" void Raylib::unloadModelAnimations(ModelAnimation *animations, unsigned int count)
 {
     UnloadModelAnimations(animations, count);
 }
 
-extern "C" bool isModelAnimationValid(Model model, ModelAnimation anim)
+extern "C" bool Raylib::isModelAnimationValid(Model model, ModelAnimation anim)
 {
-    return(IsModelAnimationValid(model, anim));
+    return (IsModelAnimationValid(model, anim));
 }
 
-extern "C" Mesh genMeshPoly(int sides, float radius)
+extern "C" Mesh Raylib::genMeshPoly(int sides, float radius)
 {
-    return(GenMeshPoly(sides, radius));
+    return (GenMeshPoly(sides, radius));
 }
 
-extern "C" Mesh genMeshPlane(float width, float length, int resX, int resZ)
+extern "C" Mesh Raylib::genMeshPlane(float width, float length, int resX, int resZ)
 {
-    return(GenMeshPlane(width, length, resX, resZ));
+    return (GenMeshPlane(width, length, resX, resZ));
 }
 
-extern "C" Mesh genMeshCube(float width, float height, float length)
+extern "C" Mesh Raylib::genMeshCube(float width, float height, float length)
 {
-    return(GenMeshCube(width, height, length));
+    return (GenMeshCube(width, height, length));
 }
 
-extern "C" Mesh genMeshSphere(float radius, int rings, int slices)
+extern "C" Mesh Raylib::genMeshSphere(float radius, int rings, int slices)
 {
-    return(GenMeshSphere(radius, rings, slices));
+    return (GenMeshSphere(radius, rings, slices));
 }
 
-extern "C" Mesh genMeshHemiSphere(float radius, int rings, int slices)
+extern "C" Mesh Raylib::genMeshHemiSphere(float radius, int rings, int slices)
 {
-    return(GenMeshHemiSphere(radius, rings, slices));
+    return (GenMeshHemiSphere(radius, rings, slices));
 }
 
-extern "C" Mesh genMeshCylinder(float radius, float height, int slices)
+extern "C" Mesh Raylib::genMeshCylinder(float radius, float height, int slices)
 {
-    return(GenMeshCylinder(radius, height, slices));
+    return (GenMeshCylinder(radius, height, slices));
 }
 
-extern "C" Mesh genMeshTorus(float radius, float size, int radSeg, int sides)
+extern "C" Mesh Raylib::genMeshTorus(float radius, float size, int radSeg, int sides)
 {
-    return(GenMeshTorus(radius, size, radSeg, sides));
+    return (GenMeshTorus(radius, size, radSeg, sides));
 }
 
-extern "C" Mesh genMeshKnot(float radius, float size, int radSeg, int sides)
+extern "C" Mesh Raylib::genMeshKnot(float radius, float size, int radSeg, int sides)
 {
-    return(GenMeshKnot(radius, size, radSeg, sides));
+    return (GenMeshKnot(radius, size, radSeg, sides));
 }
 
-extern "C" Mesh genMeshHeightmap(Image heightmap, Vector3 size)
+extern "C" Mesh Raylib::genMeshHeightmap(Image heightmap, Vector3 size)
 {
-    return(GenMeshHeightmap(heightmap, size));
+    return (GenMeshHeightmap(heightmap, size));
 }
 
-extern "C" Mesh genMeshCubicmap(Image cubicmap, Vector3 cubeSize)
+extern "C" Mesh Raylib::genMeshCubicmap(Image cubicmap, Vector3 cubeSize)
 {
-    return(GenMeshCubicmap(cubicmap, cubeSize));
+    return (GenMeshCubicmap(cubicmap, cubeSize));
 }
 
 extern "C" BoundingBox meshBoundingBox(Mesh mesh)
 {
-    return(MeshBoundingBox(mesh));
+    return (MeshBoundingBox(mesh));
 }
 
-extern "C" void meshTangents(Mesh *mesh)
+extern "C" void Raylib::meshTangents(Mesh *mesh)
 {
     MeshTangents(mesh);
 }
 
-extern "C" void meshBinormals(Mesh *mesh)
+extern "C" void Raylib::meshBinormals(Mesh *mesh)
 {
     MeshBinormals(mesh);
 }
 
-extern "C" void drawModel(Model model, Vector3 position, float scale, Color tint)
+extern "C" void Raylib::drawModel(Model model, Vector3 position, float scale, Color tint)
 {
     DrawModel(model, position, scale, tint);
 }
 
-extern "C" void drawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
+extern "C" void Raylib::drawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
 {
     DrawModelEx(model, position, rotationAxis, rotationAngle, scale, tint);
 }
 
-extern "C" void drawModelWires(Model model, Vector3 position, float scale, Color tint)
+extern "C" void Raylib::drawModelWires(Model model, Vector3 position, float scale, Color tint)
 {
     DrawModelWires(model, position, scale, tint);
 }
 
-extern "C" void drawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
+extern "C" void Raylib::drawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint)
 {
     DrawModelWiresEx(model, position, rotationAxis, rotationAngle, scale, tint);
 }
 
-extern "C" void drawBoundingBox(BoundingBox box, Color color)
+extern "C" void Raylib::drawBoundingBox(BoundingBox box, Color color)
 {
     DrawBoundingBox(box, color);
 }
 
-extern "C" void drawBillboard(Camera camera, Texture2D texture, Vector3 center, float size, Color tint)
+extern "C" void Raylib::drawBillboard(Camera camera, Texture2D texture, Vector3 center, float size, Color tint)
 {
     DrawBillboard(camera, texture, center, size, tint);
 }
 
-/* extern "C" void drawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 center, float size, Color tint)
+extern "C" void Raylib::drawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 center, Vector2 size, Color tint)
 {
     DrawBillboardRec(camera, texture, source, center, size, tint);
-} */
-
-extern "C" bool checkCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2)
-{
-    return(CheckCollisionSpheres(center1, radius1, center2, radius2));
 }
 
-extern "C" bool checkCollisionBoxes(BoundingBox box1, BoundingBox box2)
+extern "C" bool Raylib::checkCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2)
 {
-    return(CheckCollisionBoxes(box1, box2));
+    return (CheckCollisionSpheres(center1, radius1, center2, radius2));
 }
 
-extern "C" bool checkCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
+extern "C" bool Raylib::checkCollisionBoxes(BoundingBox box1, BoundingBox box2)
 {
-    return(CheckCollisionBoxSphere(box, center, radius));
+    return (CheckCollisionBoxes(box1, box2));
 }
 
-extern "C" bool checkCollisionRaySphere(Ray ray, Vector3 center, float radius)
+extern "C" bool Raylib::checkCollisionBoxSphere(BoundingBox box, Vector3 center, float radius)
 {
-    return(CheckCollisionRaySphere(ray, center, radius));
+    return (CheckCollisionBoxSphere(box, center, radius));
 }
 
-extern "C" bool checkCollisionRaySphereEx(Ray ray, Vector3 center, float radius, Vector3 *collisionPoint)
+extern "C" bool Raylib::checkCollisionRaySphere(Ray ray, Vector3 center, float radius)
 {
-    return(CheckCollisionRaySphereEx(ray, center, radius, collisionPoint));
+    return (CheckCollisionRaySphere(ray, center, radius));
 }
 
-extern "C" bool checkCollisionRayBox(Ray ray, BoundingBox box)
+extern "C" bool Raylib::checkCollisionRaySphereEx(Ray ray, Vector3 center, float radius, Vector3 *collisionPoint)
 {
-    return(CheckCollisionRayBox(ray, box));
+    return (CheckCollisionRaySphereEx(ray, center, radius, collisionPoint));
+}
+
+extern "C" bool Raylib::checkCollisionRayBox(Ray ray, BoundingBox box)
+{
+    return (CheckCollisionRayBox(ray, box));
 }
 
 extern "C" RayHitInfo getCollisionRayMesh(Ray ray, Mesh mesh, Matrix transform)
 {
-    return(GetCollisionRayMesh(ray, mesh, transform));
+    return (GetCollisionRayMesh(ray, mesh, transform));
 }
 
 extern "C" RayHitInfo getCollisionRayModel(Ray ray, Model model)
 {
-    return(GetCollisionRayModel(ray, model));
+    return (GetCollisionRayModel(ray, model));
 }
 
 extern "C" RayHitInfo getCollisionRayTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3)
 {
-    return(GetCollisionRayTriangle(ray, p1, p2, p3));
+    return (GetCollisionRayTriangle(ray, p1, p2, p3));
 }
 
 extern "C" RayHitInfo getCollisionRayGround(Ray ray, float groundHeight)
 {
-    return(GetCollisionRayGround(ray, groundHeight));
+    return (GetCollisionRayGround(ray, groundHeight));
 }

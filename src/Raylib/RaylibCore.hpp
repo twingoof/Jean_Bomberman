@@ -10,9 +10,13 @@
 
 #include "raylib.h"
 #include <string>
-#include <tuple>
+#include <memory>
 
+/**
+ * @namespace Raylib
+ */
 namespace Raylib {
+
     /**
      * @brief Create a window with the parameters. Window is created such as stdscr is for NCurses.
      * @param width Window's width
@@ -531,40 +535,179 @@ namespace Raylib {
      */
     extern "C" std::tuple<float, float> getTouchPosition(int index);
 
-    // extern "C" void beginMode2D(Camera2D camera);
-    // extern "C" void endMode2D(void);
-    // extern "C" void beginMode3D(Camera3D camera);
-    // extern "C" void endMode3D(void);
-    // extern "C" void beginTextureMode(RenderTexture2D target);
-    // extern "C" void endTextureMode(void);
-    // extern "C" void beginShaderMode(Shader shader);
-    // extern "C" void endShaderMode(void);
-    // extern "C" void beginBlendMode(int mode);
-    // extern "C" void endBlendMode(void);
-    // extern "C" void beginScissorMode(int x, int y, int width, int height);
-    // extern "C" void endScissorMode(void);
+    // Camera handling functions
 
-    // // Gestures and Touch Handling Functions (Module: gestures)
-    // void SetGesturesEnabled(unsigned int flags);                            // Enable a set of gestures using flags
-    // bool IsGestureDetected(int gesture);                                    // Check if a gesture have been detected
-    // int GetGestureDetected(void);                                           // Get latest detected gesture
-    // int GetTouchPointsCount(void);                                          // Get touch points count
-    // float GetGestureHoldDuration(void);                                     // Get gesture hold time in milliseconds
-    // Vector2 GetGestureDragVector(void);                                     // Get gesture drag vector
-    // float GetGestureDragAngle(void);                                        // Get gesture drag angle
-    // Vector2 GetGesturePinchVector(void);                                    // Get gesture pinch delta
-    // float GetGesturePinchAngle(void);                                       // Get gesture pinch angle
+    /**
+     * @brief Begin 2D Mode
+     * @param camera Camera to start 2D Mode
+     */
+    extern "C" void beginMode2D(Camera2D camera);
 
-    // // Camera System Functions (Module: camera)
-    // void SetCameraMode(Camera camera, int mode);                            // Set camera mode (multiple camera modes available)
-    // void UpdateCamera(Camera *camera);                                      // Update camera position for selected mode
+    /**
+     * @brief End 2D Mode
+     */
+    extern "C" void endMode2D(void);
 
-    // void SetCameraPanControl(int keyPan);                                   // Set camera pan key to combine with mouse movement (free camera)
-    // void SetCameraAltControl(int keyAlt);                                   // Set camera alt key to combine with mouse movement (free camera)
-    // void SetCameraSmoothZoomControl(int keySmoothZoom);                     // Set camera smooth zoom key to combine with mouse (free camera)
-    // void SetCameraMoveControls(int frontKey, int backKey,
-    // int rightKey, int leftKey,
-    // int upKey, int downKey);                     // Set camera move controls (1st person and 3rd person cameras)
+    /**
+     * @brief Begin 3D Mode
+     * @param camera Camera to start 3D Mode
+     */
+    extern "C" void beginMode3D(Camera3D camera);
+
+    /**
+     * @brief End 3D Mode
+     */
+    extern "C" void endMode3D(void);
+
+    /**
+     * @brief Begin Texture Mode
+     * @param target 2D Texture to start Texture Mode with
+     */
+    extern "C" void beginTextureMode(RenderTexture2D target);
+
+    /**
+     * @brief End Texture Mode
+     */
+    extern "C" void endTextureMode(void);
+
+    /**
+     * @brief Begin Shader Mode
+     * @param shader Shader to start Shader mode with
+     */
+    extern "C" void beginShaderMode(Shader shader);
+
+    /**
+     * @brief End shader mode
+     */
+    extern "C" void endShaderMode(void);
+
+    /**
+     * @brief Begin blend mode with specific mode
+     * @param mode Blend mode
+     */
+    extern "C" void beginBlendMode(int mode);
+
+    /**
+     * @brief End blend mode
+     */
+    extern "C" void endBlendMode(void);
+
+    /**
+     * @brief Begin scissor mode
+     * @param x X position
+     * @param y Y position
+     * @param width Scissor Mode width
+     * @param height Scissor Mode height
+     */
+    extern "C" void beginScissorMode(int x, int y, int width, int height);
+
+    /**
+     * @brief End Scissor mode
+     */
+    extern "C" void endScissorMode(void);
+
+    // Gestures and Touch Handling Functions (Module: gestures)
+
+    /**
+     * @brief Enable a set of gestures using flags
+     * @param flags Flag index
+     */
+    extern "C" void setGesturesEnabled(unsigned int flags);
+
+    /**
+     * @brief Check if a gesture have been detected
+     * @param gesture Gesture ID to detect
+     * @return True if gesture is detected, False otherwise
+     */
+    extern "C" bool isGestureDetected(int gesture);
+
+    /**
+     * @brief Get latest detected gesture
+     * @return Gesture ID
+     */
+    extern "C" int getGestureDetected(void);
+
+    /**
+     * @brief Get touch points count
+     * @return Touch points count
+     */
+    extern "C" int getTouchPointsCount(void);
+
+    /**
+     * @brief Get gesture hold time in milliseconds
+     * @return Gesture hold time in milliseconds
+     */
+    extern "C" float getGestureHoldDuration(void);
+
+    /**
+     * @brief Get gesture drag vector
+     * @return Gesture drag vector
+     */
+    extern "C" Vector2 getGestureDragVector(void);
+
+    /**
+     * @brief Get gesture drag angle
+     * @return Gesture drag angle
+     */
+    extern "C" float getGestureDragAngle(void);
+
+    /**
+     * @brief Get gesture pinch delta
+     * @return Gesture pinch delta
+     */
+    extern "C" Vector2 getGesturePinchVector(void);
+
+    /**
+     * @brief Get gesture pinch angle
+     * @return Gesture pinch angle
+     */
+    extern "C" float getGesturePinchAngle(void);
+
+    // Camera System Functions (Module: camera)
+
+    /**
+     * @brief Set camera mode (multiple camera modes available)
+     * @param camera Camera object
+     * @param mode Camera mode to set
+     */
+    extern "C" void setCameraMode(Camera camera, int mode);
+
+    /**
+     * @brief Update camera position for selected mode
+     * @param camera Pointer to a camera object
+     */
+    extern "C" void updateCamera(std::unique_ptr<Camera> camera);
+
+    /**
+     * @brief Set camera pan key to combine with mouse movement (free camera)
+     * @param keyPan Pan key to be set
+     */
+    extern "C" void setCameraPanControl(int keyPan);
+
+    /**
+     * @brief Set camera alt key to combine with mouse movement (free camera)
+     * @param keyAlt Alt key to be set
+     */
+    extern "C" void setCameraAltControl(int keyAlt);
+
+    /**
+     * @brief Set camera smooth zoom key to combine with mouse (free camera)
+     * @param keySmoothZoom Smooth zoom key to be set
+     */
+    extern "C" void setCameraSmoothZoomControl(int keySmoothZoom);
+
+    /**
+     * @brief Set camera move controls (1st person and 3rd person cameras)
+     * @param frontKey Front key to be set
+     * @param backkey Back key to be set
+     * @param rightKey Right key to be set
+     * @param leftKey Left key to be set
+     * @param upKey Up key to be set
+     * @param downKey Down key to be set
+     */
+    extern "C" void setCameraMoveControls(int frontKey, int backKey,
+    int rightKey, int leftKey,
+    int upKey, int downKey);
 
 }
 

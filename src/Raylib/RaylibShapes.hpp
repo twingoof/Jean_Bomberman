@@ -11,9 +11,12 @@
 #include "raylib.h"
 #include <string>
 
+/**
+ * @namespace Raylib
+ */
 namespace Raylib {
 
-void SetShapesTexture(Texture2D texture, Rectangle source);
+    extern "C" void setShapesTexture(Texture2D texture, Rectangle source);
 
     // Basic shapes drawing functions
 

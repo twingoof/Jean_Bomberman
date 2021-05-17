@@ -12,6 +12,9 @@
 #include <vector>
 #include <string>
 
+/**
+ * @namespace Raylib
+ */
 namespace Raylib {
 
     // Font loading/unloading functions

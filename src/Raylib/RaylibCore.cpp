@@ -436,3 +436,139 @@ extern "C" std::tuple<float, float> getTouchPosition(int index)
 
     return (std::make_tuple(touchPosition.x, touchPosition.y));
 }
+
+extern "C" void Raylib::beginMode2D(Camera2D camera)
+{
+    BeginMode2D(camera);
+}
+
+extern "C" void Raylib::endMode2D(void)
+{
+    EndMode2D();
+}
+
+extern "C" void Raylib::beginMode3D(Camera3D camera)
+{
+    BeginMode3D(camera);
+}
+
+extern "C" void Raylib::endMode3D(void)
+{
+    EndMode3D();
+}
+
+extern "C" void Raylib::beginTextureMode(RenderTexture2D target)
+{
+    BeginTextureMode(target);
+}
+
+extern "C" void Raylib::endTextureMode(void)
+{
+    EndTextureMode();
+}
+
+extern "C" void Raylib::beginShaderMode(Shader shader)
+{
+    BeginShaderMode(shader);
+}
+
+extern "C" void Raylib::endShaderMode(void)
+{
+    EndShaderMode();
+}
+
+extern "C" void Raylib::beginBlendMode(int mode)
+{
+    BeginBlendMode(mode);
+}
+
+extern "C" void Raylib::endBlendMode(void)
+{
+    EndBlendMode();
+}
+
+extern "C" void Raylib::beginScissorMode(int x, int y, int width, int height)
+{
+    BeginScissorMode(x, y, width, height);
+}
+
+extern "C" void Raylib::endScissorMode(void)
+{
+    EndScissorMode();
+}
+
+extern "C" void setGesturesEnabled(unsigned int flags)
+{
+    SetGesturesEnabled(flags);
+}
+
+extern "C" bool isGestureDetected(int gesture)
+{
+    return (IsGestureDetected(gesture));
+}
+
+extern "C" int getGestureDetected(void)
+{
+    return (GetGestureDetected());
+}
+
+extern "C" int getTouchPointsCount(void)
+{
+    return (GetTouchPointsCount());
+}
+
+extern "C" float getGestureHoldDuration(void)
+{
+    return (GetGestureHoldDuration());
+}
+
+extern "C" Vector2 getGestureDragVector(void)
+{
+    return (GetGestureDragVector());
+}
+
+extern "C" float getGestureDragAngle(void)
+{
+    return (GetGestureDragAngle());
+}
+
+extern "C" Vector2 getGesturePinchVector(void)
+{
+    return (GetGesturePinchVector());
+}
+
+extern "C" float getGesturePinchAngle(void)
+{
+    return (GetGesturePinchAngle());
+}
+
+extern "C" void setCameraMode(Camera camera, int mode)
+{
+    SetCameraMode(camera, mode);
+}
+
+extern "C" void updateCamera(std::unique_ptr<Camera> camera)
+{
+    UpdateCamera(camera.get());
+}
+
+extern "C" void setCameraPanControl(int keyPan)
+{
+    SetCameraPanControl(keyPan);
+}
+
+extern "C" void setCameraAltControl(int keyAlt)
+{
+    SetCameraAltControl(keyAlt);
+}
+
+extern "C" void setCameraSmoothZoomControl(int keySmoothZoom)
+{
+    SetCameraSmoothZoomControl(keySmoothZoom);
+}
+
+extern "C" void setCameraMoveControls(int frontKey, int backKey, int rightKey, int leftKey,
+int upKey, int downKey)
+{
+    SetCameraMoveControls(frontKey, backKey, rightKey, leftKey, upKey, downKey);
+}

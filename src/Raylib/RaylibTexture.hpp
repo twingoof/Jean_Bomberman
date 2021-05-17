@@ -12,6 +12,9 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @namespace Raylib
+ */
 namespace Raylib {
 
     // Image loading functions
