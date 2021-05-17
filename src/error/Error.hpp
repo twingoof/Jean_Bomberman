@@ -48,6 +48,14 @@ class Error: public std::exception {
          */
         const char *what() noexcept;
 
+        /**
+         * std::string getMessage() const
+         * @brief Get the error message. For test purpose only
+         * 
+         * @return std::string
+         */
+        std::string getMessage() const;
+
     private:
         std::string _message;
 };
