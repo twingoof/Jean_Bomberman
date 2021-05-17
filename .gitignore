@@ -3,6 +3,7 @@
 *.o
 
 #Folders
+bootstrap
 .vscode
 
 #Files

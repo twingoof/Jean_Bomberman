@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: Ubuntu-20.04]
 ** File description:
-** Raylib
+** RaylibCore
 */
 
 #include "RaylibCore.hpp"
@@ -435,14 +435,4 @@ extern "C" std::tuple<float, float> getTouchPosition(int index)
     Vector2 touchPosition = GetTouchPosition(index);
 
     return (std::make_tuple(touchPosition.x, touchPosition.y));
-}
-
-extern "C" void Raylib::drawText(const std::string &pText, int posX, int posY, int fontSize, Color textColor)
-{
-    return (DrawText(pText.c_str(), posX, posY, fontSize, textColor));
-}
-
-extern "C" void Raylib::drawCircle(int centerX, int centerY, float radius, Color ballColor)
-{
-    return (DrawCircle(centerX, centerY, radius, ballColor));
 }

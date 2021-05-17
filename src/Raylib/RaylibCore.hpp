@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: Ubuntu-20.04]
 ** File description:
-** Raylib
+** RaylibCore
 */
 
 #ifndef RAYLIB_HPP_
@@ -530,25 +530,6 @@ namespace Raylib {
      * @return Touch position X and Y for touch point 0
      */
     extern "C" std::tuple<float, float> getTouchPosition(int index);
-
-    /**
-     * @brief Draws a text on the window on position posX and posY with a color and a font size.
-     * @param Text Text to display on window
-     * @param posX X Position where the test is displayed
-     * @param posY Y Position where the test is displayed
-     * @param fontSize Text font size
-     * @param textColor Text color
-     */
-    extern "C" void drawText(const std::string &Text, int posX, int posY, int fontSize, Color textColor);
-
-    /**
-     * @brief Draws a ball on positions centerX and centerY.
-     * @param centerX X Position of the ball center
-     * @param centerY Y Position of the ball center
-     * @param radius Ball radius
-     * @param ballColor Ball color
-     */
-    extern "C" void drawCircle(int centerX, int centerY, float radius, Color ballColor);
 
     // extern "C" void beginMode2D(Camera2D camera);
     // extern "C" void endMode2D(void);
