@@ -5,5 +5,7 @@
 #Folders
 bootstrap
 .vscode
+.vs
+.idea
 
 #Files
