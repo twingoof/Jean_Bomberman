@@ -16,7 +16,12 @@ Error::~Error()
 {
 }
 
-const char *Error::what() noexcept
+const char *Error::what() const noexcept
 {
     return (_message.c_str());
+}
+
+std::string Error::getMessage() const
+{
+    return (_message);
 }

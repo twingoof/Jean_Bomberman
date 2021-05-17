@@ -41,15 +41,15 @@ class Error: public std::exception {
         ~Error();
 
         /**
-         * @fn const char *what() noexcept
+         * @fn const char *what() const noexcept
          * @brief Return the error message
          * 
          * @return const char* 
          */
-        const char *what() noexcept;
+        const char *what() const noexcept;
 
         /**
-         * std::string getMessage() const
+         * @fn std::string getMessage() const
          * @brief Get the error message. For test purpose only
          * 
          * @return std::string
@@ -57,7 +57,7 @@ class Error: public std::exception {
         std::string getMessage() const;
 
     private:
-        std::string _message;
+        std::string _message; /**< The error message*/
 };
 
 #endif /* !ERROR_HPP_ */
