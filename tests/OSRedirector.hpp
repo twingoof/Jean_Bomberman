@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-CCP-400-NAN-4-1-theplazza-gildas.gonzalez
+** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
 ** OSRedirector
 */
