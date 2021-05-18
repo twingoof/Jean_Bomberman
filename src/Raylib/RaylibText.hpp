@@ -40,7 +40,7 @@ namespace Raylib {
      * @param charsCount Number of characters to load
      * @return Font loaded
      */
-    extern "C" Font loadFontEx(const std::string &fileName, int fontSize, int *fontChars, int charsCount);
+    extern "C" Font loadFontEx(const std::string &fileName, int fontSize, std::vector<int> fontChars, int charsCount);
 
     /**
      * @brief Load font from Image (XNA style).
@@ -61,7 +61,7 @@ namespace Raylib {
      * @param charsCount Number of chars to load
      * @return Font loaded
      */
-    extern "C" Font loadFontFromMemory(const std::string &fileType, const std::string &fileData, int dataSize, int fontSize, int *fontChars, int charsCount);
+    extern "C" Font loadFontFromMemory(const std::string &fileType, const std::string &fileData, int dataSize, int fontSize, std::vector<int> fontChars, int charsCount);
 
     /**
      * @brief Unload Font from GPU memory (VRAM).
@@ -299,8 +299,8 @@ namespace Raylib {
     extern "C" int getCodepointsCount(const std::string &text);
 
     // std::string &textToUtf8(int *codepoints, int length); - Encode text codepoint into utf8 text (memory must be freed!)
-    // int *GetCodepoints(const char *text, int *count); - Get all codepoints in a string, codepoints count returned by parameters
-    // int GetNextCodepoint(const char *text, int *bytesProcessed); - Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure
+    // int *GetCodepoints(const std::string &text, int *count); - Get all codepoints in a string, codepoints count returned by parameters
+    // int GetNextCodepoint(const std::string &text, int *bytesProcessed); - Returns next codepoint in a UTF8 encoded string; 0x3f('?') is returned on failure
     // const char *CodepointToUtf8(int codepoint, int *byteLength); - Encode codepoint into utf8 text (char array length returned as parameter)
 
 };

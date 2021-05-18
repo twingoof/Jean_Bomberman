@@ -42,9 +42,9 @@ extern "C" void Raylib::drawLineBezierQuad(Vector2 startPos, Vector2 endPos, Vec
     DrawLineBezierQuad(startPos, endPos, controlPos, thick, color);
 }
 
-extern "C" void Raylib::drawLineStrip(Vector2 *points, int pointsCount, Color color)
+extern "C" void Raylib::drawLineStrip(std::vector<Vector2> points, int pointsCount, Color color)
 {
-    ;
+    DrawLineStrip(points.data(), pointsCount, color);
 }
 
 extern "C" void Raylib::drawCircle(int centerX, int centerY, float radius, Color color)
@@ -162,14 +162,14 @@ extern "C" void Raylib::drawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Co
     DrawTriangleLines(v1, v2, v3, color);
 }
 
-extern "C" void Raylib::drawTriangleFan(Vector2 *points, int pointsCount, Color color)
+extern "C" void Raylib::drawTriangleFan(std::vector<Vector2> points, int pointsCount, Color color)
 {
-    ;
+    DrawTriangleFan(points.data(), pointsCount, color);
 }
 
-extern "C" void Raylib::drawTriangleStrip(Vector2 *points, int pointsCount, Color color)
+extern "C" void Raylib::drawTriangleStrip(std::vector<Vector2> points, int pointsCount, Color color)
 {
-    ;
+    DrawTriangleStrip(points.data(), pointsCount, color);
 }
 
 extern "C" void Raylib::drawPoly(Vector2 center, int sides, float radius, float rotation, Color color)
@@ -214,9 +214,9 @@ extern "C" bool Raylib::checkCollisionPointTriangle(Vector2 point, Vector2 p1, V
     return (CheckCollisionPointTriangle(point, p1, p2, p3));
 }
 
-extern "C" bool Raylib::checkCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint)
+extern "C" bool Raylib::checkCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, std::vector<Vector2> collisionPoint)
 {
-    ;
+    return (CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint.data()));
 }
 
 extern "C" Rectangle getCollisionRec(Rectangle rec1, Rectangle rec2)

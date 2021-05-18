@@ -27,9 +27,9 @@ extern "C" void Raylib::drawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color
     DrawTriangle3D(v1, v2, v3, color);
 }
 
-extern "C" void Raylib::drawTriangleStrip3D(Vector3 *points, int pointsCount, Color color)
+extern "C" void Raylib::drawTriangleStrip3D(std::vector<Vector3> points, int pointsCount, Color color)
 {
-    DrawTriangleStrip3D(points, pointsCount, color);
+    DrawTriangleStrip3D(points.data(), pointsCount, color);
 }
 
 extern "C" void Raylib::drawCube(Vector3 position, float width, float height, float length, Color color)
@@ -117,9 +117,9 @@ extern "C" void Raylib::unloadModelKeepMeshes(Model model)
     UnloadModelKeepMeshes(model);
 }
 
-extern "C" void Raylib::uploadMesh(Mesh *mesh, bool dynamic)
+extern "C" void Raylib::uploadMesh(std::unique_ptr<Mesh> mesh, bool dynamic)
 {
-    UploadMesh(mesh, dynamic);
+    UploadMesh(mesh.get(), dynamic);
 }
 
 extern "C" void Raylib::updateMeshBuffer(Mesh mesh, int index, void *data, int dataSize, int offset)
@@ -132,9 +132,9 @@ extern "C" void Raylib::drawMesh(Mesh mesh, Material material, Matrix transform)
     DrawMesh(mesh, material, transform);
 }
 
-extern "C" void Raylib::drawMeshInstanced(Mesh mesh, Material material, Matrix *transforms, int instances)
+extern "C" void Raylib::drawMeshInstanced(Mesh mesh, Material material, std::vector<Matrix> transforms, int instances)
 {
-    DrawMeshInstanced(mesh, material, transforms, instances);
+    DrawMeshInstanced(mesh, material, transforms.data(), instances);
 }
 
 extern "C" void Raylib::unloadMesh(Mesh mesh)
@@ -162,19 +162,19 @@ extern "C" void Raylib::unloadMaterial(Material material)
     UnloadMaterial(material);
 }
 
-extern "C" void Raylib::setMaterialTexture(Material *material, int mapType, Texture2D texture)
+extern "C" void Raylib::setMaterialTexture(std::unique_ptr<Material> material, int mapType, Texture2D texture)
 {
-    SetMaterialTexture(material, mapType, texture);
+    SetMaterialTexture(material.get(), mapType, texture);
 }
 
-extern "C" void Raylib::setModelMeshMaterial(Model *model, int meshId, int materialId)
+extern "C" void Raylib::setModelMeshMaterial(std::vector<Model> model, int meshId, int materialId)
 {
-    SetModelMeshMaterial(model, meshId, materialId);
+    SetModelMeshMaterial(model.get(), meshId, materialId);
 }
 
 extern "C" std::unique_ptr<ModelAnimation> Raylib::loadModelAnimations(const std::string &fileName, int animsCount)
 {
-    return (std::make_unique<ModelAnimation> loadModelAnimations(fileName.c_str(), &animsCount));
+    return (std::make_unique<ModelAnimation> LoadModelAnimations(fileName.c_str(), &animsCount));
 }
 
 extern "C" void Raylib::updateModelAnimation(Model model, ModelAnimation anim, int frame)
@@ -187,9 +187,9 @@ extern "C" void Raylib::unloadModelAnimation(ModelAnimation anim)
     UnloadModelAnimation(anim);
 }
 
-extern "C" void Raylib::unloadModelAnimations(ModelAnimation *animations, unsigned int count)
+extern "C" void Raylib::unloadModelAnimations(std::vector<ModelAnimation> animations, unsigned int count)
 {
-    UnloadModelAnimations(animations, count);
+    UnloadModelAnimations(animations.data(), count);
 }
 
 extern "C" bool Raylib::isModelAnimationValid(Model model, ModelAnimation anim)
@@ -252,14 +252,14 @@ extern "C" BoundingBox meshBoundingBox(Mesh mesh)
     return (MeshBoundingBox(mesh));
 }
 
-extern "C" void Raylib::meshTangents(Mesh *mesh)
+extern "C" void Raylib::meshTangents(std::unique_ptr<Mesh> mesh)
 {
-    MeshTangents(mesh);
+    MeshTangents(mesh.get());
 }
 
-extern "C" void Raylib::meshBinormals(Mesh *mesh)
+extern "C" void Raylib::meshBinormals(std::unique_ptr<Mesh> mesh)
 {
-    MeshBinormals(mesh);
+    MeshBinormals(mesh.get());
 }
 
 extern "C" void Raylib::drawModel(Model model, Vector3 position, float scale, Color tint)
@@ -317,9 +317,9 @@ extern "C" bool Raylib::checkCollisionRaySphere(Ray ray, Vector3 center, float r
     return (CheckCollisionRaySphere(ray, center, radius));
 }
 
-extern "C" bool Raylib::checkCollisionRaySphereEx(Ray ray, Vector3 center, float radius, Vector3 *collisionPoint)
+extern "C" bool Raylib::checkCollisionRaySphereEx(Ray ray, Vector3 center, float radius, std::vector<Vector3> collisionPoint)
 {
-    return (CheckCollisionRaySphereEx(ray, center, radius, collisionPoint));
+    return (CheckCollisionRaySphereEx(ray, center, radius, collisionPoint.data()));
 }
 
 extern "C" bool Raylib::checkCollisionRayBox(Ray ray, BoundingBox box)
