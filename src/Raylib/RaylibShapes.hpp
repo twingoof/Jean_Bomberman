@@ -10,6 +10,7 @@
 
 #include "raylib.h"
 #include <string>
+#include <vector>
 
 /**
  * @namespace Raylib
@@ -87,7 +88,7 @@ namespace Raylib {
      * @param pointsCount Number of points to be drawn by line
      * @param color Line's color
      */
-    extern "C" void drawLineStrip(Vector2 *points, int pointsCount, Color color);
+    extern "C" void drawLineStrip(std::vector<Vector2> points, int pointsCount, Color color);
 
     /**
      * @brief Draw a color-filled circle.
@@ -316,7 +317,7 @@ namespace Raylib {
      * @param pointsCount Number of points to draw
      * @param color Triangle color
      */
-    extern "C" void drawTriangleFan(Vector2 *points, int pointsCount, Color color);
+    extern "C" void drawTriangleFan(std::vector<Vector2> points, int pointsCount, Color color);
 
     /**
      * @brief Draw a triangle strip defined by points.
@@ -324,7 +325,7 @@ namespace Raylib {
      * @param pointsCount Number of points to draw
      * @param color Triangle color
      */
-    extern "C" void drawTriangleStrip(Vector2 *points, int pointsCount, Color color);
+    extern "C" void drawTriangleStrip(std::vector<Vector2> points, int pointsCount, Color color);
 
     /**
      * @brief Draw a regular polygon (Vector version).
@@ -411,7 +412,7 @@ namespace Raylib {
      * @param collisionPoint Vector of collisionPoint
      * @return True if the two lines are colliding are colliding, False otherwise
      */
-    extern "C" bool checkCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint);
+    extern "C" bool checkCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, std::vector<Vector2> collisionPoint);
 
     /**
      * @brief Get collision rectangle for two rectangles collision.

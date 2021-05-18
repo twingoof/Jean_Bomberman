@@ -497,77 +497,77 @@ extern "C" void Raylib::endScissorMode(void)
     EndScissorMode();
 }
 
-extern "C" void setGesturesEnabled(unsigned int flags)
+extern "C" void Raylib::setGesturesEnabled(unsigned int flags)
 {
     SetGesturesEnabled(flags);
 }
 
-extern "C" bool isGestureDetected(int gesture)
+extern "C" bool Raylib::isGestureDetected(int gesture)
 {
     return (IsGestureDetected(gesture));
 }
 
-extern "C" int getGestureDetected(void)
+extern "C" int Raylib::getGestureDetected(void)
 {
     return (GetGestureDetected());
 }
 
-extern "C" int getTouchPointsCount(void)
+extern "C" int Raylib::getTouchPointsCount(void)
 {
     return (GetTouchPointsCount());
 }
 
-extern "C" float getGestureHoldDuration(void)
+extern "C" float Raylib::getGestureHoldDuration(void)
 {
     return (GetGestureHoldDuration());
 }
 
-extern "C" Vector2 getGestureDragVector(void)
+extern "C" Vector2 Raylib::getGestureDragVector(void)
 {
     return (GetGestureDragVector());
 }
 
-extern "C" float getGestureDragAngle(void)
+extern "C" float Raylib::getGestureDragAngle(void)
 {
     return (GetGestureDragAngle());
 }
 
-extern "C" Vector2 getGesturePinchVector(void)
+extern "C" Vector2 Raylib::getGesturePinchVector(void)
 {
     return (GetGesturePinchVector());
 }
 
-extern "C" float getGesturePinchAngle(void)
+extern "C" float Raylib::getGesturePinchAngle(void)
 {
     return (GetGesturePinchAngle());
 }
 
-extern "C" void setCameraMode(Camera camera, int mode)
+extern "C" void Raylib::setCameraMode(Camera camera, int mode)
 {
     SetCameraMode(camera, mode);
 }
 
-extern "C" void updateCamera(std::unique_ptr<Camera> camera)
+extern "C" void Raylib::updateCamera(std::unique_ptr<Camera> camera)
 {
     UpdateCamera(camera.get());
 }
 
-extern "C" void setCameraPanControl(int keyPan)
+extern "C" void Raylib::setCameraPanControl(int keyPan)
 {
     SetCameraPanControl(keyPan);
 }
 
-extern "C" void setCameraAltControl(int keyAlt)
+extern "C" void Raylib::setCameraAltControl(int keyAlt)
 {
     SetCameraAltControl(keyAlt);
 }
 
-extern "C" void setCameraSmoothZoomControl(int keySmoothZoom)
+extern "C" void Raylib::setCameraSmoothZoomControl(int keySmoothZoom)
 {
     SetCameraSmoothZoomControl(keySmoothZoom);
 }
 
-extern "C" void setCameraMoveControls(int frontKey, int backKey, int rightKey, int leftKey,
+extern "C" void Raylib::setCameraMoveControls(int frontKey, int backKey, int rightKey, int leftKey,
 int upKey, int downKey)
 {
     SetCameraMoveControls(frontKey, backKey, rightKey, leftKey, upKey, downKey);

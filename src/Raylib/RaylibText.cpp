@@ -19,9 +19,9 @@ extern "C" Font Raylib::loadFont(const std::string &filename)
     return (LoadFont(filename.c_str()));
 }
 
-extern "C" Font Raylib::loadFontEx(const std::string &fileName, int fontSize, int *fontChars, int charsCount)
+extern "C" Font Raylib::loadFontEx(const std::string &fileName, int fontSize, std::vector<int> fontChars, int charsCount)
 {
-    return (LoadFontEx(fileName.c_str(), fontSize, fontChars, charsCount));
+    return (LoadFontEx(fileName.c_str(), fontSize, fontChars.data(), charsCount));
 }
 
 extern "C" Font Raylib::loadFontFromImage(Image image, Color key, int firstChar)
@@ -29,13 +29,13 @@ extern "C" Font Raylib::loadFontFromImage(Image image, Color key, int firstChar)
     return (LoadFontFromImage(image, key, firstChar));
 }
 
-extern "C" Font Raylib::loadFontFromMemory(const std::string &fileType, const std::string &fileData, int dataSize, int fontSize, int *fontChars, int charsCount)
+extern "C" Font Raylib::loadFontFromMemory(const std::string &fileType, const std::string &fileData, int dataSize, int fontSize, std::vector<int> fontChars, int charsCount)
 {
     unsigned char trap[fileData.size()];
 
     std::copy(fileData.begin(), fileData.end(), trap);
     trap[fileData.length()] = 0;
-    return (LoadFontFromMemory(fileType.c_str(), trap, dataSize, fontSize, fontChars, charsCount));
+    return (LoadFontFromMemory(fileType.c_str(), trap, dataSize, fontSize, fontChars.data(), charsCount));
 }
 
 extern "C" void Raylib::unloadFont(Font font)
