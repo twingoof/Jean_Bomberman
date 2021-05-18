@@ -1,0 +1,26 @@
+name: Build windows
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: cmake
+        run: mkdir build && cd build && cmake ..
+      - name: MSVC
+        run: cmake --build build
+      - name: Archive binary
+        uses: actions/upload-artifact@v1
+        with:
+          name: bomberman.exe
+          path: build\Debug\bomberman.exe
