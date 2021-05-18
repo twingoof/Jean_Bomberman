@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: kali-linux]
+** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
 ** tests_Error
 */
