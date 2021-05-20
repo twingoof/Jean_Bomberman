@@ -1,0 +1,87 @@
+\hypertarget{class_error}{}\section{Error Class Reference}
+\label{class_error}\index{Error@{Error}}
+
+
+Inheritance diagram for Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_error__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_error__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_error_a531664ff4c9e228a269aea757d23236f}{Error}} (std\+::string message)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_error}{Error}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_error_a1a45d42a3a035d510333cdfeb36a0e93}\label{class_error_a1a45d42a3a035d510333cdfeb36a0e93}} 
+\mbox{\hyperlink{class_error_a1a45d42a3a035d510333cdfeb36a0e93}{$\sim$\+Error}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_error}{Error}} object. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{class_error_a2735217cefcd50320daf7733cf3150a7}{what}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Return the error message. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_error_a25241c4a23ba6e25a7e8169edc163d9d}{get\+Message}} () const
+\begin{DoxyCompactList}\small\item\em Get the error message. For test purpose only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_error_a531664ff4c9e228a269aea757d23236f}\label{class_error_a531664ff4c9e228a269aea757d23236f}} 
+\index{Error@{Error}!Error@{Error}}
+\index{Error@{Error}!Error@{Error}}
+\subsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily Error\+::\+Error (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_error}{Error}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \mbox{\hyperlink{class_error}{Error}} message to throw \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_error_a25241c4a23ba6e25a7e8169edc163d9d}\label{class_error_a25241c4a23ba6e25a7e8169edc163d9d}} 
+\index{Error@{Error}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!Error@{Error}}
+\subsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily std\+::string Error\+::get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the error message. For test purpose only. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_error_a2735217cefcd50320daf7733cf3150a7}\label{class_error_a2735217cefcd50320daf7733cf3150a7}} 
+\index{Error@{Error}!what@{what}}
+\index{what@{what}!Error@{Error}}
+\subsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily const char $\ast$ Error\+::what (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Return the error message. 
+
+\begin{DoxyReturn}{Returns}
+const char$\ast$ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/error/\mbox{\hyperlink{_error_8hpp}{Error.\+hpp}}\item 
+src/error/Error.\+cpp\end{DoxyCompactItemize}
