@@ -1,4 +1,4 @@
-name: Generate Doxygen documentation
+name: Generate documentation
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Install Doxygen
         run: sudo apt update --yes && sudo apt upgrade --yes && sudo apt install doxygen --yes
