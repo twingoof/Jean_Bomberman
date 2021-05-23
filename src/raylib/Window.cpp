@@ -33,6 +33,21 @@ bool Window::isCursorOnScreen(void)
     return (::IsCursorOnScreen());
 }
 
+void Window::hideCursor(void)
+{
+    ::HideCursor();
+}
+
+void Window::showCursor(void)
+{
+    ::ShowCursor();
+}
+
+bool Window::isCursorHidden(void)
+{
+    return (::IsCursorHidden());
+}
+
 bool Window::isClosed(void) const
 {
     return (::WindowShouldClose());

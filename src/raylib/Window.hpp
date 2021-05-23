@@ -30,6 +30,22 @@ class Window {
         bool isCursorOnScreen();
 
         /**
+         * @brief Hide mouse cursor.
+         */
+        void hideCursor();
+
+        /**
+         * @brief Show mouse cursor.
+         */
+        void showCursor();
+
+        /**
+         * @brief Check if mouse cursor is hidden.
+         * @return True if the mouse cursor is hidden, False otherwise
+         */
+        bool isCursorHidden(void);
+
+        /**
          * @brief Check if the window is closed or not.
          * @return True if the window is closed, False otherwise
          */
