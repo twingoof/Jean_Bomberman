@@ -30,10 +30,16 @@ class IEntity {
         IEntity() = default;
 
         /**
-         * @fn virtual ~IEntity() = delete
+         * @fn virtual ~IEntity() = default
          * @brief Destroy the IEntity object
          */
-        virtual ~IEntity() = delete;
+        virtual ~IEntity() = default;
+
+        /**
+         * @fn virtual void display() = 0
+         * @brief Display the entities
+         */
+        virtual void display() = 0;
 };
 
 #endif /* !IENTITY_HPP_ */
