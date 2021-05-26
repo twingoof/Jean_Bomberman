@@ -51,7 +51,7 @@ PROJECT_BRIEF          = "A 3D bomberman runned with the Raylib"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = /home/ggonzalez/epitech/tek2/b-yep/B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez/assets/doxygen_logo.png
+PROJECT_LOGO           = ./assets/doxygen_logo.png
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
