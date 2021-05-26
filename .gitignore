@@ -5,5 +5,7 @@
 #Folders
 .vscode
 .idea
+build/
+tests/build
 
 #Files
