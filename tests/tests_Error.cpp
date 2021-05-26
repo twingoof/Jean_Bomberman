@@ -38,6 +38,6 @@ Test(Error_throw, normal_usage)
     } catch (const Error &e) {
         std::cerr << e.what() << std::endl;
     }
-    cr_assert_eq(cerr.getContent(), "Error: this is a test message\n");
+    cr_assert_eq(cerr.getContent(), "Error: this is a test.\n");
     cr_assert_throw(throw_test(), Error);
 }

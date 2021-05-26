@@ -6,6 +6,6 @@
 .vscode
 .idea
 build/
-tests/build
+build-linux/
 
 #Files
