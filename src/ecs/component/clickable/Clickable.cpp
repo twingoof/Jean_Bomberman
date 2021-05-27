@@ -12,9 +12,7 @@ Clickable::Clickable(void(*callback)())
     this->_callback = callback;
 }
 
-Clickable::~Clickable()
-{
-}
+Clickable::~Clickable() = default;
 
 void Clickable::callback()
 {

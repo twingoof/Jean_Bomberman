@@ -7,16 +7,10 @@
 
 #include "Button.hpp"
 
-Button::Button(std::map<std::string, std::string> textures, void(*callback)())
+Button::Button(std::map<std::string, std::string> textures, void(*callback)(), std::vector<int, int> position, std::vector<int, int> size)
 {
-    this->buttonCallback.setCallback(callback);
-    this->buttonTextures.addTextures(textures);
+    this->_callback.setCallback(callback);
+    this->_textures.addTextures(textures);
 }
 
-Button::~Button()
-{
-}
-
-void Button::display()
-{
-}
+Button::~Button() = default;

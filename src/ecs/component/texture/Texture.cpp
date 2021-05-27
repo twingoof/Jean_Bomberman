@@ -12,9 +12,7 @@ Texture::Texture(std::map<std::string, std::string> textures)
     this->_textures = textures;
 }
 
-Texture::~Texture()
-{
-}
+Texture::~Texture() = default;
 
 void Texture::addTexture(std::pair<std::string, std::string> newTexture)
 {

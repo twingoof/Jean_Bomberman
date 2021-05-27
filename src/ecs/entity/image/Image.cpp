@@ -14,6 +14,4 @@ Image::Image(std::map<std::string, std::string> texture, std::vector<int, int> p
     this->_size = size;
 }
 
-Image::~Image()
-{
-}
+Image::~Image() = default;

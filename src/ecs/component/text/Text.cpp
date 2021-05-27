@@ -12,9 +12,7 @@ Text::Text(std::string text)
     this->_text = text;
 }
 
-Text::~Text()
-{
-}
+Text::~Text() = default;
 
 void Text::setText(std::string newText)
 {
