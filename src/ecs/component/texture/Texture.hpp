@@ -30,7 +30,7 @@
 class Texture:public IComponent {
     public:
         /**
-         * @fn 
+         * @fn Texture(std::map<std::string, std::string> textures = {})
          * @brief Construct a new Texture
          * 
          * @param textures Texture of the object
@@ -38,13 +38,13 @@ class Texture:public IComponent {
         Texture(std::map<std::string, std::string> textures = {});
 
         /**
-         * @fn
+         * @fn ~Texture()
          * @brief Destroy the Texture object
          */
         ~Texture();
 
         /**
-         * @fn
+         * @fn void addTexture(std::pair<std::string, std::string> newTexture)
          * @brief Add a new texture to the map 
          * 
          * @param newTexture New to texture to add, with the pair format (one texture)
@@ -52,7 +52,7 @@ class Texture:public IComponent {
         void addTexture(std::pair<std::string, std::string> newTexture);
 
          /**
-         * @fn
+         * @fn void addTextures(std::map<std::string, std::string> newTextures)
          * @brief Add a new texture to the map 
          * 
          * @param newTextures New to texture to add, with the map format (multiple texture)
@@ -60,7 +60,7 @@ class Texture:public IComponent {
         void addTextures(std::map<std::string, std::string> newTextures);
 
         /**
-         * @fn
+         * @fn void deleteTexture(std::string textureName)
          * @brief Delete a texture of the map
          * 
          * @param textureName Texture key to delete
@@ -68,7 +68,7 @@ class Texture:public IComponent {
         void deleteTexture(std::string textureName);
 
         /**
-         * @fn
+         * @fn void deleteTextures(std::vector<std::string> texturesName)
          * @brief Delete a texture of the map
          * 
          * @param texturesName Vector of texture key to delete
@@ -76,7 +76,7 @@ class Texture:public IComponent {
         void deleteTextures(std::vector<std::string> texturesName);
 
         /**
-         * @fn
+         * @fn const std::map<std::string, std::string> getTexture(std::string textureName) const
          * @brief Get the Texture map
          * 
          * @param textureName Key of the texture to get
@@ -85,7 +85,7 @@ class Texture:public IComponent {
         const std::map<std::string, std::string> getTexture(std::string textureName) const;
 
         /**
-         * @fn
+         * @fn const std::map<std::string, std::string> getTextures(std::vector<std::string> texturesName) const
          * @brief Get the Texture map
          * 
          * @param texturesName Vectir of key of the texture to get
@@ -94,7 +94,7 @@ class Texture:public IComponent {
         const std::map<std::string, std::string> getTextures(std::vector<std::string> texturesName) const;
 
         /**
-         * @fn
+         * @fn const std::map<std::string, std::string> getTextures() const
          * @brief Get the Texture map
          * 
          * @return const std::map<std::string, std::string> 
@@ -102,7 +102,7 @@ class Texture:public IComponent {
         const std::map<std::string, std::string> getTextures() const;
 
     private:
-        std::map<std::string, std::string> _textures;
+        std::map<std::string, std::string> _textures; /**< Map of the textures*/
 };
 
 #endif /* !TEXTURE_HPP_ */
