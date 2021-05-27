@@ -19,6 +19,9 @@
 #define BUTTON_HPP_
 
 #include "IEntity.hpp"
+#include "Clickable.hpp"
+#include "Texture.hpp"
+#include "Vector.hpp"
 
 /**
  * @class Button Button.hpp "src/ecs/entity/button/Button.hpp"
@@ -29,7 +32,7 @@ class Button:public IEntity {
          * @fn Button()
          * @brief Construct a new Button object
          */
-        Button();
+        Button(std::map<std::string, std::string> textures = {}, void(*callback)() = nullptr, std::vector<int, int> size = {}, std::vector<int, int> position = {});
 
         /**
          * @fn ~Button()
@@ -37,11 +40,11 @@ class Button:public IEntity {
          */
         ~Button();
 
-        /**
-         * @fn void display() override
-         * @brief Display the button
-         */
-        void display() override;
+        Texture _textures; /**< Texture of the Button*/
+        Clickable _callback; /**< Callback of the Button*/
+        Vector _size; /**< Size of the Button*/
+        Vector _position; /**< Position of the Button*/
+    private:
 };
 
 #endif /* !BUTTON_HPP_ */

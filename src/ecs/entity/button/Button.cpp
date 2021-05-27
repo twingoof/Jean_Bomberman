@@ -7,8 +7,10 @@
 
 #include "Button.hpp"
 
-Button::Button()
+Button::Button(std::map<std::string, std::string> textures, void(*callback)())
 {
+    this->buttonCallback.setCallback(callback);
+    this->buttonTextures.addTextures(textures);
 }
 
 Button::~Button()
