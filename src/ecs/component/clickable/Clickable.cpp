@@ -12,11 +12,6 @@ Clickable::Clickable(void(*callback)())
     this->_callback = callback;
 }
 
-Clickable::Clickable()
-{
-    this->_callback = nullptr;
-}
-
 Clickable::~Clickable()
 {
 }

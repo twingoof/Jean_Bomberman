@@ -30,10 +30,10 @@ class IComponent {
         IComponent() = default;
 
         /**
-         * @fn virtual ~IComponent() = delete
+         * @fn virtual ~IComponent() = default
          * @brief Destroy the IComponent object
          */
-        virtual ~IComponent() = delete;
+        virtual ~IComponent() = default;
 };
 
 #endif /* !ICOMPONENT_HPP_ */

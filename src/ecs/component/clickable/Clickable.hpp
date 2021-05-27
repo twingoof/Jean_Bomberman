@@ -25,17 +25,11 @@ class Clickable {
     public:
         /**
          * @fn Clickable(void(*callback)())
-         * @brief Construct a new Clickable object, with a callback
+         * @brief Construct a new Clickable object
          * 
          * @param callback Function to callback
          */
-        Clickable(void(*callback)());
-
-        /**
-         * @fn Clickable()
-         * @brief Construct a new Clickable object, without a callback
-         */
-        Clickable();
+        Clickable(void(*callback)() = nullptr);
 
         /**
          * @fn ~Clickable()
