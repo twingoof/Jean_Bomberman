@@ -7,4 +7,5 @@
 .idea
 doc
 #Files
-src/main.cpp
+build/
+build-linux/
