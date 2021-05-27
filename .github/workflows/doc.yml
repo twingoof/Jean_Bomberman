@@ -29,6 +29,4 @@ jobs:
           sudo apt update --yes && sudo apt upgrade --yes
           sudo apt install doxygen
       - name: Generate Doc
-        run: |
-          cd $GITHUB_WORKSPACE/doc/
-          doxygen Doxyfile
+        run: doxygen Doxyfile
