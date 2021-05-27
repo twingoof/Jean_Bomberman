@@ -21,6 +21,7 @@
 
 #include "IEntity.hpp"
 #include "Texture.hpp"
+#include "Vector.hpp"
 
 /**
  * @class Image Image.hpp "src/ecs/entity/image/Image.hpp"
@@ -43,42 +44,9 @@ class Image {
          */
         ~Image();
 
-        /**
-         * @fn
-         * @brief Get the position of the Image
-         * 
-         * @return const std::vector<int, int> 
-         */
-        const std::vector<int, int> getPosition() const;
-
-        /**
-         * @fn
-         * @brief Get the size of the Image
-         * 
-         * @return const std::vector<int, int> 
-         */
-        const std::vector<int, int> getSize() const;
-
-        /**
-         * @fn 
-         * @brief Set the position of the Image
-         * 
-         * @param newPosition New position to set
-         */
-        void setPosition(std::vector<int, int> newPosition);
-
-        /**
-         * @fn
-         * @brief Set the size of the Image
-         * 
-         * @param newSize New size to set
-         */
-        void setSize(std::vector<int, int> newSize);
-
-        Texture _imageTexture; /**< Texture of the Image*/
-    private:
-        std::vector<int, int> _position; /**< Position of the Image*/
-        std::vector<int, int> _size; /**< Size of the Image*/
+        Vector _position; /**< Position of the image */
+        Vector _size; /**< Size of the image */
+        Texture _texture; /**< Texture of the image */
 };
 
 #endif /* !IMAGE_HPP_ */
