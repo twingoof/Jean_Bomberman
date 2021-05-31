@@ -14,7 +14,7 @@ void raylib::DrawText(const std::string &text, int posX, int posY, float fontSiz
 
 void raylib::DrawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint)
 {
-    ::DrawTextEx(font, text.c_str(), position, fontSize, 1, tint);
+    ::DrawTextEx(font, text.c_str(), position, fontSize, 2, tint);
 }
 
 int raylib::MeasureText(const std::string &text, float fontSize)

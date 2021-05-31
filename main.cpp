@@ -6,16 +6,19 @@
 */
 
 #include "src/raylib/Window.hpp"
+#include "src/raylib/Text.hpp"
+#include "src/raylib/Font.hpp"
 
 int main(void)
 {
     raylib::Window testWindow = raylib::Window::getWindow();
+    raylib::Font testFont;
 
     testWindow.initWindow(800, 800, "Test Window Encapsulation", FLAG_WINDOW_RESIZABLE);
     if (testWindow.isReady()) {
         while (!testWindow.isClosed()) {
             testWindow.beginDrawing();
-            DrawText("On print mon texte.", 20, 20, 50, WHITE);
+            raylib::DrawText(testFont, "On print mon texte.", {20, 20}, 50, WHITE);
             testWindow.clearW();
             testWindow.endDrawing();
         }
