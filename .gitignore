@@ -5,7 +5,7 @@
 #Folders
 .vscode
 .idea
+doc
+#Files
 build/
 build-linux/
-
-#Files
