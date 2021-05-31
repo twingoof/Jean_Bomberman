@@ -9,15 +9,16 @@
 
 int main(void)
 {
-    Window testWindow = Window::getWindow();
+    raylib::Window testWindow = raylib::Window::getWindow();
 
-    testWindow.initWindow(800, 800, "Test Window Encapsulation");
+    testWindow.initWindow(800, 800, "Test Window Encapsulation", FLAG_WINDOW_RESIZABLE);
     if (testWindow.isReady()) {
         while (!testWindow.isClosed()) {
+            testWindow.beginDrawing();
             DrawText("On print mon texte.", 20, 20, 50, WHITE);
             testWindow.clearW();
+            testWindow.endDrawing();
         }
     }
-    testWindow.closeW();
     return (0);
 }

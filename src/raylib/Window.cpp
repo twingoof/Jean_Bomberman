@@ -7,80 +7,93 @@
 
 #include "Window.hpp"
 
-Window &Window::getWindow()
+raylib::Window &raylib::Window::getWindow()
 {
-    static Window instance;
+    static raylib::Window instance;
 
     return (instance);
 }
 
-Window::Window()
+raylib::Window::Window()
 {}
 
-Window::~Window()
+raylib::Window::~Window()
 {
     closeW();
 }
 
-void Window::initWindow(const int width, const int height, const std::string &winName)
+void raylib::Window::initWindow(const int width, const int height, const std::string &winName, const unsigned int flag)
 {
     ::InitWindow(width, height, winName.c_str());
+    if (!::IsWindowState(flag))
+        ::SetWindowState(flag);
     _isInitialized = true;
 }
 
-bool Window::isCursorOnScreen(void)
+raylib::Window &raylib::Window::clearState(const unsigned int flag)
+{
+    ::ClearWindowState(flag);
+    return (*this);
+}
+
+bool isState(const unsigned int flag)
+{
+    return (::IsWindowState(flag));
+}
+
+bool raylib::Window::isCursorOnScreen(void)
 {
     return (::IsCursorOnScreen());
 }
 
-void Window::hideCursor(void)
+void raylib::Window::hideCursor(void)
 {
     ::HideCursor();
 }
 
-void Window::showCursor(void)
+void raylib::Window::showCursor(void)
 {
     ::ShowCursor();
 }
 
-bool Window::isCursorHidden(void)
+bool raylib::Window::isCursorHidden(void)
 {
     return (::IsCursorHidden());
 }
 
-bool Window::isClosed(void) const
+bool raylib::Window::isClosed(void) const
 {
     return (::WindowShouldClose());
 }
 
-bool Window::isReady(void) const
+bool raylib::Window::isReady(void) const
 {
     return (::IsWindowReady());
 }
 
-bool Window::isFullscreen(void)
+bool raylib::Window::isFullscreen(void)
 {
     _fullscreen = ::IsWindowFullscreen();
     return (_fullscreen);
 }
 
-bool Window::isHidden(void)
+bool raylib::Window::isHidden(void)
 {
     _isHidden = ::IsWindowHidden();
     return (_isHidden);
 }
 
-bool Window::isMaximized(void)
+bool raylib::Window::isMaximized(void)
 {
     return (::IsWindowMaximized());
 }
 
-bool Window::isMinimized(void)
+bool raylib::Window::isMinimized(void)
 {
     return (::IsWindowMinimized());
 }
 
-void Window::toggleFullscreen(void)
+void raylib::Window::toggleFullscreen(void)
 {
     if (_fullscreen)
         _fullscreen = false;
@@ -89,42 +102,52 @@ void Window::toggleFullscreen(void)
     ::ToggleFullscreen();
 }
 
-void Window::beginDrawing(void)
+void raylib::Window::beginDrawing(void)
 {
     ::BeginDrawing();
     _isDrawing = true;
 }
 
-void Window::endDrawing(void)
+void raylib::Window::endDrawing(void)
 {
     ::EndDrawing();
     _isDrawing = false;
 }
 
-void Window::clearW(void) const
+void raylib::Window::clearW(const ::Color &clearedColor) const
 {
-    ::ClearBackground(BLACK);
+    ::ClearBackground(clearedColor);
 }
 
-Window &Window::setWindowFPS(const int fpsValue)
+int raylib::Window::getWindowFPS(void) const
+{
+    return (::GetFPS());
+}
+
+raylib::Window &raylib::Window::setWindowFPS(const int fpsValue)
 {
     ::SetTargetFPS(fpsValue);
     return (*this);
 }
 
-Window &Window::maximizeWindow(void)
+raylib::Window &raylib::Window::maximizeWindow(void)
 {
-    MaximizeWindow();
+    ::MaximizeWindow();
     return (*this);
 }
 
-Window &Window::minimizeWindow(void)
+raylib::Window &raylib::Window::minimizeWindow(void)
 {
-    MinimizeWindow();
+    ::MinimizeWindow();
     return (*this);
 }
 
-void Window::closeW(void)
+::Vector2 raylib::Window::getScaleFactorDPI(void) const
+{
+    return (::GetWindowScaleDPI());
+}
+
+void raylib::Window::closeW(void)
 {
     if (_isInitialized)
         ::CloseWindow();
