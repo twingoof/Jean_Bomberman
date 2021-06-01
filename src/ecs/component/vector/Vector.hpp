@@ -15,7 +15,7 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <vector>
+#include <iostream>
 #ifndef VECTOR_HPP_
 #define VECTOR_HPP_
 
@@ -24,7 +24,7 @@
 /**
  * @class Vector Vector.hpp "src/ecs/component/vector/Vector.hpp"
  */
-class Vector {
+class Vector:public IComponent {
     public:
         /**
          * @fn Vector(std::vector<int, int> value = {})
@@ -32,7 +32,7 @@ class Vector {
          * 
          * @param value Default value of the vector
          */
-        Vector(std::vector<int, int> value = {});
+        Vector(std::pair<int, int> value = {});
 
         /**
          * @fn ~Vector()
@@ -46,7 +46,7 @@ class Vector {
          * 
          * @param newValue New value of the vector
          */
-        void setValue(std::vector<int, int> newValue);
+        void setValue(std::pair<int, int> newValue);
 
         /**
          * @fn const std::vector<int, int> getValue() const
@@ -54,9 +54,9 @@ class Vector {
          * 
          * @return const std::vector<int, int> 
          */
-        const std::vector<int, int> getValue() const;
+        const std::pair<int, int> getValue() const;
     private:
-        std::vector<int, int> _value; /**< The vector*/
+        std::pair<int, int> _value;
 };
 
 #endif /* !VECTOR_HPP_ */

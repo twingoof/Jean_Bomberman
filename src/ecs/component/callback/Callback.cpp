@@ -2,29 +2,29 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
-** Clickable
+** Callback
 */
 
-#include "Clickable.hpp"
+#include "Callback.hpp"
 
-Clickable::Clickable(void(*callback)())
+Callback::Callback(void(*callback)())
 {
     this->_callback = callback;
 }
 
-Clickable::~Clickable() = default;
+Callback::~Callback() = default;
 
-void Clickable::callback()
+void Callback::callback()
 {
     this->_callback();
 }
 
-void Clickable::setCallback(void(*callback)())
+void Callback::setCallback(void(*callback)())
 {
     this->_callback = callback;
 }
 
-void (*Clickable::getCallback())()
+void (*Callback::getCallback())()
 {
     return (this->_callback);
 }

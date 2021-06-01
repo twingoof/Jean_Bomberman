@@ -40,13 +40,20 @@ class IEntity {
         virtual ~IEntity() = default;
 
         /**
-         * @fn virtual void addComponent(std::map<std::string, IComponent> newComponent) = 0
+         * @fn virtual void addComponent(std::pair<std::string, IComponent> newComponent) = 0
          * @brief Add a new component to the Entity 
          * 
          * @param newComponent IComponent to add
          */
-        virtual void addComponent(std::map<std::string, IComponent> newComponent) = 0;
+        virtual void addComponent(std::pair<std::string, IComponent> newComponent) = 0;
 
+        /**
+         * @fn virtual void addComponents(std::map<std::string, IComponent> newComponents) = 0
+         * @brief Add multiple component to the Entity
+         * 
+         * @param newComponents IComponents to add
+         */
+        virtual void addComponents(std::map<std::string, IComponent> newComponents) = 0;
         /**
          * @fn virtual void deleteComponent(std::string componentID) = 0
          * @brief Delete a component from the Entity

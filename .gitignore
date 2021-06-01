@@ -1,11 +1,15 @@
 #File extensions
 *.so
 *.o
+*.gc*
+unit-test
 
 #Folders
 .vscode
 .idea
 doc
+
 #Files
 build/
 build-linux/
+Makefile

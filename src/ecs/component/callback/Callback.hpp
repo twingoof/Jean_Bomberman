@@ -2,40 +2,40 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
-** Clickable
+** Callback
 */
 
 /**
- * @file Clickable.hpp
+ * @file Callback.hpp
  * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
- * @brief File that contain the Clickable component
+ * @brief File that contain the Callback component
  * @version 0.1
  * @date 2021-05-26
  * 
  * @copyright Copyright (c) 2021
  * 
  */
-#ifndef CLICKABLE_HPP_
-#define CLICKABLE_HPP_
+#ifndef CALLBACK_HPP_
+#define CALLBACK_HPP_
 
 /**
- * @class Clickable Clickable.hpp "src/ecs/component/clickable/Clickable.hpp"
+ * @class Callback Callback.hpp "src/ecs/component/clickable/Callback.hpp"
  */
-class Clickable {
+class Callback {
     public:
         /**
-         * @fn Clickable(void(*callback)())
-         * @brief Construct a new Clickable object
+         * @fn Callback(void(*callback)())
+         * @brief Construct a new Callback object
          * 
          * @param callback Function to callback
          */
-        Clickable(void(*callback)() = nullptr);
+        Callback(void(*callback)() = nullptr);
 
         /**
-         * @fn ~Clickable()
-         * @brief Destroy the Clickable object
+         * @fn ~Callback()
+         * @brief Destroy the Callback object
          */
-        ~Clickable();
+        ~Callback();
 
         /**
          * @fn void callback()
@@ -63,4 +63,4 @@ class Clickable {
         void(*_callback)(); /**< Callback*/
 };
 
-#endif /* !CLICKABLE_HPP_ */
+#endif /* !CALLBACK_HPP_ */

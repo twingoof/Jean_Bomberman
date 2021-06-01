@@ -7,21 +7,21 @@
 
 #include "Vector.hpp"
 
-Vector::Vector(std::vector<int, int> value)
+
+Vector::Vector(std::pair<int, int> value)
 {
     this->_value = value;
 }
 
-Vector::~Vector()
+Vector::~Vector() = default;
+
+void Vector::setValue(std::pair<int, int> newValue)
 {
+    this->_value.first = newValue.first;
+    this->_value.second = newValue.second;
 }
 
-void Vector::setValue(std::vector<int, int> newValue)
-{
-    this->_value = newValue;
-}
-
-const std::vector<int, int> Vector::getValue() const
+const std::pair<int, int> Vector::getValue() const
 {
     return (this->_value);
 }

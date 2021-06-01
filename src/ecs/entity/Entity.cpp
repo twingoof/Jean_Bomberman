@@ -18,9 +18,15 @@ Entity::~Entity()
 {
 }
 
-void Entity::addComponent(std::map<std::string, IComponent> newComponents)
+void Entity::addComponents(std::map<std::string, IComponent> newComponents)
 {
-    this->_components.emplace(newComponents);
+    for (const auto &newComponent:newComponents)
+        this->_components.insert(newComponent);
+}
+
+void Entity::addComponent(std::pair<std::string, IComponent> newComponent)
+{
+    this->_components.insert(newComponent);
 }
 
 void Entity::deleteComponent(std::string componentID)
@@ -38,7 +44,9 @@ const std::map<std::string, IComponent> Entity::getComponent(std::string compone
 {
     std::map<std::string, IComponent> tmp;
 
-    tmp.emplace(this->_components.find(componentID));
+    for (const auto &components:this->_components)
+        if (components.first == componentID)
+            tmp.insert(components);
     return (tmp);
 }
 
@@ -47,7 +55,9 @@ const std::map<std::string, IComponent> Entity::getComponents(std::vector<std::s
     std::map<std::string, IComponent> tmp;
 
     for (const auto &componentID:componentsID)
-        tmp.emplace(this->_components.find(componentID));
+        for (const auto &components:this->_components)
+            if (components.first == componentID)
+                tmp.insert(components);
     return (tmp);
 }
 
