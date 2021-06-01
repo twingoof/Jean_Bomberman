@@ -11,8 +11,8 @@
 
 Test(Texture_constructor, with_parameter)
 {
-    std::map<std::string, std::string> expected = {{"", ""}};
-    Texture test({"", ""});
+    std::map<std::string, std::string> expected = {{"I'm", "Test"}, {"me", "too"}};
+    Texture test({{"I'm", "Test"}, {"me", "too"}});
 
     cr_assert_eq(test.getTextures(), expected);
 }
@@ -27,7 +27,7 @@ Test(Texture_constructor, no_parameter)
 
 Test(Texture_addTexture, normal_usage)
 {
-    std::map<std::string, std::string> expected = {{"I'm", "test"}};
+    std::map<std::string, std::string> expected = {{"I'm", "Test"}};
     Texture test;
 
     test.addTexture({"I'm", "Test"});
@@ -36,10 +36,11 @@ Test(Texture_addTexture, normal_usage)
 
 Test(Texture_addTextures, normal_usage)
 {
-    std::map<std::string, std::string> expected = {{"I'm", "test"}, {"me", "too"}};
+    std::map<std::string, std::string> expected = {{"I'm", "Test"}, {"me", "too"}};
     Texture test;
 
-    test.addTexture({{"I'm", "Test"}, {"me", "too"}});
+
+    test.addTextures({{"I'm", "Test"}, {"me", "too"}});
     cr_assert_eq(test.getTextures(), expected);
 }
 
@@ -47,7 +48,7 @@ Test(Texture_deleteTexture, normal_usage)
 {
     std::map<std::string, std::string> expected = {{"I'm", "test"}};
     Texture test({{"I'm", "test"}, {"me", "too"}});
-
+    
     test.deleteTexture("me");
     cr_assert_eq(test.getTextures(), expected);
 }

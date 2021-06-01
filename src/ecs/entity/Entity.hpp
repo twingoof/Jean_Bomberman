@@ -24,7 +24,7 @@
 
 #include "IComponent.hpp"
 #include "IEntity.hpp"
-
+/*
 /**
  * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"
  */
@@ -37,7 +37,7 @@ class Entity: public IEntity {
          * @param name Name of the Entity
          * @param defaultComponent Not required, some basical components for the Entity
          */
-        Entity(std::string name, std::map<std::string, IComponent> defaultComponent = {});
+        Entity(std::string name, std::map<std::string, IComponent> components);
 
         /**
          * @fn ~Entity()
@@ -106,5 +106,4 @@ class Entity: public IEntity {
         std::string _name; /**< Name of the components*/
         std::map<std::string, IComponent> _components; /**< Map that contains all of the components*/
 };
-
 #endif /* !ENTITY_HPP_ */

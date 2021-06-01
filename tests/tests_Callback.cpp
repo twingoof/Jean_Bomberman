@@ -6,7 +6,7 @@
 */
 
 #include "OSRedirector.hpp"
-#include "Clickable.hpp"
+#include "Callback.hpp"
 #include <iostream>
 
 void test()
@@ -14,34 +14,34 @@ void test()
     std::cout << "test" << std::endl;
 }
 
-Test(Clickable_constructor, with_constructor)
+Test(Callback_constructor, with_constructor)
 {
-    Clickable click(test);
+    Callback click(test);
     void (*expected)() = test;
 
     cr_assert_eq(click.getCallback(), expected);
 }
 
-Test(Clickable_constructor, no_constructor)
+Test(Callback_constructor, no_constructor)
 {
-    Clickable click;
+    Callback click;
 
     cr_assert_eq(click.getCallback(), nullptr);
 }
 
-Test(Clickable_setCallback, normal_usage)
+Test(Callback_setCallback, normal_usage)
 {
-    Clickable click;
+    Callback click;
     click.setCallback(test);
     void (*expected)() = test;
 
     cr_assert_eq(click.getCallback(), expected);
 }
 
-Test(Clickable_callback, normal_usage)
+Test(Callback_callback, normal_usage)
 {
     OSRedirector cout(std::cout);
-    Clickable click(test);
+    Callback click(test);
 
     click.callback();
     cr_assert_eq(cout.getContent(), "test\n");

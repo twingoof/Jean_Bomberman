@@ -11,7 +11,7 @@
 
 Test(Vector_constructor, with_parameter)
 {
-    std::vector<int, int> expected = {0, 0};
+    std::pair<int, int> expected = {0, 0};
     Vector test({0, 0});
 
     cr_assert_eq(test.getValue(), expected);
@@ -19,7 +19,7 @@ Test(Vector_constructor, with_parameter)
 
 Test(Vector_constructor, no_parameter)
 {
-    std::vector<int, int> expected = {};
+    std::pair<int, int> expected = {};
     Vector test;
 
     cr_assert_eq(test.getValue(), expected);
@@ -27,7 +27,7 @@ Test(Vector_constructor, no_parameter)
 
 Test(Vector_setValue, normal_usage)
 {
-    std::vector<int, int> expected = {0, 0};
+    std::pair<int, int> expected = {0, 0};
     Vector test;
 
     test.setValue({0, 0});
