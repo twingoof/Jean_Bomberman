@@ -13,11 +13,11 @@
 
 namespace raylib {
 
-    void DrawText(const std::string &text, int posX, int posY, float fontSize, ::Color tint = {255, 255, 255, 255});
+    void drawText(const std::string &text, int posX, int posY, float fontSize, ::Color tint = {255, 255, 255, 255});
 
-    void DrawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint = {255, 255, 255, 255});
+    void drawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint = {255, 255, 255, 255});
 
-    int MeasureText(const std::string &text, float fontSize);
+    int measureText(const std::string &text, float fontSize);
 
 };
 

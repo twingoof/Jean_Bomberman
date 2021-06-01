@@ -30,33 +30,33 @@ namespace raylib {
 
             ~Texture();
 
-            void LoadFromImage(const ::Image &image);
+            void loadFromImage(const ::Image &image);
 
-            void LoadCubemap(const ::Image &image, int layout);
+            void loadCubemap(const ::Image &image, int layout);
 
-            void LoadFromFile(const std::string &filePath);
+            void loadFromFile(const std::string &filePath);
 
-            void Unload(void);
+            void unload(void);
 
-            Texture &Update(const void *pixels);
+            Texture &update(const void *pixels);
 
             ::Vector2 getSize(void) const;
 
             ::Image getData(void) const;
 
-            void Draw(void);
+            void draw(void);
 
-            void Draw(int posX, int posY, ::Color tint = {255, 255, 255, 255});
+            void draw(int posX, int posY, ::Color tint = {255, 255, 255, 255});
 
-            void Draw(::Vector2 position, ::Color tint = {255, 255, 255, 255});
+            void draw(::Vector2 position, ::Color tint = {255, 255, 255, 255});
 
-            void Draw(::Vector2 position, float rotation, float scale = 1.0, ::Color tint = {255, 255, 255, 255});
+            void draw(::Vector2 position, float rotation, float scale = 1.0, ::Color tint = {255, 255, 255, 255});
 
-            void Draw(::Rectangle sourceRec, ::Vector2 position, ::Color tint = {255, 255, 255, 255});
+            void draw(::Rectangle sourceRec, ::Vector2 position, ::Color tint = {255, 255, 255, 255});
 
-            void Draw(::Vector2 tiling, ::Vector2 offset, ::Rectangle quad, ::Color tint = {255, 255, 255, 255});
+            void draw(::Vector2 tiling, ::Vector2 offset, ::Rectangle quad, ::Color tint = {255, 255, 255, 255});
 
-            void Draw(::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
+            void draw(::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
 
             void setMaterial(::Material &material, int type = MATERIAL_MAP_NORMAL);
 

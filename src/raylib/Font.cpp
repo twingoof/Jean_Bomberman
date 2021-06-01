@@ -9,41 +9,41 @@
 
 raylib::Font::Font()
 {
-    setFont(GetFontDefault());
+    this->setFont(::GetFontDefault());
 }
 
 raylib::Font::Font(const std::string &filePath)
 {
-    setFont(::LoadFont(filePath.c_str()));
+    this->setFont(::LoadFont(filePath.c_str()));
 }
 
 raylib::Font::Font(const ::Font &font)
 {
-    setFont(font);
+    this->setFont(font);
 }
 
 raylib::Font &raylib::Font::operator=(const ::Font &font)
 {
-    setFont(font);
+    this->setFont(font);
     return (*this);
 }
 
 raylib::Font::~Font()
 {
-    Unload();
+    this->unload();
 }
 
-void raylib::Font::Unload(void)
+void raylib::Font::unload(void)
 {
     ::UnloadFont(*this);
 }
 
-::Vector2 raylib::Font::MeasureText(const std::string &text, float fontSize, float spacing)
+::Vector2 raylib::Font::measureText(const std::string &text, float fontSize, float spacing)
 {
     return (::MeasureTextEx(*this, text.c_str(), fontSize, spacing));
 }
 
-::Image raylib::Font::ImageText(const std::string &text, float fontSize, float spacing, ::Color tint)
+::Image raylib::Font::imageText(const std::string &text, float fontSize, float spacing, ::Color tint)
 {
     return (::ImageTextEx(*this, text.c_str(), fontSize, spacing, tint));
 }

@@ -9,59 +9,59 @@
 
 raylib::Texture::Texture(const ::Texture &old)
 {
-    setTexture(old);
+    this->setTexture(old);
 }
 
 raylib::Texture::Texture(const ::Image &image)
 {
-    LoadFromImage(image);
+    this->loadFromImage(image);
 }
 
 raylib::Texture::Texture(const ::Image &image, int layout)
 {
-    LoadCubemap(image, layout);
+    this->loadCubemap(image, layout);
 }
 
 raylib::Texture::Texture(const std::string &filePath)
 {
-    LoadFromFile(filePath);
+    this->loadFromFile(filePath);
 }
 
 raylib::Texture::~Texture(void)
 {
-    Unload();
+    this->unload();
 }
 
-void raylib::Texture::Unload(void)
+void raylib::Texture::unload(void)
 {
     ::UnloadTexture(*this);
 }
 
-void raylib::Texture::LoadFromImage(const ::Image &image)
+void raylib::Texture::loadFromImage(const ::Image &image)
 {
     ::Texture2D newTexture = ::LoadTextureFromImage(image);
 
-    setTexture(newTexture);
+    this->setTexture(newTexture);
 }
 
-void raylib::Texture::LoadCubemap(const ::Image &image, int layout)
+void raylib::Texture::loadCubemap(const ::Image &image, int layout)
 {
     ::Texture2D newTexture = ::LoadTextureCubemap(image, layout);
 
-    setTexture(newTexture);
+    this->setTexture(newTexture);
 }
 
-void raylib::Texture::LoadFromFile(const std::string &filePath)
+void raylib::Texture::loadFromFile(const std::string &filePath)
 {
     ::Texture2D newTexture;
 
     if (filePath != "") {
         newTexture = ::LoadTexture(filePath.c_str());
-        setTexture(newTexture);
+        this->setTexture(newTexture);
     }
 }
 
-raylib::Texture &raylib::Texture::Update(const void *pixels)
+raylib::Texture &raylib::Texture::update(const void *pixels)
 {
     ::UpdateTexture(*this, pixels);
     return (*this);
@@ -79,37 +79,37 @@ raylib::Texture &raylib::Texture::Update(const void *pixels)
     return (::GetTextureData(*this));
 }
 
-void raylib::Texture::Draw(void)
+void raylib::Texture::draw(void)
 {
-    Draw(0, 0);
+    this->draw(0, 0);
 }
 
-void raylib::Texture::Draw(int posX, int posY, ::Color tint)
+void raylib::Texture::draw(int posX, int posY, ::Color tint)
 {
     ::DrawTexture(*this, posX, posY, tint);
 }
 
-void raylib::Texture::Draw(::Vector2 position, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, ::Color tint)
 {
     ::DrawTextureV(*this, position, tint);
 }
 
-void raylib::Texture::Draw(::Vector2 position, float rotation, float scale, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, float rotation, float scale, ::Color tint)
 {
     ::DrawTextureEx(*this, position, rotation, scale, tint);
 }
 
-void raylib::Texture::Draw(::Rectangle sourceRec, ::Vector2 position, ::Color tint)
+void raylib::Texture::draw(::Rectangle sourceRec, ::Vector2 position, ::Color tint)
 {
     ::DrawTextureRec(*this, sourceRec, position, tint);
 }
 
-void raylib::Texture::Draw(::Vector2 position, ::Vector2 offset, ::Rectangle quad, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, ::Vector2 offset, ::Rectangle quad, ::Color tint)
 {
     ::DrawTextureQuad(*this, position, offset, quad, tint);
 }
 
-void raylib::Texture::Draw(::Vector3 position, float width, float height, float length, ::Color tint)
+void raylib::Texture::draw(::Vector3 position, float width, float height, float length, ::Color tint)
 {
     ::DrawCubeTexture(*this, position, width, height, length, tint);
 }
