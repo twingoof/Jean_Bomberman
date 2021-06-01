@@ -37,7 +37,7 @@ class Entity: public IEntity {
          * @param name Name of the Entity
          * @param defaultComponent Not required, some basical components for the Entity
          */
-        Entity(std::string name, std::map<std::string, IComponent> components);
+        Entity(std::string name, std::map<std::string, IComponent> components = {});
 
         /**
          * @fn ~Entity()
@@ -46,12 +46,20 @@ class Entity: public IEntity {
         ~Entity();
 
         /**
-         * @fn void addComponent(std::map<std::string, IComponent> newComponent) override
-         * @brief Add a new component to the Entity 
+         * @fn void addComponent(std::pair<std::string, IComponent> newComponent) override
+         * @brief Add a new component to the Entity
          * 
-         * @param newComponent IComponent to add
+         * @param newComponents IComponents to add
          */
-        void addComponent(std::map<std::string, IComponent> newComponent) override;
+        void addComponent(std::pair<std::string, IComponent> newComponent) override;
+
+        /**
+         * @fn void addComponents(std::map<std::string, IComponent> newComponents) override
+         * @brief Add multiple component to the Entity 
+         * 
+         * @param newComponents IComponent to add
+         */
+        void addComponents(std::map<std::string, IComponent> newComponents) override;
 
         /**
          * @fn void deleteComponent(std::string componentID) override

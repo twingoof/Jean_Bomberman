@@ -24,7 +24,7 @@
 /**
  * @class Vector Vector.hpp "src/ecs/component/vector/Vector.hpp"
  */
-class Vector {
+class Vector:public IComponent {
     public:
         /**
          * @fn Vector(std::vector<int, int> value = {})

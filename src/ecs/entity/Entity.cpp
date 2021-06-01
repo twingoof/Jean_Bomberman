@@ -18,10 +18,15 @@ Entity::~Entity()
 {
 }
 
-void Entity::addComponent(std::map<std::string, IComponent> newComponents)
+void Entity::addComponents(std::map<std::string, IComponent> newComponents)
 {
     for (const auto &newComponent:newComponents)
         this->_components.insert(newComponent);
+}
+
+void Entity::addComponent(std::pair<std::string, IComponent> newComponent)
+{
+    this->_components.insert(newComponent);
 }
 
 void Entity::deleteComponent(std::string componentID)
