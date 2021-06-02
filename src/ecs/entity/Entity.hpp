@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: kali-linux]
+** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
 ** Entity
 */
@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
@@ -30,12 +31,13 @@ class Entity {
         std::string _id;
         Vector3 _position;
         Vector3 _size;
+        std::map<ComponentType, IComponent> _components;
 
         //Drawable2D _drawable2D;
         //Drawable3D _drawable3D;
         //Clickable _clickable;
         //Moveable _moveable;
-        //Killable _killable;
+        //Alive _alive;
         //Physics _physics;
         //Collectible _collectible;
 };
