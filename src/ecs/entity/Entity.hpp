@@ -31,8 +31,8 @@ class Entity {
         Vector3 _position;
         Vector3 _size;
 
-        //3dDrawable _3dDrawable;
-        //2dDrawable _2dDrawable;
+        //Drawable2D _drawable2D;
+        //Drawable3D _drawable3D;
         //Clickable _clickable;
         //Moveable _moveable;
         //Killable _killable;
