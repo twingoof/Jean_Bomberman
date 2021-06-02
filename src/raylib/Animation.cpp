@@ -1,0 +1,59 @@
+/*
+** EPITECH PROJECT, 2021
+** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
+** File description:
+** Animation
+*/
+
+#include "Animation.hpp"
+
+raylib::Animation::Animation(const ::ModelAnimation &oldAnim)
+{
+    this->setModelAnimation(oldAnim);
+}
+
+raylib::Animation::~Animation(void)
+{
+    this->unloadAnimation();
+}
+
+raylib::Animation &raylib::Animation::operator=(const ::ModelAnimation &oldAnim)
+{
+    this->setModelAnimation(oldAnim);
+}
+
+void raylib::Animation::unloadAnimation(void)
+{
+    ::UnloadModelAnimation(*this);
+}
+
+void raylib::Animation::updateAnimation(::Model &model, int frame)
+{
+    ::UpdateModelAnimation(model, *this, frame);
+}
+
+void raylib::Animation::setModelAnimation(const ::ModelAnimation &old)
+{
+    this->frameCount = old.frameCount;
+    this->framePoses = old.framePoses;
+    this->boneCount = old.boneCount;
+    this->bones = old.bones;
+}
+
+void raylib::unloadModelAnimations(std::vector<::ModelAnimation> modelAnimation, unsigned int count)
+{
+    ::UnloadModelAnimations(modelAnimation.data(), count);
+}
+
+std::unique_ptr<raylib::Animation> raylib::loadAnimations(const std::string &filePath, int animsCount)
+{
+    std::unique_ptr<raylib::Animation> newAnim = nullptr;
+    auto newAnimC = ::LoadModelAnimations(filePath.c_str(), reinterpret_cast<int *>(animsCount));
+
+    if (newAnimC == nullptr)
+        return (nullptr);
+    newAnim = std::make_unique<raylib::Animation>(newAnimC);
+    if (newAnim == nullptr)
+        return (nullptr);
+    return (newAnim);
+}
