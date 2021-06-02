@@ -8,7 +8,7 @@
 #ifndef MOVEABLE_HPP_
 #define MOVEABLE_HPP_
 
-#include "../../../../shitty_backup/ecs/component/vector3/Vector3.hpp"
+#include "Vector3.hpp"
 
 class Moveable {
     public:
