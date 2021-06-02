@@ -1,0 +1,13 @@
+#File extensions
+*.so
+*.o
+
+#Folders
+.vscode
+.idea
+doc
+build
+build-linux
+cmake-build-release
+
+#Files

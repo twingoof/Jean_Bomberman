@@ -65,7 +65,7 @@ namespace raylib {
              * @brief Check if the window is closed or not.
              * @return True if the window is closed, False otherwise
              */
-            bool isClosed() const;
+            bool windowShouldClose() const;
 
             /**
              * @brief Check if window is properly initialized.
@@ -116,7 +116,7 @@ namespace raylib {
              * @brief Clear the window's background with the color passed as parameter.
              * @param clearedColor Color clearing the window's background
              */
-            void clearW(const ::Color &clearedColor = BLACK) const;
+            void clearWindow(const ::Color &clearedColor = BLACK) const;
 
             /**
              * @brief Set a FPS limit for the created Window.
@@ -149,7 +149,7 @@ namespace raylib {
             /**
              * @brief Close window.
              */
-            void closeW();
+            void closeWindow();
 
             ~Window();
 

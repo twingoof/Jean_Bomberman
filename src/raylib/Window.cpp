@@ -14,12 +14,11 @@ raylib::Window &raylib::Window::getWindow()
     return (instance);
 }
 
-raylib::Window::Window()
-{}
+raylib::Window::Window() = default;
 
 raylib::Window::~Window()
 {
-    closeW();
+    closeWindow();
 }
 
 void raylib::Window::initWindow(const int width, const int height, const std::string &winName, const unsigned int flag)
@@ -61,7 +60,7 @@ bool raylib::Window::isCursorHidden(void)
     return (::IsCursorHidden());
 }
 
-bool raylib::Window::isClosed(void) const
+bool raylib::Window::windowShouldClose(void) const
 {
     return (::WindowShouldClose());
 }
@@ -114,7 +113,7 @@ void raylib::Window::endDrawing(void)
     _isDrawing = false;
 }
 
-void raylib::Window::clearW(const ::Color &clearedColor) const
+void raylib::Window::clearWindow(const ::Color &clearedColor) const
 {
     ::ClearBackground(clearedColor);
 }
@@ -147,7 +146,7 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (::GetWindowScaleDPI());
 }
 
-void raylib::Window::closeW(void)
+void raylib::Window::closeWindow(void)
 {
     if (_isInitialized)
         ::CloseWindow();
