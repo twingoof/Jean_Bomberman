@@ -157,6 +157,8 @@ namespace raylib {
 
         private:
             Window();
+            Window(const Window &newWindow) = delete;
+            Window &operator=(const Window &newWindow) = delete;
 
             bool _isHidden;
             bool _isDrawing;

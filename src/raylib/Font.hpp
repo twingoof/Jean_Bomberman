@@ -8,10 +8,7 @@
 #ifndef FONT_HPP_
 #define FONT_HPP_
 
-extern "C" {
-    #include "raylib.h"
-}
-
+#include "raylib.h"
 #include <string>
 
 namespace raylib {

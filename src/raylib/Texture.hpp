@@ -8,10 +8,7 @@
 #ifndef TEXTURE_HPP_
 #define TEXTURE_HPP_
 
-extern "C" {
-    #include "raylib.h"
-}
-
+#include "raylib.h"
 #include <string>
 #include <memory>
 

@@ -57,7 +57,6 @@ Vector3 raylib::Camera3D::getUp() {
 
 float raylib::Camera3D::getFovY() {
     return this->fovy;
-    
 }
 
 int raylib::Camera3D::getType() {
