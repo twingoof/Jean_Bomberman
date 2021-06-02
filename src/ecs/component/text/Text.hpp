@@ -20,10 +20,11 @@
 #ifndef TEXT_HPP_
 #define TEXT_HPP_
 
+#include "IComponent.hpp"
 /**
  * @class Text Text.hpp "src/ecs/text/Text.hpp"
  */
-class Text {
+class Text:public IComponent {
     public:
         /**
          * @fn Text(std::string text = "")

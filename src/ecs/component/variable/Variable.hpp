@@ -25,7 +25,7 @@
 /**
  * @class Variable Variable.hpp "src/ecs/component/variable/Variable.hpp"
  */
-class Variable {
+class Variable:public IComponent {
     public:
         /**
          * @fn Variable(int variable = 0)

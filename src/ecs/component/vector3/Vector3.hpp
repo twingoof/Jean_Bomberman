@@ -17,13 +17,16 @@
  */
 #include <iostream>
 #include <array>
+
 #ifndef VECTOR3_HPP_
 #define VECTOR3_HPP_
+
+#include "IComponent.hpp"
 
 /**
  * @class Vector3 Vector3.hpp "src/ecs/component/vector3/Vector3.hpp"
  */
-class Vector3 {
+class Vector3:public IComponent {
     public:
         /**
          * @fn Vector3(std::array<int, 3> value = {})

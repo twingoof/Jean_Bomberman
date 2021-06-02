@@ -18,10 +18,11 @@
 #ifndef CALLBACK_HPP_
 #define CALLBACK_HPP_
 
+#include "IComponent.hpp"
 /**
  * @class Callback Callback.hpp "src/ecs/component/clickable/Callback.hpp"
  */
-class Callback {
+class Callback:public IComponent {
     public:
         /**
          * @fn Callback(void(*callback)())
