@@ -20,7 +20,6 @@ class Killable {
         void takeDamage(unsigned short damage);
         bool isAlive(void);
 
-    protected:
     private:
         unsigned short _life;
 };

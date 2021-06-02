@@ -26,7 +26,6 @@ class Moveable {
         void move(Vector3 offsetPosition);
         const Vector3 getPosition() const;
 
-    protected:
     private:
         Vector3 _position;
 };
