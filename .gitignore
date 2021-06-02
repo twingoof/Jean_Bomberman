@@ -10,6 +10,8 @@ unit-test
 doc
 
 #Files
+cmake-build-debug
+cmake-build-release
 build/
 build-linux/
 Makefile

@@ -5,25 +5,25 @@
 ** TODO: add description
 */
 /**
- * @file Renderer.hpp
- * @brief Renderer system for ECS
+ * @file Renderer2D.hpp
+ * @brief Renderer2D system for ECS
  */
 #ifndef INDIE_RENDERER_HPP
 #define INDIE_RENDERER_HPP
 
 #include "Entity.hpp"
-#include "Drawable.hpp"
+#include "Drawable2D.hpp"
 
 #include <map>
 #include <string>
 /**
- * @class Renderer Renderer.hpp "src/ecs/systems/Renderer.hpp"
+ * @class Renderer2D Renderer2D.hpp "src/ecs/systems/Renderer2D.hpp"
  */
-class Renderer {
+class Renderer2D {
     public:
 
-        Renderer();
-        ~Renderer();
+        Renderer2D();
+        ~Renderer2D();
 
         void draw(const std::map<std::string, Entity>& entities);
     private:

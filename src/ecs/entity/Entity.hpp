@@ -14,6 +14,7 @@
 
 #include "Vector3.hpp"
 #include "enum.hpp"
+#include "IComponent.hpp"
 
 class Entity {
     public:

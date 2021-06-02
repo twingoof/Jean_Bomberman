@@ -1,4 +1,11 @@
+/*
+** EPITECH PROJECT, 2021
+** indie
+** File description:
+** main
+*/
+
+#include <raylib.h>
+
 int main() {
-    int a = 1234;
-    return a;
 }
