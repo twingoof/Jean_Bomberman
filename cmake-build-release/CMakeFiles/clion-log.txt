@@ -1,0 +1,20 @@
+C:\Users\Pierrick\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.21\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - NMake Makefiles" C:\Epi\delivery\Tek2\YEP\B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
+-- Populating raylib
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Epi/delivery/Tek2/YEP/B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez/cmake-build-release/_deps/raylib-subbuild
+[100%] Built target raylib-populate
+-- Testing if -Werror=pointer-arith can be used -- Failed
+-- Testing if -Werror=implicit-function-declaration can be used -- Failed
+-- Testing if -fno-strict-aliasing can be used -- Failed
+-- Using raylib's GLFW
+-- Using Win32 for window creation
+-- Audio Backend: miniaudio
+-- Building raylib static library
+-- Generated build type: Release
+-- Compiling with the flags:
+--   PLATFORM=PLATFORM_DESKTOP
+--   GRAPHICS=GRAPHICS_API_OPENGL_33
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Epi/delivery/Tek2/YEP/B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez/cmake-build-release

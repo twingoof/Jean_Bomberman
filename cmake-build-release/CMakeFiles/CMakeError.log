@@ -1,0 +1,30 @@
+Performing C SOURCE FILE Test COMPILER_HAS_THOSE_TOGGLES failed with the following output:
+Change Dir: C:/Epi/delivery/Tek2/YEP/B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez/cmake-build-release/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_1aa05\fast && 	"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_1aa05.dir\build.make /nologo -L                  CMakeFiles\cmTC_1aa05.dir\build
+Building C object CMakeFiles/cmTC_1aa05.dir/src.c.obj
+	C:\PROGRA~2\MICROS~2\2019\PROFES~1\VC\Tools\MSVC\1428~1.299\bin\Hostx86\x86\cl.exe @C:\Users\Pierrick\AppData\Local\Temp\nm4E20.tmp
+cl : Command line error D8021 : invalid numeric argument '/Werror=pointer-arith'
+NMAKE : fatal error U1077: 'C:\PROGRA~2\MICROS~2\2019\PROFES~1\VC\Tools\MSVC\1428~1.299\bin\Hostx86\x86\cl.exe' : return code '0x2'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\bin\HostX86\x86\nmake.exe"' : return code '0x2'
+Stop.
+
+
+Source file was:
+int main(void) { return 0; }
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Epi/delivery/Tek2/YEP/B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez/cmake-build-release/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_03d66\fast && 	"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_03d66.dir\build.make /nologo -L                  CMakeFiles\cmTC_03d66.dir\build
+Building C object CMakeFiles/cmTC_03d66.dir/CheckIncludeFile.c.obj
+	C:\PROGRA~2\MICROS~2\2019\PROFES~1\VC\Tools\MSVC\1428~1.299\bin\Hostx86\x86\cl.exe @C:\Users\Pierrick\AppData\Local\Temp\nm4EDB.tmp
+CheckIncludeFile.c
+C:\Epi\delivery\Tek2\YEP\B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez\cmake-build-release\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+NMAKE : fatal error U1077: 'C:\PROGRA~2\MICROS~2\2019\PROFES~1\VC\Tools\MSVC\1428~1.299\bin\Hostx86\x86\cl.exe' : return code '0x2'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\bin\HostX86\x86\nmake.exe"' : return code '0x2'
+Stop.
+
+
+
