@@ -10,6 +10,8 @@
 #include "IEntity.hpp"
 #include "IComponent.hpp"
 #include "Text.hpp"
+#include "Vector.hpp"
+#include "Vector3.hpp"
 
 Test(Entity_constructor, normal_usage)
 {
@@ -84,7 +86,7 @@ Test(Entity_getComponents, with_parameter)
     Text text2;
     std::map<std::string, IComponent> expected = {};
 
-    test.addComponents({{"_text", text}, {"_text2", text2}});
+    test.addComponents({{"movable", var}, {"_text2", text2}});
     cr_assert_eq(expected.size(), 0);
     expected = test.getComponents({"_text", "_text2"});
     cr_assert_eq(expected.size(), 2);

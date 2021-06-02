@@ -28,38 +28,12 @@
  */
 class Vector3:public IComponent {
     public:
-        /**
-         * @fn Vector3(std::array<int, 3> value = {})
-         * @brief Construct a new Vector 3 object
-         * 
-         * @param value Default array value 
-         */
-        Vector3(std::array<int, 3> value = {});
-
-        /**
-         * @fn ~Vector3()
-         * @brief Destroy the Vector 3 object
-         */
-        ~Vector3();
-
-        /**
-         * @fn void setValue(std::array<int, 3> newValue)
-         * @brief Set the value of the vector
-         * 
-         * @param newValue New value of the vector
-         */
-        void setValue(std::array<int, 3> newValue);
-
-        /**
-         * @fn const std::array<int, 3> getValue() const
-         * @brief Get the value of the vector
-         * 
-         * @return const std::array<int, 3> 
-         */
-        const std::array<int, 3> getValue() const;
+        Vector3();
 
     private:
-        std::array<int, 3> _value; /**< Value of the vector*/
+        int _x; /**< x value*/
+        int _y; /**< y value*/
+        int _z; /**< z value*/
 };
 
 #endif /* !VECTOR3_HPP_ */
