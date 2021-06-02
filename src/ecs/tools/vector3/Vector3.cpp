@@ -14,6 +14,13 @@ Vector3::Vector3(int x, int y, int z)
     this->_z = z;
 }
 
+Vector3 &Vector3::operator=(const Vector3 &vector3)
+{
+    this->_x = vector3.getX();
+    this->_y = vector3.getY();
+    this->_z = vector3.getZ();
+}
+
 Vector3::~Vector3() = default;
 
 void Vector3::setX(int x)
