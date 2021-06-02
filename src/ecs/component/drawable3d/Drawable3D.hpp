@@ -8,16 +8,20 @@
 #include <iostream>
 
 #ifndef DRAWABLE3D_HPP_
-#define DRAWABLE3D_HPP_
+    #define DRAWABLE3D_HPP_
 
-#include "Vector3.hpp"
+    #include "Vector3.hpp"
 
 class Drawable3D {
     public:
-        Drawable3D(std::string meshPath, Vector3 size);
+        Drawable3D(std::string meshPath, const Vector3& size);
+        Drawable3D(const Drawable3D &drawable3D);
         ~Drawable3D();
+
+        Drawable3D& operator=(Drawable3D const &rHand);
+
         void setMeshPath(std::string meshPath);
-        void setSize(Vector3 size);
+        void setSize(const Vector3& size);
         const std::string getMeshPath() const;
         const Vector3 getSize() const;
 
