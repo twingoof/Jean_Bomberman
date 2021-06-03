@@ -11,7 +11,7 @@
 #ifndef INDIE_RENDERER_HPP
 #define INDIE_RENDERER_HPP
 
-#include "Entity.hpp"
+#include "AltEntity.hpp"
 #include "Drawable2D.hpp"
 #include "IComponent.hpp"
 #include "Texture.hpp"
@@ -27,7 +27,7 @@ class Renderer2D {
         Renderer2D();
         ~Renderer2D();
 
-        void draw(const std::vector<Entity>& entities);
+        void draw(const std::vector<AltEntity>& entities);
     private:
 };
 

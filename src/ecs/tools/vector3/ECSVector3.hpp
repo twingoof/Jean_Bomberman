@@ -5,21 +5,25 @@
 ** ECSVector3
 */
 
+#include <iostream>
+
 #ifndef ECSVector3_HPP_
 #define ECSVector3_HPP_
 
 class ECSVector3 {
     public:
         ECSVector3(int x = 0, int y = 0, int z = 0);
-        ECSVector3 &operator=(const ECSVector3 &ECSVector3);
         ~ECSVector3();
+
         void setX(int x);
         void setY(int y);
         void setZ(int z);
-        const int getX() const;
-        const int getY() const;
-        const int getZ() const;
 
+        int getX() const;
+        int getY() const;
+        int getZ() const;
+
+        ECSVector3 &operator=(const ECSVector3 &ECSVector3);
     private:
         int _x;
         int _y;

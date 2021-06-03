@@ -20,6 +20,7 @@ raylib::Animation::~Animation(void)
 raylib::Animation &raylib::Animation::operator=(const ::ModelAnimation &oldAnim)
 {
     this->setModelAnimation(oldAnim);
+    return (*this);
 }
 
 void raylib::Animation::unloadAnimation(void)

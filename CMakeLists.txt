@@ -15,7 +15,7 @@ else ()
     add_compile_options(-Wall -Wextra -Wshadow)
 endif ()
 
-add_executable(bomberman ${SRC} src/main.cpp)
+add_executable(bomberman ${SRC} src/main.cpp src/main.cpp)
 add_executable(unit_tests ${SRC} ${TEST} tests/OSRedirector.hpp)
 
 macro (HEADER_DIRECTORIES ret_l)

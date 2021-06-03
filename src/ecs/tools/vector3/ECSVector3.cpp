@@ -39,17 +39,17 @@ void ECSVector3::setZ(int z)
     this->_z = z;
 }
 
-const int ECSVector3::getX() const
+int ECSVector3::getX() const
 {
     return (this->_x);
 }
 
-const int ECSVector3::getY() const
+int ECSVector3::getY() const
 {
     return (this->_y);
 }
 
-const int ECSVector3::getZ() const
+int ECSVector3::getZ() const
 {
     return (this->_z);
 }
