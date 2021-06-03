@@ -26,6 +26,8 @@
 #include "enum.hpp"
 #include "IComponent.hpp"
 
+#include <memory>
+
 /**
  * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"
  */
@@ -39,11 +41,11 @@ class Entity {
         void deleteComponent(ComponentType componentId);
         void deleteComponents(std::vector<ComponentType> componentsId);
 
-        const IComponent getComponent(ComponentType componentId) const;
-        const std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
-        const std::map<ComponentType, IComponent> getComponents() const;
-        const ECSVector3 getSize() const;
-        const ECSVector3 getPosition() const;
+        IComponent getComponent(ComponentType componentId) const;
+        std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
+        std::map<ComponentType, IComponent> getComponents() const;
+        ECSVector3 getSize() const;
+        ECSVector3 getPosition() const;
 
         void setSize(ECSVector3 newSize);
         void setPosition(ECSVector3 newPosition);

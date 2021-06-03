@@ -13,6 +13,8 @@
 
 #include "Entity.hpp"
 #include "Drawable2D.hpp"
+#include "IComponent.hpp"
+#include "Texture.hpp"
 
 #include <vector>
 #include <string>

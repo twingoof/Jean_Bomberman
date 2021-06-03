@@ -39,12 +39,12 @@ void Entity::deleteComponents(std::vector<ComponentType> componentsId)
         this->_components.erase(componentId);
 }
 
-const IComponent Entity::getComponent(ComponentType componentId) const
+IComponent Entity::getComponent(ComponentType componentId) const
 {
     return (this->_components.at(componentId));
 }
 
-const std::map<ComponentType, IComponent> Entity::getComponents(std::vector<ComponentType> componentsId) const
+std::map<ComponentType, IComponent> Entity::getComponents(std::vector<ComponentType> componentsId) const
 {
     std::map<ComponentType, IComponent> toReturn = {};
 
@@ -55,17 +55,17 @@ const std::map<ComponentType, IComponent> Entity::getComponents(std::vector<Comp
     return (toReturn);
 }
 
-const std::map<ComponentType, IComponent> Entity::getComponents() const
+std::map<ComponentType, IComponent> Entity::getComponents() const
 {
     return (this->_components);
 }
 
-const ECSVector3 Entity::getSize() const
+ECSVector3 Entity::getSize() const
 {
     return (this->_size);
 }
 
-const ECSVector3 Entity::getPosition() const
+ECSVector3 Entity::getPosition() const
 {
     return (this->_position);
 }
