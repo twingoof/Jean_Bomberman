@@ -67,3 +67,9 @@ void raylib::Sound::unloadSound(void) const
 {
     ::UnloadSound(*this);
 }
+
+void raylib::Sound::setSound(const ::Sound &newSound)
+{
+    this->stream = newSound.stream;
+    this->sampleCount = newSound.sampleCount;
+}
