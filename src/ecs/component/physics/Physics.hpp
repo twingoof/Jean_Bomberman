@@ -8,12 +8,21 @@
 #ifndef PHYSICS_HPP_
 #define PHYSICS_HPP_
 
+#include "ECSVector3.hpp"
+
 class Physics {
     public:
-        Physics();
+        Physics(ECSVector3 position, float width, float height);
         ~Physics();
 
+        bool hasCollision(ECSVector3 position, float width, float height);
+        void setPosition(ECSVector3 position);
+
     private:
+        ECSVector3 _position;
+        float _width;
+        float _height;
+
 };
 
 #endif /* !PHYSICS_HPP_ */
