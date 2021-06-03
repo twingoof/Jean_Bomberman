@@ -5,6 +5,16 @@
 ** Entity
 */
 
+/**
+ * @file Entity.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Entity class
+ * @version 0.1
+ * @date 2021-06-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include <iostream>
 #include <map>
 #include <vector>
@@ -16,6 +26,9 @@
 #include "enum.hpp"
 #include "IComponent.hpp"
 
+/**
+ * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"
+ */
 class Entity {
     public:
         Entity(std::string id, ECSVector3 position, ECSVector3 size);
@@ -29,20 +42,17 @@ class Entity {
         const IComponent getComponent(ComponentType componentId) const;
         const std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
         const std::map<ComponentType, IComponent> getComponents() const;
-        ECSVector3 getSize() const;
+        const ECSVector3 getSize() const;
+        const ECSVector3 getPosition() const;
+
+        void setSize(ECSVector3 newSize);
+        void setPosition(ECSVector3 newPosition);
+
     private:
         std::string _id;
         ECSVector3 _position;
         ECSVector3 _size;
         std::map<ComponentType, IComponent> _components;
-
-        //Drawable2D _drawable2D;
-        //Drawable3D _drawable3D;
-        //Clickable _clickable;
-        //Moveable _moveable;
-        //Alive _alive;
-        //Physics _physics;
-        //Collectible _collectible;
 };
 
 #endif /* !ENTITY_HPP_ */
