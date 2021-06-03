@@ -12,13 +12,13 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include "Vector3.hpp"
+#include "ECSVector3.hpp"
 #include "enum.hpp"
 #include "IComponent.hpp"
 
 class Entity {
     public:
-        Entity(std::string id, Vector3 position, Vector3 size);
+        Entity(std::string id, ECSVector3 position, ECSVector3 size);
         ~Entity();
 
         void addComponent(std::pair<ComponentType, IComponent> newComponent);
@@ -29,11 +29,11 @@ class Entity {
         const IComponent getComponent(ComponentType componentId) const;
         const std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
         const std::map<ComponentType, IComponent> getComponents() const;
-        Vector3 getSize() const;
+        ECSVector3 getSize() const;
     private:
         std::string _id;
-        Vector3 _position;
-        Vector3 _size;
+        ECSVector3 _position;
+        ECSVector3 _size;
         std::map<ComponentType, IComponent> _components;
 
         //Drawable2D _drawable2D;

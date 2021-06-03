@@ -14,7 +14,7 @@ Moveable::Moveable(int posX, int posY, int posZ)
     this->_position.setZ(posZ);
 }
 
-Moveable::Moveable(Vector3 position)
+Moveable::Moveable(ECSVector3 position)
 {
     this->_position = position;
 }
@@ -43,12 +43,12 @@ void Moveable::move(int offsetX, int offsetY, int offsetZ)
     this->_position.setZ(offsetZ);
 }
 
-void Moveable::move(Vector3 offsetPosition)
+void Moveable::move(ECSVector3 offsetPosition)
 {
     this->_position = offsetPosition;
 }
 
-const Vector3 Moveable::getPosition() const
+const ECSVector3 Moveable::getPosition() const
 {
     return (_position);
 }

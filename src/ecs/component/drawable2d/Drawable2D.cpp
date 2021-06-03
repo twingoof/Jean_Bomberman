@@ -6,10 +6,10 @@
 */
 
 #include "Drawable2D.hpp"
-#include "Vector3.hpp"
+#include "ECSVector3.hpp"
 #include <iostream>
 
-Drawable2D::Drawable2D(std::string spritePath, Vector3 size)
+Drawable2D::Drawable2D(std::string spritePath, ECSVector3 size) : IComponent()
 {
     this->_spritePath = spritePath;
     this->_size = size;
@@ -22,7 +22,7 @@ void Drawable2D::setSpritePath(std::string spritePath)
     this->_spritePath = spritePath;
 }
 
-void Drawable2D::setSize(Vector3 size)
+void Drawable2D::setSize(ECSVector3 size)
 {
     this->_size = size;
 }
@@ -32,7 +32,7 @@ const std::string Drawable2D::getSpritePath() const
     return (this->_spritePath);
 }
 
-const Vector3 Drawable2D::getSize() const
+const ECSVector3 Drawable2D::getSize() const
 {
     return (this->_size);
 }

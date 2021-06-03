@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
 ** File description:
-** Vector3
+** ECSVector3
 */
 
-#ifndef VECTOR3_HPP_
-#define VECTOR3_HPP_
+#ifndef ECSVector3_HPP_
+#define ECSVector3_HPP_
 
-class Vector3 {
+class ECSVector3 {
     public:
-        Vector3(int x = 0, int y = 0, int z = 0);
-        Vector3 &operator=(const Vector3 &vector3);
-        ~Vector3();
+        ECSVector3(int x = 0, int y = 0, int z = 0);
+        ECSVector3 &operator=(const ECSVector3 &ECSVector3);
+        ~ECSVector3();
         void setX(int x);
         void setY(int y);
         void setZ(int z);
@@ -26,4 +26,4 @@ class Vector3 {
         int _z;
 };
 
-#endif /* !VECTOR3_HPP_ */
+#endif /* !ECSVector3_HPP_ */

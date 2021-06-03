@@ -10,6 +10,8 @@
 #include "Drawable3D.hpp"
 
 class Renderer3D {
+        Renderer3D();
+        ~Renderer3D();
 };
 
 #endif //INDIE_RENDERER3D_HPP

@@ -8,7 +8,7 @@
 #include "Entity.hpp"
 #include "enum.hpp"
 
-Entity::Entity(std::string id, Vector3 position, Vector3 size)
+Entity::Entity(std::string id, ECSVector3 position, ECSVector3 size)
 {
     this->_id = id;
     this->_position = position;
@@ -60,6 +60,6 @@ const std::map<ComponentType, IComponent> Entity::getComponents() const
     return (this->_components);
 }
 
-Vector3 Entity::getSize() const {
+ECSVector3 Entity::getSize() const {
     return this->_size;
 }

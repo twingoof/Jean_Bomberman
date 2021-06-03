@@ -8,13 +8,13 @@
 #ifndef MOVEABLE_HPP_
 #define MOVEABLE_HPP_
 
-#include "Vector3.hpp"
+#include "ECSVector3.hpp"
 
 class Moveable {
     public:
         Moveable() = default;
         Moveable(int posX, int posY, int posZ);
-        Moveable(Vector3 position);
+        Moveable(ECSVector3 position);
         Moveable(const Moveable &Moveable) = default;
         Moveable &operator=(const Moveable &Moveable) = default;
         ~Moveable();
@@ -23,11 +23,11 @@ class Moveable {
         void moveY(int offsetY);
         void moveZ(int offsetZ);
         void move(int offsetX, int offsetY, int offsetZ);
-        void move(Vector3 offsetPosition);
-        const Vector3 getPosition() const;
+        void move(ECSVector3 offsetPosition);
+        const ECSVector3 getPosition() const;
 
     private:
-        Vector3 _position;
+        ECSVector3 _position;
 };
 
 #endif /* !MOVEABLE_HPP_ */

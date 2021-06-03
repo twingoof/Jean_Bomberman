@@ -5,25 +5,25 @@
 ** Drawable2D
 */
 
-#include <iostream>
-
 #ifndef DRAWABLE2D_HPP_
 #define DRAWABLE2D_HPP_
 
-#include "Vector3.hpp"
+#include "IComponent.hpp"
+#include "ECSVector3.hpp"
+#include <iostream>
 
-class Drawable2D {
+class Drawable2D : public IComponent {
     public:
-        Drawable2D(std::string spritePath, Vector3 size);
-        ~Drawable2D();
+        Drawable2D(std::string spritePath, ECSVector3 size);
+        ~Drawable2D() override;
         void setSpritePath(std::string spritePath);
-        void setSize(Vector3 size);
+        void setSize(ECSVector3 size);
         const std::string getSpritePath() const;
-        const Vector3 getSize() const;
+        const ECSVector3 getSize() const;
 
     private:
         std::string _spritePath;
-        Vector3 _size;
+        ECSVector3 _size;
 };
 
 #endif /* !DRAWABLE2D_HPP_ */
