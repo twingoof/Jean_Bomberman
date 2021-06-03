@@ -41,10 +41,12 @@ void Attacker::setDamage(unsigned short damage)
     this->_damage = damage;
 }
 
-void Attacker::dealDamage(Killable &target) const
+void Attacker::dealDamage(Killable &target)
 {
-    if (this->_ammo > 0)
+    if (this->_ammo > 0) {
+        this->_ammo = (this->_ammo - 1);
         target.takeDamage(this->_damage);
+    }
 }
 
 void Attacker::resetDamage()

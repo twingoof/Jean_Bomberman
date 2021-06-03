@@ -23,7 +23,7 @@ class Attacker {
         const unsigned short getBaseDamage() const;
         void setAmmo(unsigned int ammo);
         void setDamage(unsigned short damage);
-        void dealDamage(Killable &target) const;
+        void dealDamage(Killable &target);
         void resetDamage();
 
     protected:
