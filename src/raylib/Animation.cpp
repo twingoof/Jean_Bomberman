@@ -45,15 +45,14 @@ void raylib::unloadModelAnimations(std::vector<::ModelAnimation> modelAnimation,
     ::UnloadModelAnimations(modelAnimation.data(), count);
 }
 
-std::unique_ptr<raylib::Animation> raylib::loadAnimations(const std::string &filePath, int animsCount)
+std::vector<raylib::Animation> raylib::loadAnimations(const std::string &filePath, int animsCount)
 {
-    std::unique_ptr<raylib::Animation> newAnim = nullptr;
+    std::vector<raylib::Animation> newAnim;
     auto newAnimC = ::LoadModelAnimations(filePath.c_str(), reinterpret_cast<int *>(animsCount));
 
     if (newAnimC == nullptr)
-        return (nullptr);
-    newAnim = std::make_unique<raylib::Animation>(newAnimC);
-    if (newAnim == nullptr)
-        return (nullptr);
+        return (newAnim);
+    for (int i = 0; i < animsCount; i++)
+        newAnim.push_back(raylib::Animation(newAnimC[i]));
     return (newAnim);
 }

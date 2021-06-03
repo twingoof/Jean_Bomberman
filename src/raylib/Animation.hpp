@@ -39,7 +39,7 @@ namespace raylib {
 
     void unloadModelAnimations(std::vector<::ModelAnimation> modelAnimations, unsigned int count);
 
-    std::unique_ptr<raylib::Animation> loadAnimations(const std::string &filePath, int animsCount);
+    std::vector<raylib::Animation> loadAnimations(const std::string &filePath, int animsCount);
 
 };
 
