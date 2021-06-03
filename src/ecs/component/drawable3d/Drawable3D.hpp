@@ -8,9 +8,9 @@
 #include <iostream>
 
 #ifndef DRAWABLE3D_HPP_
-    #define DRAWABLE3D_HPP_
+#define DRAWABLE3D_HPP_
 
-    #include "Vector3.hpp"
+#include "Vector3.hpp"
 
 class Drawable3D {
     public:
