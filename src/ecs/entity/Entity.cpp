@@ -17,15 +17,18 @@ Entity::Entity(std::string id, ECSVector3 position, ECSVector3 size)
 
 Entity::~Entity() = default;
 
-void Entity::addComponent(std::pair<ComponentType, IComponent> newComponent)
+void Entity::addComponent(ComponentType componentType, IComponent component)
 {
-    this->_components.insert(newComponent);
+    this->_toInsert = std::make_pair(componentType, std::make_unique<IComponent>(component));
+    this->_components.insert(std::move(this->_toInsert));
 }
 
 void Entity::addComponents(std::map<ComponentType, IComponent> newComponents)
 {
-    for (const auto &newComponent:newComponents)
-        this->_components.insert(newComponent);
+    for (const auto &newComponent:newComponents) {
+        this->_toInsert = std::make_pair(newComponent.first, std::make_unique<IComponent>(newComponent.second));
+        this->_components.insert(std::move(this->_toInsert));
+    }
 }
 
 void Entity::deleteComponent(ComponentType componentId)
@@ -39,23 +42,23 @@ void Entity::deleteComponents(std::vector<ComponentType> componentsId)
         this->_components.erase(componentId);
 }
 
-IComponent Entity::getComponent(ComponentType componentId) const
+std::unique_ptr<IComponent> &Entity::getComponent(ComponentType componentId)
 {
     return (this->_components.at(componentId));
 }
 
-std::map<ComponentType, IComponent> Entity::getComponents(std::vector<ComponentType> componentsId) const
+std::map<ComponentType, std::unique_ptr<IComponent>> Entity::getComponents(std::vector<ComponentType> componentsId) const
 {
-    std::map<ComponentType, IComponent> toReturn = {};
+    std::map<ComponentType, std::unique_ptr<IComponent>> toReturn;
 
     for (const auto &component:this->_components)
         for (const auto &componentId:componentsId)
             if (componentId == component.first)
                 toReturn.insert(component);
-    return (toReturn);
+    return (std::move(toReturn));
 }
 
-std::map<ComponentType, IComponent> Entity::getComponents() const
+std::map<ComponentType, std::unique_ptr<IComponent>> Entity::getComponents() const
 {
     return (this->_components);
 }

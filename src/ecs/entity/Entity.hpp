@@ -18,6 +18,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <memory>
 
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
@@ -36,14 +37,14 @@ class Entity {
         Entity(std::string id, ECSVector3 position, ECSVector3 size);
         ~Entity();
 
-        void addComponent(std::pair<ComponentType, IComponent> newComponent);
+        void addComponent(ComponentType componentType, IComponent component);
         void addComponents(std::map<ComponentType, IComponent> newComponents);
         void deleteComponent(ComponentType componentId);
         void deleteComponents(std::vector<ComponentType> componentsId);
 
-        IComponent getComponent(ComponentType componentId) const;
-        std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
-        std::map<ComponentType, IComponent> getComponents() const;
+        std::unique_ptr<IComponent> &getComponent(ComponentType componentId);
+        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents(std::vector<ComponentType> componentsId) const;
+        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() const;
         ECSVector3 getSize() const;
         ECSVector3 getPosition() const;
 
@@ -54,7 +55,8 @@ class Entity {
         std::string _id;
         ECSVector3 _position;
         ECSVector3 _size;
-        std::map<ComponentType, IComponent> _components;
+        std::map<ComponentType, std::unique_ptr<IComponent>> _components;
+        std::pair<ComponentType, std::unique_ptr<IComponent>> _toInsert;
 };
 
 #endif /* !ENTITY_HPP_ */
