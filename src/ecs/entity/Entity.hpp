@@ -20,14 +20,16 @@ class Entity {
     public:
         Entity(std::string id, Vector3 position, Vector3 size);
         ~Entity();
+
         void addComponent(std::pair<ComponentType, IComponent> newComponent);
         void addComponents(std::map<ComponentType, IComponent> newComponents);
         void deleteComponent(ComponentType componentId);
         void deleteComponents(std::vector<ComponentType> componentsId);
+
         const IComponent getComponent(ComponentType componentId) const;
         const std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
         const std::map<ComponentType, IComponent> getComponents() const;
-
+        Vector3 getSize() const;
     private:
         std::string _id;
         Vector3 _position;

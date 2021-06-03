@@ -59,3 +59,7 @@ const std::map<ComponentType, IComponent> Entity::getComponents() const
 {
     return (this->_components);
 }
+
+Vector3 Entity::getSize() const {
+    return this->_size;
+}
