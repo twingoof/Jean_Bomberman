@@ -60,6 +60,22 @@ const std::map<ComponentType, IComponent> Entity::getComponents() const
     return (this->_components);
 }
 
-Vector3 Entity::getSize() const {
-    return this->_size;
+const Vector3 Entity::getSize() const
+{
+    return (this->_size);
+}
+
+const Vector3 Entity::getPosition() const
+{
+    return (this->_position);
+}
+
+void Entity::setSize(Vector3 newSize)
+{
+    this->_size = newSize;
+}
+
+void Entity::setPosition(Vector3 newPosition)
+{
+    this->_position = newPosition;
 }

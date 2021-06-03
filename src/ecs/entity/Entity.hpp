@@ -5,6 +5,16 @@
 ** Entity
 */
 
+/**
+ * @file Entity.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Entity class
+ * @version 0.1
+ * @date 2021-06-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include <iostream>
 #include <map>
 #include <vector>
@@ -16,6 +26,9 @@
 #include "enum.hpp"
 #include "IComponent.hpp"
 
+/**
+ * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"
+ */
 class Entity {
     public:
         Entity(std::string id, Vector3 position, Vector3 size);
@@ -29,7 +42,11 @@ class Entity {
         const IComponent getComponent(ComponentType componentId) const;
         const std::map<ComponentType, IComponent> getComponents(std::vector<ComponentType> componentsId) const;
         const std::map<ComponentType, IComponent> getComponents() const;
-        Vector3 getSize() const;
+        const Vector3 getSize() const;
+        const Vector3 getPosition() const;
+
+        void setSize(Vector3 newSize);
+        void setPosition(Vector3 newPosition);
     private:
         std::string _id;
         Vector3 _position;
