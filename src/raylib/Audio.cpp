@@ -39,7 +39,4 @@ void raylib::Audio::closeAudioDevice(void)
         ::CloseAudioDevice();
 }
 
-raylib::Audio::~Audio()
-{
-    this->closeAudioDevice();
-}
+raylib::Audio::~Audio() = default;

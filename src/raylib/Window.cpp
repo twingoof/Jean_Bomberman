@@ -16,10 +16,7 @@ raylib::Window &raylib::Window::getWindow()
 
 raylib::Window::Window() = default;
 
-raylib::Window::~Window()
-{
-    closeWindow();
-}
+raylib::Window::~Window() = default;
 
 void raylib::Window::initWindow(const int width, const int height, const std::string &winName, const unsigned int flag)
 {
