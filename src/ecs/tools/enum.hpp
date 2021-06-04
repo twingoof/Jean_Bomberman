@@ -19,6 +19,11 @@ enum ComponentType
     COLLECTIBLE
 };
 
+enum DrawableType {
+    CIRCLE,
+    RECT
+};
+
 typedef struct texture2D_s {
     int height;
     int width;

@@ -9,10 +9,11 @@
 #include "ECSVector3.hpp"
 #include <iostream>
 
-Drawable2D::Drawable2D(std::string spritePath, ECSVector3 size) : IComponent()
+Drawable2D::Drawable2D(std::string spritePath, ECSVector3 size, DrawableType type) : IComponent()
 {
     this->_spritePath = spritePath;
     this->_size = size;
+    this->_type = type;
 }
 
 Drawable2D::~Drawable2D() = default;
@@ -35,4 +36,9 @@ const std::string Drawable2D::getSpritePath() const
 const ECSVector3 Drawable2D::getSize() const
 {
     return (this->_size);
+}
+
+DrawableType Drawable2D::getType() const
+{
+    return (this->_type);
 }
