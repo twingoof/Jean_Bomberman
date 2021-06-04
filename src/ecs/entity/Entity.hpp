@@ -18,7 +18,7 @@
 class Entity {
     public:
         Entity() = default;
-        explicit Entity(const ECSVector3& position);
+        Entity(ECSVector3 position, ECSVector3 size);
         ~Entity() = default;
 
         template<class T>
@@ -27,9 +27,11 @@ class Entity {
         template<class T>
         T getComponent(ComponentType type);
 //        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() {return (this->_components);};
-        ECSVector3 getPosition() {return this->_position;}
+        ECSVector3 &getPosition() {return this->_position;}
+        ECSVector3 &getSize() {return this->_size;}
     private:
         ECSVector3 _position;
+        ECSVector3 _size;
         std::map<ComponentType, std::shared_ptr<IComponent>> _components;
 };
 

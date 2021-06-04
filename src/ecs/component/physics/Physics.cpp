@@ -7,24 +7,59 @@
 
 #include "Physics.hpp"
 
-Physics::Physics(ECSVector3 position, float width, float height)
+Physics::Physics(ECSVector3 &position, ECSVector3 &size, int layer)
+    : _position(position), _size(size)
 {
-    this->_position = position;
-    this->_width = width;
-    this->_height = height;
+    this->_layer = layer;
 }
 
 Physics::~Physics() = default;
 
-bool Physics::hasCollision(ECSVector3 position, float width, float height)
+const ECSVector3 &Physics::getPosition(void) const
 {
-    return  (((position.getX() < _position.getX() && (position.getX() + width) > _position.getX()) \
-    && (position.getY() < _position.getY() && (position.getY() + height) > _position.getY())) \
-    || ((position.getX() < (_position.getX() + width) && (position.getX() + width) > (_position.getX() + width)) \
-    && (position.getY() < (_position.getY() + height) && (position.getY() + height) > (_position.getY() + height))));
+    return (this->_position);
 }
 
-void Physics::setPosition(ECSVector3 position)
+const ECSVector3 &Physics::getSize(void) const
 {
-    this->_position = position;
+    return (this->_size);
+}
+
+const int Physics::getLayer() const
+{
+    return (this->_layer);
+}
+
+bool Physics::hasCollision(Physics toCompare)
+{
+   ECSVector3 positionOne = this->_position;
+   ECSVector3 positionTwo = toCompare.getPosition();
+   ECSVector3 sizeOne = this->_size;
+   ECSVector3 sizeTwo = toCompare.getSize();
+
+    if (_layer == toCompare.getLayer())
+        return (false);
+    return ((positionOne.getX() >= positionTwo.getX() && positionOne.getX() <= (positionTwo.getX() + sizeTwo.getX()) \
+    && positionOne.getY() >= positionTwo.getY() && positionOne.getY() <= (positionTwo.getY() + sizeTwo.getY())) || \
+    ((positionOne.getX() + sizeOne.getX()) >= positionTwo.getX() && (positionOne.getX() + sizeOne.getX()) <= (positionTwo.getX() + sizeTwo.getX()) \
+    && positionOne.getY() >= positionTwo.getY() && positionOne.getY() <= (positionTwo.getY() + sizeTwo.getY())) || \
+    (positionOne.getX() >= positionTwo.getX() && positionOne.getX() <= (positionTwo.getX() + sizeTwo.getX()) \
+    && (positionOne.getY() + sizeOne.getY()) >= positionTwo.getY() && (positionOne.getY() + sizeOne.getY()) <= (positionTwo.getY() + sizeTwo.getY())) || \
+    ((positionOne.getX() + sizeOne.getX()) >= positionTwo.getX() && (positionOne.getX() + sizeOne.getX()) <= (positionTwo.getX() + sizeTwo.getX()) \
+    && (positionOne.getY() + sizeOne.getY()) >= positionTwo.getY() && (positionOne.getY() + sizeOne.getY()) <= (positionTwo.getY() + sizeTwo.getY())));
+}
+
+void Physics::setPosition(ECSVector3 &newPosition)
+{
+   this->_position = newPosition;
+}
+
+void Physics::setSize(ECSVector3 &newSize)
+{
+    this->_size = newSize;
+}
+
+void Physics::setLayer(int newLayer)
+{
+    this->_layer = newLayer;
 }
