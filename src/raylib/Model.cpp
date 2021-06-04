@@ -48,8 +48,6 @@ void raylib::Model::drawModel(::Vector3 position, ::Vector3 rotationAxis, float 
     ::DrawModelEx(*this, position, rotationAxis, rotationAngle, scale, tint);
 }
 
-
-
 void raylib::Model::updateAnimation(::ModelAnimation modelAnim, int frame)
 {
     ::UpdateModelAnimation(*this, modelAnim, frame);

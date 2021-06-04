@@ -19,6 +19,8 @@ namespace raylib {
 
             Model(const std::string &filePath);
 
+            Model(const ::Mesh &basicMesh);
+
             Model(const ::Model &old);
 
             Model &operator=(const ::Model &old);
