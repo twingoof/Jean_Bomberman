@@ -14,6 +14,7 @@ class ECSVector3 {
     public:
         ECSVector3(int x = 0, int y = 0, int z = 0);
         ECSVector3(const ECSVector3 &cpy);
+        void operator+=(const ECSVector3 &offset);
         ~ECSVector3();
 
         void setX(int x);
@@ -31,7 +32,6 @@ class ECSVector3 {
             return (*this);
         }
 
-    private:
         int _x;
         int _y;
         int _z;

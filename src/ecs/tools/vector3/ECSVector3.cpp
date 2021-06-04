@@ -20,6 +20,13 @@ ECSVector3::ECSVector3(const ECSVector3 &cpy) {
     this->_z = cpy.getZ();
 }
 
+void ECSVector3::operator+=(const ECSVector3 &offset)
+{
+    this->_x += offset._x;
+    this->_y += offset._y;
+    this->_z += offset._z;
+}
+
 ECSVector3::~ECSVector3() = default;
 
 void ECSVector3::setX(int x)
