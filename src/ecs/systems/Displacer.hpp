@@ -9,6 +9,7 @@
 #define DISPLACER_HPP_
 
 #include "enum.hpp"
+#include "Entity.hpp"
 #include "Moveable.hpp"
 #include "Texture.hpp"
 

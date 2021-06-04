@@ -7,7 +7,5 @@
 
 #include "Entity.hpp"
 
-Entity::Entity(ECSVector3 position, ECSVector3 size) {
-    this->_position = position;
-    this->_size = size;
+Entity::Entity(ECSVector3 &position, ECSVector3 &size) : _position(position), _size(size) {
 }

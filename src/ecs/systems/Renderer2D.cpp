@@ -13,8 +13,9 @@ Renderer2D::Renderer2D() = default;
 Renderer2D::~Renderer2D() = default;
 
 void Renderer2D::draw(std::vector<Entity> entities) {
-    for (auto entity : entities) {
+    for (const auto &entity : entities) {
         Drawable2D d;
+
         try {
             d = entity.getComponent<Drawable2D>(DRAWABLE2D);
         } catch (std::out_of_range &e) {
