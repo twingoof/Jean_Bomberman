@@ -7,16 +7,18 @@
 
 #include "Moveable.hpp"
 
-Moveable::Moveable(int posX, int posY, int posZ)
+Moveable::Moveable(int posX, int posY, int posZ, float velocity)
 {
     this->_position.setX(posX);
     this->_position.setY(posY);
     this->_position.setZ(posZ);
+    this->setVelocity(velocity);
 }
 
-Moveable::Moveable(ECSVector3 position)
+Moveable::Moveable(ECSVector3 position, float velocity)
 {
     this->_position = position;
+    this->setVelocity(velocity);
 }
 
 Moveable::~Moveable() = default;
@@ -38,12 +40,24 @@ void Moveable::moveZ(int offsetZ)
 
 void Moveable::move(int offsetX, int offsetY, int offsetZ)
 {
+    this->_position._x += offsetX;
+    this->_position._y += offsetY;
+    this->_position._z += offsetZ;
+}
+
+void Moveable::move(ECSVector3 offsetPosition)
+{
+    this->_position += offsetPosition;
+}
+
+void Moveable::place(int offsetX, int offsetY, int offsetZ)
+{
     this->_position.setX(offsetX);
     this->_position.setY(offsetY);
     this->_position.setZ(offsetZ);
 }
 
-void Moveable::move(ECSVector3 offsetPosition)
+void Moveable::place(ECSVector3 offsetPosition)
 {
     this->_position = offsetPosition;
 }
@@ -51,4 +65,14 @@ void Moveable::move(ECSVector3 offsetPosition)
 const ECSVector3 Moveable::getPosition() const
 {
     return (_position);
+}
+
+void Moveable::setVelocity(float newValue)
+{
+    _velocity = newValue;
+}
+
+const float Moveable::getVelocity(void) const
+{
+    return (_velocity);
 }
