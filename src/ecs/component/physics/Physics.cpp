@@ -8,9 +8,8 @@
 #include "Physics.hpp"
 
 Physics::Physics(ECSVector3 &position, ECSVector3 &size, int layer)
+    : _position(position), _size(size)
 {
-    this->_position = position;
-    this->_size = size;
     this->_layer = layer;
 }
 
@@ -33,12 +32,6 @@ const int Physics::getLayer() const
 
 bool Physics::hasCollision(Physics toCompare)
 {
-    /*
-    return  (((position.getX() < _position.getX() && (position.getX() + width) > _position.getX()) \
-    && (position.getY() < _position.getY() && (position.getY() + height) > _position.getY())) \
-    || ((position.getX() < (_position.getX() + width) && (position.getX() + width) > (_position.getX() + width)) \
-    && (position.getY() < (_position.getY() + height) && (position.getY() + height) > (_position.getY() + height))));
-    */
    ECSVector3 positionOne = this->_position;
    ECSVector3 positionTwo = toCompare.getPosition();
    ECSVector3 sizeOne = this->_size;
@@ -46,8 +39,14 @@ bool Physics::hasCollision(Physics toCompare)
 
     if (_layer == toCompare.getLayer())
         return (false);
-    if (positionOne.getX() <= positionTwo.getX() && (positionOne.getX() + sizeOne.getX()) >= positionTwo.getX() \
-    && positionOne.getY() <= positionTwo.getY() && (positionOne.getY() + sizeOne.getY()) >= positionTwo.getY())
+    return ((positionOne.getX() >= positionTwo.getX() && positionOne.getX() <= (positionTwo.getX() + sizeTwo.getX()) \
+    && positionOne.getY() >= positionTwo.getY() && positionOne.getY() <= (positionTwo.getY() + sizeTwo.getY())) || \
+    ((positionOne.getX() + sizeOne.getX()) >= positionTwo.getX() && (positionOne.getX() + sizeOne.getX()) <= (positionTwo.getX() + sizeTwo.getX()) \
+    && positionOne.getY() >= positionTwo.getY() && positionOne.getY() <= (positionTwo.getY() + sizeTwo.getY())) || \
+    (positionOne.getX() >= positionTwo.getX() && positionOne.getX() <= (positionTwo.getX() + sizeTwo.getX()) \
+    && (positionOne.getY() + sizeOne.getY()) >= positionTwo.getY() && (positionOne.getY() + sizeOne.getY()) <= (positionTwo.getY() + sizeTwo.getY())) || \
+    ((positionOne.getX() + sizeOne.getX()) >= positionTwo.getX() && (positionOne.getX() + sizeOne.getX()) <= (positionTwo.getX() + sizeTwo.getX()) \
+    && (positionOne.getY() + sizeOne.getY()) >= positionTwo.getY() && (positionOne.getY() + sizeOne.getY()) <= (positionTwo.getY() + sizeTwo.getY())));
 }
 
 void Physics::setPosition(ECSVector3 &newPosition)
