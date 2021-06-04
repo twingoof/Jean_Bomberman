@@ -1,62 +1,48 @@
-///*
-//** EPITECH PROJECT, 2021
-//** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez
-//** File description:
-//** Entity
-//*/
-//
-///**
-// * @file Entity.hpp
-// * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
-// * @brief File that contain the Entity class
-// * @version 0.1
-// * @date 2021-06-03
-// *
-// * @copyright Copyright (c) 2021
-// *
-// */
-//#include <iostream>
-//#include <map>
-//#include <vector>
-//#include <memory>
-//
-//#ifndef ENTITY_HPP_
-//#define ENTITY_HPP_
-//
-//#include "ECSVector3.hpp"
-//#include "enum.hpp"
-//#include "IComponent.hpp"
-//
-//#include <memory>
-//
-///**
-// * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"
-// */
-//class Entity {
-//    public:
-//        Entity(std::string id, ECSVector3 position, ECSVector3 size);
-//        ~Entity();
-//
-//        void addComponent(ComponentType componentType, IComponent component);
-//        void addComponents(std::map<ComponentType, IComponent> newComponents);
-//        void deleteComponent(ComponentType componentId);
-//        void deleteComponents(std::vector<ComponentType> componentsId);
-//
-//        std::unique_ptr<IComponent> &getComponent(ComponentType componentId);
-//        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents(std::vector<ComponentType> componentsId) const;
-//        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() const;
-//        ECSVector3 getSize() const;
-//        ECSVector3 getPosition() const;
-//
-//        void setSize(ECSVector3 newSize);
-//        void setPosition(ECSVector3 newPosition);
-//
-//    private:
-//        std::string _id;
-//        ECSVector3 _position;
-//        ECSVector3 _size;
-//        std::map<ComponentType, std::unique_ptr<IComponent>> _components;
-//        std::pair<ComponentType, std::unique_ptr<IComponent>> _toInsert;
-//};
-//
-//#endif /* !ENTITY_HPP_ */
+/*
+** EPITECH PROJECT, 2021
+** indie
+** File description:
+** TODO: add description
+*/
+
+#ifndef INDIE_Entity_HPP
+#define INDIE_Entity_HPP
+
+#include "enum.hpp"
+#include "ECSVector3.hpp"
+#include "IComponent.hpp"
+
+#include <map>
+#include <memory>
+
+class Entity {
+    public:
+        Entity() = default;
+        explicit Entity(const ECSVector3& position);
+        ~Entity() = default;
+
+        template<class T>
+        void addComponent(T& component, ComponentType type);
+
+        template<class T>
+        T getComponent(ComponentType type);
+//        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() {return (this->_components);};
+        ECSVector3 getPosition() {return this->_position;}
+    private:
+        ECSVector3 _position;
+        std::map<ComponentType, std::shared_ptr<IComponent>> _components;
+};
+
+template<class T>
+void Entity::addComponent(T &component, ComponentType type) {
+//    std::unique_ptr<T> uPtr = std::make_unique<T>(component);
+//    std::pair<ComponentType, std::unique_ptr<IComponent>> toInsert(type, std::make_unique<T>(component));
+    this->_components.insert(std::make_pair(type, std::make_shared<T>(component)));
+}
+
+template<class T>
+T Entity::getComponent(ComponentType type) {
+    return dynamic_cast<T&>((*this->_components.at(type)));
+}
+
+#endif //INDIE_Entity_HPP

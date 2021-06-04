@@ -109,9 +109,9 @@ void raylib::Texture::draw(::Vector2 position, ::Vector2 offset, ::Rectangle qua
     ::DrawTextureQuad(*this, position, offset, quad, tint);
 }
 
-void raylib::Texture::draw(::Vector3 position, float width, float height, float length, ::Color tint)
+void raylib::Texture::draw(::Vector3 position, float wdth, float hght, float length, ::Color tint)
 {
-    ::DrawCubeTexture(*this, position, width, height, length, tint);
+    ::DrawCubeTexture(*this, position, wdth, hght, length, tint);
 }
 
 void raylib::Texture::setMaterial(::Material &material, int type)

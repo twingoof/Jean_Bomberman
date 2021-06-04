@@ -12,7 +12,7 @@
 #define INDIE_RENDERER_HPP
 
 #include "enum.hpp"
-#include "AltEntity.hpp"
+#include "Entity.hpp"
 #include "Drawable2D.hpp"
 #include "IComponent.hpp"
 #include "Texture.hpp"
@@ -28,7 +28,7 @@ class Renderer2D {
         Renderer2D();
         ~Renderer2D();
 
-        void draw(std::vector<AltEntity> entities);
+        void draw(std::vector<Entity> entities);
     private:
 };
 

@@ -5,14 +5,21 @@
 ** ECS Renderer2D system
 */
 
+#include "raylib.h"
 #include "Renderer2D.hpp"
 
 Renderer2D::Renderer2D() = default;
 
 Renderer2D::~Renderer2D() = default;
 
-void Renderer2D::draw(std::vector<AltEntity> entities) {
-    for (std::vector<AltEntity>::iterator it = entities.begin(); it != entities.end(); it++) {
+void Renderer2D::draw(std::vector<Entity> entities) {
+    for (auto entity : entities) {
+        try {
+            Drawable2D d = entity.getComponent<Drawable2D>(DRAWABLE2D);
+        } catch (std::out_of_range &e) {
+            std::cerr<<" This entity is not drawable"<<std::endl;
+        }
 
+        
     }
 }
