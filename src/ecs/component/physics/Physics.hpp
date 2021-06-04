@@ -12,18 +12,24 @@
 
 class Physics {
     public:
-        Physics(ECSVector3 position, float width, float height);
+        Physics(ECSVector3 &position, ECSVector3 &size, int layer = 0);
         Physics &operator=(const Physics &physics) = default;
         ~Physics();
 
-        bool hasCollision(ECSVector3 position, float width, float height);
-        void setPosition(ECSVector3 position);
+        const ECSVector3 &getPosition() const;
+        const ECSVector3 &getSize() const;
+        const int getLayer() const;
+
+        bool hasCollision(Physics toCompare);
+
+        void setPosition(ECSVector3 &newPosition);
+        void setSize(ECSVector3 &newSize);
+        void setLayer(int newLayer);
 
     private:
-        ECSVector3 _position;
-        float _width;
-        float _height;
-
+        ECSVector3 &_position;
+        ECSVector3 &_size;
+        int _layer;
 };
 
 #endif /* !PHYSICS_HPP_ */
