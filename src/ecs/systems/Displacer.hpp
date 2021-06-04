@@ -19,15 +19,11 @@
 class Displacer {
     public:
         Displacer() = default;
-
         Displacer(const Displacer &oldDisplacer) = default;
-
         Displacer &operator=(const Displacer &oldDisplacer) = default;
-
         ~Displacer() = default;
 
         void moveEntity(Moveable &entity, const ECSVector3 &moveVector);
-
         void teleportEntity(Moveable &entity, const ECSVector3 &positionVector);
 
     protected:
