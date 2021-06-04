@@ -7,12 +7,12 @@
 
 #include "Circle.hpp"
 
-void raylib::drawCircle(int centerX, int centerY, int radius, ::Color tint)
+void raylib::drawCircle(int ctrX, int ctrY, int rad, ::Color tint)
 {
-    ::DrawCircle(centerX, centerY, radius, tint);
+    ::DrawCircle(ctrX, ctrY, rad, tint);
 }
 
-void raylib::drawCircle(::Vector2 position, int radius, ::Color tint)
+void raylib::drawCircleV(::Vector2 position, float rad, ::Color tint)
 {
-    ::DrawCircleV(position, radius, tint);
+    ::DrawCircleV(position, rad, tint);
 }
