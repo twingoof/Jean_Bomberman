@@ -26,9 +26,9 @@ class Displacer {
 
         ~Displacer() = default;
 
-        void moveEntity(Moveable &entity, const ECSVector3 &moveVector);
+        void moveEntity(Entity &entity, const ECSVector3 &moveVector);
 
-        void teleportEntity(Moveable &entity, const ECSVector3 &positionVector);
+        void teleportEntity(Entity &entity, const ECSVector3 &positionVector);
 
     protected:
 

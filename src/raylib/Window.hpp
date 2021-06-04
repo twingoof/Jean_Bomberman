@@ -146,6 +146,10 @@ namespace raylib {
              */
             ::Vector2 getScaleFactorDPI() const;
 
+            const int getWindowWidth() const;
+
+            const int getWindowHeight() const;
+
             /**
              * @brief Close window.
              */
@@ -159,6 +163,9 @@ namespace raylib {
             Window();
             Window(const Window &newWindow) = delete;
             Window &operator=(const Window &newWindow) = delete;
+
+            int _width;
+            int _height;
 
             bool _isHidden;
             bool _isDrawing;

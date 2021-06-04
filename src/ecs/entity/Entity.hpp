@@ -27,7 +27,10 @@ class Entity {
         template<class T>
         T getComponent(ComponentType type) const;
 //        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() {return (this->_components);};
-        ECSVector3 &getPosition() const {return this->_position;}
+        void setPosition(const ECSVector3 &newPos) {this->_position = newPos;}
+        void setSize(const ECSVector3 &newSize) {this->_size = newSize;}
+
+        ECSVector3 &getPosition() {return this->_position;}
         ECSVector3 &getSize() {return this->_size;}
     private:
         ECSVector3 &_position;

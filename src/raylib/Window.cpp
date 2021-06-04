@@ -23,6 +23,8 @@ void raylib::Window::initWindow(const int width, const int height, const std::st
     ::InitWindow(width, height, winName.c_str());
     if (!::IsWindowState(flag))
         ::SetWindowState(flag);
+    _width = width;
+    _height = height;
     _isInitialized = true;
 }
 
@@ -141,6 +143,16 @@ raylib::Window &raylib::Window::minimizeWindow(void)
 ::Vector2 raylib::Window::getScaleFactorDPI(void) const
 {
     return (::GetWindowScaleDPI());
+}
+
+const int raylib::Window::getWindowWidth(void) const
+{
+    return (_width);
+}
+
+const int raylib::Window::getWindowHeight(void) const
+{
+    return (_height);
 }
 
 void raylib::Window::closeWindow(void)

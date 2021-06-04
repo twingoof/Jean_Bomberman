@@ -7,12 +7,16 @@
 
 #include "Displacer.hpp"
 
-void Displacer::moveEntity(Moveable &moveableEntity, const ECSVector3 &movVector)
+void Displacer::moveEntity(Entity &moveableEntity, const ECSVector3 &movVector)
 {
-    moveableEntity.move(movVector);
+    ECSVector3 newPosition;
+
+    newPosition = moveableEntity.getPosition();
+    newPosition += movVector;
+    moveableEntity.setPosition(newPosition);
 }
 
-void Displacer::teleportEntity(Moveable &moveableEntity, const ECSVector3 &telpVector)
+void Displacer::teleportEntity(Entity &moveableEntity, const ECSVector3 &telpVector)
 {
-    moveableEntity.place(telpVector);
+    moveableEntity.setPosition(telpVector);
 }
