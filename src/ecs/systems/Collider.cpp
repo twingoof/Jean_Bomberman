@@ -32,6 +32,6 @@ void Collider::checkWindowCollisiton(Entity &first)
 
     if (firstR.x <= 0 || firstR.y <= 0 || firstR.x >= win.getWindowHeight() || \
     firstR.y >= win.getWindowWidth()) {
-        firstM.setVelocity(firstM.getVelocity() * -1);
+        firstM.getVelocity()._x = firstM.getVelocity()._x * -1;
     }
 }

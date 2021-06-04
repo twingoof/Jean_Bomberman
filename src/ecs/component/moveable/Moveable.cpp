@@ -7,19 +7,11 @@
 
 #include "Moveable.hpp"
 
-Moveable::Moveable(int posX, int posY, int posZ, float velocity)
-{
-    this->_position.setX(posX);
-    this->_position.setY(posY);
-    this->_position.setZ(posZ);
-    this->setVelocity(velocity);
-}
+Moveable::Moveable(int posX, int posY, int posZ, ECSVector3 velocity)
+    : _position(ECSVector3(posX, posY, posZ)), _velocityVector(velocity)
+{}
 
-Moveable::Moveable(ECSVector3 position, float velocity)
-{
-    this->_position = position;
-    this->setVelocity(velocity);
-}
+Moveable::Moveable(ECSVector3 &position, ECSVector3 velocity) : _position(position), _velocityVector(velocity) {}
 
 Moveable::~Moveable() = default;
 
@@ -67,12 +59,12 @@ const ECSVector3 Moveable::getPosition() const
     return (_position);
 }
 
-void Moveable::setVelocity(float newValue)
+void Moveable::setVelocity(const ECSVector3 &newVector)
 {
-    _velocity = newValue;
+    _velocityVector = newVector;
 }
 
-const float Moveable::getVelocity(void) const
+ECSVector3 &Moveable::getVelocity(void) const
 {
-    return (_velocity);
+    return (_velocityVector);
 }

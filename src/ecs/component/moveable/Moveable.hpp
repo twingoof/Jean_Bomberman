@@ -14,8 +14,8 @@
 class Moveable : public IComponent{
     public:
         Moveable() = default;
-        Moveable(int posX, int posY, int posZ, float _velocity = 1.0f);
-        Moveable(ECSVector3 position, float _velocity = 1.0f);
+        Moveable(int x, int y, int z, ECSVector3 velocity = {0, 0, 0});
+        Moveable(ECSVector3 &position, ECSVector3 velocity = {0, 0, 0});
         Moveable(const Moveable &Moveable) = default;
         Moveable &operator=(const Moveable &Moveable) = default;
         ~Moveable();
@@ -32,12 +32,12 @@ class Moveable : public IComponent{
 
         const ECSVector3 getPosition() const;
 
-        void setVelocity(float newValue);
-        const float getVelocity() const;
+        void setVelocity(const ECSVector3 &newValue);
+        ECSVector3 &getVelocity() const;
 
     private:
         ECSVector3 _position;
-        float _velocity;
+        ECSVector3 &_velocityVector;
 };
 
 #endif /* !MOVEABLE_HPP_ */
