@@ -13,7 +13,7 @@
 class Collider {
     public:
         Collider() = default;
-        ~Collider();
+        ~Collider() = default;
 
         void checkCollision(Entity &first, Entity &second);
         void checkWindowCollisiton(Entity &first);

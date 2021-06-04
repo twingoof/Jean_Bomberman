@@ -7,15 +7,7 @@
 
 #include "Collider.hpp"
 #include "Moveable.hpp"
-#include <raylib/Window.hpp>
-
-Collider::Collider()
-{
-}
-
-Collider::~Collider()
-{
-}
+#include "Window.hpp"
 
 void Collider::checkCollision(Entity &first, Entity &second)
 {

@@ -9,8 +9,9 @@
 #define MOVEABLE_HPP_
 
 #include "ECSVector3.hpp"
+#include "IComponent.hpp"
 
-class Moveable {
+class Moveable : public IComponent{
     public:
         Moveable() = default;
         Moveable(int posX, int posY, int posZ, float _velocity = 1.0f);

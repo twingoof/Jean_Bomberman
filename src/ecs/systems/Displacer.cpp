@@ -6,13 +6,13 @@
 */
 
 #include "Displacer.hpp"
-
+#include "Moveable.hpp"
 void Displacer::moveEntity(Entity &moveableEntity, const ECSVector3 &movVector)
 {
-    ECSVector3 newPosition;
-
-    newPosition = moveableEntity.getPosition();
-    newPosition += movVector;
+    ECSVector3 newPosition = moveableEntity.getPosition();
+    Moveable m = moveableEntity.getComponent<Moveable>(MOVEABLE);
+    newPosition.setX(newPosition.getX() + m.getVelocity());
+    newPosition.setY(newPosition.getY() + m.getVelocity());
     moveableEntity.setPosition(newPosition);
 }
 

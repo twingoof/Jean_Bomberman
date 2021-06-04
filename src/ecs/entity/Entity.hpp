@@ -25,12 +25,12 @@ class Entity {
         void addComponent(T& component, ComponentType type);
 
         template<class T>
-        T &getComponent(ComponentType type);
+        T &getComponent(ComponentType type) const;
 //        std::map<ComponentType, std::unique_ptr<IComponent>> getComponents() {return (this->_components);};
         void setPosition(const ECSVector3 &newPos) {this->_position = newPos;}
         void setSize(const ECSVector3 &newSize) {this->_size = newSize;}
 
-        ECSVector3 &getPosition() {return this->_position;}
+        ECSVector3 &getPosition() const {return this->_position;}
         ECSVector3 &getSize() {return this->_size;}
     private:
         ECSVector3 &_position;
@@ -46,7 +46,7 @@ void Entity::addComponent(T &component, ComponentType type) {
 }
 
 template<class T>
-T &Entity::getComponent(ComponentType type) {
+T &Entity::getComponent(ComponentType type) const{
     return dynamic_cast<T&>((*this->_components.at(type)));
 }
 
