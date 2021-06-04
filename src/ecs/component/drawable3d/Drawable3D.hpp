@@ -15,6 +15,7 @@
 class Drawable3D {
     public:
         Drawable3D(std::string meshPath, const ECSVector3& size);
+        Drawable3D &operator=(const Drawable3D &drawable) = default;
         Drawable3D(const Drawable3D &drawable3D);
         ~Drawable3D();
 

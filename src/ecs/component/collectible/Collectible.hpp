@@ -11,6 +11,7 @@
 class Collectible {
     public:
         Collectible();
+        Collectible &operator=(const Collectible &collectible) = default;
         ~Collectible();
 
         void collect();

@@ -13,6 +13,7 @@
 class Physics {
     public:
         Physics(ECSVector3 position, float width, float height);
+        Physics &operator=(const Physics &physics) = default;
         ~Physics();
 
         bool hasCollision(ECSVector3 position, float width, float height);

@@ -15,6 +15,7 @@
 class Drawable2D : public IComponent {
     public:
         Drawable2D(std::string spritePath, ECSVector3 size);
+        Drawable2D &operator=(const Drawable2D &drawable) = default;
         ~Drawable2D() override;
         void setSpritePath(std::string spritePath);
         void setSize(ECSVector3 size);

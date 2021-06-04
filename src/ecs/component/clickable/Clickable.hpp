@@ -32,6 +32,7 @@ class Clickable : public IComponent {
          */
         Clickable(void(*callback)() = nullptr);
 
+        Clickable &operator=(const Clickable &clickable) = default;
         /**
          * @fn ~Callback()
          * @brief Destroy the Callback object
