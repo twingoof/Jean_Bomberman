@@ -15,7 +15,7 @@ class Collectible {
         ~Collectible();
 
         void collect();
-        const bool isCollect() const;
+        bool isCollect() const;
 
     private:
         bool _collect;

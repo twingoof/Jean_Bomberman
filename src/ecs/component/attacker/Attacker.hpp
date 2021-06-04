@@ -18,9 +18,9 @@ class Attacker {
         Attacker &operator=(const Attacker &Attacker) = default;
         ~Attacker();
 
-        const unsigned int getAmmo() const;
-        const unsigned short getDamage() const;
-        const unsigned short getBaseDamage() const;
+        unsigned int getAmmo() const;
+        unsigned short getDamage() const;
+        unsigned short getBaseDamage() const;
         void setAmmo(unsigned int ammo);
         void setDamage(unsigned short damage);
         void dealDamage(Killable &target);

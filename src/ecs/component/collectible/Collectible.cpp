@@ -19,7 +19,7 @@ void Collectible::collect()
     _collect = true;
 }
 
-const bool Collectible::isCollect() const
+bool Collectible::isCollect() const
 {
     return(this->_collect);
 }

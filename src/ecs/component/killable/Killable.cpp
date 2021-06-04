@@ -14,7 +14,7 @@ Killable::Killable(unsigned short life)
 
 Killable::~Killable() = default;
 
-const unsigned short Killable::getLife(void) const
+unsigned short Killable::getLife(void) const
 {
     return (this->_life);
 }

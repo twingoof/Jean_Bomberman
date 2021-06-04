@@ -16,7 +16,7 @@ class Killable {
         Killable &operator=(const Killable &killable) = default;
         ~Killable();
 
-        const unsigned short getLife(void) const;
+        unsigned short getLife(void) const;
         void takeDamage(unsigned short damage);
         bool isAlive(void);
 

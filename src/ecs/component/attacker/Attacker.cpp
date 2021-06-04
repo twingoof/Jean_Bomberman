@@ -16,17 +16,17 @@ Attacker::Attacker(unsigned int ammo, unsigned short damage)
 
 Attacker::~Attacker() = default;
 
-const unsigned int Attacker::getAmmo() const
+unsigned int Attacker::getAmmo() const
 {
     return (this->_ammo);
 }
 
-const unsigned short Attacker::getDamage() const
+unsigned short Attacker::getDamage() const
 {
     return (this->_damage);
 }
 
-const unsigned short Attacker::getBaseDamage() const
+unsigned short Attacker::getBaseDamage() const
 {
     return (this->_baseDamage);
 }
