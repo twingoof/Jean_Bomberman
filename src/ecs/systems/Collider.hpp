@@ -18,7 +18,6 @@ class Collider {
         void checkCollision(Entity &first, Entity &second);
         void checkWindowCollisiton(Entity &first);
 
-    protected:
     private:
 };
 
