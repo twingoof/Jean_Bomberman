@@ -146,9 +146,9 @@ namespace raylib {
              */
             ::Vector2 getScaleFactorDPI() const;
 
-            const int getWindowWidth() const;
+            int getWindowWidth() const;
 
-            const int getWindowHeight() const;
+            int getWindowHeight() const;
 
             /**
              * @brief Close window.

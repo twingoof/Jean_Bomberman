@@ -30,8 +30,9 @@ void Collider::checkWindowCollisiton(Entity &first)
     raylib::Window &win = raylib::Window::getWindow();
     Moveable firstM = first.getComponent<Moveable>(MOVEABLE);
 
-    if (firstR.x <= 0 || firstR.y <= 0 || firstR.x >= win.getWindowHeight() || \
-    firstR.y >= win.getWindowWidth()) {
-        firstM.getVelocity()._x = firstM.getVelocity()._x * -1;
-    }
+    if (firstR.x <= 0 || firstR.x >= win.getWindowWidth())
+        firstM.setVelocity({-firstM.getVelocity().getX(), firstM.getVelocity().getY()});
+    if (firstR.y <= 0 || firstR.y >= win.getWindowHeight())
+        firstM.setVelocity({firstM.getVelocity().getX(), -firstM.getVelocity().getY()});
+    
 }

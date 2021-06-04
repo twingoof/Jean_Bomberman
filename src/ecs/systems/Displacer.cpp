@@ -13,6 +13,8 @@ void Displacer::moveEntity(Entity &moveableEntity, const ECSVector3 &movVector)
     Moveable m = moveableEntity.getComponent<Moveable>(MOVEABLE);
     newPosition.setX(newPosition.getX() + m.getVelocity().getX());
     newPosition.setY(newPosition.getY() + m.getVelocity().getY());
+    std::cout << "newVelox: " << m.getVelocity().getX();
+    std::cout << "  newVeloy: " << m.getVelocity().getY();
     moveableEntity.setPosition(newPosition);
 }
 

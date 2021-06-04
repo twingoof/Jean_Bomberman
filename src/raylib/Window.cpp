@@ -145,12 +145,12 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (::GetWindowScaleDPI());
 }
 
-const int raylib::Window::getWindowWidth(void) const
+int raylib::Window::getWindowWidth(void) const
 {
     return (_width);
 }
 
-const int raylib::Window::getWindowHeight(void) const
+int raylib::Window::getWindowHeight(void) const
 {
     return (_height);
 }
