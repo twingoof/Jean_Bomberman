@@ -12,7 +12,7 @@
 
 class Physics {
     public:
-        Physics(ECSVector3 &position, ECSVector3 &size, int layer);
+        Physics(ECSVector3 &position, ECSVector3 &size, int layer = 0);
         Physics &operator=(const Physics &physics) = default;
         ~Physics();
 
