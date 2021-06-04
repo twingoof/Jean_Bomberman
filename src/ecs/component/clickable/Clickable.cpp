@@ -7,9 +7,9 @@
 
 #include "Clickable.hpp"
 
-Clickable::Clickable(void(*callback)())
+Clickable::Clickable(void(*cllbck)())
 {
-    this->_callback = callback;
+    this->_callback = cllbck;
 }
 
 Clickable::~Clickable() = default;
@@ -19,9 +19,9 @@ void Clickable::callback()
     this->_callback();
 }
 
-void Clickable::setCallback(void(*callback)())
+void Clickable::setCallback(void(*cllbck)())
 {
-    this->_callback = callback;
+    this->_callback = cllbck;
 }
 
 void (*Clickable::getCallback())()

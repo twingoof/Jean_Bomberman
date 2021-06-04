@@ -13,6 +13,7 @@
 class ECSVector3 {
     public:
         ECSVector3(int x = 0, int y = 0, int z = 0);
+        ECSVector3(const ECSVector3 &cpy);
         ~ECSVector3();
 
         void setX(int x);
@@ -23,7 +24,13 @@ class ECSVector3 {
         int getY() const;
         int getZ() const;
 
-        ECSVector3 &operator=(const ECSVector3 &ECSVector3);
+        ECSVector3 &operator=(const ECSVector3 &rHand) {
+            this->_x = rHand.getX();
+            this->_y = rHand.getY();
+            this->_z = rHand.getZ();
+            return (*this);
+        }
+
     private:
         int _x;
         int _y;

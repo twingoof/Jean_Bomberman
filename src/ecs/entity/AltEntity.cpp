@@ -6,3 +6,7 @@
 */
 
 #include "AltEntity.hpp"
+
+AltEntity::AltEntity(const ECSVector3& position) {
+    this->_position = position;
+}

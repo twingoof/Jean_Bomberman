@@ -15,11 +15,9 @@
 class Drawable3D {
     public:
         Drawable3D(std::string meshPath, const ECSVector3& size);
-        Drawable3D &operator=(const Drawable3D &drawable) = default;
+        Drawable3D &operator=(const Drawable3D &rHand) = default;
         Drawable3D(const Drawable3D &drawable3D);
         ~Drawable3D();
-
-        Drawable3D& operator=(Drawable3D const &rHand);
 
         void setMeshPath(std::string meshPath);
         void setSize(const ECSVector3& size);

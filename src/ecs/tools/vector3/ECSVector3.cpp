@@ -14,12 +14,10 @@ ECSVector3::ECSVector3(int x, int y, int z)
     this->_z = z;
 }
 
-ECSVector3 &ECSVector3::operator=(const ECSVector3 &ECSVector3)
-{
-    this->_x = ECSVector3.getX();
-    this->_y = ECSVector3.getY();
-    this->_z = ECSVector3.getZ();
-    return *this;
+ECSVector3::ECSVector3(const ECSVector3 &cpy) {
+    this->_x = cpy.getX();
+    this->_y = cpy.getY();
+    this->_z = cpy.getZ();
 }
 
 ECSVector3::~ECSVector3() = default;

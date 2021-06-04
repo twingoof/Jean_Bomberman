@@ -17,8 +17,6 @@ Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
 
 Drawable3D::~Drawable3D() = default;
 
-Drawable3D& Drawable3D::operator=(Drawable3D const &rHand) = default;
-
 void Drawable3D::setMeshPath(std::string meshPath) {
     this->_meshPath = std::move(meshPath);
 }
