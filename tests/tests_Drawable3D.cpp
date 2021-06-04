@@ -9,7 +9,7 @@
 #include "ECSVector3.hpp"
 #include "Drawable3D.hpp"
 
-Test(Drawable3D_constructor, normal_usage)
+Test(Drawable3D_constructor, normal_usage1)
 {
     ECSVector3 size(1, 2, 3);
     Drawable3D drawable("texture", size);
@@ -20,7 +20,7 @@ Test(Drawable3D_constructor, normal_usage)
     cr_assert_eq(drawable.getSize().getZ(), 3);
 }
 
-Test(Drawable3D_setSize, normal_usage)
+Test(Drawable3D_setSize, normal_usage2)
 {
     ECSVector3 size(1, 2, 3);
     ECSVector3 newSize(4, 5, 6);
@@ -32,7 +32,7 @@ Test(Drawable3D_setSize, normal_usage)
     cr_assert_eq(drawable.getSize().getZ(), 6);
 }
 
-Test(Drawable3D_setMeshPath, normal_usage)
+Test(Drawable3D_setMeshPath, normal_usage3)
 {
     ECSVector3 size(1, 2, 3);
     Drawable3D drawable("texture", size);
