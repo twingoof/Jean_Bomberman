@@ -12,7 +12,7 @@ file(GLOB_RECURSE TEST tests/*.cpp)
 if (MSVC)
     add_compile_options(/W4)
 else ()
-    add_compile_options(-Wall -Wextra -Wshadow)
+    add_compile_options(-Wall -Wextra -Wshadow -Wno-narrowing)
 endif ()
 
 add_executable(bomberman ${SRC} src/main.cpp)
