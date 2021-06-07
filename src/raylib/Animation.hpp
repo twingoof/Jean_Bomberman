@@ -17,15 +17,12 @@ namespace raylib {
     class Animation: public ::ModelAnimation {
         public:
             Animation() = default;
-
             Animation(const ::ModelAnimation &old);
-
             Animation &operator=(const ::ModelAnimation &old);
 
             ~Animation();
 
             void updateAnimation(::Model &model, int frame);
-
             void unloadAnimation();
 
             bool isModelAnimationValid(::Model &model);

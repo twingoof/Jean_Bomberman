@@ -107,6 +107,14 @@ namespace raylib {
              */
             void beginDrawing();
 
+            void begin2DMode(const ::Camera2D &actualCam);
+
+            void begin3DMode(const ::Camera3D &actualCam);
+
+            void end2DMode();
+
+            void end3DMode();
+
             /**
              * @brief End drawing.
              */
@@ -171,6 +179,8 @@ namespace raylib {
             bool _isDrawing;
             bool _fullscreen;
             bool _isInitialized;
+            bool _2dActivated;
+            bool _3dActivated;
 
     };
 };

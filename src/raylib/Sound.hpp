@@ -15,23 +15,15 @@ namespace raylib {
     class Sound: public ::Sound {
         public:
             Sound() = default;
-
             Sound(const std::string &filePath);
-
             Sound(const ::Sound &oldSound);
-
             Sound &operator=(const ::Sound &oldSound);
 
             void playSound(void) const;
-
             void stopSound(void) const;
-
             void pauseSound(void) const;
-
             void resumeSound(void) const;
-
             void loadSound(const std::string &filePath);
-
             void loadFromWave(const ::Wave &wave);
 
             bool isPlaying(void) const;

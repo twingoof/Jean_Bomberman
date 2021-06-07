@@ -112,6 +112,38 @@ void raylib::Window::endDrawing(void)
     _isDrawing = false;
 }
 
+void raylib::Window::begin2DMode(const ::Camera2D &actualCamera)
+{
+    if (_isDrawing && !_3dActivated) {
+        ::BeginMode2D(actualCamera);
+        _2dActivated = true;
+    }
+}
+
+void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
+{
+    if (_isDrawing && _2dActivated) {
+        ::BeginMode3D(actualCamera);
+        _3dActivated = true;
+    }
+}
+
+void raylib::Window::end2DMode(void)
+{
+    if (_2dActivated) {
+        ::EndMode2D();
+        _2dActivated = false;
+    }
+}
+
+void raylib::Window::end3DMode(void)
+{
+    if (_3dActivated) {
+        ::EndMode3D();
+        _3dActivated = false;
+    }
+}
+
 void raylib::Window::clearWindow(const ::Color &clearedColor) const
 {
     ::ClearBackground(clearedColor);

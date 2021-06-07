@@ -30,7 +30,7 @@ namespace raylib {
         private:
             bool _isInitialized;
 
-            // Deleted functions for singketon instance
+            // Deleted functions for singleton instance
             Audio();
             Audio(const Audio &audioDevice) = delete;
             Audio &operator=(const Audio &audioDevice) = delete;

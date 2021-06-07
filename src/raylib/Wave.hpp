@@ -15,11 +15,8 @@ namespace raylib {
     class Wave : public ::Wave {
         public:
             Wave() = default;
-
             Wave(const ::Wave &oldWave);
-
             Wave(const std::string &filePath);
-
             Wave &operator=(const ::Wave &oldWave);
 
             ~Wave();

@@ -15,11 +15,8 @@ namespace raylib {
     class Font : public ::Font {
         public:
             Font();
-
             Font(const std::string &filePath);
-
             Font(const ::Font &font);
-
             Font &operator=(const ::Font &font);
 
             ~Font();
