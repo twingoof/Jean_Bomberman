@@ -12,7 +12,7 @@ void raylib::drawText(const std::string &text, int posX, int posY, float fontSiz
     ::DrawText(text.c_str(), posX, posY, fontSize, tint);
 }
 
-void raylib::drawText(::Font &font, const std::string &text, Vector2 position, int fontSize, ::Color tint)
+void raylib::drawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint)
 {
     ::DrawTextEx(font, text.c_str(), position, fontSize, 2, tint);
 }

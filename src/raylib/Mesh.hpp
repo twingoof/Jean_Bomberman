@@ -15,25 +15,18 @@ namespace raylib {
     class Mesh: public ::Mesh {
         public:
             Mesh() = default;
-
             Mesh(const ::Mesh &oldMesh);
-
             Mesh &operator=(const ::Mesh &oldMesh);
-
             ~Mesh();
 
             void draw(const ::Material &meshMat, const ::Matrix &meshMatrix);
 
             void upload(bool isDynamic);
-
             void unload();
 
             void generatePlane(float width, float length, int resX, int resZ);
-
             void generateCube(float width, float height, float length);
-
             void generateSphere(float radius, int rings, int slices);
-
             bool exportMesh(const std::string &filePath);
 
         protected:

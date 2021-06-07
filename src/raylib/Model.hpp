@@ -28,8 +28,8 @@ namespace raylib {
             void updateAnimation(::ModelAnimation modelAnim, int frame);
 
             void drawModel(void);
-            void drawModel(Vector3 position, float scale, ::Color tint = {255, 255, 255, 255});
-            void drawModel(Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, ::Color tint = {255, 255, 255, 255});
+            void drawModel(::Vector3 position, float scale, ::Color tint = {255, 255, 255, 255});
+            void drawModel(::Vector3 position, ::Vector3 rotationAxis, float rotationAngle, ::Vector3 scale, ::Color tint = {255, 255, 255, 255});
 
         protected:
 
