@@ -8,6 +8,7 @@
 #ifndef INDIE_CAMERA_HPP
 #define INDIE_CAMERA_HPP
 
+#include "Vector3.hpp"
 #include "raylib.h"
 
 namespace raylib {

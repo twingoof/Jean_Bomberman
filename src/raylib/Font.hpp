@@ -8,6 +8,7 @@
 #ifndef FONT_HPP_
 #define FONT_HPP_
 
+#include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
 
@@ -15,19 +16,14 @@ namespace raylib {
     class Font : public ::Font {
         public:
             Font();
-
             Font(const std::string &filePath);
-
             Font(const ::Font &font);
-
             Font &operator=(const ::Font &font);
-
             ~Font();
 
             void unload(void);
 
-            ::Vector2 measureText(const std::string &text, float fontSize, float spacing);
-
+            Vector2 measureText(const std::string &text, float fontSize, float spacing);
             ::Image imageText(const std::string &text, float fontSize, float spacing, ::Color tint);
 
         protected:
