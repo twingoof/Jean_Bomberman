@@ -16,7 +16,8 @@ enum ComponentType
     MOVEABLE,
     KILLABLE,
     PHYSICS,
-    COLLECTIBLE
+    COLLECTIBLE,
+    ATTACKER,
 };
 
 enum DrawableType {
