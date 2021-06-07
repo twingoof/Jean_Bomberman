@@ -111,6 +111,10 @@ namespace raylib {
 
             void begin3DMode(const ::Camera3D &actualCam);
 
+            bool is2DMode() const;
+
+            bool is3DMode() const;
+
             void end2DMode();
 
             void end3DMode();

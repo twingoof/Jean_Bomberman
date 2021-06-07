@@ -9,6 +9,7 @@
 #include "Moveable.hpp"
 #include "enum.hpp"
 #include "Window.hpp"
+#include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
 #include "Renderer2D.hpp"
@@ -17,14 +18,15 @@ int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
     ECSVector3 pos = {90,90,90};
-    ECSVector3 vel = {10, 10, 10};
+    ECSVector3 vel = {1, 1, 1};
     Entity e(pos, pos);
-    Drawable2D d("BOnjour", {10, 10, 10}, CIRCLE);
+    Drawable2D d("Bonjour", {10, 10, 10}, CIRCLE);
     std::vector<Entity> v;
     Renderer2D r;
     Moveable m(e.getPosition());
     Collider c;
     Displacer dbis;
+    Controller ctller;
 
     window.setWindowFPS(60);
     e.addComponent<Drawable2D>(d, DRAWABLE2D);
@@ -35,7 +37,8 @@ int main()
     while (!WindowShouldClose()) {
         window.beginDrawing();
             window.clearWindow(RAYWHITE);
-            dbis.moveEntity(e, m.getVelocity());
+//            dbis.moveEntity(e, m.getVelocity());
+            ctller.moveEntity(e);
             c.checkWindowCollisiton(e);
             r.draw(v);
         window.endDrawing();
