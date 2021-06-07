@@ -20,6 +20,7 @@ raylib::Color::Color(const ::Color &oldColor)
 raylib::Color &raylib::Color::operator=(const ::Color &oldColor)
 {
     this->setColor(oldColor);
+    return (*this);
 }
 
 raylib::Color &raylib::Color::fromHSV(float hueValue, float satValue, float value)

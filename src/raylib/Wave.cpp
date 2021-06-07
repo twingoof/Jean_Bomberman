@@ -20,6 +20,7 @@ raylib::Wave::Wave(const ::Wave &oldWave)
 raylib::Wave &raylib::Wave::operator=(const ::Wave &oldWave)
 {
     this->setWave(::WaveCopy(oldWave));
+    return (*this);
 }
 
 raylib::Wave::~Wave()

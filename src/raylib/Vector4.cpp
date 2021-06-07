@@ -20,6 +20,7 @@ raylib::Vector4::Vector4(const ::Vector4 &oldVector)
 raylib::Vector4 &raylib::Vector4::operator=(const ::Vector4 &oldVector)
 {
     this->setVector4(oldVector);
+    return (*this);
 }
 
 void raylib::Vector4::setVector4(const ::Vector4 &oldVector)
