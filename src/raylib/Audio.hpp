@@ -16,11 +16,8 @@ namespace raylib {
             static Audio &getAudioDevice();
 
             void initAudioDevice(void);
-
             bool isReady(void) const;
-
             void setMasterVolume(float volumeValue) const;
-
             void closeAudioDevice(void);
 
             ~Audio();

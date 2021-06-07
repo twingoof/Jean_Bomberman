@@ -16,17 +16,12 @@ namespace raylib {
     class Material: public ::Material {
         public:
             Material();
-
             Material(const ::Material &oldMat);
-
             Material &operator=(const ::Material &oldMat);
-
             ~Material();
 
             void unloadMat();
-
             void loadDefault();
-
             void setTexture(int mapType, const ::Texture &texture);
 
         protected:

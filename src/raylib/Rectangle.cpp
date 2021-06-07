@@ -12,7 +12,7 @@ void raylib::drawRectangle(int posX, int posY, int width, int height, ::Color co
     ::DrawRectangle(posX, posY, width, height, color);
 }
 
-void raylib::drawRectangleV(Vector2 position, Vector2 size, ::Color color)
+void raylib::drawRectangleV(::Vector2 position, ::Vector2 size, ::Color color)
 {
     ::DrawRectangleV(position, size, color);
 }

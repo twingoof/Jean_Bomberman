@@ -67,9 +67,9 @@ raylib::Texture &raylib::Texture::update(const void *pixels)
     return (*this);
 }
 
-Vector2 raylib::Texture::getSize(void) const
+::Vector2 raylib::Texture::getSize(void) const
 {
-    Vector2 size = {static_cast<float>(width), static_cast<float>(height)};
+    ::Vector2 size = {static_cast<float>(width), static_cast<float>(height)};
 
     return (size);
 }
@@ -89,27 +89,27 @@ void raylib::Texture::draw(int posX, int posY, ::Color tint)
     ::DrawTexture(*this, posX, posY, tint);
 }
 
-void raylib::Texture::draw(Vector2 position, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, ::Color tint)
 {
     ::DrawTextureV(*this, position, tint);
 }
 
-void raylib::Texture::draw(Vector2 position, float rotation, float scale, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, float rotation, float scale, ::Color tint)
 {
     ::DrawTextureEx(*this, position, rotation, scale, tint);
 }
 
-void raylib::Texture::draw(::Rectangle sourceRec, Vector2 position, ::Color tint)
+void raylib::Texture::draw(::Rectangle sourceRec, ::Vector2 position, ::Color tint)
 {
     ::DrawTextureRec(*this, sourceRec, position, tint);
 }
 
-void raylib::Texture::draw(Vector2 position, Vector2 offset, ::Rectangle quad, ::Color tint)
+void raylib::Texture::draw(::Vector2 position, ::Vector2 offset, ::Rectangle quad, ::Color tint)
 {
     ::DrawTextureQuad(*this, position, offset, quad, tint);
 }
 
-void raylib::Texture::draw(Vector3 position, float width, float height, float length, ::Color tint)
+void raylib::Texture::draw(::Vector3 position, float width, float height, float length, ::Color tint)
 {
     ::DrawCubeTexture(*this, position, width, height, length, tint);
 }

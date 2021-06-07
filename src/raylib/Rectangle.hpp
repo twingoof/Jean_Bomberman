@@ -15,7 +15,7 @@ namespace raylib {
 
     void drawRectangle(int posX, int posY, int width, int height, ::Color color = {255, 255, 255});
 
-    void drawRectangleV(Vector2 position, Vector2 size, ::Color color = {255, 255, 255});
+    void drawRectangleV(::Vector2 position, ::Vector2 size, ::Color color = {255, 255, 255});
 
 };
 

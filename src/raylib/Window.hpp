@@ -145,7 +145,7 @@ namespace raylib {
              * @brief Get the Factor DPI object
              * @return Vector2
              */
-            Vector2 getScaleFactorDPI() const;
+            ::Vector2 getScaleFactorDPI() const;
 
             /**
              * @brief Close window.

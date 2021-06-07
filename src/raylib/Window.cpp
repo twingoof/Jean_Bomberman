@@ -141,7 +141,7 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (*this);
 }
 
-Vector2 raylib::Window::getScaleFactorDPI(void) const
+::Vector2 raylib::Window::getScaleFactorDPI(void) const
 {
     return (::GetWindowScaleDPI());
 }
