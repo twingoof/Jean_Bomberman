@@ -13,6 +13,7 @@
 #include "Text.hpp"
 #include "Displacer.hpp"
 #include "Renderer2D.hpp"
+#include <chrono>
 
 int main()
 {
@@ -27,6 +28,7 @@ int main()
     Collider c;
     Displacer dbis;
     Controller ctller;
+    std::chrono::duration<double> duration;
 
     window.setWindowFPS(60);
     e.addComponent<Drawable2D>(d, DRAWABLE2D);
@@ -34,11 +36,17 @@ int main()
     m.setVelocity(vel);
     v.push_back(e);
     window.initWindow(800, 450, "raylib [core] example - basic window", FLAG_WINDOW_RESIZABLE);
+    auto startTick = std::chrono::steady_clock::now();
     while (!WindowShouldClose()) {
         window.beginDrawing();
             window.clearWindow(RAYWHITE);
-//            dbis.moveEntity(e, m.getVelocity());
-            ctller.moveEntity(e);
+        //            dbis.moveEntity(e, m.getVelocity());
+            auto endTick = std::chrono::steady_clock::now();
+            duration = endTick - startTick;
+            if (duration.count() >= 0.06) {
+                ctller.moveEntity(e);
+                startTick = std::chrono::steady_clock::now();
+            }
             c.checkWindowCollisiton(e);
             r.draw(v);
         window.endDrawing();
