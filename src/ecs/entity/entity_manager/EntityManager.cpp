@@ -16,11 +16,6 @@
 #include "Killable.hpp"
 #include "enum.hpp"
 
-EntityManager::EntityManager()
-{
-    this->_entities = {};
-}
-
 void EntityManager::addEntity(std::string name, Entity &newEntity)
 {
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});

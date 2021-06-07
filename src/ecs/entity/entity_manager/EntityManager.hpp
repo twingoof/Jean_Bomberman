@@ -15,7 +15,7 @@
 
 class EntityManager {
     public:
-        EntityManager();
+        EntityManager() = default;
         ~EntityManager() = default;
 
         void addEntity(std::string name, Entity &newEntity);
