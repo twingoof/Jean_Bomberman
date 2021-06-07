@@ -7,7 +7,7 @@
 
 #include "Circle.hpp"
 
-void raylib::drawCircle(int ctrX, int ctrY, int rad, ::Color tint)
+void raylib::drawCircle(int ctrX, int ctrY, float rad, ::Color tint)
 {
     ::DrawCircle(ctrX, ctrY, rad, tint);
 }
