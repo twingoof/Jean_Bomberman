@@ -24,7 +24,7 @@ void Renderer::draw(const std::vector<Entity>& entities) {
         //     noDraw = true;
         // }
 
-        // try {
+    //    try {
             Drawable3D drawable = entity.getComponent<Drawable3D>(DRAWABLE3D);
             this->_draw3D(entity.getPosition(), drawable);
 
