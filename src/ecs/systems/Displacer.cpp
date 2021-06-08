@@ -7,6 +7,7 @@
 
 #include "Displacer.hpp"
 #include "Moveable.hpp"
+
 void Displacer::moveEntity(Entity &moveableEntity, const ECSVector3 &movVector)
 {
     ECSVector3 newPosition = moveableEntity.getPosition();
