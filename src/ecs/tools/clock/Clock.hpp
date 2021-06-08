@@ -13,7 +13,7 @@
 namespace ECS {
     class Clock {
         public:
-            Clock(float tick = 0.06f);
+            Clock() = default;
             Clock(const Clock &oldClock) = default;
             Clock &operator=(const Clock &oldClock) = default;
             ~Clock() = default;

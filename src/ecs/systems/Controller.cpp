@@ -34,8 +34,6 @@ void Controller::moveEntity(Entity &entity)
     }
     if (i == 0)
         entity.getComponent<Moveable>(MOVEABLE).setVelocity({0, 0, 0});
-    
-
     if (myWindow.is3DMode()) {
         if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
             newPosition.setZ(newPosition.getZ() + 5);

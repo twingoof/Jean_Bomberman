@@ -7,10 +7,6 @@
 
 #include "Clock.hpp"
 
-ECS::Clock::Clock(float tick)
-    :_tick(tick)
-{}
-
 void ECS::Clock::startClock(void)
 {
     this->_startTick = std::chrono::steady_clock::now();

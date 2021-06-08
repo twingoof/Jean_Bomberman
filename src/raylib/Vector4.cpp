@@ -9,7 +9,7 @@
 
 raylib::Vector4::Vector4()
 {
-    this->setVector4({0.0, 0.0, 0.0});
+    this->setVector4({0.0, 0.0, 0.0, 0.0});
 }
 
 raylib::Vector4::Vector4(const ::Vector4 &oldVector)

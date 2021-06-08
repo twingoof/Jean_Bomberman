@@ -8,11 +8,11 @@
 #ifndef IMAGE_HPP_
 #define IMAGE_HPP_
 
-#include <string.h>
+#include <string>
 #include "raylib.h"
 
 namespace raylib {
-    class Image ::Image {
+    class Image : public ::Image {
         public:
             Image() = default;
             Image(const ::Image &oldImage);
