@@ -27,7 +27,7 @@ class EntityManager {
         ~EntityManager() = default;
 
         void addEntity(std::string name, Entity &newEntity);
-        void createEntity(std::string name, std::vector<int> position, std::vector<int> size);
+        void createEntity(std::string name, ECSVector3 position, ECSVector3 size);
         Entity &getEntity(std::string entityName) const;
         std::map<std::string, std::shared_ptr<Entity>> getEntities() const;
         void addAttacker(std::string name, unsigned int ammo, unsigned short int damage);

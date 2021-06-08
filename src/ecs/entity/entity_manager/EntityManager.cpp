@@ -12,12 +12,9 @@ void EntityManager::addEntity(std::string name, Entity &newEntity)
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});
 }
 
-void EntityManager::createEntity(std::string name, std::vector<int> position, std::vector<int> size)
+void EntityManager::createEntity(std::string name, ECSVector3 position, ECSVector3 size)
 {
-    ECSVector3 Vposition(position.at(0), position.at(1), position.at(2));
-    ECSVector3 Vsize(size.at(0), size.at(1), size.at(2));
-
-    Entity newEntity(Vposition, Vsize);
+    Entity newEntity(position, size);
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});
 }
 

@@ -7,8 +7,13 @@
 
 #include "Entity.hpp"
 
-Entity::Entity(ECSVector3 &position, ECSVector3 &size): _position(position), _size(size)
+Entity::Entity(ECSVector3 &position, ECSVector3 &size) : _position(position), _size(size)
 {
+    // this->_position.setX(position.getX());
+    // this->_position.setY(position.getY());
+    // this->_position.setZ(position.getZ());
+
+    // this->_size.setX(position.getX());
 }
 
 ECSVector3 &Entity::getPosition() const

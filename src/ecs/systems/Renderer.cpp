@@ -11,22 +11,23 @@ Renderer::Renderer() = default;
 
 Renderer::~Renderer() = default;
 
-void Renderer::draw(const std::vector<Entity>& entities) {
+void Renderer::draw(const std::map<std::string, std::shared_ptr<Entity>>& entities) {
     bool noDraw;
 
     for (const auto &entity : entities) {
+        // std::cout<<entity.second.get()->getPosition().getX()<<std::endl;
         noDraw = false;
         try {
-            Drawable2D drawable = entity.getComponent<Drawable2D>(DRAWABLE2D);
-            this->_draw2D(entity.getPosition(), drawable);
+            Drawable2D drawable = entity.second.get()->getComponent<Drawable2D>(DRAWABLE2D);
+            this->_draw2D(entity.second.get()->getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
             noDraw = true;
         }
 
         try {
-            Drawable3D drawable = entity.getComponent<Drawable3D>(DRAWABLE3D);
-            this->_draw3D(entity.getPosition(), drawable);
+            Drawable3D drawable = entity.second.get()->getComponent<Drawable3D>(DRAWABLE3D);
+            this->_draw3D(entity.second.get()->getPosition(), drawable);
 
         } catch (std::out_of_range &e) {
             noDraw = true;

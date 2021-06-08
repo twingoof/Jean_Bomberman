@@ -7,17 +7,18 @@
 
 #include "ECSVector3.hpp"
 
-ECSVector3::ECSVector3(int x, int y, int z)
+ECSVector3::ECSVector3(int x, int y, int z) : _x(x), _y(y), _z(z)
 {
     this->_x = x;
     this->_y = y;
     this->_z = z;
 }
 
-ECSVector3::ECSVector3(const ECSVector3 &cpy) {
-    this->_x = cpy.getX();
-    this->_y = cpy.getY();
-    this->_z = cpy.getZ();
+ECSVector3::ECSVector3(const ECSVector3 &cpy) : _x(cpy._x), _y(cpy._y), _z(cpy._z)
+{
+    // this->_x = cpy.getX();
+    // this->_y = cpy.getY();
+    // this->_z = cpy.getZ();
 }
 
 ECSVector3 &ECSVector3::operator+=(const ECSVector3 &offset)
