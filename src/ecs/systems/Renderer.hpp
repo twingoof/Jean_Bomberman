@@ -11,14 +11,11 @@
 #ifndef INDIE_RENDERER_HPP
 #define INDIE_RENDERER_HPP
 
-#include "Circle.hpp"
 #include "Drawable2D.hpp"
 #include "Drawable3D.hpp"
 #include "enum.hpp"
 #include "Entity.hpp"
 #include "IComponent.hpp"
-#include "Model.hpp"
-#include "Texture.hpp"
 
 #include <map>
 #include <memory>

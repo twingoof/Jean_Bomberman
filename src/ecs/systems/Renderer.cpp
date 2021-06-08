@@ -7,6 +7,12 @@
 
 #include "Renderer.hpp"
 
+#include "Circle.hpp"
+#include "Model.hpp"
+#include "Rectangle.hpp"
+#include "Text.hpp"
+#include "Texture.hpp"
+
 Renderer::Renderer() = default;
 
 Renderer::~Renderer() = default;
@@ -15,7 +21,6 @@ void Renderer::draw(const std::map<std::string, std::shared_ptr<Entity>>& entiti
     bool noDraw;
 
     for (const auto &entity : entities) {
-        // std::cout<<entity.second.get()->getPosition().getX()<<std::endl;
         noDraw = false;
         try {
             Drawable2D drawable = entity.second.get()->getComponent<Drawable2D>(DRAWABLE2D);
@@ -46,7 +51,7 @@ void Renderer::_draw2D(const ECSVector3& position, const Drawable2D& drawable)
             raylib::drawCircle(position._x, position._y, position._z);
             break;
         case RECT:
-            // TODO: Draw rect
+            raylib::drawRectangle(position._x, position._y, drawable.getSize()._x, drawable.getSize()._y);
             break;
     }
 }

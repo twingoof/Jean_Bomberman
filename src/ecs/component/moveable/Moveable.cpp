@@ -7,63 +7,64 @@
 
 #include "Moveable.hpp"
 
-Moveable::Moveable(int posX, int posY, int posZ, ECSVector3 velocity)
-    : _position(ECSVector3(posX, posY, posZ)), _velocityVector(velocity)
+ECS::Moveable::Moveable(int posX, int posY, int posZ, ECS::Vector3 velocity)
+    : _position(ECS::Vector3(posX, posY, posZ)), _velocityVector(velocity)
 {}
 
-Moveable::Moveable(ECSVector3 &position, ECSVector3 velocity) : _position(position), _velocityVector(velocity) {}
+ECS::Moveable::Moveable(ECS::Vector3 &position, ECS::Vector3 velocity) : _position(position), _velocityVector(velocity) {}
 
-Moveable::~Moveable() = default;
+ECS::Moveable::~Moveable() = default;
 
-void Moveable::moveX(int offsetX)
+void ECS::Moveable::moveX(int offsetX)
 {
     this->_position.setX(offsetX);
 }
 
-void Moveable::moveY(int offsetY)
+void ECS::Moveable::moveY(int offsetY)
 {
     this->_position.setY(offsetY);
 }
 
-void Moveable::moveZ(int offsetZ)
+void ECS::Moveable::moveZ(int offsetZ)
 {
     this->_position.setZ(offsetZ);
 }
 
-void Moveable::move(int offsetX, int offsetY, int offsetZ)
+void ECS::Moveable::move(int offsetX, int offsetY, int offsetZ)
 {
     this->_position._x += offsetX;
     this->_position._y += offsetY;
     this->_position._z += offsetZ;
 }
 
-void Moveable::move(ECSVector3 offsetPosition)
+void ECS::Moveable::move(ECS::Vector3 offsetPosition)
 {
     this->_position += offsetPosition;
 }
 
-void Moveable::place(int offsetX, int offsetY, int offsetZ)
+void ECS::Moveable::place(int offsetX, int offsetY, int offsetZ)
 {
     this->_position.setX(offsetX);
     this->_position.setY(offsetY);
     this->_position.setZ(offsetZ);
 }
 
-void Moveable::place(ECSVector3 offsetPosition)
+void ECS::Moveable::place(ECS::Vector3 offsetPosition)
 {
     this->_position = offsetPosition;
 }
 
-const ECSVector3 Moveable::getPosition() const
+const ECS::Vector3 ECS::Moveable::getPosition() const
 {
     return (_position);
 }
 
-void Moveable::setVelocity(const ECSVector3 &newVector)
+void ECS::Moveable::setVelocity(const ECS::Vector3 &newVector)
 {
     _velocityVector = newVector;
 }
 
+<<<<<<< HEAD
 void Moveable::setVelocity(int x, int y, int z)
 {
     _velocityVector.setX(x);
@@ -72,6 +73,9 @@ void Moveable::setVelocity(int x, int y, int z)
 }
 
 ECSVector3 &Moveable::getVelocity(void) const
+=======
+ECS::Vector3 &ECS::Moveable::getVelocity(void) const
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 {
     return (_velocityVector);
 }

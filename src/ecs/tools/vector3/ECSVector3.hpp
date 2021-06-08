@@ -10,32 +10,34 @@
 #ifndef ECSVector3_HPP_
 #define ECSVector3_HPP_
 
-class ECSVector3 {
-    public:
-        ECSVector3(int x = 0, int y = 0, int z = 0);
-        ECSVector3(const ECSVector3 &cpy);
-        ECSVector3 &operator+=(const ECSVector3 &offset);
-        ECSVector3 &operator*(const int i);
-        ~ECSVector3();
+namespace ECS {
+    class Vector3 {
+        public:
+            Vector3(int x = 0, int y = 0, int z = 0);
+            Vector3(const Vector3 &cpy);
+            Vector3 &operator+=(const Vector3 &offset);
+            Vector3 &operator*(const int i);
+            ~Vector3();
 
-        void setX(int x);
-        void setY(int y);
-        void setZ(int z);
+            void setX(int x);
+            void setY(int y);
+            void setZ(int z);
 
-        int getX() const;
-        int getY() const;
-        int getZ() const;
+            int getX() const;
+            int getY() const;
+            int getZ() const;
 
-        ECSVector3 &operator=(const ECSVector3 &rHand) {
-            this->_x = rHand.getX();
-            this->_y = rHand.getY();
-            this->_z = rHand.getZ();
-            return (*this);
-        }
+            Vector3 &operator=(const Vector3 &rHand) {
+                this->_x = rHand.getX();
+                this->_y = rHand.getY();
+                this->_z = rHand.getZ();
+                return (*this);
+            }
 
-        int _x;
-        int _y;
-        int _z;
+            int _x;
+            int _y;
+            int _z;
+    };
 };
 
 #endif /* !ECSVector3_HPP_ */

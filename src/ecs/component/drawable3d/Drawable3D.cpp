@@ -8,7 +8,7 @@
 
 #include <utility>
 
-Drawable3D::Drawable3D(std::string meshPath, const ECSVector3& size) {
+ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3& size) {
     this->_meshPath = std::move(meshPath);
     this->_size.setX(size._x);
     this->_size.setY(size._y);
@@ -16,8 +16,9 @@ Drawable3D::Drawable3D(std::string meshPath, const ECSVector3& size) {
     this->_type = CUSTOM;
 }
 
-Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
+ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
 
+<<<<<<< HEAD
 Drawable3D::Drawable3D(DrawableType type, const ECSVector3& size)
 {
 //    this->_meshPath = nullptr;
@@ -26,20 +27,23 @@ Drawable3D::Drawable3D(DrawableType type, const ECSVector3& size)
 }
 
 Drawable3D::~Drawable3D() = default;
+=======
+ECS::Drawable3D::~Drawable3D() = default;
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 
-void Drawable3D::setMeshPath(std::string meshPath) {
+void ECS::Drawable3D::setMeshPath(std::string meshPath) {
     this->_meshPath = std::move(meshPath);
 }
 
-void Drawable3D::setSize(const ECSVector3& size) {
+void ECS::Drawable3D::setSize(const ECS::Vector3& size) {
     this->_size = size;
 }
 
-const std::string Drawable3D::getMeshPath() const {
+const std::string ECS::Drawable3D::getMeshPath() const {
     return this->_meshPath;
 }
 
-const ECSVector3 Drawable3D::getSize() const {
+const ECS::Vector3 ECS::Drawable3D::getSize() const {
     return this->_size;
 }
 

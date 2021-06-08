@@ -7,41 +7,41 @@
 
 #include "Attacker.hpp"
 
-Attacker::Attacker(unsigned int ammo, unsigned short damage)
+ECS::Attacker::Attacker(unsigned int ammo, unsigned short damage)
     : _baseDamage(damage)
 {
     this->_ammo = ammo;
     this->_damage = damage;
 }
 
-Attacker::~Attacker() = default;
+ECS::Attacker::~Attacker() = default;
 
-unsigned int Attacker::getAmmo() const
+unsigned int ECS::Attacker::getAmmo() const
 {
     return (this->_ammo);
 }
 
-unsigned short Attacker::getDamage() const
+unsigned short ECS::Attacker::getDamage() const
 {
     return (this->_damage);
 }
 
-unsigned short Attacker::getBaseDamage() const
+unsigned short ECS::Attacker::getBaseDamage() const
 {
     return (this->_baseDamage);
 }
 
-void Attacker::setAmmo(unsigned int ammo)
+void ECS::Attacker::setAmmo(unsigned int ammo)
 {
     this->_ammo = ammo;
 }
 
-void Attacker::setDamage(unsigned short damage)
+void ECS::Attacker::setDamage(unsigned short damage)
 {
     this->_damage = damage;
 }
 
-void Attacker::dealDamage(Killable &target)
+void ECS::Attacker::dealDamage(ECS::Killable &target)
 {
     if (this->_ammo > 0) {
         this->_ammo = (this->_ammo - 1);
@@ -49,7 +49,7 @@ void Attacker::dealDamage(Killable &target)
     }
 }
 
-void Attacker::resetDamage()
+void ECS::Attacker::resetDamage()
 {
     this->_damage = this->_baseDamage;
 }

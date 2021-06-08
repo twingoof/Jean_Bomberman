@@ -7,62 +7,73 @@
 
 #include "EntityManager.hpp"
 
-void EntityManager::addEntity(std::string name, Entity &newEntity)
+void ECS::EntityManager::addEntity(std::string name, ECS::Entity &newEntity)
 {
-    this->_entities.insert({name, std::make_shared<Entity>(newEntity)});
+    this->_entities.insert({name, std::make_shared<ECS::Entity>(newEntity)});
 }
 
+<<<<<<< HEAD
 void EntityManager::createEntity(std::string name, ECSVector3 position, ECSVector3 size)
 {
     Entity newEntity(position, size);
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});
-}
-
-Entity &EntityManager::getEntity(std::string entityName) const
+=======
+void ECS::EntityManager::createEntity(std::string name, std::vector<int> position, std::vector<int> size)
 {
-    return (dynamic_cast<Entity&>((*this->_entities.at(entityName))));
+    ECS::Vector3 Vposition(position.at(0), position.at(1), position.at(2));
+    ECS::Vector3 Vsize(size.at(0), size.at(1), size.at(2));
+
+    ECS::Entity newEntity(Vposition, Vsize);
+    this->_entities.insert({name, std::make_shared<ECS::Entity>(newEntity)});
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 }
 
-std::map<std::string, std::shared_ptr<Entity>> EntityManager::getEntities() const
+ECS::Entity &ECS::EntityManager::getEntity(std::string entityName) const
+{
+    return (dynamic_cast<ECS::Entity&>((*this->_entities.at(entityName))));
+}
+
+std::map<std::string, std::shared_ptr<ECS::Entity>> ECS::EntityManager::getEntities() const
 {
     return (this->_entities);
 }
 
-void EntityManager::addAttacker(std::string name, unsigned int ammo, unsigned short int damage)
+void ECS::EntityManager::addAttacker(std::string name, unsigned int ammo, unsigned short int damage)
 {
-    Attacker a(ammo, damage);
-    this->_entities.at(name).get()->addComponent<Attacker>(a, ATTACKER);
+    ECS::Attacker a(ammo, damage);
+    this->_entities.at(name).get()->addComponent<ECS::Attacker>(a, ATTACKER);
 }
 
-void EntityManager::addClickable(std::string name, void(callback()))
+void ECS::EntityManager::addClickable(std::string name, void(callback()))
 {
-    Clickable c(callback);
-    this->_entities.at(name).get()->addComponent<Clickable>(c, CLICKABLE);
+    ECS::Clickable c(callback);
+    this->_entities.at(name).get()->addComponent<ECS::Clickable>(c, CLICKABLE);
 }
 
-void EntityManager::addCollectible(std::string name)
+void ECS::EntityManager::addCollectible(std::string name)
 {
-    Collectible c;
-    this->_entities.at(name).get()->addComponent<Collectible>(c, COLLECTIBLE);
+    ECS::Collectible c;
+    this->_entities.at(name).get()->addComponent<ECS::Collectible>(c, COLLECTIBLE);
 
 }
 
-void EntityManager::addDrawable2D(std::string name, std::string spritePath, DrawableType type)
+void ECS::EntityManager::addDrawable2D(std::string name, std::string spritePath, ECS::DrawableType type)
 {
-    Entity *entity = (this->_entities.at(name).get());
-    Drawable2D d(spritePath, entity->getSize(), type);
+    ECS::Entity *entity = (this->_entities.at(name).get());
+    ECS::Drawable2D d(spritePath, entity->getSize(), type);
 
-    entity->addComponent<Drawable2D>(d, DRAWABLE2D);
+    entity->addComponent<ECS::Drawable2D>(d, DRAWABLE2D);
 }
 
-void EntityManager::addDrawable3D(std::string name, std::string meshPath)
+void ECS::EntityManager::addDrawable3D(std::string name, std::string meshPath)
 {
-    Entity *entity = (this->_entities.at(name).get());
-    Drawable3D d(meshPath, entity->getSize());
+    ECS::Entity *entity = (this->_entities.at(name).get());
+    ECS::Drawable3D d(meshPath, entity->getSize());
 
-    entity->addComponent<Drawable3D>(d, DRAWABLE3D);
+    entity->addComponent<ECS::Drawable3D>(d, DRAWABLE3D);
 }
 
+<<<<<<< HEAD
 void EntityManager::addDrawable3D(std::string name, DrawableType type)
 {
     Entity *entity = (this->_entities.at(name).get());
@@ -72,16 +83,24 @@ void EntityManager::addDrawable3D(std::string name, DrawableType type)
 }
 
 void EntityManager::addMoveable(std::string name)
+=======
+void ECS::EntityManager::addMoveable(std::string name)
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 {
-    Entity *entity = (this->_entities.at(name).get());
-    Moveable m(entity->getPosition());
+    ECS::Entity *entity = (this->_entities.at(name).get());
+    ECS::Moveable m(entity->getPosition());
 
-    entity->addComponent<Moveable>(m, MOVEABLE);
+    entity->addComponent<ECS::Moveable>(m, MOVEABLE);
 }
 
-void EntityManager::addKillable(std::string name, unsigned short life)
+void ECS::EntityManager::addKillable(std::string name, unsigned short life)
 {
+<<<<<<< HEAD
     Entity e = *this->_entities.at(name).get();
     Killable k(life);
     e.addComponent<Killable>(k, KILLABLE);
+=======
+    ECS::Killable k(life);
+    this->_entities.at(name).get()->addComponent<ECS::Killable>(k, KILLABLE);
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 }

@@ -7,24 +7,24 @@
 
 #include "Clickable.hpp"
 
-Clickable::Clickable(void(*cllbck)())
+ECS::Clickable::Clickable(void(*cllbck)())
 {
     this->_callback = cllbck;
 }
 
-Clickable::~Clickable() = default;
+ECS::Clickable::~Clickable() = default;
 
-void Clickable::callback()
+void ECS::Clickable::callback()
 {
     this->_callback();
 }
 
-void Clickable::setCallback(void(*cllbck)())
+void ECS::Clickable::setCallback(void(*cllbck)())
 {
     this->_callback = cllbck;
 }
 
-void (*Clickable::getCallback())()
+void (*ECS::Clickable::getCallback())()
 {
     return (this->_callback);
 }

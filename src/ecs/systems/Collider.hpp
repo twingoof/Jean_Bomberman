@@ -11,16 +11,25 @@
 #include "Entity.hpp"
 #include "EntityManager.hpp"
 
-class Collider {
-    public:
-        Collider() = default;
-        ~Collider() = default;
+namespace ECS {
+    class Collider {
+        public:
+            Collider() = default;
+            ~Collider() = default;
 
+<<<<<<< HEAD
         void checkCollision(EntityManager &scene);
 
     private:
         void isWindowColliding(Entity &entity);
         void isEntitesColliding(Entity &fEntity, Entity &sEntity);
+=======
+            void checkCollision(ECS::Entity &first, ECS::Entity &second);
+            void checkWindowCollisiton(ECS::Entity &first);
+
+        private:
+    };
+>>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 };
 
 #endif /* !COLLIDER_HPP_ */
