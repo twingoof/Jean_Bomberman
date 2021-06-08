@@ -24,9 +24,9 @@ int main()
     ECSVector3 pos = {90,90,90};
     ECSVector3 vel = {0, 0, 0};
     Entity e(pos, pos);
-    Drawable2D d("Bonjour", {10, 10, 10}, CIRCLE);
+    Drawable3D d({10, 10, 10}, CIRCLE);
     std::vector<Entity> v;
-    Renderer2D r;
+    Renderer r;
     Moveable m(e.getPosition());
     Collider c;
     Displacer dbis;

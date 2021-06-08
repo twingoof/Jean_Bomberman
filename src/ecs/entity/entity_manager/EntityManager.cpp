@@ -76,6 +76,7 @@ void EntityManager::addMoveable(std::string name)
 
 void EntityManager::addKillable(std::string name, unsigned short life)
 {
+    Entity e = *this->_entities.at(name).get();
     Killable k(life);
-    this->_entities.at(name).get()->addComponent<Killable>(k, KILLABLE);
+    e.addComponent<Killable>(k, KILLABLE);
 }
