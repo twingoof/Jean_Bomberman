@@ -8,6 +8,8 @@
 #ifndef TEXTURE_HPP_
 #define TEXTURE_HPP_
 
+#include "Vector3.hpp"
+#include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
 #include <memory>
@@ -27,11 +29,8 @@ namespace raylib {
             void loadCubemap(const ::Image &image, int layout);
             void loadFromFile(const std::string &filePath);
             void unload(void);
-
             Texture &update(const void *pixels);
-
             ::Vector2 getSize(void) const;
-
             ::Image getData(void) const;
 
             void draw(void);

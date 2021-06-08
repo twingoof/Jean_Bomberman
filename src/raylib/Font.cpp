@@ -38,7 +38,7 @@ void raylib::Font::unload(void)
     ::UnloadFont(*this);
 }
 
-::Vector2 raylib::Font::measureText(const std::string &text, float fontSize, float spacing)
+raylib::Vector2 raylib::Font::measureText(const std::string &text, float fontSize, float spacing)
 {
     return (::MeasureTextEx(*this, text.c_str(), fontSize, spacing));
 }

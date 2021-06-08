@@ -9,7 +9,8 @@
 
 raylib::Camera3D::Camera3D() = default;
 
-raylib::Camera3D::Camera3D(Vector3 camPos, Vector3 camTarget, Vector3 camUp, float camFovY, int type) : Camera3D() {
+raylib::Camera3D::Camera3D(Vector3 camPos, Vector3 camTarget, Vector3 camUp, float camFovY, int type) : Camera3D()
+{
     this->position = camPos;
     this->target = camTarget;
     this->up = camUp;
@@ -19,66 +20,82 @@ raylib::Camera3D::Camera3D(Vector3 camPos, Vector3 camTarget, Vector3 camUp, flo
 
 raylib::Camera3D::~Camera3D() = default;
 
-void raylib::Camera3D::setMode(int mode) {
+void raylib::Camera3D::setMode(int mode)
+{
     ::SetCameraMode(*this, mode);
 }
 
-void raylib::Camera3D::update() {
+void raylib::Camera3D::update()
+{
     ::UpdateCamera(this);
 }
 
-void raylib::Camera3D::setPanControl(int keyPan) {
+void raylib::Camera3D::setPanControl(int keyPan)
+{
     ::SetCameraPanControl(keyPan);
 }
 
-void raylib::Camera3D::setAltControl(int keyAlt) {
+void raylib::Camera3D::setAltControl(int keyAlt)
+{
     ::SetCameraAltControl(keyAlt);
 }
 
-void raylib::Camera3D::setSmoothZoomControl(int keySmoothZoom) {
+void raylib::Camera3D::setSmoothZoomControl(int keySmoothZoom)
+{
     ::SetCameraSmoothZoomControl(keySmoothZoom);
 }
 
-void raylib::Camera3D::setCameraMoveControls(int kfront, int kback, int kright, int kleft, int kup, int kdown) {
+void raylib::Camera3D::setCameraMoveControls(int kfront, int kback, int kright, int kleft, int kup, int kdown)
+{
     ::SetCameraMoveControls(kfront, kback, kright, kleft, kup, kdown);
 }
 
-Vector3 raylib::Camera3D::getPosition() {
+::Vector3 raylib::Camera3D::getPosition()
+{
     return this->position;
 }
 
-Vector3 raylib::Camera3D::getTarget() {
+::Vector3 raylib::Camera3D::getTarget()
+{
     return this->target;
 }
 
-Vector3 raylib::Camera3D::getUp() {
+::Vector3 raylib::Camera3D::getUp()
+{
     return this->up;
 }
 
-float raylib::Camera3D::getFovY() {
+float raylib::Camera3D::getFovY()
+{
     return this->fovy;
 }
 
-int raylib::Camera3D::getType() {
+int raylib::Camera3D::getType()
+{
     return this->projection;
 }
 
-void raylib::Camera3D::setPosition(Vector3 camPos) {
+void raylib::Camera3D::setPosition(::Vector3 camPos)
+{
     this->position = camPos;
 }
 
-void raylib::Camera3D::setTarget(Vector3 camTarget) {
+void raylib::Camera3D::setTarget(::Vector3 camTarget)
+{
     this->target = camTarget;
 }
 
-void raylib::Camera3D::setUp(Vector3 camUp) {
+void raylib::Camera3D::setUp(::Vector3 camUp)
+{
     this->up = camUp;
 }
 
-void raylib::Camera3D::setFovY(float camFovY) {
+void raylib::Camera3D::setFovY(float camFovY)
+{
     this->fovy = camFovY;
 }
 
-void raylib::Camera3D::setType(int camType) {
+void raylib::Camera3D::setType(int camType)
+{
     this->projection = camType;
 }
