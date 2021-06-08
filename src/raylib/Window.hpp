@@ -8,6 +8,7 @@
 #ifndef WINDOW_HPP_
 #define WINDOW_HPP_
 
+#include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
 
@@ -111,6 +112,10 @@ namespace raylib {
 
             void begin3DMode(const ::Camera3D &actualCam);
 
+            bool is2DMode() const;
+
+            bool is3DMode() const;
+
             void end2DMode();
 
             void end3DMode();
@@ -150,7 +155,7 @@ namespace raylib {
 
             /**
              * @brief Get the Factor DPI object
-             * @return ::Vector2
+             * @return Vector2
              */
             ::Vector2 getScaleFactorDPI() const;
 

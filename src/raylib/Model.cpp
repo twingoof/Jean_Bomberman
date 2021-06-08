@@ -35,7 +35,9 @@ void raylib::Model::unloadModel(void)
 
 void raylib::Model::drawModel(void)
 {
-    this->drawModel({0, 0, 0}, 0.0f);
+    ::Vector3 spaceVect;
+
+    this->drawModel(spaceVect, 0.0f);
 }
 
 void raylib::Model::drawModel(::Vector3 position, float scale, ::Color tint)
@@ -47,8 +49,6 @@ void raylib::Model::drawModel(::Vector3 position, ::Vector3 rotationAxis, float 
 {
     ::DrawModelEx(*this, position, rotationAxis, rotationAngle, scale, tint);
 }
-
-
 
 void raylib::Model::updateAnimation(::ModelAnimation modelAnim, int frame)
 {

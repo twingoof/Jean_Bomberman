@@ -8,6 +8,7 @@
 #ifndef INDIE_CAMERA_HPP
 #define INDIE_CAMERA_HPP
 
+#include "Vector3.hpp"
 #include "raylib.h"
 
 namespace raylib {
@@ -25,15 +26,15 @@ namespace raylib {
             void setSmoothZoomControl(int keySmoothZoom);
             void setCameraMoveControls(int front, int back, int right, int left, int up, int down);
 
-            Vector3 getPosition();
-            Vector3 getTarget();
-            Vector3 getUp();
+            ::Vector3 getPosition();
+            ::Vector3 getTarget();
+            ::Vector3 getUp();
             float getFovY();
             int getType();
 
-            void setPosition(Vector3 camPos);
-            void setTarget(Vector3 camTarget);
-            void setUp(Vector3 camUp);
+            void setPosition(::Vector3 camPos);
+            void setTarget(::Vector3 camTarget);
+            void setUp(::Vector3 camUp);
             void setFovY(float camFovY);
             void setType(int camType);
 
