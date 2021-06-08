@@ -11,7 +11,7 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
 {
     raylib::Window &myWindow = raylib::Window::getWindow();
     ECS::Moveable m = entity.getComponent<ECS::Moveable>(MOVEABLE);
-    ECS::ECSVector3 newPosition = entity.getPosition();
+    ECS::Vector3 newPosition = entity.getPosition();
     raylib::Controls controls;
     int i = 0;
 

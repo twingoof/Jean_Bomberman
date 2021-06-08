@@ -11,7 +11,6 @@
 #define ENTITYMANAGER_HPP_
 
 #include "Entity.hpp"
-#include "ECSVector3.hpp"
 #include "Attacker.hpp"
 #include "Clickable.hpp"
 #include "Drawable2D.hpp"

@@ -38,13 +38,13 @@ namespace ECS {
             Entity() = default;
             
             /**
-             * @fn Entity(ECSVector3 &position, ECSVector3 &size)
+             * @fn Entity(Vector3 &position, Vector3 &size)
              * @brief Construct a new Entity object
              * 
              * @param position Original position
              * @param size Original size
              */
-            Entity(ECS::ECSVector3 &position, ECS::ECSVector3 &size);
+            Entity(ECS::Vector3 &position, ECS::Vector3 &size);
 
             /**
              * @fn ~Entity() = default
@@ -63,7 +63,9 @@ namespace ECS {
              * @param type Component's type
              */
             template<class T>
-            void addComponent(T& component, ECS::ComponentType type);
+            void addComponent(T& component, ECS::ComponentType type) {
+                this->_components.insert(std::make_pair(type, std::make_shared<T>(component)));
+            };
 
 
             /**
@@ -75,44 +77,46 @@ namespace ECS {
              * @return T& 
              */
             template<class T>
-            T &getComponent(ECS::ComponentType type) const;
+            T &getComponent(ECS::ComponentType type) const {
+                return dynamic_cast<T&>((*this->_components.at(type)));
+            };
 
             /**
-             * @fn ECSVector3 &getPosition() const
+             * @fn Vector3 &getPosition() const
              * @brief Get the position
              * 
-             * @return ECSVector3& 
+             * @return Vector3& 
              */
-            ECS::ECSVector3 &getPosition() const;
+            ECS::Vector3 &getPosition() const;
 
             /**
-             * @fn ECSVector3 &getSize() const
+             * @fn Vector3 &getSize() const
              * @brief Get the size
              * 
-             * @return ECSVector3& 
+             * @return Vector3& 
              */
-            ECS::ECSVector3 &getSize() const;
+            ECS::Vector3 &getSize() const;
 
 
             /**
-             * @fn void setPosition(const ECSVector3 &newPos)
+             * @fn void setPosition(const Vector3 &newPos)
              * @brief Set the position of the entity
              * 
              * @param newPos New position of the entity
              */
-            void setPosition(const ECS::ECSVector3 &newPos);
+            void setPosition(const ECS::Vector3 &newPos);
 
             /**
-             * @fn void setSize(const ECSVector3 &newSize)
+             * @fn void setSize(const Vector3 &newSize)
              * @brief Set the size of the entity
              * 
              * @param newSize New size of the entity
              */
-            void setSize(const ECS::ECSVector3 &newSize);
+            void setSize(const ECS::Vector3 &newSize);
 
         private:
-            ECS::ECSVector3 &_position;
-            ECS::ECSVector3 &_size;
+            ECS::Vector3 &_position;
+            ECS::Vector3 &_size;
             std::map<ECS::ComponentType, std::shared_ptr<ECS::IComponent>> _components;
     };
 };

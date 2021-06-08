@@ -7,11 +7,11 @@
 
 #include "Moveable.hpp"
 
-ECS::Moveable::Moveable(int posX, int posY, int posZ, ECS::ECSVector3 velocity)
-    : _position(ECS::ECSVector3(posX, posY, posZ)), _velocityVector(velocity)
+ECS::Moveable::Moveable(int posX, int posY, int posZ, ECS::Vector3 velocity)
+    : _position(ECS::Vector3(posX, posY, posZ)), _velocityVector(velocity)
 {}
 
-ECS::Moveable::Moveable(ECS::ECSVector3 &position, ECS::ECSVector3 velocity) : _position(position), _velocityVector(velocity) {}
+ECS::Moveable::Moveable(ECS::Vector3 &position, ECS::Vector3 velocity) : _position(position), _velocityVector(velocity) {}
 
 ECS::Moveable::~Moveable() = default;
 
@@ -37,7 +37,7 @@ void ECS::Moveable::move(int offsetX, int offsetY, int offsetZ)
     this->_position._z += offsetZ;
 }
 
-void ECS::Moveable::move(ECS::ECSVector3 offsetPosition)
+void ECS::Moveable::move(ECS::Vector3 offsetPosition)
 {
     this->_position += offsetPosition;
 }
@@ -49,22 +49,22 @@ void ECS::Moveable::place(int offsetX, int offsetY, int offsetZ)
     this->_position.setZ(offsetZ);
 }
 
-void ECS::Moveable::place(ECS::ECSVector3 offsetPosition)
+void ECS::Moveable::place(ECS::Vector3 offsetPosition)
 {
     this->_position = offsetPosition;
 }
 
-const ECS::ECSVector3 ECS::Moveable::getPosition() const
+const ECS::Vector3 ECS::Moveable::getPosition() const
 {
     return (_position);
 }
 
-void ECS::Moveable::setVelocity(const ECS::ECSVector3 &newVector)
+void ECS::Moveable::setVelocity(const ECS::Vector3 &newVector)
 {
     _velocityVector = newVector;
 }
 
-ECS::ECSVector3 &ECS::Moveable::getVelocity(void) const
+ECS::Vector3 &ECS::Moveable::getVelocity(void) const
 {
     return (_velocityVector);
 }

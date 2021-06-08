@@ -8,7 +8,7 @@
 
 #include <utility>
 
-ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::ECSVector3& size) {
+ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3& size) {
     this->_meshPath = std::move(meshPath);
     this->_size = size;
 }
@@ -21,7 +21,7 @@ void ECS::Drawable3D::setMeshPath(std::string meshPath) {
     this->_meshPath = std::move(meshPath);
 }
 
-void ECS::Drawable3D::setSize(const ECS::ECSVector3& size) {
+void ECS::Drawable3D::setSize(const ECS::Vector3& size) {
     this->_size = size;
 }
 
@@ -29,6 +29,6 @@ const std::string ECS::Drawable3D::getMeshPath() const {
     return this->_meshPath;
 }
 
-const ECS::ECSVector3 ECS::Drawable3D::getSize() const {
+const ECS::Vector3 ECS::Drawable3D::getSize() const {
     return this->_size;
 }

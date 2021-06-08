@@ -11,7 +11,7 @@
 #include "IComponent.hpp"
 
 namespace ECS {
-    class Killable {
+    class Killable : public ECS::IComponent {
         public:
             Killable() = default;
             Killable(unsigned short life);
