@@ -37,6 +37,6 @@ namespace raylib {
             void setModel(const ::Model &model);
 
     };
-}
+};
 
 #endif /* !MODEL_HPP_ */
