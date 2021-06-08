@@ -24,7 +24,7 @@ namespace raylib {
             ~Model();
 
             void unloadModel();
-            void loadModel(const std::string &filePath);
+            ::Model loadModel(const std::string &filePath);
             void updateAnimation(::ModelAnimation modelAnim, int frame);
 
             void drawModel(void);

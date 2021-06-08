@@ -15,23 +15,25 @@ void Renderer::draw(const std::vector<Entity>& entities) {
     bool noDraw;
 
     for (const auto &entity : entities) {
-        // noDraw = false;
-        // try {
-        //     Drawable2D drawable = entity.getComponent<Drawable2D>(DRAWABLE2D);
-        //     this->_draw2D(entity.getPosition(), drawable);
-        // }
-        // catch (std::out_of_range &e) {
-        //     noDraw = true;
-        // }
+        noDraw = false;
+        try {
+            Drawable2D drawable = entity.getComponent<Drawable2D>(DRAWABLE2D);
+            this->_draw2D(entity.getPosition(), drawable);
+        }
+        catch (std::out_of_range &e) {
+            noDraw = true;
+        }
 
-        // try {
+        try {
             Drawable3D drawable = entity.getComponent<Drawable3D>(DRAWABLE3D);
             this->_draw3D(entity.getPosition(), drawable);
 
-    //     } catch (std::out_of_range &e) {
-    //         noDraw = true;
-    //     }
+        } catch (std::out_of_range &e) {
+            noDraw = true;
+        }
 
+        if (!noDraw)
+            std::cerr<<"ERROR: "<<"entity"<<" has no Drawabale component."<<std::endl;
     }
 }
 
@@ -50,21 +52,20 @@ void Renderer::_draw2D(const ECSVector3& position, const Drawable2D& drawable)
 
 void Renderer::_draw3D(const ECSVector3& position, const Drawable3D& drawable)
 {
-        Vector3 pos = {position._x, position._y, position._z};
-        DrawSphere(pos, 1.0f, RED);
-        DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
-    /*switch (drawable.getType())
+    Vector3 pos = {position._x, position._y, position._z};
+    raylib::Model model;
+    switch (drawable.getType())
     {
-    case CIRCLE:
-        break;
-    
-    default:
-        break;
-    }*/
-    // raylib::Model model(drawable.getMeshPath());
-    // Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
-    // model.drawModel(pos, 1, RED);
-//    model.unloadModel();
+        case CIRCLE:
+            DrawSphere(pos, 1.0f, RED);
+            DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
+            break;
+        case CUSTOM:
+            model.loadModel(drawable.getMeshPath());
+            Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
+            model.drawModel(pos, 1, RED);
+            break;
+    }
 }
 
 

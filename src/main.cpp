@@ -42,13 +42,12 @@ int main()
 
     window.initWindow(1000, 1000, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     e.addComponent<Drawable3D>(d, DRAWABLE3D);
+    e.addComponent<Moveable>(m, MOVEABLE);
     v.push_back(e);
-    window.initWindow(800, 450, "raylib [core] example - basic window", FLAG_WINDOW_RESIZABLE);
     clock.startClock();
     while (!WindowShouldClose()) {
         window.beginDrawing();
             window.clearWindow(RAYWHITE);
-        //            dbis.moveEntity(e, m.getVelocity());
             if (clock.getTimeElapsed() >= 0.06) {
                 ctller.moveEntity(e);
                 dbis.moveEntity(e);
