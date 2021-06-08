@@ -9,26 +9,26 @@
 #include "Moveable.hpp"
 #include "Window.hpp"
 
-void Collider::checkCollision(Entity &first, Entity &second)
+void ECS::Collider::checkCollision(ECS::Entity &first, ECS::Entity &second)
 {
-    Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
+    ::Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
     first.getSize().getX(), first.getSize().getY()};
-    Rectangle secondR = {second.getPosition().getX(), second.getPosition().getY(), \
+    ::Rectangle secondR = {second.getPosition().getX(), second.getPosition().getY(), \
     second.getSize().getX(), second.getSize().getY()};
-    Moveable firstM = first.getComponent<Moveable>(MOVEABLE);
-    Moveable secondM = second.getComponent<Moveable>(MOVEABLE);
+    ECS::Moveable firstM = first.getComponent<ECS::Moveable>(MOVEABLE);
+    ECS::Moveable secondM = second.getComponent<ECS::Moveable>(MOVEABLE);
     if (::CheckCollisionRecs(firstR, secondR)) {
         firstM.setVelocity(firstM.getVelocity() * -1);
         secondM.setVelocity(firstM.getVelocity() * -1);
     }
 }
 
-void Collider::checkWindowCollisiton(Entity &first)
+void ECS::Collider::checkWindowCollisiton(ECS::Entity &first)
 {
-    Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
+    ::Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
     first.getSize().getX(), first.getSize().getY()};
     raylib::Window &win = raylib::Window::getWindow();
-    Moveable firstM = first.getComponent<Moveable>(MOVEABLE);
+    ECS::Moveable firstM = first.getComponent<ECS::Moveable>(MOVEABLE);
 
     if (firstR.x <= 0 || firstR.x >= win.getWindowWidth())
         firstM.setVelocity({-firstM.getVelocity().getX(), firstM.getVelocity().getY()});

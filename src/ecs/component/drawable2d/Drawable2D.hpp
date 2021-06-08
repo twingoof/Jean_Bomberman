@@ -13,22 +13,24 @@
 #include "ECSVector3.hpp"
 #include <iostream>
 
-class Drawable2D : public IComponent {
-    public:
-        Drawable2D() = default;
-        Drawable2D(std::string spritePath, ECSVector3 size, DrawableType type);
-        Drawable2D &operator=(const Drawable2D &drawable) = default;
-        ~Drawable2D() override;
-        void setSpritePath(std::string spritePath);
-        void setSize(ECSVector3 size);
-        const std::string getSpritePath() const;
-        const ECSVector3 getSize() const;
-        DrawableType getType() const;
+namespace ECS {
+    class Drawable2D : public ECS::IComponent {
+        public:
+            Drawable2D() = default;
+            Drawable2D(std::string spritePath, ECS::ECSVector3 size, ECS::DrawableType type);
+            Drawable2D &operator=(const Drawable2D &drawable) = default;
+            ~Drawable2D() override;
+            void setSpritePath(std::string spritePath);
+            void setSize(ECS::ECSVector3 size);
+            const std::string getSpritePath() const;
+            const ECS::ECSVector3 getSize() const;
+            ECS::DrawableType getType() const;
 
-    private:
-        DrawableType _type;
-        std::string _spritePath;
-        ECSVector3 _size;
+        private:
+            ECS::DrawableType _type;
+            std::string _spritePath;
+            ECS::ECSVector3 _size;
+    };
 };
 
 #endif /* !DRAWABLE2D_HPP_ */

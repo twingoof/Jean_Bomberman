@@ -18,22 +18,24 @@
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
 
-/**
- * @class IComponent IComponent.hpp "src/ecs/component/IComponent.hpp"
- */
-class IComponent {
-    public:
-        /**
-         * @fn IComponent() = default
-         * @brief Construct a new IComponent object
-         */
-        IComponent() = default;
+namespace ECS {
+    /**
+     * @class IComponent IComponent.hpp "src/ecs/component/IComponent.hpp"
+     */
+    class IComponent {
+        public:
+            /**
+             * @fn IComponent() = default
+             * @brief Construct a new IComponent object
+             */
+            IComponent() = default;
 
-        /**
-         * @fn virtual ~IComponent() = default
-         * @brief Destroy the IComponent object
-         */
-        virtual ~IComponent() = default;
+            /**
+             * @fn virtual ~IComponent() = default
+             * @brief Destroy the IComponent object
+             */
+            virtual ~IComponent() = default;
+    };
 };
 
 #endif /* !ICOMPONENT_HPP_ */

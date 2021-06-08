@@ -13,21 +13,23 @@
 #include "IComponent.hpp"
 #include <iostream>
 
-class Drawable3D: public IComponent {
-    public:
-        Drawable3D(std::string meshPath, const ECSVector3& size);
-        Drawable3D &operator=(const Drawable3D &rHand) = default;
-        Drawable3D(const Drawable3D &drawable3D);
-        ~Drawable3D();
+namespace ECS {
+    class Drawable3D: public ECS::IComponent {
+        public:
+            Drawable3D(std::string meshPath, const ECS::ECSVector3& size);
+            Drawable3D &operator=(const Drawable3D &rHand) = default;
+            Drawable3D(const Drawable3D &drawable3D);
+            ~Drawable3D();
 
-        void setMeshPath(std::string meshPath);
-        void setSize(const ECSVector3& size);
-        const std::string getMeshPath() const;
-        const ECSVector3 getSize() const;
+            void setMeshPath(std::string meshPath);
+            void setSize(const ECS::ECSVector3& size);
+            const std::string getMeshPath() const;
+            const ECS::ECSVector3 getSize() const;
 
-    private:
-        std::string _meshPath;
-        ECSVector3 _size;
+        private:
+            std::string _meshPath;
+            ECS::ECSVector3 _size;
+    };
 };
 
 #endif /* !DRAWABLE3D_HPP_ */

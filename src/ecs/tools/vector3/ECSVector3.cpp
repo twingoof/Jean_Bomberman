@@ -7,20 +7,20 @@
 
 #include "ECSVector3.hpp"
 
-ECSVector3::ECSVector3(int x, int y, int z)
+ECS::ECSVector3::ECSVector3(int x, int y, int z)
 {
     this->_x = x;
     this->_y = y;
     this->_z = z;
 }
 
-ECSVector3::ECSVector3(const ECSVector3 &cpy) {
+ECS::ECSVector3::ECSVector3(const ECS::ECSVector3 &cpy) {
     this->_x = cpy.getX();
     this->_y = cpy.getY();
     this->_z = cpy.getZ();
 }
 
-ECSVector3 &ECSVector3::operator+=(const ECSVector3 &offset)
+ECS::ECSVector3 &ECS::ECSVector3::operator+=(const ECS::ECSVector3 &offset)
 {
     this->_x += offset._x;
     this->_y += offset._y;
@@ -28,7 +28,7 @@ ECSVector3 &ECSVector3::operator+=(const ECSVector3 &offset)
     return (*this);
 }
 
-ECSVector3 &ECSVector3::operator*(const int i)
+ECS::ECSVector3 &ECS::ECSVector3::operator*(const int i)
 {
     this->_x *= i;
     this->_y *= i;
@@ -36,34 +36,34 @@ ECSVector3 &ECSVector3::operator*(const int i)
     return (*this);
 }
 
-ECSVector3::~ECSVector3() = default;
+ECS::ECSVector3::~ECSVector3() = default;
 
-void ECSVector3::setX(int x)
+void ECS::ECSVector3::setX(int x)
 {
     this->_x = x;
 }
 
-void ECSVector3::setY(int y)
+void ECS::ECSVector3::setY(int y)
 {
     this->_y = y;
 }
 
-void ECSVector3::setZ(int z)
+void ECS::ECSVector3::setZ(int z)
 {
     this->_z = z;
 }
 
-int ECSVector3::getX() const
+int ECS::ECSVector3::getX() const
 {
     return (this->_x);
 }
 
-int ECSVector3::getY() const
+int ECS::ECSVector3::getY() const
 {
     return (this->_y);
 }
 
-int ECSVector3::getZ() const
+int ECS::ECSVector3::getZ() const
 {
     return (this->_z);
 }

@@ -10,15 +10,17 @@
 
 #include "Entity.hpp"
 
-class Collider {
-    public:
-        Collider() = default;
-        ~Collider() = default;
+namespace ECS {
+    class Collider {
+        public:
+            Collider() = default;
+            ~Collider() = default;
 
-        void checkCollision(Entity &first, Entity &second);
-        void checkWindowCollisiton(Entity &first);
+            void checkCollision(ECS::Entity &first, ECS::Entity &second);
+            void checkWindowCollisiton(ECS::Entity &first);
 
-    private:
+        private:
+    };
 };
 
 #endif /* !COLLIDER_HPP_ */

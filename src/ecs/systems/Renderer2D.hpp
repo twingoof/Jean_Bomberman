@@ -22,14 +22,16 @@
 /**
  * @class Renderer2D Renderer2D.hpp "src/ecs/systems/Renderer2D.hpp"
  */
-class Renderer2D {
-    public:
+namespace ECS {
+    class Renderer2D {
+        public:
 
-        Renderer2D();
-        ~Renderer2D();
+            Renderer2D();
+            ~Renderer2D();
 
-        void draw(std::vector<Entity> entities);
-    private:
+            void draw(std::vector<ECS::Entity> entities);
+        private:
+    };
 };
 
 #endif //INDIE_RENDERER_HPP

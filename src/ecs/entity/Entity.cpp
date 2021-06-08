@@ -7,38 +7,38 @@
 
 #include "Entity.hpp"
 
-Entity::Entity(ECSVector3 &position, ECSVector3 &size): _position(position), _size(size)
+ECS::Entity::Entity(ECS::ECSVector3 &position, ECS::ECSVector3 &size): _position(position), _size(size)
 {
 }
 
 template<class T>
-void Entity::addComponent(T &component, ComponentType type)
+void ECS::Entity::addComponent(T &component, ECS::ComponentType type)
 {
     this->_components.insert(std::make_pair(type, std::make_shared<T>(component)));
 }
 
 template<class T>
-T &Entity::getComponent(ComponentType type) const
+T &ECS::Entity::getComponent(ECS::ComponentType type) const
 {
     return dynamic_cast<T&>((*this->_components.at(type)));
 }
 
-ECSVector3 &Entity::getPosition() const
+ECS::ECSVector3 &ECS::Entity::getPosition() const
 {
     return (this->_position);
 }
 
-ECSVector3 &Entity::getSize() const
+ECS::ECSVector3 &ECS::Entity::getSize() const
 {
     return (this->_size);
 }
 
-void Entity::setPosition(const ECSVector3 &newPos)
+void ECS::Entity::setPosition(const ECS::ECSVector3 &newPos)
 {
     this->_position = newPos;
 }
 
-void Entity::setSize(const ECSVector3 &newSize)
+void ECS::Entity::setSize(const ECS::ECSVector3 &newSize)
 {
     this->_size = newSize;
 }

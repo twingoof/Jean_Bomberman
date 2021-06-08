@@ -8,27 +8,27 @@
 
 #include <utility>
 
-Drawable3D::Drawable3D(std::string meshPath, const ECSVector3& size) {
+ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::ECSVector3& size) {
     this->_meshPath = std::move(meshPath);
     this->_size = size;
 }
 
-Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
+ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
 
-Drawable3D::~Drawable3D() = default;
+ECS::Drawable3D::~Drawable3D() = default;
 
-void Drawable3D::setMeshPath(std::string meshPath) {
+void ECS::Drawable3D::setMeshPath(std::string meshPath) {
     this->_meshPath = std::move(meshPath);
 }
 
-void Drawable3D::setSize(const ECSVector3& size) {
+void ECS::Drawable3D::setSize(const ECS::ECSVector3& size) {
     this->_size = size;
 }
 
-const std::string Drawable3D::getMeshPath() const {
+const std::string ECS::Drawable3D::getMeshPath() const {
     return this->_meshPath;
 }
 
-const ECSVector3 Drawable3D::getSize() const {
+const ECS::ECSVector3 ECS::Drawable3D::getSize() const {
     return this->_size;
 }
