@@ -43,19 +43,19 @@ std::map<std::string, std::shared_ptr<Entity>> EntityManager::getEntities() cons
 void EntityManager::addAttacker(std::string name, unsigned int ammo, unsigned short int damage)
 {
     Attacker a(ammo, damage);
-    this->_entities.at(name).get()->addComponent(a, ATTACKER);
+    this->_entities.at(name).get()->addComponent<Attacker>(a, ATTACKER);
 }
 
 void EntityManager::addClickable(std::string name, void(callback()))
 {
     Clickable c(callback);
-    this->_entities.at(name).get()->addComponent(c, CLICKABLE);
+    this->_entities.at(name).get()->addComponent<Clickable>(c, CLICKABLE);
 }
 
 void EntityManager::addCollectible(std::string name)
 {
     Collectible c;
-    this->_entities.at(name).get()->addComponent(c, COLLECTIBLE);
+    this->_entities.at(name).get()->addComponent<Collectible>(c, COLLECTIBLE);
 
 }
 
@@ -64,7 +64,7 @@ void EntityManager::addDrawable2D(std::string name, std::string spritePath, Draw
     Entity *entity = (this->_entities.at(name).get());
     Drawable2D d(spritePath, entity->getSize(), type);
 
-    entity->addComponent(d, DRAWABLE2D);
+    entity->addComponent<Drawable2D>(d, DRAWABLE2D);
 }
 
 void EntityManager::addDrawable3D(std::string name, std::string meshPath)
@@ -72,7 +72,7 @@ void EntityManager::addDrawable3D(std::string name, std::string meshPath)
     Entity *entity = (this->_entities.at(name).get());
     Drawable3D d(meshPath, entity->getSize());
 
-    entity->addComponent(d, DRAWABLE3D);
+    entity->addComponent<Drawable3D>(d, DRAWABLE3D);
 }
 
 void EntityManager::addMoveable(std::string name)
@@ -80,11 +80,11 @@ void EntityManager::addMoveable(std::string name)
     Entity *entity = (this->_entities.at(name).get());
     Moveable m(entity->getPosition());
 
-    entity->addComponent(m, MOVEABLE);
+    entity->addComponent<Moveable>(m, MOVEABLE);
 }
 
 void EntityManager::addKillable(std::string name, unsigned short life)
 {
     Killable k(life);
-    this->_entities.at(name).get()->addComponent(k, KILLABLE);
+    this->_entities.at(name).get()->addComponent<Killable>(k, KILLABLE);
 }
