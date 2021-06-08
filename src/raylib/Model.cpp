@@ -25,7 +25,7 @@ raylib::Model &raylib::Model::operator=(const ::Model &old)
 
 raylib::Model::~Model()
 {
-    this->unloadModel();
+    // this->unloadModel();
 }
 
 void raylib::Model::unloadModel(void)
