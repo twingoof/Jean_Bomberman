@@ -21,27 +21,23 @@
 int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
-    ECSVector3 pos = {0,0,0};
-    ECSVector3 vel = {0, 0, 0};
-    Entity e(pos, pos);
-    Drawable3D d(DrawableType::CIRCLE, {10, 10, 10});
-    std::vector<Entity> v;
+    EntityManager man;
     Renderer r;
     raylib::Camera3D camera((Vector3){0, 10, 10}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
 
     window.initWindow(1000, 1000, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
-    e.addComponent<Drawable3D>(d, DRAWABLE3D);
-    v.push_back(e);
-
+    man.createEntity("boule", ECSVector3(0, 0, 0), ECSVector3(90, 90, 90));
+    man.addDrawable3D("boule", CIRCLE);
     while (!window.windowShouldClose())
     {
         window.beginDrawing();
         window.begin3DMode(camera);
-        r.draw(v);
+        std::cout<<man.getEntity("boule").getPosition().getX()<<std::endl;
+        r.draw(man.getEntities());
         DrawGrid(10, 1.0f);
         window.end3DMode();
         window.endDrawing();
     }
-    window.close();
+    window.closeWindow();
     return 0;
 }
