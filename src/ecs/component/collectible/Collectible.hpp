@@ -8,7 +8,9 @@
 #ifndef COLLECTIBLE_HPP_
 #define COLLECTIBLE_HPP_
 
-class Collectible {
+#include "IComponent.hpp"
+
+class Collectible: public IComponent {
     public:
         Collectible();
         Collectible &operator=(const Collectible &collectible) = default;

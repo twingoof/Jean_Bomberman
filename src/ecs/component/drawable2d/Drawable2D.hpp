@@ -29,6 +29,7 @@ class Drawable2D : public IComponent {
         DrawableType _type;
         std::string _spritePath;
         ECSVector3 _size;
+
 };
 
 #endif /* !DRAWABLE2D_HPP_ */

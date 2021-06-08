@@ -16,7 +16,7 @@ class Moveable : public IComponent{
         Moveable() = default;
         Moveable(int x, int y, int z, ECSVector3 velocity = {0, 0, 0});
         Moveable(ECSVector3 &position, ECSVector3 velocity = {0, 0, 0});
-        Moveable(const Moveable &Moveable) = default;
+        Moveable(const Moveable &cpy) = default;
         Moveable &operator=(const Moveable &Moveable) = default;
         ~Moveable();
 

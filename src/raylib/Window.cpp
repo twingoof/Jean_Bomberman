@@ -122,7 +122,7 @@ void raylib::Window::begin2DMode(const ::Camera2D &actualCamera)
 
 void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
 {
-    if (_isDrawing && _2dActivated) {
+    if (_isDrawing && !_2dActivated) {
         ::BeginMode3D(actualCamera);
         _3dActivated = true;
     }

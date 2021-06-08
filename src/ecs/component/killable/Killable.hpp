@@ -8,7 +8,9 @@
 #ifndef KILLABLE_HPP_
 #define KILLABLE_HPP_
 
-class Killable {
+#include "IComponent.hpp"
+
+class Killable : public IComponent {
     public:
         Killable() = default;
         Killable(unsigned short life);

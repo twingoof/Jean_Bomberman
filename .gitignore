@@ -8,6 +8,7 @@ unit-test
 .vscode
 .idea
 doc
+build
 
 #Files
 cmake-build-debug

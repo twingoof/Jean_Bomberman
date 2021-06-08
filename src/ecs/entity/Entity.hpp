@@ -62,7 +62,10 @@ class Entity {
          * @param type Component's type
          */
         template<class T>
-        void addComponent(T& component, ComponentType type);
+        void addComponent(T &component, ComponentType type)
+        {
+            this->_components.insert(std::make_pair(type, std::make_shared<T>(component)));
+        }
 
 
         /**
@@ -74,7 +77,10 @@ class Entity {
          * @return T& 
          */
         template<class T>
-        T &getComponent(ComponentType type) const;
+        T &getComponent(ComponentType type) const
+        {
+            return dynamic_cast<T&>((*this->_components.at(type)));
+        }
 
         /**
          * @fn ECSVector3 &getPosition() const
