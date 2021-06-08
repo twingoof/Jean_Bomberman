@@ -12,7 +12,7 @@
 
 namespace raylib {
 
-    void drawCircle(int centerX, int centerY, int radius, ::Color tint = {255, 255, 255, 255});
+    void drawCircle(int centerX, int centerY, float radius, ::Color tint = {255, 255, 255, 255});
 
     void drawCircleV(::Vector2 position, float rad, ::Color tint = {255, 255, 255, 255});
 

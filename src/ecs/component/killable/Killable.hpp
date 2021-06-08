@@ -10,7 +10,7 @@
 
 #include "IComponent.hpp"
 
-class Killable {
+class Killable : public IComponent {
     public:
         Killable() = default;
         Killable(unsigned short life);
