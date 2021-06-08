@@ -1,0 +1,34 @@
+/*
+** EPITECH PROJECT, 2021
+** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: Ubuntu-20.04]
+** File description:
+** Image
+*/
+
+#ifndef IMAGE_HPP_
+#define IMAGE_HPP_
+
+#include <string.h>
+#include "raylib.h"
+
+namespace raylib {
+    class Image ::Image {
+        public:
+            Image() = default;
+            Image(const ::Image &oldImage);
+            Image &operator=(const ::Image &oldImage);
+            ~Image() = default;
+
+            ::Image imageCopy(::Image image);
+            ::Image loadImage(const std::string &fileName);
+            void unloadImage();
+            bool exportImage(const std::string &fileName);
+            void imageResize(int newWidth, int newHeight);
+            ::Image genImageColor(int width, int height, ::Color color);
+
+        private:
+            void setImage(const ::Image &oldImage);
+    };
+};
+
+#endif /* !IMAGE_HPP_ */

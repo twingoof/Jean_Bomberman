@@ -8,6 +8,7 @@
 #ifndef TEXT_HPP_
 #define TEXT_HPP_
 
+#include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
 

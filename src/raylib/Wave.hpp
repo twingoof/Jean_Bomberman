@@ -18,7 +18,6 @@ namespace raylib {
             Wave(const ::Wave &oldWave);
             Wave(const std::string &filePath);
             Wave &operator=(const ::Wave &oldWave);
-
             ~Wave();
 
             void loadWave(const std::string &filePath);

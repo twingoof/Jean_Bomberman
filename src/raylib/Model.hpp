@@ -8,6 +8,7 @@
 #ifndef MODEL_HPP_
 #define MODEL_HPP_
 
+#include "Vector3.hpp"
 #include "raylib.h"
 #include <vector>
 #include <string>
@@ -17,13 +18,12 @@ namespace raylib {
         public:
             Model() = default;
             Model(const std::string &filePath);
+            Model(const ::Mesh &basicMesh);
             Model(const ::Model &old);
             Model &operator=(const ::Model &old);
-
             ~Model();
 
             void unloadModel();
-
             void loadModel(const std::string &filePath);
             void updateAnimation(::ModelAnimation modelAnim, int frame);
 

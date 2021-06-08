@@ -8,6 +8,7 @@
 #ifndef WINDOW_HPP_
 #define WINDOW_HPP_
 
+#include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
 
@@ -150,7 +151,7 @@ namespace raylib {
 
             /**
              * @brief Get the Factor DPI object
-             * @return ::Vector2
+             * @return Vector2
              */
             ::Vector2 getScaleFactorDPI() const;
 
