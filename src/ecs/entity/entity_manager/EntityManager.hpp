@@ -35,6 +35,7 @@ class EntityManager {
         void addCollectible(std::string name);
         void addDrawable2D(std::string name, std::string spritePath, DrawableType type);
         void addDrawable3D(std::string name, std::string meshPath);
+        void addDrawable3D(std::string name, DrawableType type);
         void addMoveable(std::string name);
         void addKillable(std::string name, unsigned short life);
 
