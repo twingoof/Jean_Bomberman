@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.17)
 project(indie)
 
@@ -16,7 +15,7 @@ else ()
     add_compile_options(-Wall -Wextra -Wshadow -Wno-narrowing)
 endif ()
 
-add_executable(bomberman ${SRC} src/main.cpp)
+add_executable(bomberman ${SRC} src/main.cpp src/raylib/Controls.cpp src/raylib/Controls.hpp src/ecs/component/IComponent.hpp)
 add_executable(unit_tests ${SRC} ${TEST} tests/OSRedirector.hpp)
 
 macro (HEADER_DIRECTORIES ret_l)
