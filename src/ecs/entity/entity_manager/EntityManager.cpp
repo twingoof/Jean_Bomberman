@@ -35,6 +35,11 @@ Entity &EntityManager::getEntity(std::string entityName) const
     return (dynamic_cast<Entity&>((*this->_entities.at(entityName))));
 }
 
+std::map<std::string, std::shared_ptr<Entity>> EntityManager::getEntities() const
+{
+    return (this->_entities);
+}
+
 void EntityManager::addAttacker(std::string name, unsigned int ammo, unsigned short int damage)
 {
     Attacker a(ammo, damage);
