@@ -42,7 +42,6 @@ int main()
         window.end3DMode();
         window.endDrawing();
     }
-    
-
+    window.close();
     return 0;
 }

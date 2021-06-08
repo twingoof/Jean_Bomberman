@@ -33,6 +33,7 @@ class Moveable : public IComponent{
         const ECSVector3 getPosition() const;
 
         void setVelocity(const ECSVector3 &newValue);
+        void setVelocity(int x = 0, int y = 0, int z = 0);
         ECSVector3 &getVelocity() const;
 
     private:

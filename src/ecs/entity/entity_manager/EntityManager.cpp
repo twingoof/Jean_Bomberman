@@ -66,6 +66,14 @@ void EntityManager::addDrawable3D(std::string name, std::string meshPath)
     entity->addComponent<Drawable3D>(d, DRAWABLE3D);
 }
 
+void EntityManager::addDrawable3D(std::string name, DrawableType type)
+{
+    Entity *entity = (this->_entities.at(name).get());
+    Drawable3D d(type, entity->getSize());
+
+    entity->addComponent<Drawable3D>(d, DRAWABLE3D);
+}
+
 void EntityManager::addMoveable(std::string name)
 {
     Entity *entity = (this->_entities.at(name).get());

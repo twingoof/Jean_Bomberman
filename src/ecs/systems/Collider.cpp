@@ -9,29 +9,40 @@
 #include "Moveable.hpp"
 #include "Window.hpp"
 
-void Collider::checkCollision(Entity &first, Entity &second)
+void Collider::isWindowColliding(Entity &entity)
 {
-    Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
-    first.getSize().getX(), first.getSize().getY()};
-    Rectangle secondR = {second.getPosition().getX(), second.getPosition().getY(), \
-    second.getSize().getX(), second.getSize().getY()};
-    Moveable firstM = first.getComponent<Moveable>(MOVEABLE);
-    Moveable secondM = second.getComponent<Moveable>(MOVEABLE);
-    if (::CheckCollisionRecs(firstR, secondR)) {
-        firstM.setVelocity(firstM.getVelocity() * -1);
-        secondM.setVelocity(firstM.getVelocity() * -1);
-    }
+    raylib::Window &win = raylib::Window::getWindow();
+    Moveable mEntity = entity.getComponent<Moveable>(MOVEABLE);
+    ECSVector3 entitySize = entity.getSize();
+
+    if (entitySize.getX() <= 0 || entitySize.getX() >= win.getWindowWidth())
+        mEntity.setVelocity();
+    if (entitySize.getY() <= 0 || entitySize.getY() >= win.getWindowHeight())
+        mEntity.setVelocity();
 }
 
-void Collider::checkWindowCollisiton(Entity &first)
+void Collider::isEntitesColliding(Entity &fEntity, Entity &sEntity)
 {
-    Rectangle firstR = {first.getPosition().getX(), first.getPosition().getY(), \
-    first.getSize().getX(), first.getSize().getY()};
-    raylib::Window &win = raylib::Window::getWindow();
-    Moveable firstM = first.getComponent<Moveable>(MOVEABLE);
+    ECSVector3 fEntityS = fEntity.getSize();
+    ECSVector3 fEntityP = fEntity.getPosition();
+    ECSVector3 sEntityS = sEntity.getSize();
+    ECSVector3 sEntityP = sEntity.getPosition();
+    Moveable fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
 
-    if (firstR.x <= 0 || firstR.x >= win.getWindowWidth())
-        firstM.setVelocity({-firstM.getVelocity().getX(), firstM.getVelocity().getY()});
-    if (firstR.y <= 0 || firstR.y >= win.getWindowHeight())
-        firstM.setVelocity({firstM.getVelocity().getX(), -firstM.getVelocity().getY()});
+    Rectangle fEntityR = {fEntityP.getX(), fEntityP.getY(), fEntityS.getX(), fEntityS.getY()};
+    Rectangle sEntityR = {sEntityP.getX(), sEntityP.getY(), sEntityS.getX(), sEntityS.getY()};
+
+    if (CheckCollisionRecs(fEntityR, sEntityR))
+        fEntityM.setVelocity();
+}
+
+void Collider::checkCollision(EntityManager &scene)
+{
+    for (auto &fEntity:scene.getEntities()) {
+        isWindowColliding(*fEntity.second.get());
+        for (auto &sEntity:scene.getEntities()) {
+            if (fEntity.first != sEntity.first)
+                isEntitesColliding(*fEntity.second.get(), *sEntity.second.get());
+        }
+    }
 }

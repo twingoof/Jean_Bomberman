@@ -16,3 +16,5 @@ cmake-build-release
 build/
 build-linux/
 Makefile
+src/main.cpp
+a.out
