@@ -16,49 +16,44 @@
 #include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
-#include "clock/Clock.hpp"
+#include "Clock.hpp"
+#include "EntityManager.hpp"
 
 int main()
 {
-    raylib::Window &window = raylib::Window::getWindow();
-    ECSVector3 pos = {90,90,90};
-    ECSVector3 vel = {0, 0, 0};
-    Entity e(pos, pos);
-    Drawable3D d({10, 10, 10}, CIRCLE);
-    std::vector<Entity> v;
+    /*raylib::Window &win = raylib::Window::getWindow();
+    EntityManager scene;
     Renderer r;
-    Moveable m(e.getPosition());
     Collider c;
-    Displacer dbis;
-    Controller ctller;
+    Displacer d;
+    Controller ct;
     ECS::Clock clock;
+    Camera camera = {0};
 
-    Camera camera = { 0 };
+    scene.createEntity("boule", {90, 90, 90}, {10, 10, 10});
+    scene.addMoveable("boule");
+    scene.addDrawable3D("boule", CIRCLE);
     camera.position = (Vector3){ 0.0f, 10.0f, 10.0f };
     camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
     camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
-
-    window.initWindow(1000, 1000, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
-    e.addComponent<Drawable3D>(d, DRAWABLE3D);
-    v.push_back(e);
-    window.initWindow(800, 450, "raylib [core] example - basic window", FLAG_WINDOW_RESIZABLE);
+    win.initWindow(1000, 1000, "Démo", FLAG_WINDOW_RESIZABLE);
     clock.startClock();
     while (!WindowShouldClose()) {
-        window.beginDrawing();
-            window.clearWindow(RAYWHITE);
-        //            dbis.moveEntity(e, m.getVelocity());
-            if (clock.getTimeElapsed() >= 0.06) {
-                ctller.moveEntity(e);
-                dbis.moveEntity(e);
-                clock.restartClock();
-            }
-            c.checkWindowCollisiton(e);
-            r.draw(v);
-        window.endDrawing();
+        win.beginDrawing();
+        win.begin3DMode(camera);
+        win.clearWindow(RAYWHITE);
+        if (clock.getTimeElapsed() >= 0.06) {
+            ct.moveEntity(scene.getEntity("boule"));
+            d.moveEntity(scene.getEntity("boule"));
+            c.checkCollision(scene);
+            clock.restartClock();
+        }
+        r.draw({scene.getEntity("boule")});
+        win.endDrawing();
+        win.end3DMode();
     }
-    window.closeWindow();
-
-    return 0;
+    win.closeWindow();
+    return 0;*/
 }

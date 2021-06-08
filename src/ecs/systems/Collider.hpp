@@ -16,11 +16,11 @@ class Collider {
         Collider() = default;
         ~Collider() = default;
 
-        void checkCollision(EntityManager scene);
+        void checkCollision(EntityManager &scene);
 
     private:
-        bool isWindowColliding(Entity &entity);
-        bool isEntitesColliding(Entity &first, Entity &second);
+        void isWindowColliding(Entity &entity);
+        void isEntitesColliding(Entity &fEntity, Entity &sEntity);
 };
 
 #endif /* !COLLIDER_HPP_ */
