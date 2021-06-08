@@ -15,7 +15,7 @@
 
 int main()
 {
-    raylib::Window &window = raylib::Window::getWindow();
+    /*raylib::Window &window = raylib::Window::getWindow();
     ECSVector3 pos = {90,90,90};
     ECSVector3 vel = {10, 10, 10};
     Entity e(pos, pos);
@@ -41,5 +41,6 @@ int main()
         window.endDrawing();
     }
     window.closeWindow();
-    return 0;
+    return 0;*/
+    return (0);
 }

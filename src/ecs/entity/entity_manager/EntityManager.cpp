@@ -6,15 +6,6 @@
 */
 
 #include "EntityManager.hpp"
-#include "ECSVector3.hpp"
-#include "Attacker.hpp"
-#include "Clickable.hpp"
-#include "Drawable2D.hpp"
-#include "Collectible.hpp"
-#include "Drawable3D.hpp"
-#include "Moveable.hpp"
-#include "Killable.hpp"
-#include "enum.hpp"
 
 void EntityManager::addEntity(std::string name, Entity &newEntity)
 {
