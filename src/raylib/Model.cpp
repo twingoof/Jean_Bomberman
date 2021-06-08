@@ -35,7 +35,7 @@ void raylib::Model::unloadModel(void)
 
 void raylib::Model::drawModel(void)
 {
-    raylib::Vector3 spaceVect;
+    ::Vector3 spaceVect;
 
     this->drawModel(spaceVect, 0.0f);
 }

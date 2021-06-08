@@ -13,16 +13,26 @@ void Controller::moveEntity(Entity &entity)
     Moveable m = entity.getComponent<Moveable>(MOVEABLE);
     ECSVector3 newPosition = entity.getPosition();
     raylib::Controls controls;
+    int i = 0;
 
-    if (controls.isKeyDown(raylib::Keys::KEY_UP))
-        entity.getComponent<Moveable>(MOVEABLE).setVelocity({0, -5, 0});
-    else if (controls.isKeyDown(raylib::Keys::KEY_DOWN))
-        entity.getComponent<Moveable>(MOVEABLE).setVelocity({0, 5, 0});
-    else if (controls.isKeyDown(raylib::Keys::KEY_LEFT))
-        entity.getComponent<Moveable>(MOVEABLE).setVelocity({-5, 0, 0});
-    else if (controls.isKeyDown(raylib::Keys::KEY_RIGHT))
-        entity.getComponent<Moveable>(MOVEABLE).setVelocity({5, 0, 0});
-    else
+
+    if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
+        entity.getComponent<Moveable>(MOVEABLE).getVelocity().setY(-5);
+        i = 1;
+    }
+    if (controls.isKeyDown(raylib::Keys::KEY_DOWN)) {
+        entity.getComponent<Moveable>(MOVEABLE).getVelocity().setY(5);
+        i = 1;
+    }
+    if (controls.isKeyDown(raylib::Keys::KEY_LEFT)) {
+        entity.getComponent<Moveable>(MOVEABLE).getVelocity().setX(-5);
+        i = 1;
+    }
+    if (controls.isKeyDown(raylib::Keys::KEY_RIGHT)) {
+        entity.getComponent<Moveable>(MOVEABLE).getVelocity().setX(5);
+        i = 1;
+    }
+    if (i == 0)
         entity.getComponent<Moveable>(MOVEABLE).setVelocity({0, 0, 0});
     
 

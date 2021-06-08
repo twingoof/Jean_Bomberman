@@ -23,7 +23,7 @@ namespace raylib {
 
             void unload(void);
 
-            Vector2 measureText(const std::string &text, float fontSize, float spacing);
+            ::Vector2 measureText(const std::string &text, float fontSize, float spacing);
             ::Image imageText(const std::string &text, float fontSize, float spacing, ::Color tint);
 
         protected:
