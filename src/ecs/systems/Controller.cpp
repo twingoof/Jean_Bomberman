@@ -28,7 +28,7 @@ void Controller::moveEntity(Entity &entity)
 
     if (myWindow.is3DMode()) {
         if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
-            newPosition.setZ(newPosition.getZ() + (m.getVelocity().getZ() * 1));
+            newPosition.setZ(newPosition.getZ() + 5);
             entity.setPosition(newPosition);
         }
     }
