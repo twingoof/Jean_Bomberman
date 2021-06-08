@@ -20,6 +20,8 @@
 #include "Model.hpp"
 #include "Texture.hpp"
 
+#include <map>
+#include <memory>
 #include <vector>
 #include <string>
 /**
@@ -31,7 +33,7 @@ class Renderer {
         Renderer();
         ~Renderer();
 
-        void draw(const std::vector<Entity>& entities);
+        void draw(const std::map<std::string, std::shared_ptr<Entity>>& entities);
     private:
         void _draw2D(const ECSVector3& position, const Drawable2D& drawable);
         void _draw3D(const ECSVector3& position, const Drawable3D& drawable);
