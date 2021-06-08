@@ -10,9 +10,10 @@
 #define DRAWABLE3D_HPP_
 
 #include "ECSVector3.hpp"
+#include "IComponent.hpp"
 #include <iostream>
 
-class Drawable3D {
+class Drawable3D: public IComponent {
     public:
         Drawable3D(std::string meshPath, const ECSVector3& size);
         Drawable3D &operator=(const Drawable3D &rHand) = default;

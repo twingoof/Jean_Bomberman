@@ -8,6 +8,8 @@
 #ifndef KILLABLE_HPP_
 #define KILLABLE_HPP_
 
+#include "IComponent.hpp"
+
 class Killable {
     public:
         Killable() = default;

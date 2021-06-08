@@ -9,8 +9,9 @@
 #define ATTACKER_HPP_
 
 #include "Killable.hpp"
+#include "IComponent.hpp"
 
-class Attacker {
+class Attacker: public IComponent {
     public:
         Attacker() = default;
         Attacker(unsigned int ammo, unsigned short damage);
