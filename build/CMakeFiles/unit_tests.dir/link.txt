@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/unit_tests.dir/src/error/Error.cpp.o CMakeFiles/unit_tests.dir/tests/tests_Error.cpp.o  -o unit_tests  _deps/raylib-build/raylib/libraylib.a -lcriterion -lgcov -lm -lpthread /usr/lib64/libGL.so /usr/lib64/libGLU.so _deps/raylib-build/raylib/external/glfw/src/libglfw3.a /usr/lib64/librt.so -lm -ldl /usr/lib64/libX11.so -lpthread 
