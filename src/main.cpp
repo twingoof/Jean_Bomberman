@@ -19,7 +19,7 @@ int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
     ECSVector3 pos = {90,90,90};
-    ECSVector3 vel = {1, 1, 1};
+    ECSVector3 vel = {0, 0, 0};
     Entity e(pos, pos);
     Drawable2D d("Bonjour", {10, 10, 10}, CIRCLE);
     std::vector<Entity> v;
@@ -45,6 +45,7 @@ int main()
             duration = endTick - startTick;
             if (duration.count() >= 0.06) {
                 ctller.moveEntity(e);
+                dbis.moveEntity(e);
                 startTick = std::chrono::steady_clock::now();
             }
             c.checkWindowCollisiton(e);
