@@ -9,16 +9,18 @@
 #define COLLIDER_HPP_
 
 #include "Entity.hpp"
+#include "EntityManager.hpp"
 
 class Collider {
     public:
         Collider() = default;
         ~Collider() = default;
 
-        void checkCollision(Entity &first, Entity &second);
-        void checkWindowCollisiton(Entity &first);
+        void checkCollision(EntityManager scene);
 
     private:
+        bool isWindowColliding(Entity &entity);
+        bool isEntitesColliding(Entity &first, Entity &second);
 };
 
 #endif /* !COLLIDER_HPP_ */
