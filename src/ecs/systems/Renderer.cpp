@@ -50,19 +50,20 @@ void Renderer::_draw2D(const ECSVector3& position, const Drawable2D& drawable)
 
 void Renderer::_draw3D(const ECSVector3& position, const Drawable3D& drawable)
 {
-    switch (drawable.getType())
+        Vector3 pos = {position._x, position._y, position._z};
+        DrawSphere(pos, 1.0f, RED);
+        DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
+    /*switch (drawable.getType())
     {
     case CIRCLE:
-        DrawSphere({(float)position._x, (float)position._y, (float)position._z}, 10, RED);
-        DrawSphereWires({(float)position._x, (float)position._y, (float)position._z}, 10, 10, 10, MAGENTA);
         break;
     
     default:
         break;
-    }
-    raylib::Model model(drawable.getMeshPath());
-    Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
-    model.drawModel(pos, 1, RED);
+    }*/
+    // raylib::Model model(drawable.getMeshPath());
+    // Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
+    // model.drawModel(pos, 1, RED);
 //    model.unloadModel();
 }
 
