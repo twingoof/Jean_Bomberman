@@ -43,6 +43,17 @@ void raylib::Material::loadDefault(void)
     this->setMaterial(::LoadMaterialDefault());
 }
 
+void raylib::Material::setMaterial(const ::Material &oldMat)
+{
+    this->maps = oldMat.maps;
+    this->params[0] = oldMat.params[0];
+    this->params[1] = oldMat.params[1];
+    this->params[2] = oldMat.params[2];
+    this->params[3] = oldMat.params[3];
+    this->params[4] = oldMat.params[4];
+    this->shader = oldMat.shader;
+}
+
 std::vector<raylib::Material> raylib::loadMaterials(const std::string &filePath, int materialCount)
 {
     std::vector<raylib::Material> newMaterials;

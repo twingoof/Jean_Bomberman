@@ -128,6 +128,16 @@ void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
     }
 }
 
+bool raylib::Window::is2DMode(void) const
+{
+    return (_2dActivated);
+}
+
+bool raylib::Window::is3DMode(void) const
+{
+    return (_3dActivated);
+}
+
 void raylib::Window::end2DMode(void)
 {
     if (_2dActivated) {

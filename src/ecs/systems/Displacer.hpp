@@ -23,7 +23,7 @@ class Displacer {
         Displacer &operator=(const Displacer &oldDisplacer) = default;
         ~Displacer() = default;
 
-        void moveEntity(Entity &entity, const ECSVector3 &moveVector);
+        void moveEntity(Entity &entity);
 
         void teleportEntity(Entity &entity, const ECSVector3 &positionVector);
 

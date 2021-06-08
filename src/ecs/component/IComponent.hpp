@@ -11,9 +11,9 @@
  * @brief File that contain the interface for all components
  * @version 0.1
  * @date 2021-05-26
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
