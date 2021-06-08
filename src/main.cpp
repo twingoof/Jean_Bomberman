@@ -8,6 +8,7 @@
 #include "Collider.hpp"
 #include "Moveable.hpp"
 #include "enum.hpp"
+#include "Drawable3D.hpp"
 #include "Window.hpp"
 #include "Camera.hpp"
 #include "Displacer.hpp"
@@ -16,33 +17,39 @@
 int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
-    ECSVector3 pos = {90,90,90};
-    ECSVector3 vel = {10, 10, 10};
-    Entity e(pos, pos);
-    Drawable2D d("BOnjour", {10, 10, 10}, CIRCLE);
-    Drawable3D d2("../assets/cat.obj", {0, 0, 0});
-    std::vector<Entity> v;
-    Renderer r;
-    Moveable m(e.getPosition());
-    Collider c;
-    Displacer dbis;
-    raylib::Camera3D camera({50, 50, 50}, {0, 0, 0}, {0, 0, 1}, 75, CAMERA_FREE);
+    
+    ECSVector3 pos = {250, 250, 0};
+    ECSVector3 siz = {900, 900, 900};
 
-    window.setWindowFPS(60);
-    e.addComponent<Drawable3D>(d2, DRAWABLE3D);
-    e.addComponent<Moveable>(m, MOVEABLE);
-    m.setVelocity(vel);
+    Entity e(pos, siz);
+    Drawable3D d(CIRCLE, siz);
+
+    Renderer r;
+    Camera3D c;    
+    std::vector<Entity> v;
+
+    c.fovy = 45;
+    c.position = {0, 0, 0};
+    c.projection = 0;
+    c.target = {250, 250, 250};
+    c.up = {0, 1, 0};
+
+    window.initWindow(500, 500, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
+    e.addComponent<Drawable3D>(d, DRAWABLE3D);
+    SetCameraMode(c, CAMERA_FREE);
     v.push_back(e);
-    window.initWindow(800, 450, "raylib [core] example - basic window", FLAG_WINDOW_RESIZABLE);
-    while (!WindowShouldClose()) {
-        camera.update();
+    window.setWindowFPS(30);
+    while (!window.windowShouldClose())
+    {
         window.beginDrawing();
-        window.clearWindow(WHITE);
-        window.begin3DMode(camera);
+        // window.clearWindow(RAYWHITE);
+        window.begin3DMode(c);
         r.draw(v);
+        DrawGrid(1000, 1.0f);
         window.end3DMode();
         window.endDrawing();
     }
     window.closeWindow();
+
     return 0;
 }

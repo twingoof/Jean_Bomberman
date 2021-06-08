@@ -54,3 +54,8 @@ std::vector<raylib::Material> raylib::loadMaterials(const std::string &filePath,
         newMaterials.push_back(raylib::Material(newMaterialC[i]));
     return (newMaterials);
 }
+
+void raylib::Material::setMaterial(const ::Material& old)
+{
+    return;
+}

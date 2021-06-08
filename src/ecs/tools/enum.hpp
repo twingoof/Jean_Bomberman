@@ -21,7 +21,8 @@ enum ComponentType
 
 enum DrawableType {
     CIRCLE,
-    RECT
+    RECT,
+    CUSTOM
 };
 
 typedef struct texture2D_s {

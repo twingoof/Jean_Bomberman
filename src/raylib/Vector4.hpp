@@ -21,7 +21,7 @@ namespace raylib {
         protected:
 
         private:
-            void setVector4(const ::Vector4 oldVector);
+            void setVector4(const ::Vector4 &oldVector);
 
     };
 };
