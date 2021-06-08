@@ -56,15 +56,15 @@ void Renderer::_draw3D(const ECSVector3& position, const Drawable3D& drawable)
     raylib::Model model;
     switch (drawable.getType())
     {
-        case CIRCLE:
-            DrawSphere(pos, 1.0f, RED);
-            DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
-            break;
-        case CUSTOM:
-            model.loadModel(drawable.getMeshPath());
-            Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
-            model.drawModel(pos, 1, RED);
-            break;
+    case CIRCLE:
+        DrawSphere(pos, 1.0f, RED);
+        DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
+    break;
+    case CUSTOM:
+        model = model.loadModel(drawable.getMeshPath());
+        Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
+        model.drawModel(pos, 1, RED);
+    break;
     }
 }
 
