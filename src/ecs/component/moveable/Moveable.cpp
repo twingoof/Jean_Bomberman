@@ -64,6 +64,13 @@ void Moveable::setVelocity(const ECSVector3 &newVector)
     _velocityVector = newVector;
 }
 
+void Moveable::setVelocity(int x, int y, int z)
+{
+    _velocityVector.setX(x);
+    _velocityVector.setY(y);
+    _velocityVector.setZ(z);
+}
+
 ECSVector3 &Moveable::getVelocity(void) const
 {
     return (_velocityVector);
