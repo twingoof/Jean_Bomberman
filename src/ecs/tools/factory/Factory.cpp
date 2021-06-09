@@ -13,13 +13,13 @@
 #include "Drawable3D.hpp"
 #include "Drawable2D.hpp"
 
-void ECS::Presets::createWall(Entity &entity)
+void Presets::createWall(Entity &entity)
 {
     Drawable3D d(RECT, entity.getSize());
     entity.addComponent<Drawable3D>(d, DRAWABLE3D);
 }
 
-void ECS::Presets::createPlayer(Entity &entity, unsigned int ammo, unsigned short damage, unsigned short life)
+void Presets::createPlayer(Entity &entity, unsigned int ammo, unsigned short damage, unsigned short life)
 {
     Drawable3D d(CIRCLE, entity.getSize());
     Moveable m(entity.getPosition());
@@ -32,7 +32,7 @@ void ECS::Presets::createPlayer(Entity &entity, unsigned int ammo, unsigned shor
     entity.addComponent<Killable>(k, KILLABLE);
 }
 
-void ECS::Presets::createButton(Entity &entity, void(callback)(), std::string spritePath)
+void Presets::createButton(Entity &entity, void(callback)(), std::string spritePath)
 {
     Clickable c(callback);
     Drawable2D d(spritePath, entity.getSize(), RECT);
@@ -41,7 +41,7 @@ void ECS::Presets::createButton(Entity &entity, void(callback)(), std::string sp
     entity.addComponent<Drawable2D>(d, DRAWABLE2D);
 }
 
-void ECS::Presets::createImage(Entity &entity, std::string spritePath)
+void Presets::createImage(Entity &entity, std::string spritePath)
 {
     Drawable2D d(spritePath, entity.getSize(), RECT);
 

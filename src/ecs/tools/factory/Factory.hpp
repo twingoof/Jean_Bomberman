@@ -11,16 +11,13 @@
 
 #include "Entity.hpp"
 
-namespace ECS
+namespace Presets
 {
-    namespace Presets
-    {
-        void createWall(Entity &entity);
-        void createSoftWall(Entity &entity);
-        void createPlayer(Entity &entity, unsigned int ammo, unsigned short damage, unsigned short life);
-        void createButton(Entity &entitty, void(callback)(), std::string spritePath);
-        void createImage(Entity &entity, std::string spritePath);
-    };
-}
+    void createWall(Entity &entity);
+    void createSoftWall(Entity &entity);
+    void createPlayer(Entity &entity, unsigned int ammo, unsigned short damage, unsigned short life);
+    void createButton(Entity &entitty, void(callback)(), std::string spritePath);
+    void createImage(Entity &entity, std::string spritePath);
+};
 
 #endif /* !FACTORY_HPP_ */
