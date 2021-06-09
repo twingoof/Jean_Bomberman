@@ -16,21 +16,23 @@
 #include <vector>
 #include <string>
 
-class Displacer {
-    public:
-        Displacer() = default;
-        Displacer(const Displacer &oldDisplacer) = default;
-        Displacer &operator=(const Displacer &oldDisplacer) = default;
-        ~Displacer() = default;
+namespace ECS {
+    class Displacer {
+        public:
+            Displacer() = default;
+            Displacer(const Displacer &oldDisplacer) = default;
+            Displacer &operator=(const Displacer &oldDisplacer) = default;
+            ~Displacer() = default;
 
-        void moveEntity(Entity &entity);
+            void moveEntity(ECS::Entity &entity);
 
-        void teleportEntity(Entity &entity, const ECSVector3 &positionVector);
+            void teleportEntity(ECS::Entity &entity, const ECS::Vector3 &positionVector);
 
-    protected:
+        protected:
 
-    private:
+        private:
 
+    };
 };
 
 #endif /* !DISPLACER_HPP_ */

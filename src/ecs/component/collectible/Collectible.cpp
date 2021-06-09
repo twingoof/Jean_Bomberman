@@ -7,19 +7,19 @@
 
 #include "Collectible.hpp"
 
-Collectible::Collectible()
+ECS::Collectible::Collectible()
 {
     this->_collect = false;
 }
 
-Collectible::~Collectible() = default;
+ECS::Collectible::~Collectible() = default;
 
-void Collectible::collect()
+void ECS::Collectible::collect()
 {
     _collect = true;
 }
 
-bool Collectible::isCollect() const
+bool ECS::Collectible::isCollect() const
 {
     return(this->_collect);
 }

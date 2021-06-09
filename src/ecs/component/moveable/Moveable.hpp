@@ -11,34 +11,36 @@
 #include "ECSVector3.hpp"
 #include "IComponent.hpp"
 
-class Moveable : public IComponent{
-    public:
-        Moveable() = default;
-        Moveable(int x, int y, int z, ECSVector3 velocity = {0, 0, 0});
-        Moveable(ECSVector3 &position, ECSVector3 velocity = {0, 0, 0});
-        Moveable(const Moveable &cpy) = default;
-        Moveable &operator=(const Moveable &Moveable) = default;
-        ~Moveable();
+namespace ECS {
+    class Moveable : public ECS::IComponent{
+        public:
+            Moveable() = default;
+            Moveable(int x, int y, int z, ECS::Vector3 velocity = {0, 0, 0});
+            Moveable(ECS::Vector3 &position, ECS::Vector3 velocity = {0, 0, 0});
+            Moveable(const Moveable &cpy) = default;
+            Moveable &operator=(const Moveable &Moveable) = default;
+            ~Moveable();
 
-        void moveX(int offsetX);
-        void moveY(int offsetY);
-        void moveZ(int offsetZ);
+            void moveX(int offsetX);
+            void moveY(int offsetY);
+            void moveZ(int offsetZ);
 
-        void move(int offsetX, int offsetY, int offsetZ);
-        void move(ECSVector3 offsetPosition);
+            void move(int offsetX, int offsetY, int offsetZ);
+            void move(ECS::Vector3 offsetPosition);
 
-        void place(int offsetX, int offsetY, int offsetZ);
-        void place(ECSVector3 offsetPosition);
+            void place(int offsetX, int offsetY, int offsetZ);
+            void place(ECS::Vector3 offsetPosition);
 
-        const ECSVector3 getPosition() const;
+            const ECS::Vector3 getPosition() const;
 
-        void setVelocity(const ECSVector3 &newValue);
-        void setVelocity(int x = 0, int y = 0, int z = 0);
-        ECSVector3 &getVelocity() const;
+            void setVelocity(const ECS::Vector3 &newValue);
+            void setVelocity(int x, int y, int z);
+            ECS::Vector3 &getVelocity() const;
 
-    private:
-        ECSVector3 _position;
-        ECSVector3 &_velocityVector;
+        private:
+            ECS::Vector3 _position;
+            ECS::Vector3 &_velocityVector;
+    };
 };
 
 #endif /* !MOVEABLE_HPP_ */

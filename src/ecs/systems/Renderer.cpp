@@ -7,18 +7,23 @@
 
 #include "Renderer.hpp"
 
-Renderer::Renderer() = default;
+#include "Circle.hpp"
+#include "Model.hpp"
+#include "Rectangle.hpp"
+#include "Text.hpp"
+#include "Texture.hpp"
 
-Renderer::~Renderer() = default;
+ECS::Renderer::Renderer() = default;
 
-void Renderer::draw(const std::map<std::string, std::shared_ptr<Entity>>& entities) {
+ECS::Renderer::~Renderer() = default;
+
+void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity>>& entities) {
     bool noDraw;
 
     for (const auto &entity : entities) {
-        // std::cout<<entity.second.get()->getPosition().getX()<<std::endl;
         noDraw = false;
         try {
-            Drawable2D drawable = entity.second.get()->getComponent<Drawable2D>(DRAWABLE2D);
+            ECS::Drawable2D drawable = entity.second.get()->getComponent<ECS::Drawable2D>(DRAWABLE2D);
             this->_draw2D(entity.second.get()->getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
@@ -26,7 +31,7 @@ void Renderer::draw(const std::map<std::string, std::shared_ptr<Entity>>& entiti
         }
 
         try {
-            Drawable3D drawable = entity.second.get()->getComponent<Drawable3D>(DRAWABLE3D);
+            ECS::Drawable3D drawable = entity.second.get()->getComponent<ECS::Drawable3D>(DRAWABLE3D);
             this->_draw3D(entity.second.get()->getPosition(), drawable);
 
         } catch (std::out_of_range &e) {
@@ -38,7 +43,7 @@ void Renderer::draw(const std::map<std::string, std::shared_ptr<Entity>>& entiti
     }
 }
 
-void Renderer::_draw2D(const ECSVector3& position, const Drawable2D& drawable)
+void ECS::Renderer::_draw2D(const ECS::Vector3& position, const ECS::Drawable2D& drawable)
 {
     switch (drawable.getType()) {
 
@@ -46,24 +51,28 @@ void Renderer::_draw2D(const ECSVector3& position, const Drawable2D& drawable)
             raylib::drawCircle(position._x, position._y, position._z);
             break;
         case RECT:
-            // TODO: Draw rect
+            raylib::drawRectangle(position._x, position._y, drawable.getSize()._x, drawable.getSize()._y);
             break;
     }
 }
 
-void Renderer::_draw3D(const ECSVector3& position, const Drawable3D& drawable)
+void ECS::Renderer::_draw3D(const ECS::Vector3& position, const ECS::Drawable3D& drawable)
 {
-    Vector3 pos = {position._x, position._y, position._z};
     raylib::Model model;
     switch (drawable.getType())
     {
     case CIRCLE:
-        DrawSphere(pos, 1.0f, RED);
-        DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
+        // TODO: Change moi cette merde
+        // raylib::Vector3 pos = {position._x, position._y, position._z};
+        // DrawSphere(pos, 1.0f, RED);
+        // DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
     break;
     case CUSTOM:
+        raylib::Vector3 pos;
         model = model.loadModel(drawable.getMeshPath());
-        Vector3 pos = {static_cast<float>(position._x), static_cast<float>(position._y), static_cast<float>(position._z)};
+        pos.x = static_cast<float>(position._x);
+        pos.y = static_cast<float>(position._y);
+        pos.z = static_cast<float>(position._z);
         model.drawModel(pos, 1, RED);
     break;
     }

@@ -14,17 +14,19 @@
 #include "Window.hpp"
 #include "Entity.hpp"
 
-class Controller {
-    public:
-        Controller() = default;
-        Controller(const Controller &oldController) = default;
-        Controller &operator=(const Controller &oldController) = default;
-        ~Controller() = default;
+namespace ECS {
+    class Controller {
+        public:
+            Controller() = default;
+            Controller(const Controller &oldController) = default;
+            Controller &operator=(const Controller &oldController) = default;
+            ~Controller() = default;
 
-        void moveEntity(Entity &entity);
+            void moveEntity(ECS::Entity &entity);
 
-    protected:
-    private:
+        protected:
+        private:
+    };
 };
 
 #endif /* !CONTROLLER_HPP_ */
