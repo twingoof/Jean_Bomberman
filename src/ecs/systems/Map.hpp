@@ -13,17 +13,19 @@
 #include "Entity.hpp"
 #include "EntityManager.hpp"
 
-class Map {
-    public:
-        Map(const int width, const int lenght);
-        ~Map();
+namespace ECS {
+    class Map {
+        public:
+            Map(const int width, const int lenght);
+            ~Map() = default;
 
-        EntityManager createGame();
-        void addWall(EntityManager map, int name);
+            ECS::EntityManager createGame();
+            void addWall(ECS::EntityManager map, int name);
 
-    protected:
-    private:
-        std::vector<std::string> _map;
-};
+        protected:
+        private:
+            std::vector<std::string> _map;
+    };
+}
 
 #endif /* !MAP_HPP_ */

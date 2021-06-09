@@ -21,19 +21,22 @@
 #include <memory>
 #include <vector>
 #include <string>
-/**
- * @class Renderer Renderer.hpp "src/ecs/systems/Renderer.hpp"
- */
-class Renderer {
-    public:
 
-        Renderer();
-        ~Renderer();
+namespace ECS {
+    /**
+     * @class Renderer Renderer.hpp "src/ecs/systems/Renderer.hpp"
+     */
+    class Renderer {
+        public:
+    
+            Renderer();
+            ~Renderer();
+    
+            void draw(const std::map<std::string, std::shared_ptr<ECS::Entity>>& entities);
+        private:
+            void _draw2D(const ECS::Vector3& position, const ECS::Drawable2D& drawable);
+            void _draw3D(const ECS::Vector3& position, const ECS::Drawable3D& drawable);
+    };
 
-        void draw(const std::map<std::string, std::shared_ptr<Entity>>& entities);
-    private:
-        void _draw2D(const ECSVector3& position, const Drawable2D& drawable);
-        void _draw3D(const ECSVector3& position, const Drawable3D& drawable);
-};
-
+}
 #endif //INDIE_RENDERER_HPP

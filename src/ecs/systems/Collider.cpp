@@ -16,9 +16,9 @@ void ECS::Collider::isWindowColliding(ECS::Entity &entity)
     ECS::Vector3 entitySize = entity.getSize();
 
     if (entitySize.getX() <= 0 || entitySize.getX() >= win.getWindowWidth())
-        mEntity.setVelocity();
+        mEntity.setVelocity(-mEntity.getVelocity()._x, mEntity.getVelocity()._y, mEntity.getVelocity()._z);
     if (entitySize.getY() <= 0 || entitySize.getY() >= win.getWindowHeight())
-        mEntity.setVelocity();
+        mEntity.setVelocity(mEntity.getVelocity()._x, -mEntity.getVelocity()._y, mEntity.getVelocity()._z);
 }
 
 void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity)
@@ -33,7 +33,7 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
     Rectangle sEntityR = {sEntityP.getX(), sEntityP.getY(), sEntityS.getX(), sEntityS.getY()};
 
     if (CheckCollisionRecs(fEntityR, sEntityR))
-        fEntityM.setVelocity();
+        fEntityM.setVelocity(fEntityM.getVelocity() * -1);
 }
 
 void ECS::Collider::checkCollision(ECS::EntityManager &scene)

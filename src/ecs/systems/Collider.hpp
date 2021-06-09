@@ -22,6 +22,7 @@ namespace ECS {
     private:
         void isWindowColliding(ECS::Entity &entity);
         void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
-};
+    };
+}
 
 #endif /* !COLLIDER_HPP_ */

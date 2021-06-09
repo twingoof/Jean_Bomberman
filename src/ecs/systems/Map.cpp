@@ -7,7 +7,7 @@
 
 #include "Map.hpp"
 
-Map::Map(const int width, const int lenght)
+ECS::Map::Map(const int width, const int lenght)
 {
     std::string line;
 
@@ -25,11 +25,7 @@ Map::Map(const int width, const int lenght)
         std::cout << *i << std::endl;
 }
 
-Map::~Map()
-{
-}
-
-EntityManager Map::createGame()
+ECS::EntityManager ECS::Map::createGame()
 {
     EntityManager map;
     int name = 0;
