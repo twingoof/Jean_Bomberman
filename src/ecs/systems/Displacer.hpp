@@ -26,7 +26,7 @@ namespace ECS {
 
             void moveEntity(ECS::Entity &entity);
 
-            void teleportEntity(ECS::Entity &entity, const ECS::Vector3 &positionVector);
+            void teleportEntity(ECS::Entity &entity, const ECS::Vector3<float> &positionVector);
 
         protected:
 

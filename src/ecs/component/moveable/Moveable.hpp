@@ -15,8 +15,8 @@ namespace ECS {
     class Moveable : public ECS::IComponent{
         public:
             Moveable() = default;
-            Moveable(int x, int y, int z, ECS::Vector3 velocity = {0, 0, 0});
-            Moveable(ECS::Vector3 &position, ECS::Vector3 velocity = {0, 0, 0});
+            Moveable(int x, int y, int z, ECS::Vector3<float> velocity = {0.0f, 0.0f, 0.0f});
+            Moveable(ECS::Vector3<float> &position, ECS::Vector3<float> velocity = {0.0f, 0.0f, 0.0f});
             Moveable(const Moveable &cpy) = default;
             Moveable &operator=(const Moveable &Moveable) = default;
             ~Moveable();
@@ -26,20 +26,20 @@ namespace ECS {
             void moveZ(int offsetZ);
 
             void move(int offsetX, int offsetY, int offsetZ);
-            void move(ECS::Vector3 offsetPosition);
+            void move(ECS::Vector3<float> offsetPosition);
 
             void place(int offsetX, int offsetY, int offsetZ);
-            void place(ECS::Vector3 offsetPosition);
+            void place(ECS::Vector3<float> offsetPosition);
 
-            const ECS::Vector3 getPosition() const;
+            const ECS::Vector3<float> getPosition() const;
 
-            void setVelocity(const ECS::Vector3 &newValue);
+            void setVelocity(const ECS::Vector3<float> &newValue);
             void setVelocity(int x, int y, int z);
-            ECS::Vector3 &getVelocity() const;
+            ECS::Vector3<float> &getVelocity() const;
 
         private:
-            ECS::Vector3 _position;
-            ECS::Vector3 &_velocityVector;
+            ECS::Vector3<float> _position;
+            ECS::Vector3<float> &_velocityVector;
     };
 };
 

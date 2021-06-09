@@ -34,8 +34,8 @@ namespace ECS {
     
             void draw(const std::map<std::string, std::shared_ptr<ECS::Entity>>& entities);
         private:
-            void _draw2D(const ECS::Vector3& position, const ECS::Drawable2D& drawable);
-            void _draw3D(const ECS::Vector3& position, const ECS::Drawable3D& drawable);
+            void _draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable);
+            void _draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable);
     };
 
 }
