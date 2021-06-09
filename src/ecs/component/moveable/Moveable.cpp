@@ -64,18 +64,14 @@ void ECS::Moveable::setVelocity(const ECS::Vector3 &newVector)
     _velocityVector = newVector;
 }
 
-<<<<<<< HEAD
-void Moveable::setVelocity(int x, int y, int z)
+void ECS::Moveable::setVelocity(int x, int y, int z)
 {
     _velocityVector.setX(x);
     _velocityVector.setY(y);
     _velocityVector.setZ(z);
 }
 
-ECSVector3 &Moveable::getVelocity(void) const
-=======
 ECS::Vector3 &ECS::Moveable::getVelocity(void) const
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 {
     return (_velocityVector);
 }

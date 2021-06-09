@@ -26,19 +26,11 @@ namespace ECS {
             const ECS::Vector3 getSize() const;
             ECS::DrawableType getType() const;
 
-<<<<<<< HEAD
-    private:
-        DrawableType _type;
-        std::string _spritePath;
-        ECSVector3 _size;
-
-=======
         private:
             ECS::DrawableType _type;
             std::string _spritePath;
             ECS::Vector3 _size;
     };
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 };
 
 #endif /* !DRAWABLE2D_HPP_ */

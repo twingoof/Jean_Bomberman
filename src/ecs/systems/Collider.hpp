@@ -17,19 +17,11 @@ namespace ECS {
             Collider() = default;
             ~Collider() = default;
 
-<<<<<<< HEAD
-        void checkCollision(EntityManager &scene);
+        void checkCollision(ECS::EntityManager &scene);
 
     private:
-        void isWindowColliding(Entity &entity);
-        void isEntitesColliding(Entity &fEntity, Entity &sEntity);
-=======
-            void checkCollision(ECS::Entity &first, ECS::Entity &second);
-            void checkWindowCollisiton(ECS::Entity &first);
-
-        private:
-    };
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
+        void isWindowColliding(ECS::Entity &entity);
+        void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
 };
 
 #endif /* !COLLIDER_HPP_ */

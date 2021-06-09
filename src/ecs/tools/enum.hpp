@@ -21,18 +21,11 @@ namespace ECS {
         ATTACKER,
     };
 
-<<<<<<< HEAD
 enum DrawableType {
     CIRCLE,
     RECT,
     CUSTOM
 };
-=======
-    enum DrawableType {
-        CIRCLE,
-        RECT
-    };
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 
     typedef struct texture2D_s {
         int height;

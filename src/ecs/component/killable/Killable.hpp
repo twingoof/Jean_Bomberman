@@ -10,15 +10,6 @@
 
 #include "IComponent.hpp"
 
-<<<<<<< HEAD
-class Killable : public IComponent {
-    public:
-        Killable() = default;
-        Killable(unsigned short life);
-        Killable(const Killable &killable) = default;
-        Killable &operator=(const Killable &killable) = default;
-        ~Killable();
-=======
 namespace ECS {
     class Killable : public ECS::IComponent {
         public:
@@ -27,7 +18,6 @@ namespace ECS {
             Killable(const Killable &killable) = default;
             Killable &operator=(const Killable &killable) = default;
             ~Killable();
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 
             unsigned short getLife(void) const;
             void takeDamage(unsigned short damage);

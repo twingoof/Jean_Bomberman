@@ -12,20 +12,10 @@ void ECS::EntityManager::addEntity(std::string name, ECS::Entity &newEntity)
     this->_entities.insert({name, std::make_shared<ECS::Entity>(newEntity)});
 }
 
-<<<<<<< HEAD
-void EntityManager::createEntity(std::string name, ECSVector3 position, ECSVector3 size)
+void ECS::EntityManager::createEntity(std::string name, ECS::Vector3 position, ECS::Vector3 size)
 {
     Entity newEntity(position, size);
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});
-=======
-void ECS::EntityManager::createEntity(std::string name, std::vector<int> position, std::vector<int> size)
-{
-    ECS::Vector3 Vposition(position.at(0), position.at(1), position.at(2));
-    ECS::Vector3 Vsize(size.at(0), size.at(1), size.at(2));
-
-    ECS::Entity newEntity(Vposition, Vsize);
-    this->_entities.insert({name, std::make_shared<ECS::Entity>(newEntity)});
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 }
 
 ECS::Entity &ECS::EntityManager::getEntity(std::string entityName) const
@@ -73,19 +63,15 @@ void ECS::EntityManager::addDrawable3D(std::string name, std::string meshPath)
     entity->addComponent<ECS::Drawable3D>(d, DRAWABLE3D);
 }
 
-<<<<<<< HEAD
-void EntityManager::addDrawable3D(std::string name, DrawableType type)
+void ECS::EntityManager::addDrawable3D(std::string name, DrawableType type)
 {
-    Entity *entity = (this->_entities.at(name).get());
-    Drawable3D d(type, entity->getSize());
+    ECS::Entity *entity = (this->_entities.at(name).get());
+    ECS::Drawable3D d(type, entity->getSize());
 
     entity->addComponent<Drawable3D>(d, DRAWABLE3D);
 }
 
-void EntityManager::addMoveable(std::string name)
-=======
 void ECS::EntityManager::addMoveable(std::string name)
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
 {
     ECS::Entity *entity = (this->_entities.at(name).get());
     ECS::Moveable m(entity->getPosition());
@@ -95,12 +81,7 @@ void ECS::EntityManager::addMoveable(std::string name)
 
 void ECS::EntityManager::addKillable(std::string name, unsigned short life)
 {
-<<<<<<< HEAD
-    Entity e = *this->_entities.at(name).get();
-    Killable k(life);
-    e.addComponent<Killable>(k, KILLABLE);
-=======
+    ECS::Entity e = *this->_entities.at(name).get();
     ECS::Killable k(life);
-    this->_entities.at(name).get()->addComponent<ECS::Killable>(k, KILLABLE);
->>>>>>> 05938a43ba7df350ffc50db201868b91ce697826
+    e.addComponent<Killable>(k, KILLABLE);
 }
