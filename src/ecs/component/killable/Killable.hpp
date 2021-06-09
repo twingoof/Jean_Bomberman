@@ -10,20 +10,22 @@
 
 #include "IComponent.hpp"
 
-class Killable : public IComponent {
-    public:
-        Killable() = default;
-        Killable(unsigned short life);
-        Killable(const Killable &killable) = default;
-        Killable &operator=(const Killable &killable) = default;
-        ~Killable();
+namespace ECS {
+    class Killable : public ECS::IComponent {
+        public:
+            Killable() = default;
+            Killable(unsigned short life);
+            Killable(const Killable &killable) = default;
+            Killable &operator=(const Killable &killable) = default;
+            ~Killable();
 
-        unsigned short getLife(void) const;
-        void takeDamage(unsigned short damage);
-        bool isAlive(void);
+            unsigned short getLife(void) const;
+            void takeDamage(unsigned short damage);
+            bool isAlive(void);
 
-    private:
-        unsigned short _life;
+        private:
+            unsigned short _life;
+    };
 };
 
 #endif /* !KILLABLE_HPP_ */

@@ -7,31 +7,26 @@
 
 #include "Entity.hpp"
 
-Entity::Entity(ECSVector3 &position, ECSVector3 &size) : _position(position), _size(size)
+ECS::Entity::Entity(ECS::Vector3 &position, ECS::Vector3 &size): _position(position), _size(size)
 {
-    // this->_position.setX(position.getX());
-    // this->_position.setY(position.getY());
-    // this->_position.setZ(position.getZ());
-
-    // this->_size.setX(position.getX());
 }
 
-ECSVector3 &Entity::getPosition() const
+ECS::Vector3 &ECS::Entity::getPosition() const
 {
     return (this->_position);
 }
 
-ECSVector3 &Entity::getSize() const
+ECS::Vector3 &ECS::Entity::getSize() const
 {
     return (this->_size);
 }
 
-void Entity::setPosition(const ECSVector3 &newPos)
+void ECS::Entity::setPosition(const ECS::Vector3 &newPos)
 {
     this->_position = newPos;
 }
 
-void Entity::setSize(const ECSVector3 &newSize)
+void ECS::Entity::setSize(const ECS::Vector3 &newSize)
 {
     this->_size = newSize;
 }

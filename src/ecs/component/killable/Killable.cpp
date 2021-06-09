@@ -7,19 +7,19 @@
 
 #include "Killable.hpp"
 
-Killable::Killable(unsigned short life)
+ECS::Killable::Killable(unsigned short life)
 {
     this->_life = life;
 }
 
-Killable::~Killable() = default;
+ECS::Killable::~Killable() = default;
 
-unsigned short Killable::getLife(void) const
+unsigned short ECS::Killable::getLife(void) const
 {
     return (this->_life);
 }
 
-void Killable::takeDamage(unsigned short damage)
+void ECS::Killable::takeDamage(unsigned short damage)
 {
     if (this->_life < damage)
         this->_life = 0;
@@ -27,7 +27,7 @@ void Killable::takeDamage(unsigned short damage)
         this->_life -= damage;
 }
 
-bool Killable::isAlive(void)
+bool ECS::Killable::isAlive(void)
 {
     return (this->_life == 0);
 }

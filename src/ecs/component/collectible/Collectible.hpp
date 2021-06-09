@@ -10,17 +10,19 @@
 
 #include "IComponent.hpp"
 
-class Collectible: public IComponent {
-    public:
-        Collectible();
-        Collectible &operator=(const Collectible &collectible) = default;
-        ~Collectible();
+namespace ECS {
+    class Collectible: public ECS::IComponent {
+        public:
+            Collectible();
+            Collectible &operator=(const Collectible &collectible) = default;
+            ~Collectible();
 
-        void collect();
-        bool isCollect() const;
+            void collect();
+            bool isCollect() const;
 
-    private:
-        bool _collect;
+        private:
+            bool _collect;
+    };
 };
 
 #endif /* !COLLECTIBLE_HPP_ */

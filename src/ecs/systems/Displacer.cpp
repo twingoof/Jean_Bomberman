@@ -7,17 +7,17 @@
 
 #include "Displacer.hpp"
 #include "Moveable.hpp"
-void Displacer::moveEntity(Entity &moveableEntity)
+void ECS::Displacer::moveEntity(ECS::Entity &moveableEntity)
 {
-    ECSVector3 newPosition = moveableEntity.getPosition();
-    Moveable m = moveableEntity.getComponent<Moveable>(MOVEABLE);
+    ECS::Vector3 newPosition = moveableEntity.getPosition();
+    ECS::Moveable m = moveableEntity.getComponent<ECS::Moveable>(MOVEABLE);
     newPosition.setX(newPosition.getX() + (m.getVelocity().getX()));
     newPosition.setY(newPosition.getY() + (m.getVelocity().getY()));
     newPosition.setZ(newPosition.getZ() + (m.getVelocity().getZ()));
     moveableEntity.setPosition(newPosition);
 }
 
-void Displacer::teleportEntity(Entity &moveableEntity, const ECSVector3 &telpVector)
+void ECS::Displacer::teleportEntity(ECS::Entity &moveableEntity, const ECS::Vector3 &telpVector)
 {
     moveableEntity.setPosition(telpVector);
 }
