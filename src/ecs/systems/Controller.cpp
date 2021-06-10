@@ -7,7 +7,7 @@
 
 #include "Controller.hpp"
 #include "Transform.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 
 void ECS::Controller::moveEntity(ECS::Entity &entity)
 {

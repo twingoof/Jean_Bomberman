@@ -8,7 +8,7 @@
 #ifndef TRANSFORM_HPP_
 #define TRANSFORM_HPP_
 
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "IComponent.hpp"
 
 namespace ECS {
