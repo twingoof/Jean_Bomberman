@@ -16,6 +16,7 @@ namespace ECS {
         public:
             Moveable() = default;
             Moveable(ECS::Vector3<float> &position, ECS::Vector3<float> velocity = {0.0f, 0.0f, 0.0f});
+            
             Moveable(const Moveable &cpy) = default;
             Moveable &operator=(const Moveable &Moveable) = default;
             ~Moveable();

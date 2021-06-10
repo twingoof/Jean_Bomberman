@@ -6,12 +6,14 @@
 */
 
 #include "Controller.hpp"
+#include "Transform.hpp"
+#include "ECSVector3.hpp"
 
 void ECS::Controller::moveEntity(ECS::Entity &entity)
 {
     raylib::Window &myWindow = raylib::Window::getWindow();
     ECS::Moveable m = entity.getComponent<ECS::Moveable>(MOVEABLE);
-    ECS::Vector3 newPosition = entity.getPosition();
+    ECS::Vector3<float> newPosition = entity.getComponent<ECS::Transform>(TRANSFORM).getPosition();
     raylib::Controls controls;
     int i = 0;
 
@@ -37,7 +39,7 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
     if (myWindow.is3DMode()) {
         if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
             newPosition.Z = newPosition.Z + 5;
-            entity.setPosition(newPosition);
+            entity.getComponent<Transform>(TRANSFORM).setPosition(newPosition);
         }
     }
 }

@@ -21,9 +21,6 @@
 
 int main()
 {
-<<<<<<< HEAD
-    MapGenerator map(42, 5);
-=======
     raylib::Window &window = raylib::Window::getWindow();
     ECS::EntityManager man;
     ECS::Renderer r;
@@ -43,6 +40,5 @@ int main()
         window.endDrawing();
     }
     window.closeWindow();
->>>>>>> renderer
     return 0;
 }
