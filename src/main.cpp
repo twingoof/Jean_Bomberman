@@ -16,26 +16,25 @@
 #include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
-#include "Clock.hpp"
 #include "MapGenerator.hpp"
 
 int main()
 {
+    MapGenerator map(30, 30);
     raylib::Window &window = raylib::Window::getWindow();
-    ECS::EntityManager man;
+    raylib::Camera3D camera((Vector3){0, 70, 35}, (Vector3){0, 0, 0},
+                            (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    std::vector<ECS::Entity> mapEntities;
     ECS::Renderer r;
-    raylib::Camera3D camera((Vector3){0, 20, 20}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
 
-    window.initWindow(1000, 1000, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
-    // man.createEntity("boule", ECSVector3(0, 0, 0), ECSVector3(90, 90, 90));
-    man.createEntity("k-ré", {0, 0, 0}, {10, 10, 0});
-    man.addDrawable3D("k-ré", ECS::DrawableType::RECT);
+    window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     while (!window.windowShouldClose())
     {
         window.beginDrawing();
         window.begin3DMode(camera);
-        r.draw(man.getEntities());
-        DrawGrid(10, 1.0f);
+        window.clearWindow(RAYWHITE);
+        DrawGrid(50, 1.0f);
+        map.drawMap();
         window.end3DMode();
         window.endDrawing();
     }

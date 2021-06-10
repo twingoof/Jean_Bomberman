@@ -6,6 +6,7 @@
 */
 
 #include "MapGenerator.hpp"
+#include "raylib.h"
 
 MapGenerator::MapGenerator(int width, int height)
 {
@@ -23,10 +24,7 @@ MapGenerator::MapGenerator(int width, int height)
 }
 
 MapGenerator::~MapGenerator()
-{
-    for (auto it = this->_map.begin(); it != this->_map.end(); it++)
-        std::cout << it->data() << std::endl;
-}
+{}
 
 void MapGenerator::insideMap(int x, int y, std::string &line)
 {
@@ -57,5 +55,42 @@ void MapGenerator::generateMap(void)
             this->insideMap(j, i, line);
         this->_map.push_back(line);
         line.clear();
+    }
+}
+
+void MapGenerator::drawBorders(void)
+{
+    float initX = 0;
+    float initZ = (_map.size() / 2);
+
+    DrawCube(raylib::Vector3(initX, 0, -(initZ + 1)), std::get<0>(dimensions) + 2,1, 1, GRAY);
+    DrawCube(raylib::Vector3(initZ + 1, 0, 0), 1, 1, std::get<0>(dimensions) + 2, GRAY);
+    DrawCube(raylib::Vector3(-(initZ + 1), 0, 0), 1, 1, std::get<0>(dimensions) + 2, GRAY);
+    DrawCube(raylib::Vector3(initX, 0, (initZ + 1)), std::get<0>(dimensions) + 2,1, 1, GRAY);
+}
+
+void MapGenerator::drawMap()
+{
+    std::vector<std::string>::iterator it;
+    float x = 0;
+    float z = 0;
+
+    this->drawBorders();
+    z -= _map.size() / 2;
+    for (it = _map.begin(); it != _map.end(); it++) {
+        x -= ((*it).length() / 2);
+        for (const char &c : (*it)) {
+            if (c == 'P' || c == ' ') {
+                x += 1;
+                continue;
+            }
+            if (c == 'D')
+                DrawCube(raylib::Vector3(x, 0, z), 1, 1, 1, RED);
+            else
+                DrawCube(raylib::Vector3(x, 0, z), 1, 1, 1, BLACK);
+            x += 1;
+        }
+        x = 0;
+        z += 1;
     }
 }

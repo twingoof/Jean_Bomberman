@@ -12,14 +12,20 @@
 #include <vector>
 #include <ctime>
 #include "Entity.hpp"
+#include "Drawable3D.hpp"
+#include "Vector3.hpp"
+#include "Model.hpp"
 
 class MapGenerator {
     public:
-        MapGenerator(const int width, const int lenght);
+        MapGenerator(int width, int length);
         ~MapGenerator();
 
         void generateMap(void);
         void insideMap(int x, int y, std::string &line);
+
+        void drawBorders(void);
+        void drawMap(void);
 
     protected:
         bool isPlayerSpawn(const int x, const int y);
