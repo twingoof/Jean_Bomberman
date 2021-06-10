@@ -12,7 +12,7 @@
 #include "Drawable2D.hpp"
 #include "Drawable3D.hpp"
 
-void createButton(ECS::Entity &entity, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath, ECS::DrawableType type)
+void Presets::createButton(ECS::Entity &entity, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath, ECS::DrawableType type)
 {
     ECS::Transform t(position, size);
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
