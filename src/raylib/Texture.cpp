@@ -127,3 +127,17 @@ void raylib::Texture::setTexture(const ::Texture &old)
     this->mipmaps = old.mipmaps;
     this->format = old.format;
 }
+
+namespace raylib {
+    void drawTexture(raylib::Texture texture, int posX, int posY, ::Color color)
+    {
+        ::Texture t;
+        t.format = texture.format;
+        t.height = texture.height;
+        t.id = texture.id;
+        t.mipmaps = texture.mipmaps;
+        t.width = texture.width;
+
+        ::DrawTexture(t, posX, posY, color);
+    }
+}

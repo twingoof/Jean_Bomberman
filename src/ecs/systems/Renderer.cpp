@@ -57,11 +57,11 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
         case CUSTOM:
             raylib::Image img;
             raylib::Texture tex;
-            ECS::Vector4<unsigned char> col = drawable.getColor();
-
+            ECS::Vector4<unsigned char> col = {255, 255, 255, 255};
+            std::cout<<"pouet"<<std::endl;
             img.loadImage(drawable.getSpritePath());
             tex.loadFromImage(img);
-            tex.draw({position.X, position.Y}, {col.X, col.Y, col.Z, col.A});
+            raylib::drawTexture(tex, position.X, position.Y, WHITE);
             
             break;
     }
@@ -73,10 +73,9 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
     switch (drawable.getType())
     {
     case CIRCLE:
-        // TODO: Change moi cette merde
-        // raylib::Vector3 pos = {position.X, position.Y, position.Z};
-        // DrawSphere(pos, 1.0f, RED);
-        // DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
+        DrawSphere({position.X, position.Y, position.Z}, drawable.getSize().X, MAGENTA);
+        DrawSphereWires({position.X, position.Y, position.Z}, drawable.getSize().X, 16, 16, RED);
+        break;
     break;
     case CUSTOM:
         raylib::Vector3 pos;

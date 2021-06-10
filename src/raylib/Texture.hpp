@@ -49,6 +49,8 @@ namespace raylib {
             void setTexture(const ::Texture &old);
 
     };
+
+    void drawTexture(raylib::Texture texture, int posX, int posY, ::Color color = WHITE);
 };
 
 #endif /* !TEXTURE_HPP_ */
