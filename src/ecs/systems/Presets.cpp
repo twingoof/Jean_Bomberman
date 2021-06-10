@@ -16,7 +16,7 @@
 ECS::Entity &Presets::createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(50, 50, 50);
+    ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
@@ -30,7 +30,7 @@ ECS::Entity &Presets::createButton(std::string name, ECS::Vector3<float> positio
 ECS::Entity &Presets::createWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(50, 50, 50);
+    ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
@@ -41,7 +41,7 @@ ECS::Entity &Presets::createWall(std::string name, ECS::Vector3<float> position)
 ECS::Entity &Presets::createPlayer(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(50, 50, 50);
+    ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     ECS::Moveable m(entity.getComponent<ECS::Transform>(ECS::TRANSFORM).getPosition());
