@@ -24,7 +24,7 @@ namespace raylib {
             void unloadImage();
             bool exportImage(const std::string &fileName);
             void imageResize(int newWidth, int newHeight);
-            ::Image genImageColor(int width, int height, ::Color color);
+            ::Image genImageColor(int imgWidth, int imgHeight, ::Color color);
 
         private:
             void setImage(const ::Image &oldImage);

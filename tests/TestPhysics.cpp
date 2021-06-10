@@ -7,11 +7,11 @@
 
 #include <criterion/criterion.h>
 #include "Physics.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 
 Test(Physics, constructor) {
-    ECSVector3 position();
-    ECSVector3 testPosition();
+    ECSVector position();
+    ECSVector testPosition();
     Physics physics(position, 2, 3);
 
     testPosition = physics.getPosition();
@@ -22,9 +22,9 @@ Test(Physics, constructor) {
 
 Test(Physics, setPos)
 {
-    ECSVector3 position();
-    ECSVector3 position_scnd(1, 1, 1);
-    ECSVector3 testPosition();
+    ECSVector position();
+    ECSVector position_scnd(1, 1, 1);
+    ECSVector testPosition();
     Physics physics(position, 2, 3);
 
     physics.setPosition(position_scnd);
@@ -34,8 +34,8 @@ Test(Physics, setPos)
 
 Test(Physics, hasCollision)
 {
-    ECSVector3 position();
-    ECSVector3 position_scnd(-1, -1);
+    ECSVector position();
+    ECSVector position_scnd(-1, -1);
     Physics physics(position, 2, 3);
 
     cr_assert_eq(physics.hasCollision(position_scnd, 2, 1), true);
@@ -43,8 +43,8 @@ Test(Physics, hasCollision)
 
 Test(Physics, hasNotCollision)
 {
-    ECSVector3 position();
-    ECSVector3 position_scnd(-1, -1);
+    ECSVector position();
+    ECSVector position_scnd(-1, -1);
     Physics physics(position, 2, 3);
 
     cr_assert_eq(physics.hasCollision(position_scnd, 1, 1), false);

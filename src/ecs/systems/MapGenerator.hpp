@@ -12,7 +12,6 @@
 #include <vector>
 #include <ctime>
 #include "Entity.hpp"
-#include "EntityManager.hpp"
 
 class MapGenerator {
     public:

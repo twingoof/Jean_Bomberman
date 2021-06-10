@@ -8,10 +8,12 @@
 #include "Renderer.hpp"
 
 #include "Circle.hpp"
+#include "Image.hpp"
 #include "Model.hpp"
 #include "Rectangle.hpp"
 #include "Text.hpp"
 #include "Texture.hpp"
+#include "Transform.hpp"
 
 ECS::Renderer::Renderer() = default;
 
@@ -24,7 +26,7 @@ void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity
         noDraw = false;
         try {
             ECS::Drawable2D drawable = entity.second.get()->getComponent<ECS::Drawable2D>(DRAWABLE2D);
-            this->_draw2D(entity.second.get()->getPosition(), drawable);
+            this->_draw2D(entity.second.get()->getComponent<Transform>(TRANSFORM).getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
             noDraw = true;
@@ -32,7 +34,7 @@ void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity
 
         try {
             ECS::Drawable3D drawable = entity.second.get()->getComponent<ECS::Drawable3D>(DRAWABLE3D);
-            this->_draw3D(entity.second.get()->getPosition(), drawable);
+            this->_draw3D(entity.second.get()->getComponent<Transform>(TRANSFORM).getPosition(), drawable);
 
         } catch (std::out_of_range &e) {
             noDraw = true;
@@ -52,6 +54,16 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
             break;
         case RECT:
             raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
+            break;
+        case CUSTOM:
+            raylib::Image img;
+            raylib::Texture tex;
+            ECS::Vector4<unsigned char> col = drawable.getColor();
+
+            img.loadImage(drawable.getSpritePath());
+            tex.loadFromImage(img);
+            tex.draw({position.X, position.Y}, {col.X, col.Y, col.Z, col.A});
+            
             break;
     }
 }

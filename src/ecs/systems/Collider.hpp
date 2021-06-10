@@ -5,11 +5,12 @@
 ** Collider
 */
 
+#include <vector>
+
 #ifndef COLLIDER_HPP_
 #define COLLIDER_HPP_
 
 #include "Entity.hpp"
-#include "EntityManager.hpp"
 
 namespace ECS {
     class Collider {
@@ -17,7 +18,7 @@ namespace ECS {
             Collider() = default;
             ~Collider() = default;
 
-        void checkCollision(ECS::EntityManager &scene);
+        void checkCollision(std::vector<std::reference_wrapper<ECS::Entity>> scene);
 
     private:
         void isWindowColliding(ECS::Entity &entity);
