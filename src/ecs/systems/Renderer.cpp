@@ -43,36 +43,36 @@ void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity
     }
 }
 
-void ECS::Renderer::_draw2D(const ECS::Vector3& position, const ECS::Drawable2D& drawable)
+void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable)
 {
     switch (drawable.getType()) {
 
         case CIRCLE:
-            raylib::drawCircle(position._x, position._y, position._z);
+            raylib::drawCircle(position.X, position.Y, position.Z);
             break;
         case RECT:
-            raylib::drawRectangle(position._x, position._y, drawable.getSize()._x, drawable.getSize()._y);
+            raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
             break;
     }
 }
 
-void ECS::Renderer::_draw3D(const ECS::Vector3& position, const ECS::Drawable3D& drawable)
+void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable)
 {
     raylib::Model model;
     switch (drawable.getType())
     {
     case CIRCLE:
         // TODO: Change moi cette merde
-        // raylib::Vector3 pos = {position._x, position._y, position._z};
+        // raylib::Vector3 pos = {position.X, position.Y, position.Z};
         // DrawSphere(pos, 1.0f, RED);
         // DrawSphereWires(pos, 2.0f, 16, 16, MAGENTA);
     break;
     case CUSTOM:
         raylib::Vector3 pos;
         model = model.loadModel(drawable.getMeshPath());
-        pos.x = static_cast<float>(position._x);
-        pos.y = static_cast<float>(position._y);
-        pos.z = static_cast<float>(position._z);
+        pos.x = static_cast<float>(position.X);
+        pos.y = static_cast<float>(position.Y);
+        pos.z = static_cast<float>(position.Z);
         model.drawModel(pos, 1, RED);
     break;
     }

@@ -12,7 +12,7 @@ void ECS::EntityManager::addEntity(std::string name, ECS::Entity &newEntity)
     this->_entities.insert({name, std::make_shared<ECS::Entity>(newEntity)});
 }
 
-void ECS::EntityManager::createEntity(std::string name, ECS::Vector3 position, ECS::Vector3 size)
+void ECS::EntityManager::createEntity(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size)
 {
     Entity newEntity(position, size);
     this->_entities.insert({name, std::make_shared<Entity>(newEntity)});

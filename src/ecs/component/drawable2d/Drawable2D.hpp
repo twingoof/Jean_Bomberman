@@ -17,19 +17,19 @@ namespace ECS {
     class Drawable2D : public ECS::IComponent {
         public:
             Drawable2D() = default;
-            Drawable2D(std::string spritePath, ECS::Vector3 size, ECS::DrawableType type);
+            Drawable2D(std::string spritePath, ECS::Vector3<int> size, ECS::DrawableType type);
             Drawable2D &operator=(const Drawable2D &drawable) = default;
             ~Drawable2D() override;
             void setSpritePath(std::string spritePath);
-            void setSize(ECS::Vector3 size);
+            void setSize(ECS::Vector3<int> size);
             const std::string getSpritePath() const;
-            const ECS::Vector3 getSize() const;
+            const ECS::Vector3<int> getSize() const;
             ECS::DrawableType getType() const;
 
         private:
             ECS::DrawableType _type;
             std::string _spritePath;
-            ECS::Vector3 _size;
+            ECS::Vector3<int> _size;
     };
 };
 
