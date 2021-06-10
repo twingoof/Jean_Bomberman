@@ -15,9 +15,9 @@
 
 namespace Presets
 {
-    ECS::Entity &createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath);
-    ECS::Entity &createWall(std::string name, ECS::Vector3<float> position);
-    ECS::Entity &createPlayer(std::string name, ECS::Vector3<float> position);
+    ECS::Entity createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath);
+    ECS::Entity createWall(std::string name, ECS::Vector3<float> position);
+    ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position);
 };
 
 #endif /* !PRESETS_HPP_ */

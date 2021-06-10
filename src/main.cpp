@@ -30,11 +30,11 @@ int main()
     ECS::Displacer p;
     ECS::Collider c;
     std::vector<std::reference_wrapper<ECS::Entity>> gameEntities;
+    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(2, 0, 1));
 
     window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     gameEntities = map.generateMapEntities();
-    gameEntities.push_back(Presets::createPlayer("player",
-                                                 ECS::Vector3<float>(2, 0, 1)));
+    gameEntities.push_back(pl);
     while (!window.windowShouldClose())
     {
         window.beginDrawing();

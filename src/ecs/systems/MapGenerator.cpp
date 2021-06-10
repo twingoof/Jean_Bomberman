@@ -73,7 +73,8 @@ std::vector<std::reference_wrapper<ECS::Entity>> MapGenerator::generateMapEntiti
                 x += 1;
                 continue;
             }
-            mapEntities.push_back(Presets::createWall("wall",ECS::Vector3<float>(x,0, z)));
+            ECS::Entity e = (Presets::createWall("wall"+std::to_string(x)+std::to_string(z),ECS::Vector3<float>(x,0, z)));
+            mapEntities.push_back(e);
             x += 1;
         }
         x = 0;

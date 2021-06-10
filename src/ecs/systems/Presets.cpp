@@ -13,7 +13,7 @@
 #include "Moveable.hpp"
 #include "Drawable3D.hpp"
 
-ECS::Entity &Presets::createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath)
+ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath)
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(1, 1, 1);
@@ -27,23 +27,27 @@ ECS::Entity &Presets::createButton(std::string name, ECS::Vector3<float> positio
     return (entity);
 }
 
-ECS::Entity &Presets::createWall(std::string name, ECS::Vector3<float> position)
+ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
+    ECS::Drawable3D d(ECS::RECT, t.getSize());
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
-    ECS::Drawable3D d(ECS::RECT, entity.getComponent<ECS::Transform>(ECS::TRANSFORM).getSize());
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
+    return (entity);
 }
 
-ECS::Entity &Presets::createPlayer(std::string name, ECS::Vector3<float> position)
+ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
+    ECS::Moveable m(t.getPosition());
+    ECS::Drawable3D d(ECS::RECT, t.getSize());
+
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
-    ECS::Moveable m(entity.getComponent<ECS::Transform>(ECS::TRANSFORM).getPosition());
-    ECS::Drawable3D d(ECS::RECT, entity.getComponent<ECS::Transform>(ECS::TRANSFORM).getSize());
+    entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
+    return (entity);
 }
