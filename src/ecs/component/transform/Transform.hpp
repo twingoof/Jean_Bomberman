@@ -9,21 +9,22 @@
 #define TRANSFORM_HPP_
 
 #include "ECSVector3.hpp"
+#include "IComponent.hpp"
 
-class Transform {
+class Transform: public ECS::IComponent {
     public:
-        Transform(ECS::Vector3<float> position, ECS::Vector3<float> size);
+        Transform(ECS::Vector3<float> position, ECS::Vector3<int> size);
         ~Transform() = default;
 
         void setPosition(ECS::Vector3<float> newPosition);
-        void setSize(ECS::Vector3<float> newSize);
+        void setSize(ECS::Vector3<int> newSize);
 
         ECS::Vector3<float> &getPosition();
-        ECS::Vector3<float> &getSize();
+        ECS::Vector3<int> &getSize();
 
     private:
         ECS::Vector3<float> _position;
-        ECS::Vector3<float> _size;
+        ECS::Vector3<int> _size;
 };
 
 #endif /* !TRANSFORM_HPP_ */

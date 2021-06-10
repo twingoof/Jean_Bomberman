@@ -7,7 +7,7 @@
 
 #include "Transform.hpp"
 
-Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<float> size): _position(position), _size(size)
+Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size): _position(position), _size(size)
 {
 }
 
@@ -16,7 +16,7 @@ void Transform::setPosition(ECS::Vector3<float> newPosition)
     this->_position = newPosition;
 }
 
-void Transform::setSize(ECS::Vector3<float> newSize)
+void Transform::setSize(ECS::Vector3<int> newSize)
 {
     this->_size = newSize;
 }
@@ -26,7 +26,7 @@ ECS::Vector3<float> &Transform::getPosition()
     return (this->_position);
 }
 
-ECS::Vector3<float> &Transform::getSize()
+ECS::Vector3<int> &Transform::getSize()
 {
     return (this->_size);
 }
