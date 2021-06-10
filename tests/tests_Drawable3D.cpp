@@ -6,12 +6,12 @@
 */
 
 #include "OSRedirector.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "Drawable3D.hpp"
 
 Test(Drawable3D_constructor, normal_usage1)
 {
-    ECSVector3 size(1, 2, 3);
+    ECSVector size(1, 2, 3);
     Drawable3D drawable("texture", size);
 
     cr_assert_eq(drawable.getMeshPath(), "texture");
@@ -22,8 +22,8 @@ Test(Drawable3D_constructor, normal_usage1)
 
 Test(Drawable3D_setSize, normal_usage2)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 newSize(4, 5, 6);
+    ECSVector size(1, 2, 3);
+    ECSVector newSize(4, 5, 6);
     Drawable3D drawable("texture", size);
 
     drawable.setSize(newSize);
@@ -34,7 +34,7 @@ Test(Drawable3D_setSize, normal_usage2)
 
 Test(Drawable3D_setMeshPath, normal_usage3)
 {
-    ECSVector3 size(1, 2, 3);
+    ECSVector size(1, 2, 3);
     Drawable3D drawable("texture", size);
 
     drawable.setMeshPath("mesh");

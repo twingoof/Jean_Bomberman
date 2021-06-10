@@ -7,11 +7,11 @@
 
 #include <criterion/criterion.h>
 #include "Moveable.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 
 Test(Moveable, constructorInts) {
     Moveable moveable(1, 2, 3);
-    ECSVector3 position();
+    ECSVector position();
 
     position = moveable.getPosition();
     cr_assert_eq(position.getX(), 1);
@@ -20,7 +20,7 @@ Test(Moveable, constructorInts) {
 }
 
 Test(Moveable, constructorPosition) {
-    ECSVector3 position();
+    ECSVector position();
     Moveable moveable(1, 2, 3);
 
     position = moveable.getPosition();
@@ -31,7 +31,7 @@ Test(Moveable, constructorPosition) {
 
 Test(Moveable, moveX) {
     Moveable moveable(1, 2, 3);
-    ECSVector3 position();
+    ECSVector position();
 
     moveable.moveX();
     cr_assert_eq(moveable.getX(), 3);
@@ -62,7 +62,7 @@ Test(Moveable, moveInt) {
 
 Test(Moveable, movePos) {
     Moveable moveable(1, 2, 3);
-    ECSVector3 vector3(2, 3, 4);
+    ECSVector vector3(2, 3, 4);
 
     moveable.move(vector3);
     cr_assert_eq(moveable.getX(), 2);

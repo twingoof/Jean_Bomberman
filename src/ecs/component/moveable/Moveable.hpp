@@ -8,7 +8,7 @@
 #ifndef MOVEABLE_HPP_
 #define MOVEABLE_HPP_
 
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "IComponent.hpp"
 
 namespace ECS {
