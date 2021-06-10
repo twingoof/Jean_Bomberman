@@ -16,14 +16,14 @@
 #include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
-#include "Clock.hpp"
+#include "MapGenerator.hpp"
 
 int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
-    ECS::EntityManager man;
+    raylib::Camera3D camera((Vector3){0, 70, 35}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    std::vector<ECS::Entity> mapEntities;
     ECS::Renderer r;
-    raylib::Camera3D camera((Vector3){0, 20, 20}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
 
     window.initWindow(1000, 1000, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     man.createEntity("boule", ECS::Vector3<float> {0, 0, 0}, ECS::Vector3<int> {50, 50, 50});

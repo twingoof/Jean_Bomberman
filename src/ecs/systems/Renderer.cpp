@@ -13,6 +13,7 @@
 #include "Rectangle.hpp"
 #include "Text.hpp"
 #include "Texture.hpp"
+#include "Transform.hpp"
 
 ECS::Renderer::Renderer() = default;
 
@@ -25,7 +26,7 @@ void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity
         noDraw = false;
         try {
             ECS::Drawable2D drawable = entity.second.get()->getComponent<ECS::Drawable2D>(DRAWABLE2D);
-            this->_draw2D(entity.second.get()->getPosition(), drawable);
+            this->_draw2D(entity.second.get()->getComponent<Transform>(TRANSFORM).getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
             noDraw = true;
@@ -33,7 +34,7 @@ void ECS::Renderer::draw(const std::map<std::string, std::shared_ptr<ECS::Entity
 
         try {
             ECS::Drawable3D drawable = entity.second.get()->getComponent<ECS::Drawable3D>(DRAWABLE3D);
-            this->_draw3D(entity.second.get()->getPosition(), drawable);
+            this->_draw3D(entity.second.get()->getComponent<Transform>(TRANSFORM).getPosition(), drawable);
 
         } catch (std::out_of_range &e) {
             noDraw = true;
