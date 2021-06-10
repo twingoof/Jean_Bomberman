@@ -12,12 +12,13 @@
 #ifndef PRESETS_HPP_
 #define PRESETS_HPP_
 
-
 namespace Presets
 {
     ECS::Entity createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath);
+    ECS::Entity createImage(std::string name, ECS::Vector3<float> position , std::string spritePath);
     ECS::Entity createWall(std::string name, ECS::Vector3<float> position);
     ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position);
+    ECS::Entity createSoftWall(std::string name, ECS::Vector3<float> position);
 };
 
 #endif /* !PRESETS_HPP_ */
