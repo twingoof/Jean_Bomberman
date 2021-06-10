@@ -10,7 +10,7 @@
 
 #include "enum.hpp"
 #include "IComponent.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include <iostream>
 
 namespace ECS {
@@ -25,11 +25,13 @@ namespace ECS {
             const std::string getSpritePath() const;
             const ECS::Vector3<int> getSize() const;
             ECS::DrawableType getType() const;
+            ECS::Vector4<unsigned char> getColor() const;
 
         private:
             ECS::DrawableType _type;
             std::string _spritePath;
             ECS::Vector3<int> _size;
+            ECS::Vector4<unsigned char> _color;
     };
 };
 

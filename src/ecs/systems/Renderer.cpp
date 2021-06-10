@@ -8,6 +8,7 @@
 #include "Renderer.hpp"
 
 #include "Circle.hpp"
+#include "Image.hpp"
 #include "Model.hpp"
 #include "Rectangle.hpp"
 #include "Text.hpp"
@@ -52,6 +53,16 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
             break;
         case RECT:
             raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
+            break;
+        case CUSTOM:
+            raylib::Image img;
+            raylib::Texture tex;
+            ECS::Vector4<unsigned char> col = drawable.getColor();
+
+            img.loadImage(drawable.getSpritePath());
+            tex.loadFromImage(img);
+            tex.draw({position.X, position.Y}, {col.X, col.Y, col.Z, col.A});
+            
             break;
     }
 }

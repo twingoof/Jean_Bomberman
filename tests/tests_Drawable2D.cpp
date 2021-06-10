@@ -7,11 +7,11 @@
 
 #include "OSRedirector.hpp"
 #include "Drawable2D.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 
 Test(Drawable2D_constructor, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
+    ECSVector size(1, 2, 3);
     Drawable2D drawable("texture", size);
 
     cr_assert_eq(drawable.getSpritePath(), "texture");
@@ -22,7 +22,7 @@ Test(Drawable2D_constructor, normal_usage)
 
 Test(Drawable2D_setSpritePath, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
+    ECSVector size(1, 2, 3);
     Drawable2D drawable("texture", size);
 
     drawable.setSpritePath("sprite");
@@ -31,8 +31,8 @@ Test(Drawable2D_setSpritePath, normal_usage)
 
 Test(Drawable3D_setSize, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 newSize(4, 5, 6);
+    ECSVector size(1, 2, 3);
+    ECSVector newSize(4, 5, 6);
     Drawable2D drawable("texture", size);
 
     drawable.setSize(newSize);

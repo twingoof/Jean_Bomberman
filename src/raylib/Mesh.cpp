@@ -55,7 +55,7 @@ void raylib::Mesh::generateSphere(float radius, int rings, int slices)
 
 bool raylib::Mesh::exportMesh(const std::string &filePath)
 {
-    ::ExportMesh(*this, filePath.c_str());
+    return (::ExportMesh(*this, filePath.c_str()));
 }
 
 void raylib::Mesh::setMesh(const ::Mesh &oldMesh)

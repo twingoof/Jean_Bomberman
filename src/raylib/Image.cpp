@@ -44,9 +44,9 @@ void raylib::Image::imageResize(int newWidth, int newHeight)
     ::ImageResize(this, newWidth, newHeight);
 }
 
-::Image raylib::Image::genImageColor(int width, int height, ::Color color)
+::Image raylib::Image::genImageColor(int imgWidth, int imgHeight, ::Color color)
 {
-    return (::GenImageColor(width, height, color));
+    return (::GenImageColor(imgWidth, imgHeight, color));
 }
 
 void raylib::Image::setImage(const ::Image &oldImage)
@@ -57,3 +57,4 @@ void raylib::Image::setImage(const ::Image &oldImage)
     this->mipmaps = oldImage.mipmaps;
     this->format = oldImage.format;
 }
+

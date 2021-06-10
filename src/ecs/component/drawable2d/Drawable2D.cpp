@@ -41,3 +41,8 @@ ECS::DrawableType ECS::Drawable2D::getType() const
 {
     return (this->_type);
 }
+
+ECS::Vector4<unsigned char> ECS::Drawable2D::getColor() const
+{
+    return (this->_color);
+}
