@@ -25,14 +25,20 @@ namespace ECS {
 
             void setMeshPath(std::string meshPath);
             void setSize(const ECS::Vector3<int>& size);
+            void setColor(const ECS::Vector4<unsigned char> color);
+            void setWColor(const ECS::Vector4<unsigned char> wColor);
             const std::string getMeshPath() const;
             const ECS::Vector3<int> getSize() const;
             ECS::DrawableType getType() const;
+            ECS::Vector4<unsigned char> getColor() const;
+            ECS::Vector4<unsigned char> getWColor() const;
 
         private:
             std::string _meshPath;
             ECS::Vector3<int> _size;
             ECS::DrawableType _type;
+            ECS::Vector4<unsigned char> _color;
+            ECS::Vector4<unsigned char> _wColor;
     };
 };
 

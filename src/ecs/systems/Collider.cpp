@@ -38,12 +38,12 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
         fEntityM.setVelocity(fEntityM.getVelocity() * -1);
 }
 
-void ECS::Collider::checkCollision(std::vector<std::reference_wrapper<ECS::Entity>> scene)
+void ECS::Collider::checkCollision(std::vector<ECS::Entity> scene)
 {
     for (auto &fEntity:scene) {
-        isWindowColliding(fEntity.get());
+        isWindowColliding(fEntity);
         for (auto &sEntity:scene)
-            if (fEntity.get().getName() != sEntity.get().getName())
-                isEntitesColliding(fEntity.get(), sEntity.get());
+            if (fEntity.getName() != sEntity.getName())
+                isEntitesColliding(fEntity, sEntity);
     }
 }

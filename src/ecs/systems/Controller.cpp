@@ -19,19 +19,19 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
 
 
     if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).getVelocity().Y = -5;
+        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(0, 0, -5);
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_DOWN)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).getVelocity().Y = 5;
+        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(0, 0, 5);
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_LEFT)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).getVelocity().X = -5;
+        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(-5, 0, 0);
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_RIGHT)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).getVelocity().X = 5;
+        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(5, 0, 0);
         i = 1;
     }
     if (i == 0)

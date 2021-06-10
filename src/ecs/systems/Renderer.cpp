@@ -75,15 +75,19 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
     {
     case ECS::DrawableType::CIRCLE :
         {
-            DrawSphere({position.X, position.Y, position.Z}, drawable.getSize().X, MAGENTA);
-            DrawSphereWires({position.X, position.Y, position.Z}, drawable.getSize().X, 16, 16, RED);
+            ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
+            ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
+            DrawSphere({position.X, position.Y, position.Z}, drawable.getSize().X, color);
+            DrawSphereWires({position.X, position.Y, position.Z}, drawable.getSize().X, 16, 16, wColor);
             break;
         }
     case ECS::DrawableType::RECT :
         {
             ECS::Vector3<int> size = drawable.getSize();
-            DrawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, BLUE);
-            DrawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, YELLOW);
+            ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
+            ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
+            DrawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
+            DrawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
             break;
         }
     case ECS::DrawableType::CUSTOM :
