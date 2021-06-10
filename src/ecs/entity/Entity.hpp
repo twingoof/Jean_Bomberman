@@ -44,7 +44,7 @@ namespace ECS {
              * @param position Original position
              * @param size Original size
              */
-            Entity(ECS::Vector3 &position, ECS::Vector3 &size);
+            Entity(ECS::Vector3<float> &position, ECS::Vector3<int> &size);
 
             /**
              * @fn ~Entity() = default
@@ -87,7 +87,7 @@ namespace ECS {
              * 
              * @return Vector3& 
              */
-            ECS::Vector3 &getPosition() const;
+            ECS::Vector3<float> &getPosition() const;
 
             /**
              * @fn Vector3 &getSize() const
@@ -95,7 +95,7 @@ namespace ECS {
              * 
              * @return Vector3& 
              */
-            ECS::Vector3 &getSize() const;
+            ECS::Vector3<int> &getSize() const;
 
 
             /**
@@ -104,7 +104,7 @@ namespace ECS {
              * 
              * @param newPos New position of the entity
              */
-            void setPosition(const ECS::Vector3 &newPos);
+            void setPosition(const ECS::Vector3<float> &newPos);
 
             /**
              * @fn void setSize(const Vector3 &newSize)
@@ -112,11 +112,11 @@ namespace ECS {
              * 
              * @param newSize New size of the entity
              */
-            void setSize(const ECS::Vector3 &newSize);
+            void setSize(const ECS::Vector3<int> &newSize);
 
         private:
-            ECS::Vector3 &_position;
-            ECS::Vector3 &_size;
+            ECS::Vector3<float> &_position;
+            ECS::Vector3<int> &_size;
             std::map<ECS::ComponentType, std::shared_ptr<ECS::IComponent>> _components;
     };
 };
