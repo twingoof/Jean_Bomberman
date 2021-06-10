@@ -7,16 +7,28 @@
 
 #include "Displacer.hpp"
 #include "Moveable.hpp"
-#include "Transform.hpp"
+#include "transform/Transform.hpp"
 
-void ECS::Displacer::moveEntity(ECS::Entity &moveableEntity)
+void ECS::Displacer::moveEntity(std::vector<std::reference_wrapper<ECS::Entity>> entities)
 {
-    ECS::Vector3<float> newPosition = moveableEntity.getComponent<Transform>(TRANSFORM).getPosition();
-    ECS::Moveable m = moveableEntity.getComponent<ECS::Moveable>(MOVEABLE);
-    newPosition.X = newPosition.X + m.getVelocity().X;
-    newPosition.Y = newPosition.Y + m.getVelocity().Y;
-    newPosition.Z = newPosition.Z + m.getVelocity().Z;
-    moveableEntity.getComponent<Transform>(TRANSFORM).setPosition(newPosition);
+    for (auto fEntity : entities) {
+        ECS::Vector3<float> newPosition;
+        ECS::Moveable m;
+        try {
+            newPosition = fEntity.get().getComponent<ECS::Transform>(ECS::TRANSFORM).getPosition();
+            m = fEntity.get().getComponent<ECS::Moveable>(ECS::MOVEABLE);
+        } catch (std::out_of_range &e) {
+            std::cerr << e.what() << std::endl;
+        }
+        newPosition.X = newPosition.X + m.getVelocity().X;
+        newPosition.Y = newPosition.Y + m.getVelocity().Y;
+        newPosition.Z = newPosition.Z + m.getVelocity().Z;
+        try {
+            fEntity.get().getComponent<ECS::Transform>(TRANSFORM).setPosition(newPosition);
+        } catch (std::out_of_range &e) {
+            std::cout<<fEntity.get().getName()<<": "<<e.what()<<std::endl;
+        }
+    }
 }
 
 void ECS::Displacer::teleportEntity(ECS::Entity &moveableEntity, const ECS::Vector3<float> &telpVector)

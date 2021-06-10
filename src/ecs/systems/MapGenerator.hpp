@@ -13,7 +13,8 @@
 #include <ctime>
 #include "Entity.hpp"
 #include "Drawable3D.hpp"
-#include "Vector3.hpp"
+#include "Presets.hpp"
+#include "ECSVector.hpp"
 #include "Model.hpp"
 
 class MapGenerator {
@@ -24,8 +25,7 @@ class MapGenerator {
         void generateMap(void);
         void insideMap(int x, int y, std::string &line);
 
-        void drawBorders(void);
-        void drawMap(void);
+        std::vector<std::reference_wrapper<ECS::Entity>> generateMapEntities(void);
 
     protected:
         bool isPlayerSpawn(const int x, const int y);

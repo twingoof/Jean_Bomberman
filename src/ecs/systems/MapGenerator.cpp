@@ -58,39 +58,27 @@ void MapGenerator::generateMap(void)
     }
 }
 
-void MapGenerator::drawBorders(void)
+std::vector<std::reference_wrapper<ECS::Entity>> MapGenerator::generateMapEntities()
 {
-    float initX = 0;
-    float initZ = (_map.size() / 2);
-
-    DrawCube(raylib::Vector3(initX, 0, -(initZ + 1)), std::get<0>(dimensions) + 2,1, 1, GRAY);
-    DrawCube(raylib::Vector3(initZ + 1, 0, 0), 1, 1, std::get<0>(dimensions) + 2, GRAY);
-    DrawCube(raylib::Vector3(-(initZ + 1), 0, 0), 1, 1, std::get<0>(dimensions) + 2, GRAY);
-    DrawCube(raylib::Vector3(initX, 0, (initZ + 1)), std::get<0>(dimensions) + 2,1, 1, GRAY);
-}
-
-void MapGenerator::drawMap()
-{
+    std::vector<std::reference_wrapper<ECS::Entity>> mapEntities;
     std::vector<std::string>::iterator it;
-    float x = 0;
-    float z = 0;
+    int x = 0;
+    int z = 0;
 
-    this->drawBorders();
-    z -= _map.size() / 2;
+    z -= std::get<1>(dimensions) / 2;
     for (it = _map.begin(); it != _map.end(); it++) {
-        x -= ((*it).length() / 2);
+        x -= (std::get<0>(dimensions) / 2);
         for (const char &c : (*it)) {
             if (c == 'P' || c == ' ') {
                 x += 1;
                 continue;
             }
-            if (c == 'D')
-                DrawCube(raylib::Vector3(x, 0, z), 1, 1, 1, RED);
-            else
-                DrawCube(raylib::Vector3(x, 0, z), 1, 1, 1, BLACK);
+            ECS::Entity e = (Presets::createWall("wall"+std::to_string(x)+std::to_string(z),ECS::Vector3<float>(x,0, z)));
+            mapEntities.push_back(e);
             x += 1;
         }
         x = 0;
         z += 1;
     }
+    return (mapEntities);
 }
