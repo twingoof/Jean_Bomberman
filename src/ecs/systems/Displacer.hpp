@@ -24,7 +24,7 @@ namespace ECS {
             Displacer &operator=(const Displacer &oldDisplacer) = default;
             ~Displacer() = default;
 
-            void moveEntity(std::vector<std::reference_wrapper<ECS::Entity>> entities);
+            void moveEntity(std::vector<ECS::Entity> entities);
 
             void teleportEntity(ECS::Entity &entity, const ECS::Vector3<float> &positionVector);
 

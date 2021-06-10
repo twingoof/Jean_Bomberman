@@ -19,22 +19,22 @@ ECS::Renderer::Renderer() = default;
 
 ECS::Renderer::~Renderer() = default;
 
-void ECS::Renderer::draw(const std::vector<std::reference_wrapper<ECS::Entity>> entities) {
+void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
     bool noDraw;
 
     for (const auto &entity : entities) {
         noDraw = false;
         try {
-            ECS::Drawable2D drawable = entity.get().getComponent<ECS::Drawable2D>(DRAWABLE2D);
-            this->_draw2D(entity.get().getComponent<Transform>(TRANSFORM).getPosition(), drawable);
+            ECS::Drawable2D drawable = entity.getComponent<ECS::Drawable2D>(DRAWABLE2D);
+            this->_draw2D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
             noDraw = true;
         }
 
         try {
-            ECS::Drawable3D drawable = entity.get().getComponent<ECS::Drawable3D>(DRAWABLE3D);
-            this->_draw3D(entity.get().getComponent<Transform>(TRANSFORM).getPosition(), drawable);
+            ECS::Drawable3D drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
+            this->_draw3D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
 
         } catch (std::out_of_range &e) {
             noDraw = true;

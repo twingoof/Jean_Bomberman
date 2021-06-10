@@ -7,7 +7,7 @@
 
 #include "Entity.hpp"
 
-ECS::Entity::Entity(std::string name): _name(name) {};
+ECS::Entity::Entity(const std::string &name): _name(name) {};
 
 std::string ECS::Entity::getName() const
 {
