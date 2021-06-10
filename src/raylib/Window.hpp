@@ -10,11 +10,14 @@
 
 #include "Vector2.hpp"
 #include "raylib.h"
+#include "physac.h"
 #include <string>
 
 namespace raylib {
     class Window {
         public:
+            // Window Encapsulation
+
             static Window &getWindow();
 
             /**
@@ -108,16 +111,38 @@ namespace raylib {
              */
             void beginDrawing();
 
+            /**
+             * @brief Set 2D Mode for a given camera
+             * @param actualCam Camera 2D to set 2DMode for
+             */
             void begin2DMode(const ::Camera2D &actualCam);
 
+            /**
+             * @brief Set 3D Mode for a given camera
+             * @param actualCam Camera 3D to set 3DMode for
+             */
             void begin3DMode(const ::Camera3D &actualCam);
 
+            /**
+             * @brief Tells if 2DMode is activated for a camera
+             * @return True if 2DMode is enabled, false otherwise
+             */
             bool is2DMode() const;
 
+            /**
+             * @brief Tells if 3DMode is activated for a camera
+             * @return True if 3DMode is enabled, false otherwise
+             */
             bool is3DMode() const;
 
+            /**
+             * @brief Disable 2DMode
+             */
             void end2DMode();
 
+            /**
+             * @brief Disable 3DMode
+             */
             void end3DMode();
 
             /**
@@ -159,9 +184,17 @@ namespace raylib {
              */
             ::Vector2 getScaleFactorDPI() const;
 
-            int getWindowWidth() const;
+            /**
+             * @brief Get the actual Window width
+             * @return int Actual Screen width
+             */
+            int getWindowWidth();
 
-            int getWindowHeight() const;
+            /**
+             * @brief Get the actual Window height
+             * @return int Actual Screen Height
+             */
+            int getWindowHeight();
 
             /**
              * @brief Close window.
@@ -169,6 +202,64 @@ namespace raylib {
             void closeWindow();
 
             ~Window();
+
+            // Physics Encapsulation
+
+            /**
+             * @brief Initialize Physac Physics instance
+             */
+            void initPhysics();
+
+            /**
+             * @brief Gets the number of PhysicsBody created
+             * @return int Number of PhysicsBody
+             */
+            int getPhysicBodyCount();
+
+            /**
+             * @brief Gets the PhysicsBodyData at the idx index
+             * @return ::PhysicsBodyData Data of PhysicsBody at index idx
+             */
+            ::PhysicsBodyData getPhysicsBody(int idx);
+
+            /**
+             * @brief Update Physics
+             */
+            void updatePhysics();
+
+            /**
+             * @brief Deletes PhysicsBody created and reset them
+             */
+            void resetPhysics();
+
+            /**
+             * @brief Stops Physics Framework
+             */
+            void stopPhysics();
+
+            // Audio Device Encapsulation
+
+            /**
+             * @brief Initialize Audio for actual window
+             */
+            void initAudioDevice();
+
+            /**
+             * @brief Check if window's audio is properly initialized.
+             * @return True if the window's audio is properly initialized, False otherwise
+             */
+            bool isAudioReady() const;
+
+            /**
+             * @brief Set Audio Device volume
+             * @param volumeValue Volume to set
+             */
+            void setMasterVolume(float volumeValue) const;
+
+            /**
+             * @brief Stops AudiDevice
+             */
+            void stopAudioDevice();
 
         protected:
 
@@ -183,9 +274,12 @@ namespace raylib {
             bool _isHidden;
             bool _isDrawing;
             bool _fullscreen;
-            bool _isInitialized;
             bool _2dActivated;
             bool _3dActivated;
+
+            bool _isPhysicInitialized;
+            bool _isAudioInitialized;
+            bool _isWindowInitialized;
 
     };
 };

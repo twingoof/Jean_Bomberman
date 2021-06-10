@@ -25,7 +25,7 @@ void raylib::Window::initWindow(const int width, const int height, const std::st
         ::SetWindowState(flag);
     _width = width;
     _height = height;
-    _isInitialized = true;
+    _isWindowInitialized = true;
 }
 
 raylib::Window &raylib::Window::clearState(const unsigned int flag)
@@ -66,7 +66,7 @@ bool raylib::Window::windowShouldClose(void) const
 
 bool raylib::Window::isReady(void) const
 {
-    return (::IsWindowReady());
+    return (_isWindowInitialized);
 }
 
 bool raylib::Window::isFullscreen(void)
@@ -187,18 +187,80 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (::GetWindowScaleDPI());
 }
 
-int raylib::Window::getWindowWidth(void) const
+int raylib::Window::getWindowWidth(void)
 {
+    _width = ::GetScreenWidth();
     return (_width);
 }
 
-int raylib::Window::getWindowHeight(void) const
+int raylib::Window::getWindowHeight(void)
 {
+    _height = ::GetScreenHeight();
     return (_height);
 }
 
 void raylib::Window::closeWindow(void)
 {
-    if (_isInitialized)
+    if (_isWindowInitialized) {
         ::CloseWindow();
+        _isWindowInitialized = false;
+    }
+}
+
+void raylib::Window::initPhysics(void)
+{
+    ::InitPhysics();
+    _isPhysicInitialized = true;
+}
+
+int raylib::Window::getPhysicBodyCount(void)
+{
+    return (::GetPhysicsBodiesCount());
+}
+
+::PhysicsBodyData raylib::Window::getPhysicsBody(int idx)
+{
+    return (*(::GetPhysicsBody(idx)));
+}
+
+void raylib::Window::resetPhysics(void)
+{
+    ::ResetPhysics();
+}
+
+void raylib::Window::updatePhysics(void)
+{
+    ::UpdatePhysics();
+}
+
+void raylib::Window::stopPhysics(void)
+{
+    if (_isPhysicInitialized) {
+        ::ClosePhysics();
+        _isPhysicInitialized = false;
+    }
+}
+
+void raylib::Window::initAudioDevice(void)
+{
+    ::InitAudioDevice();
+    _isAudioInitialized = true;
+}
+
+bool raylib::Window::isAudioReady(void) const
+{
+    return (_isAudioInitialized);
+}
+
+void raylib::Window::setMasterVolume(float volumeValue) const
+{
+    ::SetMasterVolume(volumeValue);
+}
+
+void raylib::Window::stopAudioDevice(void)
+{
+    if (_isAudioInitialized) {
+        ::CloseAudioDevice();
+        _isAudioInitialized = false;
+    }
 }
