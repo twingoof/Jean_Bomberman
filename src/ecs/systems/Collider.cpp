@@ -14,11 +14,16 @@
 void ECS::Collider::isWindowColliding(ECS::Entity &entity)
 {
     raylib::Window &win = raylib::Window::getWindow();
-    ECS::Moveable mEntity = entity.getComponent<ECS::Moveable>(MOVEABLE);
     ECS::Transform tEntity = entity.getComponent<ECS::Transform>(TRANSFORM);
+    ECS::Moveable mEntity;
     float x = tEntity.getPosition().X;
     float y = tEntity.getPosition().Y;
 
+    try {
+        mEntity = entity.getComponent<ECS::Moveable>(MOVEABLE);
+    } catch (std::out_of_range &e) {
+        return;
+    }
     if (x <= 0 || (x + tEntity.getSize().X) >= win.getWindowWidth())
         mEntity.setVelocity(0.0f, 0.0f, 0.0f);
     if (y <= 0 || (y + tEntity.getSize().Y) >= win.getWindowHeight())
@@ -27,21 +32,25 @@ void ECS::Collider::isWindowColliding(ECS::Entity &entity)
 
 void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity)
 {
-    ECS::Transform fEntityT = fEntity.getComponent<ECS::Transform>(TRANSFORM);
-    ECS::Transform sEntityT = sEntity.getComponent<ECS::Transform>(TRANSFORM);
-    ECS::Moveable fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
+    ECS::Transform &fEntityT = fEntity.getComponent<ECS::Transform>(TRANSFORM);
+    ECS::Transform &sEntityT = sEntity.getComponent<ECS::Transform>(TRANSFORM);
 
-    Rectangle fEntityR = {fEntityT.getPosition().X, fEntityT.getPosition().Y, fEntityT.getSize().X, fEntityT.getSize().Y};
-    Rectangle sEntityR = {sEntityT.getPosition().X, sEntityT.getPosition().Y, sEntityT.getSize().X, sEntityT.getSize().Y};
+    try {
+        ECS::Moveable &fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
 
-    if (CheckCollisionRecs(fEntityR, sEntityR))
-        fEntityM.setVelocity(fEntityM.getVelocity() * -1);
+        Rectangle fEntityR = {fEntityT.getPosition().X, fEntityT.getPosition().Y, fEntityT.getSize().X, fEntityT.getSize().Y};
+        Rectangle sEntityR = {sEntityT.getPosition().X, sEntityT.getPosition().Y, sEntityT.getSize().X, sEntityT.getSize().Y};
+
+        if (CheckCollisionRecs(fEntityR, sEntityR))
+            fEntityM.setVelocity({-0.1, 0, -0.1});
+    } catch (std::out_of_range &e) {
+        return;
+    }
 }
 
-void ECS::Collider::checkCollision(std::vector<ECS::Entity> scene)
+void ECS::Collider::checkCollision(std::vector<ECS::Entity> &scene)
 {
     for (auto &fEntity:scene) {
-        isWindowColliding(fEntity);
         for (auto &sEntity:scene)
             if (fEntity.getName() != sEntity.getName())
                 isEntitesColliding(fEntity, sEntity);

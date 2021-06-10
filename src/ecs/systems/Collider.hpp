@@ -18,7 +18,7 @@ namespace ECS {
             Collider() = default;
             ~Collider() = default;
 
-        void checkCollision(std::vector<ECS::Entity> scene);
+        void checkCollision(std::vector<ECS::Entity> &scene);
 
     private:
         void isWindowColliding(ECS::Entity &entity);

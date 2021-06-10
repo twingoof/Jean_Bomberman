@@ -6,40 +6,37 @@
 */
 
 #include "Controller.hpp"
-#include "Transform.hpp"
-#include "ECSVector.hpp"
+#include "transform/Transform.hpp"
+#include "vectors/ECSVector.hpp"
 
 void ECS::Controller::moveEntity(ECS::Entity &entity)
 {
     raylib::Window &myWindow = raylib::Window::getWindow();
-    ECS::Moveable m = entity.getComponent<ECS::Moveable>(MOVEABLE);
-    ECS::Vector3<float> newPosition = entity.getComponent<ECS::Transform>(TRANSFORM).getPosition();
+    ECS::Moveable &m = entity.getComponent<ECS::Moveable>(MOVEABLE);
     raylib::Controls controls;
+    ECS::Vector3<float> newVel;
     int i = 0;
 
-
     if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(0, 0, -5);
+        newVel.Z = -0.1;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_DOWN)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(0, 0, 5);
+        newVel.Z = 0.1;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_LEFT)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(-5, 0, 0);
+        newVel.X = -0.1;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_RIGHT)) {
-        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity(5, 0, 0);
+        newVel.X = 0.1;
         i = 1;
     }
     if (i == 0)
-        entity.getComponent<ECS::Moveable>(MOVEABLE).setVelocity({0, 0, 0});
-    if (myWindow.is3DMode()) {
-        if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
-            newPosition.Z = newPosition.Z + 5;
-            entity.getComponent<Transform>(TRANSFORM).setPosition(newPosition);
-        }
-    }
+        m.setVelocity({0, 0, 0});
+    if (myWindow.is3DMode())
+        if (controls.isKeyPressed(raylib::Keys::KEY_SPACE))
+            newVel.Y = 0.5;
+    m.setVelocity(newVel);
 }

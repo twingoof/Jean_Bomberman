@@ -14,20 +14,20 @@
 namespace ECS {
     class Moveable : public ECS::IComponent{
         public:
-            Moveable(ECS::Vector3<float> position = {0.0f, 0.0f, 0.0f}, ECS::Vector3<float> velocity = {0.0f, 0.0f, 0.0f});
-            
+            Moveable();
+            Moveable(ECS::Vector3<float> &velocity);
+
             Moveable(const Moveable &cpy) = default;
             Moveable &operator=(const Moveable &Moveable);
             ~Moveable();
 
-            ECS::Vector3<float> &getVelocity() const;
+            ECS::Vector3<float> getVelocity() const;
 
             void setVelocity(const ECS::Vector3<float> &newValue);
             void setVelocity(float x, float y, float z);
 
         private:
-            ECS::Vector3<float> &_position;
-            ECS::Vector3<float> &_velocity;
+            ECS::Vector3<float> _velocity;
     };
 };
 

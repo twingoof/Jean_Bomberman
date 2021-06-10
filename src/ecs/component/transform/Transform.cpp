@@ -13,7 +13,9 @@ ECS::Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size):
 
 void ECS::Transform::setPosition(ECS::Vector3<float> newPosition)
 {
-    this->_position = newPosition;
+    this->_position.X = newPosition.X;
+    this->_position.Y = newPosition.Y;
+    this->_position.Z = newPosition.Z;
 }
 
 void ECS::Transform::setSize(ECS::Vector3<int> newSize)
