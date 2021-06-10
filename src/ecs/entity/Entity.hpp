@@ -43,7 +43,7 @@ namespace ECS {
              * 
              * @param name Name of the entity
              */
-            Entity(std::string name);
+            Entity(const std::string &name);
 
             /**
              * @fn ~Entity() = default

@@ -25,7 +25,7 @@ class MapGenerator {
         void generateMap(void);
         void insideMap(int x, int y, std::string &line);
 
-        std::vector<std::reference_wrapper<ECS::Entity>> generateMapEntities(void);
+        std::vector<ECS::Entity> generateMapEntities(void);
 
     protected:
         bool isPlayerSpawn(const int x, const int y);

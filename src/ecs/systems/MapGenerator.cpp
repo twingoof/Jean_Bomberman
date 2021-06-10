@@ -58,9 +58,9 @@ void MapGenerator::generateMap(void)
     }
 }
 
-std::vector<std::reference_wrapper<ECS::Entity>> MapGenerator::generateMapEntities()
+std::vector<ECS::Entity> MapGenerator::generateMapEntities()
 {
-    std::vector<std::reference_wrapper<ECS::Entity>> mapEntities;
+    std::vector<ECS::Entity> mapEntities;
     std::vector<std::string>::iterator it;
     int x = 0;
     int z = 0;
