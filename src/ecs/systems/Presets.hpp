@@ -15,7 +15,7 @@
 
 namespace Presets
 {
-    void createButton(ECS::Entity &entity, ECS::Vector3<int> size, ECS::Vector3<float> position, void(callback)(), std::string spritePath, ECS::DrawableType type);
+    void createButton(ECS::Entity &entity, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath, ECS::DrawableType type);
     void createWall(ECS::Entity &entity, ECS::Vector3<float> position, ECS::Vector3<int> size, ECS::DrawableType type);
 };
 
