@@ -57,7 +57,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition());
-    ECS::Drawable3D d(ECS::RECT, t.getSize());
+    ECS::Drawable3D d(ECS::CIRCLE, t.getSize());
     
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Moveable>(m, ECS::MOVEABLE);
