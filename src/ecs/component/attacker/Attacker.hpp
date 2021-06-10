@@ -16,8 +16,8 @@ namespace ECS {
         public:
             Attacker() = default;
             Attacker(unsigned int ammo, unsigned short damage);
-            Attacker(const Attacker &Attacker) = default;
-            Attacker &operator=(const Attacker &Attacker) = default;
+            Attacker(const Attacker &cpy) = default;
+            Attacker &operator=(const Attacker &rHand) = default;
             ~Attacker();
 
             unsigned int getAmmo() const;

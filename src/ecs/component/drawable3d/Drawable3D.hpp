@@ -9,7 +9,7 @@
 #ifndef DRAWABLE3D_HPP_
 #define DRAWABLE3D_HPP_
 
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "enum.hpp"
 #include "IComponent.hpp"
 #include <iostream>

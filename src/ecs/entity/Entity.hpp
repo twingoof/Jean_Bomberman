@@ -22,7 +22,7 @@
 #define INDIE_Entity_HPP
 
 #include "enum.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "IComponent.hpp"
 
 namespace ECS {
