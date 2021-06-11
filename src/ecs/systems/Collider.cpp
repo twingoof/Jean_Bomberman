@@ -51,8 +51,14 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
 void ECS::Collider::checkCollision(std::vector<ECS::Entity> &scene)
 {
     for (auto &fEntity:scene) {
-        for (auto &sEntity:scene)
-            if (fEntity.getName() != sEntity.getName())
-                isEntitesColliding(fEntity, sEntity);
+        auto it = std::find_if(_physicBodies.begin(), _physicBodies.end(), [&fEntity](const raylib::Physics &idx) {return (idx.getName() == fEntity.getName());});
+        if (it != _physicBodies.end())
+            continue;
+        raylib::Physics newBody(fEntity.getName());
+        ECS::Transform &newBodyTransform = fEntity.getComponent<ECS::Transform>(ECS::TRANSFORM);
+
+        newBody.createPhysicBodyRect({newBodyTransform.getPosition().X, newBodyTransform.getPosition().Z}, newBodyTransform.getSize().X, newBodyTransform.getSize().Z, 10);
+        newBody.disableDynamicPhysic();
+        _physicBodies.push_back(newBody);
     }
 }

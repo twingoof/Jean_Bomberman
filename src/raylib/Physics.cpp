@@ -7,13 +7,19 @@
 
 #include "Physics.hpp"
 
+raylib::Physics::Physics(const std::string &name)
+    : _name(name)
+{}
+
 raylib::Physics::Physics(const raylib::Physics &rHand)
 {
+    this->_name = rHand._name;
     this->setPhysicBody(rHand);
 }
 
 raylib::Physics &raylib::Physics::operator=(const raylib::Physics &rHand)
 {
+    this->_name = rHand._name;
     this->setPhysicBody(rHand);
     return (*this);
 }
@@ -51,6 +57,21 @@ void raylib::Physics::addTorque(float amount)
 void raylib::Physics::shatter(::Vector2 pos, float force)
 {
     ::PhysicsShatter(this, pos, force);
+}
+
+const std::string &raylib::Physics::getName(void) const
+{
+    return (_name);
+}
+
+void raylib::Physics::disableDynamicPhysic(void)
+{
+    this->enabled = false;
+}
+
+void raylib::Physics::enableDynamicPhysic(void)
+{
+    this->enabled = true;
 }
 
 void raylib::Physics::destroyPhysicBody(void)

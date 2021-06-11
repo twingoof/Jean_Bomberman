@@ -9,7 +9,7 @@
 
 raylib::Music::Music(const std::string &filePath)
 {
-    this->setMusic(this->loadMusicFromFile(filePath));
+    this->loadMusicFromFile(filePath);
 }
 
 raylib::Music::Music(const Music &rHand)
@@ -27,6 +27,11 @@ raylib::Music::~Music()
 {
     if (_isLoaded)
         this->unload();
+}
+
+void raylib::Music::loadMusicFromFile(const std::string &filePath)
+{
+    this->setMusic(::LoadMusicStream(filePath.c_str()));
 }
 
 void raylib::Music::unload(void)

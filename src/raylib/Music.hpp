@@ -20,7 +20,7 @@ namespace raylib {
             Music &operator=(const Music &rHand);
             ~Music();
 
-            Music &loadMusicFromFile(const std::string &filePath);
+            void loadMusicFromFile(const std::string &filePath);
             void launch();
             void pause();
             void resume();

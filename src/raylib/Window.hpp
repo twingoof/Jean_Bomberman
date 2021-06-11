@@ -10,8 +10,12 @@
 
 #include "Vector2.hpp"
 #include "raylib.h"
-#include "physac.h"
 #include <string>
+
+#ifndef PHYSAC_IMPLEMENTATION
+#define PHYSAC_IMPLEMENTATION
+#include "physac.h"
+#endif
 
 namespace raylib {
     class Window {

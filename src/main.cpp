@@ -18,6 +18,7 @@
 #include "Transform.hpp"
 #include "MapGenerator.hpp"
 #include "vectors/ECSVector.hpp"
+#include "Clock.hpp"
 
 int main()
 {
@@ -26,22 +27,30 @@ int main()
     raylib::Camera3D camera((Vector3){20, 20, 20}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
     ECS::Renderer r;
-    ECS::Controller d;
-    ECS::Displacer p;
-    ECS::Collider c;
+    ECS::Controller ctrl;
+    ECS::Displacer disp;
+    ECS::Collider cld;
+    ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
-    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(2, 0, 1));
+    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(-7, 0, 1));
 
     window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
+    window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
     gameEntities.push_back(pl);
+    clock.startClock();
     while (!window.windowShouldClose())
     {
         window.beginDrawing();
         window.begin3DMode(camera);
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
-        p.moveEntity(gameEntities);
+        if (clock.getTimeElapsed() > 0.01) {
+            ctrl.moveEntity(gameEntities.at(gameEntities.size() - 1));
+            cld.checkCollision(gameEntities);
+            disp.moveEntity(gameEntities);
+            clock.restartClock();
+        }
         r.draw(gameEntities);
         window.end3DMode();
         window.endDrawing();

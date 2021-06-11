@@ -9,16 +9,18 @@
 #define PHYSICS_HPP_
 
 #include "raylib.h"
+#include <string>
+
+#define PHYSAC_IMPLEMENTATION
 #include "physac.h"
-#include <memory>
 
 namespace raylib {
     class Physics : public ::PhysicsBodyData {
         public:
-            Physics() = default;
+            Physics(const std::string &name);
             Physics(const Physics &rHand);
             Physics &operator=(const Physics &rHand);
-            ~Physics() = default;
+            ~Physics();
 
             void createPhysicBodyCircle(::Vector2 position, float radius, float density);
             void createPhysicBodyRect(::Vector2 position, float width, float height, float density);
@@ -28,11 +30,17 @@ namespace raylib {
             void addForce(::Vector2 force);
             void shatter(::Vector2 pos, float force);
 
+            void disableDynamicPhysic();
+            void enableDynamicPhysic();
+
+            const std::string &getName() const;
+
             void destroyPhysicBody();
 
         protected:
 
         private:
+            std::string _name;
             void setPhysicBody(const ::PhysicsBodyData physicBody);
 
     };
