@@ -174,6 +174,19 @@ namespace raylib {
             Window &maximizeWindow();
 
             /**
+             * @brief Set window's minimal dimensions
+             * @param minWidth Minimal width
+             * @param minHeight Minimal height
+             */
+            void setWindowMinSize(int minWidth, int minHeight);
+
+            /**
+             * @brief Get mouse position on screen
+             * @return Vector2 Poisition of the mouse on screen
+             */
+            ::Vector2 getMousePosition() const;
+
+            /**
              * @brief Minimize window if resizable.
              */
             Window &minimizeWindow();

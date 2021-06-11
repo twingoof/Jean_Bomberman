@@ -182,6 +182,16 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (*this);
 }
 
+void raylib::Window::setWindowMinSize(int minWidth, int minHeight)
+{
+    ::SetWindowMinSize(minWidth, minHeight);
+}
+
+::Vector2 raylib::Window::getMousePosition() const
+{
+    return (::GetMousePosition());
+}
+
 ::Vector2 raylib::Window::getScaleFactorDPI(void) const
 {
     return (::GetWindowScaleDPI());

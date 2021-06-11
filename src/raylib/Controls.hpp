@@ -127,20 +127,19 @@ namespace raylib {
     class Controls {
         public:
             Controls() = default;
-
             Controls(const Controls &oldControls) = default;
-
             Controls &operator=(const Controls &oldControls) = default;
-
             ~Controls() = default;
 
             bool isKeyDown(int key);
-
             bool isKeyPressed(int key);
-
             bool isKeyUp(int key);
-
             bool isKeyReleased(int key);
+
+            bool isMouseButtonPressed(int button);
+            bool isMouseButtonReleased(int button);
+            bool isMouseButtonDown(int button);
+            bool isMouseButtonUp(int button);
 
         protected:
 
