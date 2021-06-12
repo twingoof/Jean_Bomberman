@@ -42,7 +42,7 @@ ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position,
 ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(4, 1, 4);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({0, 0, 0, 255});
@@ -55,7 +55,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(2, 1, 2);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition());
     ECS::Drawable3D d(ECS::RECT, t.getSize());
@@ -70,7 +70,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
 ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(4, 1, 4);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({255, 0, 0, 255});

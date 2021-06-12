@@ -66,12 +66,12 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
     float x = 0;
     float z = 0;
 
-    z -= (std::get<1>(dimensions) / 2) * 4;
+    z -= (std::get<1>(dimensions) / 2) * 3;
     for (it = _map.begin(); it != _map.end(); it++) {
-        x -= (std::get<0>(dimensions) / 2) * 4;
+        x -= (std::get<0>(dimensions) / 2) * 3;
         for (const char &c : (*it)) {
             if (c == 'P' || c == ' ') {
-                x += 4;
+                x += 3;
                 continue;
             }
             if (c == 'D')
@@ -79,10 +79,10 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
             else if (c == '#')
                 e = Presets::createWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z));
             mapEntities.push_back(e);
-            x += 4;
+            x += 3;
         }
         x = 0;
-        z += 4;
+        z += 3;
     }
     return (mapEntities);
 }

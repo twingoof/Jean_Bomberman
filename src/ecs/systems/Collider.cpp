@@ -38,8 +38,8 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
     try {
         ECS::Moveable &fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
 
-        ::BoundingBox fEntityR = {{fEntityT.getPosition().X, -fEntityT.getSize().Y, fEntityT.getPosition().Z}, {fEntityT.getPosition().X + fEntityT.getSize().X, fEntityT.getSize().Y, fEntityT.getPosition().Z + fEntityT.getSize().Z}};
-        ::BoundingBox sEntityR = {{sEntityT.getPosition().X, -sEntityT.getSize().Y, sEntityT.getPosition().Z}, {sEntityT.getPosition().X + sEntityT.getSize().X, sEntityT.getSize().Y, sEntityT.getPosition().Z + sEntityT.getSize().Z}};
+        ::BoundingBox fEntityR = {{fEntityT.getPosition().X, fEntityT.getSize().Y, fEntityT.getPosition().Z}, {fEntityT.getPosition().X + fEntityT.getSize().X - 0.1, fEntityT.getSize().Y, fEntityT.getPosition().Z + fEntityT.getSize().Z - 0.1}};
+        ::BoundingBox sEntityR = {{sEntityT.getPosition().X, sEntityT.getSize().Y, sEntityT.getPosition().Z}, {sEntityT.getPosition().X + sEntityT.getSize().X - 0.1, sEntityT.getSize().Y, sEntityT.getPosition().Z + sEntityT.getSize().Z - 0.1}};
 
         if (raylib::checkCollisionBoxes(fEntityR, sEntityR)) {
             fEntityM.setVelocity({0, 0, 0});

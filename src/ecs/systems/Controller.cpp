@@ -18,25 +18,25 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
     int i = 0;
 
     if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
-        newVel.Z = -0.1;
+        newVel.Z = -0.275;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_DOWN)) {
-        newVel.Z = 0.1;
+        newVel.Z = 0.275;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_LEFT)) {
-        newVel.X = -0.1;
+        newVel.X = -0.275;
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_RIGHT)) {
-        newVel.X = 0.1;
+        newVel.X = 0.275;
         i = 1;
     }
     if (i == 0)
         m.setVelocity({0, 0, 0});
     if (myWindow.is3DMode())
         if (controls.isKeyPressed(raylib::Keys::KEY_SPACE))
-            newVel.Y = 0.5;
+            newVel.Y = 0.275;
     m.setVelocity(newVel);
 }
