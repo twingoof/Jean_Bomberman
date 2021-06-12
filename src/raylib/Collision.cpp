@@ -21,3 +21,8 @@ bool raylib::checkCollisionPointRec(::Vector2 point, ::Rectangle recShape)
 {
     return (::CheckCollisionPointRec(point, recShape));
 }
+
+bool raylib::checkCollisionBoxes(::BoundingBox box1, ::BoundingBox box2)
+{
+    return (::CheckCollisionBoxes(box1, box2));
+}

@@ -24,6 +24,7 @@ void ECS::Displacer::moveEntity(std::vector<ECS::Entity> &entities)
         } catch (std::out_of_range &e) {
             continue;
         }
+        fEntity.getComponent<ECS::Transform>(ECS::TRANSFORM).setLastPosition(fEntity.getComponent<ECS::Transform>(ECS::TRANSFORM).getPosition());
         newPosition.X = newPosition.X + m.getVelocity().X;
         newPosition.Y = newPosition.Y + m.getVelocity().Y;
         newPosition.Z = newPosition.Z + m.getVelocity().Z;

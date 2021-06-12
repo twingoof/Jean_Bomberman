@@ -38,14 +38,12 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
     try {
         ECS::Moveable &fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
 
-        Rectangle fEntityR = {fEntityT.getPosition().X, fEntityT.getPosition().Z, fEntityT.getSize().X, fEntityT.getSize().Z};
-        Rectangle sEntityR = {sEntityT.getPosition().X, sEntityT.getPosition().Z, sEntityT.getSize().X, sEntityT.getSize().Z};
+        ::BoundingBox fEntityR = {{fEntityT.getPosition().X, -fEntityT.getSize().Y, fEntityT.getPosition().Z}, {fEntityT.getPosition().X + fEntityT.getSize().X, fEntityT.getSize().Y, fEntityT.getPosition().Z + fEntityT.getSize().Z}};
+        ::BoundingBox sEntityR = {{sEntityT.getPosition().X, -sEntityT.getSize().Y, sEntityT.getPosition().Z}, {sEntityT.getPosition().X + sEntityT.getSize().X, sEntityT.getSize().Y, sEntityT.getPosition().Z + sEntityT.getSize().Z}};
 
-        if (CheckCollisionRecs(fEntityR, sEntityR)) {
-            if (fEntityM.getVelocity().X != 0)
-                fEntityM.setVelocity(-fEntityM.getVelocity().X, 0, fEntityM.getVelocity().Z);
-            if (fEntityM.getVelocity().Z != 0)
-                fEntityM.setVelocity(fEntityM.getVelocity().X, 0, -fEntityM.getVelocity().Z);
+        if (raylib::checkCollisionBoxes(fEntityR, sEntityR)) {
+            fEntityM.setVelocity({0, 0, 0});
+            fEntityT.setPosition(fEntityT.getLastPosition());
         }
     } catch (std::out_of_range &e) {
         return;
@@ -59,13 +57,4 @@ void ECS::Collider::checkCollision(std::vector<ECS::Entity> &scene)
             if (fEntity.getName() != sEntity.getName())
                 isEntitesColliding(fEntity, sEntity);
     }
-    // _physicBodies.clear();
-    // for (auto &fEntity:scene) {
-    //     PhysicsBody newBody;
-
-    //     ECS::Transform &fEntityT = fEntity.getComponent<ECS::Transform>(ECS::TRANSFORM);
-    //     ::Vector2 bodyPos = {fEntityT.getPosition().X, fEntityT.getPosition().Z};
-    //     newBody = CreatePhysicsBodyRectangle(bodyPos, fEntityT.getSize().X, fEntityT.getSize().Z, 10);
-    //     _physicBodies.push_back(newBody);
-    // }
 }

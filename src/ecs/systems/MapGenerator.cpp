@@ -62,23 +62,27 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
 {
     std::vector<ECS::Entity> mapEntities;
     std::vector<std::string>::iterator it;
-    int x = 0;
-    int z = 0;
+    ECS::Entity e;
+    float x = 0;
+    float z = 0;
 
-    z -= std::get<1>(dimensions) / 2;
+    z -= (std::get<1>(dimensions) / 2) * 4;
     for (it = _map.begin(); it != _map.end(); it++) {
-        x -= (std::get<0>(dimensions) / 2);
+        x -= (std::get<0>(dimensions) / 2) * 4;
         for (const char &c : (*it)) {
             if (c == 'P' || c == ' ') {
-                x += 1;
+                x += 4;
                 continue;
             }
-            ECS::Entity e = (Presets::createWall("wall"+std::to_string(x)+std::to_string(z),ECS::Vector3<float>(x,0, z)));
+            if (c == 'D')
+                e = (Presets::createSoftWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z)));
+            else if (c == '#')
+                e = Presets::createWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z));
             mapEntities.push_back(e);
-            x += 1;
+            x += 4;
         }
         x = 0;
-        z += 1;
+        z += 4;
     }
     return (mapEntities);
 }

@@ -8,13 +8,14 @@
 #ifndef COLLIDER_HPP_
 #define COLLIDER_HPP_
 
+#include "Transform.hpp"
+#include "Collision.hpp"
+#include "Moveable.hpp"
+#include "Entity.hpp"
+#include "Window.hpp"
 #include "Entity.hpp"
 #include <algorithm>
 #include <vector>
-
-#include "raylib.h"
-// #define PHYSAC_IMPLEMENTATION
-// #include "physac.h"
 
 namespace ECS {
     class Collider {
@@ -27,8 +28,6 @@ namespace ECS {
         private:
             void isWindowColliding(ECS::Entity &entity);
             void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
-
-            // std::vector<PhysicsBody> _physicBodies;
 
     };
 };

@@ -28,10 +28,9 @@ namespace ECS {
      */
     class Renderer {
         public:
-    
             Renderer();
             ~Renderer();
-    
+
             void draw(const std::vector<ECS::Entity> &entities);
         private:
             void _draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable);

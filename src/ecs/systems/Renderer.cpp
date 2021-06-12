@@ -63,7 +63,6 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
             img.loadImage(drawable.getSpritePath());
             tex.loadFromImage(img);
             raylib::drawTexture(tex, position.X, position.Y, WHITE);
-            
             break;
     }
 }

@@ -18,6 +18,8 @@ namespace raylib {
 
     bool checkCollisionPointRec(::Vector2 point, ::Rectangle recShape);
 
+    bool checkCollisionBoxes(::BoundingBox box1, ::BoundingBox box2);
+
 };
 
 #endif /* !COLLISION_HPP_ */

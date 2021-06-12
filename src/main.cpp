@@ -32,7 +32,7 @@ int main()
     ECS::Collider cld;
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
-    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(-7, 0, 1));
+    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(-30, 0, 1));
 
     window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     window.setWindowFPS(60);
