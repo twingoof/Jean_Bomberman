@@ -217,40 +217,6 @@ void raylib::Window::closeWindow(void)
     }
 }
 
-void raylib::Window::initPhysics(void)
-{
-    ::InitPhysics();
-    _isPhysicInitialized = true;
-}
-
-int raylib::Window::getPhysicBodyCount(void)
-{
-    return (::GetPhysicsBodiesCount());
-}
-
-::PhysicsBodyData raylib::Window::getPhysicsBody(int idx)
-{
-    return (*(::GetPhysicsBody(idx)));
-}
-
-void raylib::Window::resetPhysics(void)
-{
-    ::ResetPhysics();
-}
-
-void raylib::Window::updatePhysics(void)
-{
-    ::UpdatePhysics();
-}
-
-void raylib::Window::stopPhysics(void)
-{
-    if (_isPhysicInitialized) {
-        ::ClosePhysics();
-        _isPhysicInitialized = false;
-    }
-}
-
 void raylib::Window::initAudioDevice(void)
 {
     ::InitAudioDevice();

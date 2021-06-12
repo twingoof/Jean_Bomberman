@@ -12,11 +12,6 @@
 #include "raylib.h"
 #include <string>
 
-#ifndef PHYSAC_IMPLEMENTATION
-#define PHYSAC_IMPLEMENTATION
-#include "physac.h"
-#endif
-
 namespace raylib {
     class Window {
         public:
@@ -219,40 +214,6 @@ namespace raylib {
             void closeWindow();
 
             ~Window();
-
-            // Physics Encapsulation
-
-            /**
-             * @brief Initialize Physac Physics instance
-             */
-            void initPhysics();
-
-            /**
-             * @brief Gets the number of PhysicsBody created
-             * @return int Number of PhysicsBody
-             */
-            int getPhysicBodyCount();
-
-            /**
-             * @brief Gets the PhysicsBodyData at the idx index
-             * @return ::PhysicsBodyData Data of PhysicsBody at index idx
-             */
-            ::PhysicsBodyData getPhysicsBody(int idx);
-
-            /**
-             * @brief Update Physics
-             */
-            void updatePhysics();
-
-            /**
-             * @brief Deletes PhysicsBody created and reset them
-             */
-            void resetPhysics();
-
-            /**
-             * @brief Stops Physics Framework
-             */
-            void stopPhysics();
 
             // Audio Device Encapsulation
 

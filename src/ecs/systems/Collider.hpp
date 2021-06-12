@@ -5,14 +5,16 @@
 ** Collider
 */
 
-#include <vector>
-
 #ifndef COLLIDER_HPP_
 #define COLLIDER_HPP_
 
-#include "Physics.hpp"
 #include "Entity.hpp"
 #include <algorithm>
+#include <vector>
+
+#include "raylib.h"
+// #define PHYSAC_IMPLEMENTATION
+// #include "physac.h"
 
 namespace ECS {
     class Collider {
@@ -20,15 +22,15 @@ namespace ECS {
             Collider() = default;
             ~Collider() = default;
 
-        void checkCollision(std::vector<ECS::Entity> &scene);
+            void checkCollision(std::vector<ECS::Entity> &scene);
 
-    private:
-        void isWindowColliding(ECS::Entity &entity);
-        void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
+        private:
+            void isWindowColliding(ECS::Entity &entity);
+            void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
 
-        std::vector<raylib::Physics> _physicBodies;
+            // std::vector<PhysicsBody> _physicBodies;
 
     };
-}
+};
 
 #endif /* !COLLIDER_HPP_ */
