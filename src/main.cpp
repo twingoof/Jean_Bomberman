@@ -22,7 +22,7 @@
 
 int main()
 {
-    MapGenerator map(11, 11);
+    MapGenerator map(9, 7);
     raylib::Window &window = raylib::Window::getWindow();
     raylib::Camera3D camera((Vector3){0, 90, 2}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
@@ -32,12 +32,11 @@ int main()
     ECS::Collider cld;
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
-    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(-30, 0, 1));
 
     window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
-    gameEntities.push_back(pl);
+    std::cout << "Sa race 1" << std::endl;
     clock.startClock();
     while (!window.windowShouldClose())
     {
@@ -46,7 +45,7 @@ int main()
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            ctrl.moveEntity(gameEntities.at(gameEntities.size() - 1));
+            ctrl.moveEntity(gameEntities.at(12)); // Ajouter le bon index (peut-être changer le prototype de la fonction)
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);
             clock.restartClock();

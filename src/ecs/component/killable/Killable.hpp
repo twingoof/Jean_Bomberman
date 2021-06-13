@@ -14,17 +14,17 @@ namespace ECS {
     class Killable : public ECS::IComponent {
         public:
             Killable() = default;
-            Killable(unsigned short life);
+            Killable(short life);
             Killable(const Killable &killable) = default;
             Killable &operator=(const Killable &killable) = default;
             ~Killable();
 
-            unsigned short getLife(void) const;
-            void takeDamage(unsigned short damage);
+            short getLife(void) const;
+            void takeDamage(short damage);
             bool isAlive(void);
 
         private:
-            unsigned short _life;
+            short _life;
     };
 };
 

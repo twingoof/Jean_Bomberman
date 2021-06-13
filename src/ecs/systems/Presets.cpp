@@ -6,12 +6,6 @@
 */
 
 #include "Presets.hpp"
-#include "Entity.hpp"
-#include "Transform.hpp"
-#include "Clickable.hpp"
-#include "Drawable2D.hpp"
-#include "Moveable.hpp"
-#include "Drawable3D.hpp"
 
 ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath)
 {
@@ -71,11 +65,13 @@ ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> positi
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(3, 1, 3);
+    ECS::Killable k(20);
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({255, 0, 0, 255});
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
+    entity.addComponent<ECS::Killable>(k, ECS::KILLABLE);
     return (entity);
 }

@@ -24,6 +24,7 @@ class MapGenerator {
 
         void generateMap(void);
         void insideMap(int x, int y, std::string &line);
+        void addBorders();
 
         std::vector<ECS::Entity> generateMapEntities(void);
 
