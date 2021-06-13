@@ -20,6 +20,7 @@
 #include "MapGenerator.hpp"
 #include "vectors/ECSVector.hpp"
 #include "Clock.hpp"
+#include "Kill.hpp"
 
 int main()
 {
@@ -28,6 +29,7 @@ int main()
     raylib::Camera3D camera((Vector3){0, 90, 2}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
     ECS::Renderer r;
+    ECS::Kill kill;
     ECS::Attack atk;
     ECS::Controller ctrl;
     ECS::Displacer disp;
@@ -50,6 +52,7 @@ int main()
             atk.manageBombs(gameEntities);
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);
+            kill.deleteWall(gameEntities);
             clock.restartClock();
         }
         r.draw(gameEntities);

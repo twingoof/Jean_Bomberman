@@ -49,7 +49,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(3, 1, 3);
+    ECS::Vector3<int> size(1, 1, 1);
     ECS::Attacker a(1, 100);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition());

@@ -26,6 +26,8 @@ namespace ECS {
         protected:
         private:
             void exploseBombs(std::vector<ECS::Entity> &entity);
+            void rangeExplosion(std::vector<ECS::Entity> &entity);
+            
             unsigned int _bombId = 0;
     };
 };
