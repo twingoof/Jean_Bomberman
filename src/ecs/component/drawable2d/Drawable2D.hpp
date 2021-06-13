@@ -5,6 +5,16 @@
 ** Drawable2D
 */
 
+/**
+ * @file Drawable2D.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Drawable2D component
+ * @version 0.1
+ * @date 2021-06-13
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef DRAWABLE2D_HPP_
 #define DRAWABLE2D_HPP_
 
