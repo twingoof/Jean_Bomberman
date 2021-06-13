@@ -6,12 +6,12 @@
 */
 
 #include "Controller.hpp"
+#include "Presets.hpp"
 #include "transform/Transform.hpp"
 #include "vectors/ECSVector.hpp"
 
 void ECS::Controller::moveEntity(ECS::Entity &entity)
 {
-    raylib::Window &myWindow = raylib::Window::getWindow();
     ECS::Moveable &m = entity.getComponent<ECS::Moveable>(MOVEABLE);
     raylib::Controls controls;
     ECS::Vector3<float> newVel;
@@ -35,8 +35,5 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
     }
     if (i == 0)
         m.setVelocity({0, 0, 0});
-    if (myWindow.is3DMode())
-        if (controls.isKeyPressed(raylib::Keys::KEY_SPACE))
-            newVel.Y = 0.275;
     m.setVelocity(newVel);
 }

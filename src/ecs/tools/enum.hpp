@@ -19,7 +19,8 @@ namespace ECS {
         PHYSICS,
         COLLECTIBLE,
         ATTACKER,
-        TRANSFORM
+        TRANSFORM,
+        TIMER
     };
 
 enum DrawableType {

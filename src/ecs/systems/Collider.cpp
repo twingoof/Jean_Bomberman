@@ -51,9 +51,15 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
 
 void ECS::Collider::checkCollision(std::vector<ECS::Entity> &scene)
 {
+    std::string fCmp;
+    std::string sCmp;
+
     for (auto &fEntity:scene) {
-        for (auto sEntity:scene)
-            if (fEntity.getName() != sEntity.getName())
+        for (auto sEntity:scene) {
+            fCmp = fEntity.getName();
+            sCmp = sEntity.getName();
+            if ((fCmp != sCmp) && ((fCmp.find("bomb-") == fCmp.npos) && (sCmp.find("bomb-") == sCmp.npos)))
                 isEntitesColliding(fEntity, sEntity);
+        }
     }
 }

@@ -8,6 +8,7 @@
 #ifndef ATTACKER_HPP_
 #define ATTACKER_HPP_
 
+#include "Clock.hpp"
 #include "Killable.hpp"
 #include "IComponent.hpp"
 
@@ -15,22 +16,25 @@ namespace ECS {
     class Attacker: public ECS::IComponent {
         public:
             Attacker() = default;
-            Attacker(unsigned int ammo, unsigned short damage);
+            Attacker(double reloadTime, unsigned short damage);
             Attacker(const Attacker &cpy) = default;
             Attacker &operator=(const Attacker &rHand) = default;
             ~Attacker();
 
-            unsigned int getAmmo() const;
+            double getReloadTime() const;
             unsigned short getDamage() const;
             unsigned short getBaseDamage() const;
-            void setAmmo(unsigned int ammo);
+            void setReloadTime(double reloadTime);
             void setDamage(unsigned short damage);
             void dealDamage(ECS::Killable &target);
             void resetDamage();
+            bool isReload();
+            void reload();
 
         protected:
         private:
-            unsigned int _ammo;
+            ECS::Clock _clock;
+            double _reloadTime;
             unsigned short _damage;
             const unsigned short _baseDamage;
     };

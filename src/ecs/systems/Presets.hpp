@@ -9,10 +9,12 @@
 #include "Drawable2D.hpp"
 #include "ECSVector.hpp"
 #include "Transform.hpp"
+#include "Attacker.hpp"
 #include "Clickable.hpp"
 #include "Moveable.hpp"
 #include "Killable.hpp"
 #include "Entity.hpp"
+#include "Timer.hpp"
 #include "enum.hpp"
 
 #ifndef PRESETS_HPP_
@@ -30,6 +32,7 @@ namespace Presets
 
     ECS::Entity createSoftWall(std::string name, ECS::Vector3<float> position);
 
+    ECS::Entity createBomb(std::string name, ECS::Vector3<float> position, int damages);
 };
 
 #endif /* !PRESETS_HPP_ */
