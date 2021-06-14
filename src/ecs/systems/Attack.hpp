@@ -14,6 +14,7 @@
 #include "Entity.hpp"
 #include <vector>
 #include "Controls.hpp"
+#include "GetEntityInVector.hpp"
 
 namespace ECS {
     class Attack {

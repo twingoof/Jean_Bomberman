@@ -21,6 +21,7 @@
 #include "vectors/ECSVector.hpp"
 #include "Clock.hpp"
 #include "Kill.hpp"
+#include "GetEntityInVector.hpp"
 
 int main()
 {
@@ -40,6 +41,7 @@ int main()
     window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
+    ECS::GetEntityInVector vect(gameEntities);
     clock.startClock();
     while (!window.windowShouldClose())
     {
@@ -48,7 +50,7 @@ int main()
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            ctrl.moveEntity(gameEntities.at(12)); // Ajouter le bon index (peut-être changer le prototype de la fonction)
+            ctrl.moveEntity(vect.getEntityByName("player0"));
             atk.manageBombs(gameEntities);
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);
