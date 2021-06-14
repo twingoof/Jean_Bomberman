@@ -26,16 +26,12 @@ namespace ECS {
         protected:
         private:
             void exploseBombs(std::vector<ECS::Entity> &entity);
-            void rangeExplosion(std::vector<ECS::Entity> &entity);
             void manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            ECS::Entity &getTopKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            ECS::Entity &getBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            ECS::Entity &getLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            ECS::Entity &getRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            bool killTopKillable(std::vector<ECS::Entity> &entities, ECS::Entity &entity, int spaceBtwEnt);
-            bool killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &entity, int spaceBtwEnt);
-            bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &entity, int spaceBtwEnt);
-            bool killRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &entity, int spaceBtwEnt);
+            bool killTopKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
+            bool killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
+            bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
+            bool killRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
+            ECS::Vector3<float> _findBombPos(ECS::Transform playerT);
             
             unsigned int _bombId = 0;
     };
