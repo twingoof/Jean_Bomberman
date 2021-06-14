@@ -86,9 +86,9 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
     }
 
     if (modZ == 0) {
-        bombPos.Z -= mRelPlayPos.Z;
+        bombPos.Z = mRelPlayPos.Z;
     }
-    else if (modZ < 1.5) {
+    else if (modZ < 0.5) {
         bombPos.Z -= mRelPlayPos.Z - modZ;
     }
     else {
