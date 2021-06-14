@@ -8,6 +8,14 @@
 #ifndef ENUM_HPP_
 #define ENUM_HPP_
 
+#ifndef MAP_SIZE_X
+#define MAP_SIZE_X  9
+#endif
+
+#ifndef MAP_SIZE_Z
+#define MAP_SIZE_Z  7
+#endif
+
 namespace ECS {
     enum ComponentType
     {

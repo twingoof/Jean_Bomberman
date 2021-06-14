@@ -7,6 +7,8 @@
 
 #include "Attack.hpp"
 
+#include <math.h>
+
 void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 {
     raylib::Controls controls;
@@ -15,7 +17,7 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 
     if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
         if (tmp.isReload()) {
-            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), entity.at(12).getComponent<ECS::Transform>(TRANSFORM).getPosition(), tmp.getDamage());
+            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(entity.at(12).getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage());
             entity.push_back(e);
             tmp.reload();
             this->_bombId++;
@@ -59,3 +61,42 @@ void ECS::Attack::rangeExplosion(std::vector<ECS::Entity> &entity)
         }
     }
 }
+
+ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
+{
+    ECS::Vector3<float> bombPos(0, 0, 0);
+    ECS::Vector3<float> mRelPlayPos(0, 0, 0);
+    double modX = 0.0;
+    double modZ = 0.0;
+
+    mRelPlayPos.X = static_cast<float>(((MAP_SIZE_X / 2) - playerT.getPosition().X) - 1.5f);
+    mRelPlayPos.Z = static_cast<float>(((MAP_SIZE_Z / 2) - playerT.getPosition().Z) - 1.5f);
+
+    modX = fmod(mRelPlayPos.X, 3);
+    modZ = fmod(mRelPlayPos.Z, 3);
+
+    if (modX == 0) {
+        bombPos.X -= mRelPlayPos.X;
+    }
+    else if (modX < 1.5) {
+        bombPos.X -= mRelPlayPos.X - modX;
+    }
+    else {
+        bombPos.X -= mRelPlayPos.X + (3 - modX);
+    }
+
+    if (modZ == 0) {
+        bombPos.Z -= mRelPlayPos.Z;
+    }
+    else if (modZ < 1.5) {
+        bombPos.Z -= mRelPlayPos.Z - modZ;
+    }
+    else {
+        bombPos.Z -= mRelPlayPos.Z + (3 - modZ);
+    }
+
+    bombPos.X += 3;
+    bombPos.Z += 3;
+
+    return (bombPos);
+} 

@@ -27,6 +27,7 @@ namespace ECS {
         private:
             void exploseBombs(std::vector<ECS::Entity> &entity);
             void rangeExplosion(std::vector<ECS::Entity> &entity);
+            ECS::Vector3<float> _findBombPos(ECS::Transform playerT);
             
             unsigned int _bombId = 0;
     };
