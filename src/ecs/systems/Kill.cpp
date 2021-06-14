@@ -16,7 +16,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (kill.isAlive()) {
+        if (!kill.isAlive()) {
             entity.erase(it);
         }
     }
