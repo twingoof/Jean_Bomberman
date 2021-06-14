@@ -37,8 +37,8 @@ void ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntit
 
     try {
         ECS::Moveable &fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
-        ::BoundingBox fEntityR = {{fEntityT.getPosition().X, fEntityT.getSize().Y, fEntityT.getPosition().Z}, {fEntityT.getPosition().X + fEntityT.getSize().X - 0.1, fEntityT.getSize().Y, fEntityT.getPosition().Z + fEntityT.getSize().Z - 0.1}};
-        ::BoundingBox sEntityR = {{sEntityT.getPosition().X, sEntityT.getSize().Y, sEntityT.getPosition().Z}, {sEntityT.getPosition().X + sEntityT.getSize().X - 0.1, sEntityT.getSize().Y, sEntityT.getPosition().Z + sEntityT.getSize().Z - 0.1}};
+        ::BoundingBox fEntityR = {{fEntityT.getPosition().X - (static_cast<float>(fEntityT.getSize().X) / 2), fEntityT.getPosition().Y - (static_cast<float>(fEntityT.getSize().Y) / 2), fEntityT.getPosition().Z - (static_cast<float>(fEntityT.getSize().Z) / 2)}, {fEntityT.getPosition().X + (static_cast<float>(fEntityT.getSize().X) / 2), fEntityT.getPosition().Y + (static_cast<float>(fEntityT.getSize().Y) / 2), fEntityT.getPosition().Z + (static_cast<float>(fEntityT.getSize().Z) / 2)}};
+        ::BoundingBox sEntityR = {{sEntityT.getPosition().X - (static_cast<float>(sEntityT.getSize().X) / 2), sEntityT.getPosition().Y - (static_cast<float>(sEntityT.getSize().Y) / 2), sEntityT.getPosition().Z - (static_cast<float>(sEntityT.getSize().Z) / 2)}, {sEntityT.getPosition().X + (static_cast<float>(sEntityT.getSize().X) / 2), sEntityT.getPosition().Y + (static_cast<float>(sEntityT.getSize().Y) / 2), sEntityT.getPosition().Z + (static_cast<float>(sEntityT.getSize().Z) / 2)}};
 
         if (raylib::checkCollisionBoxes(fEntityR, sEntityR)) {
             fEntityM.setVelocity({0, 0, 0});
