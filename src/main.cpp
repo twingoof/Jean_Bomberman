@@ -50,7 +50,12 @@ int main()
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            ctrl.moveEntity(vect.getEntityByName("player0"));
+            std::tuple<bool, ECS::Entity &> player = vect.getEntityByName("player0");
+            if (std::get<0>(player) == false) {
+                // Faire la fin
+                break;
+            }
+            ctrl.moveEntity(std::get<1>(player));
             atk.manageBombs(gameEntities);
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);

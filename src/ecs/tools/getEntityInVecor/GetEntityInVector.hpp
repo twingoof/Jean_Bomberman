@@ -11,6 +11,7 @@
 #include "Entity.hpp"
 #include <vector>
 #include <string>
+#include <tuple>
 
 namespace ECS {
     class GetEntityInVector {
@@ -20,7 +21,7 @@ namespace ECS {
             GetEntityInVector(const GetEntityInVector &vectorEntity) = default;
             ~GetEntityInVector() = default;
 
-            ECS::Entity &getEntityByName(std::string name);
+            std::tuple<bool, ECS::Entity &>getEntityByName(std::string name);
             std::vector<ECS::Entity> &getEntityInVector();
 
         protected:
