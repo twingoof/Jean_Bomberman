@@ -13,12 +13,13 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 {
     raylib::Controls controls;
     ECS::GetEntityInVector vect(entity);
-    ECS::Attacker &tmp = vect.getEntityByName("player0").getComponent<ECS::Attacker>(ATTACKER);
+    ECS::Entity &player = std::get<1>(vect.getEntityByName("player0"));
+    ECS::Attacker &tmp = player.getComponent<ECS::Attacker>(ATTACKER);
     ECS::Entity e;
 
     if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
         if (tmp.isReload()) {
-            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(vect.getEntityByName("player0").getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage());
+            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage());
             entity.push_back(e);
             tmp.reload();
             this->_bombId++;
