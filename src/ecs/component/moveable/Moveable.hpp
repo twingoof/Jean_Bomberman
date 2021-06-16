@@ -36,6 +36,7 @@ namespace ECS {
             raylib::Keys _keyDown;
             raylib::Keys _keyLeft;
             raylib::Keys _keyRight;
+            raylib::Keys _keyBomb;
     };
 };
 

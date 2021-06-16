@@ -19,7 +19,8 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
         try {
             ECS::Entity &player = std::get<1>(*it);
             ECS::Attacker &tmp = player.getComponent<ECS::Attacker>(ATTACKER);
-            if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
+            std::map<std::string, raylib::Keys> keys = player.getComponent<ECS::Moveable>(MOVEABLE).getKeys();
+            if (controls.isKeyPressed(keys["bomb"])) {
                 if (tmp.isReload()) {
                     e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage());
                     entity.push_back(e);

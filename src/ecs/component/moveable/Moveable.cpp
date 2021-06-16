@@ -11,10 +11,11 @@ ECS::Moveable::Moveable(): _velocity() {}
 
 ECS::Moveable::Moveable(ECS::Vector3<float> &velocity, std::map<std::string, raylib::Keys> keys) : _velocity(velocity)
 {
-    _keyUp = keys["up"];
-    _keyDown = keys["down"];
-    _keyLeft = keys["left"];
-    _keyRight = keys["right"];
+    this->_keyUp = keys["up"];
+    this->_keyDown = keys["down"];
+    this->_keyLeft = keys["left"];
+    this->_keyRight = keys["right"];
+    this->_keyBomb = keys["bomb"];
 }
 
 
@@ -34,10 +35,11 @@ void ECS::Moveable::setVelocity(float x, float y, float z)
 
 void ECS::Moveable::setKeys(std::map<std::string, raylib::Keys> keys)
 {
-    _keyUp = keys["up"];
-    _keyDown = keys["down"];
-    _keyLeft = keys["left"];
-    _keyRight = keys["right"];
+    this->_keyUp = keys["up"];
+    this->_keyDown = keys["down"];
+    this->_keyLeft = keys["left"];
+    this->_keyRight = keys["right"];
+    this->_keyBomb = keys["bomb"];
 }
 
 ECS::Vector3<float> ECS::Moveable::getVelocity(void) const
@@ -53,6 +55,7 @@ std::map<std::string, raylib::Keys> ECS::Moveable::getKeys() const
     keys["down"] = this->_keyDown;
     keys["left"] = this->_keyLeft;
     keys["right"] = this->_keyRight;
+    keys["bomb"] = this->_keyBomb;
     return (keys);
 }
 
