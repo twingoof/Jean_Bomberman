@@ -56,10 +56,9 @@ int main()
                 break;
             }
             std::vector<std::tuple<bool, ECS::Entity &>> players = ECS::getEntitiesByName("player", gameEntities);
-            for (auto it = players.begin(); it != players.end(); it++)
-                ctrl.moveEntity(std::get<1>(*it));
+            ctrl.moveEntity(gameEntities);
             atk.manageBombs(gameEntities);
-            cld.checkCollision(gameEntities);
+            //cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);
             kill.deleteWall(gameEntities);
             clock.restartClock();

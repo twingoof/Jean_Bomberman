@@ -7,7 +7,7 @@
 
 #include "Moveable.hpp"
 
-ECS::Moveable::Moveable(): _velocity(), _speed(0.275) {}
+ECS::Moveable::Moveable(): _velocity(), _speed(0.1) {}
 
 ECS::Moveable::Moveable(ECS::Vector3<float> &velocity, std::map<std::string, raylib::Keys> keys) : _velocity(velocity), _speed(0.275)
 {

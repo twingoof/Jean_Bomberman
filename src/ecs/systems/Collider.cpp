@@ -46,7 +46,7 @@ int ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity
             return (2);
         }
     } catch (const std::out_of_range &err) {}
-    try {
+    /* try {
         ECS::Moveable &fEntityM = fEntity.getComponent<Moveable>(MOVEABLE);
         ::BoundingBox fEntityR = {{fEntityT.getPosition().X - (static_cast<float>(fEntityT.getSize().X) / 2), fEntityT.getPosition().Y - (static_cast<float>(fEntityT.getSize().Y) / 2), fEntityT.getPosition().Z - (static_cast<float>(fEntityT.getSize().Z) / 2)}, {fEntityT.getPosition().X + (static_cast<float>(fEntityT.getSize().X) / 2), fEntityT.getPosition().Y + (static_cast<float>(fEntityT.getSize().Y) / 2), fEntityT.getPosition().Z + (static_cast<float>(fEntityT.getSize().Z) / 2)}};
         ::BoundingBox sEntityR = {{sEntityT.getPosition().X - (static_cast<float>(sEntityT.getSize().X) / 2), sEntityT.getPosition().Y - (static_cast<float>(sEntityT.getSize().Y) / 2), sEntityT.getPosition().Z - (static_cast<float>(sEntityT.getSize().Z) / 2)}, {sEntityT.getPosition().X + (static_cast<float>(sEntityT.getSize().X) / 2), sEntityT.getPosition().Y + (static_cast<float>(sEntityT.getSize().Y) / 2), sEntityT.getPosition().Z + (static_cast<float>(sEntityT.getSize().Z) / 2)}};
@@ -55,7 +55,7 @@ int ECS::Collider::isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity
             fEntityT.setPosition(fEntityT.getLastPosition());
     } catch (std::out_of_range &e) {
         return (1);
-    }
+    } */
     return (0);
 }
 
