@@ -51,6 +51,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     ECS::Entity entity(name);
     ECS::Vector3<int> size(2, 1, 2);
     ECS::Attacker a(1, 100);
+    ECS::Killable k(100);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition(), keys);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
@@ -60,6 +61,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Moveable>(m, ECS::MOVEABLE);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
+    entity.addComponent<ECS::Killable>(k, ECS::KILLABLE);
     return (entity);
 }
 

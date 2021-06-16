@@ -127,7 +127,7 @@ bool ECS::Attack::killTopKillable(std::vector<ECS::Entity> &entities, ECS::Entit
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (t.getPosition().Z == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().Z - spaceBtwEnt * bomb.getComponent<ECS::Transform>(TRANSFORM).getSize().Z) && t.getPosition().X == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().X)) {
+        if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), 0, (-spaceBtwEnt))) {
             try {
                 k = (*it).getComponent<ECS::Killable>(KILLABLE);
             } catch(std::out_of_range &e) {
@@ -153,7 +153,7 @@ bool ECS::Attack::killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entit
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (t.getPosition().Z == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().Z + spaceBtwEnt * bomb.getComponent<ECS::Transform>(TRANSFORM).getSize().Z) && t.getPosition().X == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().X)) {
+        if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), 0, spaceBtwEnt)) {
             try {
                 k = (*it).getComponent<ECS::Killable>(KILLABLE);
             } catch(std::out_of_range &e) {
@@ -179,7 +179,7 @@ bool ECS::Attack::killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Enti
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (t.getPosition().X == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().X - spaceBtwEnt * bomb.getComponent<ECS::Transform>(TRANSFORM).getSize().X) && t.getPosition().Z == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().Z)) {
+        if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), (-spaceBtwEnt), 0)) {
             try {
                 k = (*it).getComponent<ECS::Killable>(KILLABLE);
             } catch(std::out_of_range &e) {
@@ -205,7 +205,7 @@ bool ECS::Attack::killRightKillable(std::vector<ECS::Entity> &entities, ECS::Ent
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (t.getPosition().X == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().X + spaceBtwEnt * bomb.getComponent<ECS::Transform>(TRANSFORM).getSize().X) && t.getPosition().Z == static_cast<int>(bomb.getComponent<ECS::Transform>(TRANSFORM).getPosition().Z)) {
+        if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), spaceBtwEnt, 0)) {
             try {
                 k = (*it).getComponent<ECS::Killable>(KILLABLE);
             } catch(std::out_of_range &e) {
