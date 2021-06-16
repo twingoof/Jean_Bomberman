@@ -10,13 +10,18 @@
 ECS::GetEntityInVector::GetEntityInVector(std::vector<ECS::Entity> &entities)
     : _entities(entities) {}
 
-ECS::Entity &ECS::GetEntityInVector::getEntityByName(std::string name)
+std::tuple<bool, ECS::Entity &>ECS::GetEntityInVector::getEntityByName(std::string name)
 {
-    for (auto it = this->_entities.begin(); it != this->_entities.end(); it++) {
-        if ((*it).getName() == name)
-            return (*it);
+    try {
+        for (auto it = this->_entities.begin(); it != this->_entities.end(); it++) {
+            if ((*it).getName() == name) {
+                return (std::forward_as_tuple(true, *it));
+            }
+        }
+    } catch (std::out_of_range error) {
+        throw(error);
     }
-    
+    return (std::forward_as_tuple(false, *this->_entities.begin()));
 }
 
 std::vector<ECS::Entity> &ECS::GetEntityInVector::getEntityInVector(void)
