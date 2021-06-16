@@ -10,24 +10,32 @@
 
 #include "vectors/ECSVector.hpp"
 #include "IComponent.hpp"
+#include "Controls.hpp"
+#include <map>
 
 namespace ECS {
     class Moveable : public ECS::IComponent{
         public:
             Moveable();
-            Moveable(ECS::Vector3<float> &velocity);
+            Moveable(ECS::Vector3<float> &velocity, std::map<std::string, raylib::Keys> keys);
 
             Moveable(const Moveable &cpy) = default;
             Moveable &operator=(const Moveable &Moveable);
             ~Moveable();
 
             ECS::Vector3<float> getVelocity() const;
+            std::map<std::string, raylib::Keys> getKeys() const;
 
+            void setKeys(std::map<std::string, raylib::Keys> keys);
             void setVelocity(const ECS::Vector3<float> &newValue);
             void setVelocity(float x, float y, float z);
 
         private:
             ECS::Vector3<float> _velocity;
+            raylib::Keys _keyUp;
+            raylib::Keys _keyDown;
+            raylib::Keys _keyLeft;
+            raylib::Keys _keyRight;
     };
 };
 

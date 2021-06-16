@@ -12,11 +12,12 @@
 
 void ECS::Controller::moveEntity(ECS::Entity &entity)
 {
+    try {
     ECS::Moveable &m = entity.getComponent<ECS::Moveable>(MOVEABLE);
     raylib::Controls controls;
     ECS::Vector3<float> newVel;
     int i = 0;
-
+    
     if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
         newVel.Z = -0.275;
         i = 1;
@@ -36,4 +37,6 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
     if (i == 0)
         m.setVelocity({0, 0, 0});
     m.setVelocity(newVel);
+    } catch (std::out_of_range &e) {
+    }
 }
