@@ -75,8 +75,6 @@ void MapGenerator::generateMap(void)
         line.clear();
     }
     this->addBorders();
-    for (auto it = _map.begin(); it != _map.end(); it++)
-        std::cout << (*it) << std::endl;
 }
 
 std::vector<ECS::Entity> MapGenerator::generateMapEntities()

@@ -25,10 +25,12 @@ namespace ECS {
 
             ECS::Vector3<float> getVelocity() const;
             std::map<std::string, raylib::Keys> getKeys() const;
+            float getSpeed() const;
 
             void setKeys(std::map<std::string, raylib::Keys> keys);
             void setVelocity(const ECS::Vector3<float> &newValue);
             void setVelocity(float x, float y, float z);
+            void setSpeed(float value);
 
         private:
             ECS::Vector3<float> _velocity;
@@ -37,6 +39,8 @@ namespace ECS {
             raylib::Keys _keyLeft;
             raylib::Keys _keyRight;
             raylib::Keys _keyBomb;
+            float _speed;
+
     };
 };
 

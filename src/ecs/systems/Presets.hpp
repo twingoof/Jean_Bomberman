@@ -8,6 +8,7 @@
 #include "Drawable3D.hpp"
 #include "Drawable2D.hpp"
 #include "ECSVector.hpp"
+#include "Collectible.hpp"
 #include "Transform.hpp"
 #include "Attacker.hpp"
 #include "Clickable.hpp"
@@ -32,7 +33,10 @@ namespace Presets
 
     ECS::Entity createSoftWall(std::string name, ECS::Vector3<float> position);
 
-    ECS::Entity createBomb(std::string name, ECS::Vector3<float> position, int damages);
+    ECS::Entity createBomb(std::string name, ECS::Vector3<float> position, int damages, int range);
+
+    ECS::Entity createBonus(std::string name, ECS::Vector3<float> position, ECS::BonusType bonusType);
+
 };
 
 #endif /* !PRESETS_HPP_ */
