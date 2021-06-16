@@ -21,7 +21,7 @@ namespace ECS {
     {
         DRAWABLE2D,
         DRAWABLE3D,
-        CLICKABLE, 
+        CLICKABLE,
         MOVEABLE,
         KILLABLE,
         PHYSICS,
@@ -31,11 +31,17 @@ namespace ECS {
         TIMER
     };
 
-enum DrawableType {
-    CIRCLE,
-    RECT,
-    CUSTOM
-};
+    enum BonusType {
+        MOVE,
+        RANGE,
+        RELOAD
+    };
+
+    enum DrawableType {
+        CIRCLE,
+        RECT,
+        CUSTOM
+    };
 
     typedef struct texture2D_s {
         int height;

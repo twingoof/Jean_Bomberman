@@ -8,7 +8,7 @@
 #include "Attacker.hpp"
 
 ECS::Attacker::Attacker(double reloadTime, unsigned short damage)
-    : _baseDamage(damage)
+    : _baseDamage(damage), _range(1)
 {
     this->_clock.startClock();
     this->_reloadTime = reloadTime;
@@ -42,14 +42,6 @@ void ECS::Attacker::setDamage(unsigned short damage)
     this->_damage = damage;
 }
 
-void ECS::Attacker::dealDamage(ECS::Killable &target)
-{
-    // if (this->_clock.getTimeElapsed() > 1) {
-    //     this->_clock.restartClock();
-    //     target.takeDamage(this->_damage);
-    // }
-}
-
 void ECS::Attacker::resetDamage()
 {
     this->_damage = this->_baseDamage;
@@ -63,4 +55,14 @@ bool ECS::Attacker::isReload(void)
 void ECS::Attacker::reload(void)
 {
     this->_clock.restartClock();
+}
+
+int ECS::Attacker::getRange() const
+{
+    return (_range);
+}
+
+void ECS::Attacker::setRange(int newVal)
+{
+    _range = newVal;
 }

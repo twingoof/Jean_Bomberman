@@ -78,7 +78,7 @@ ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> positi
     return (entity);
 }
 
-ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, int damages)
+ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, int damages, int range)
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(3, 1, 3);
@@ -87,12 +87,27 @@ ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, 
     ECS::Timer timer;
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({255, 255, 0, 255});
+    a.setRange(range);
 
     timer.startClock();
     entity.addComponent<ECS::Attacker>(a, ECS::ATTACKER);
     entity.addComponent<ECS::Timer>(timer, ECS::TIMER);
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
-    std::cout << entity.getName() << std::endl;
+    return (entity);
+}
+
+ECS::Entity Presets::createBonus(std::string name, ECS::Vector3<float> pos, ECS::BonusType type)
+{
+    ECS::Entity entity(name);
+    ECS::Vector3<int> size(1, 1, 1);
+    ECS::Transform t(pos, size);
+    ECS::Collectible c(type);
+    ECS::Drawable3D d(ECS::CIRCLE, t.getSize());
+    d.setColor({122, 222, 122, 255});
+
+    entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
+    entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
+    entity.addComponent<ECS::Collectible>(c, ECS::COLLECTIBLE);
     return (entity);
 }

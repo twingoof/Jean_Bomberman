@@ -1,3 +1,4 @@
+
 /*
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-NAN-4-1-indiestudio-gildas.gonzalez [WSL: Ubuntu-20.04]
@@ -18,7 +19,7 @@ std::tuple<bool, ECS::Entity &>ECS::GetEntityInVector::getEntityByName(std::stri
                 return (std::forward_as_tuple(true, *it));
             }
         }
-    } catch (std::out_of_range error) {
+    } catch (const std::out_of_range &error) {
         throw(error);
     }
     return (std::forward_as_tuple(false, *this->_entities.begin()));

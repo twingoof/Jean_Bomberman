@@ -43,14 +43,16 @@ int main()
     gameEntities = map.generateMapEntities();
     ECS::GetEntityInVector vect(gameEntities);
     clock.startClock();
-    while (!window.windowShouldClose())
-    {
+    while (!window.windowShouldClose()) {
         window.beginDrawing();
         window.begin3DMode(camera);
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            ctrl.moveEntity(vect.getEntityByName("player0"));
+            std::tuple<bool, ECS::Entity &> player = vect.getEntityByName("player0");
+            if (std::get<0>(player) == false)
+                break;
+            ctrl.moveEntity(std::get<1>(player));
             atk.manageBombs(gameEntities);
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);

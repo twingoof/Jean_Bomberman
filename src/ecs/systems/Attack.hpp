@@ -33,7 +33,7 @@ namespace ECS {
             bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             ECS::Vector3<float> _findBombPos(ECS::Transform playerT);
-            
+            bool posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator);
             unsigned int _bombId = 0;
     };
 };

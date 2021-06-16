@@ -26,13 +26,18 @@ namespace ECS {
             unsigned short getBaseDamage() const;
             void setReloadTime(double reloadTime);
             void setDamage(unsigned short damage);
-            void dealDamage(ECS::Killable &target);
+
+            int getRange() const;
+            void setRange(int newVal);
+
             void resetDamage();
             bool isReload();
             void reload();
 
         protected:
+
         private:
+            int _range;
             ECS::Clock _clock;
             double _reloadTime;
             unsigned short _damage;

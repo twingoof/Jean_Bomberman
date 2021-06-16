@@ -12,6 +12,7 @@
 #include "Presets.hpp"
 #include "Entity.hpp"
 #include <vector>
+#include <ctime>
 #include "Controls.hpp"
 #include "enum.hpp"
 
@@ -22,8 +23,11 @@ namespace ECS {
             ~Kill() = default;
 
             void deleteWall(std::vector<ECS::Entity> &entity);
+
         protected:
         private:
+            int _bonusId;
+
     };
 };
 

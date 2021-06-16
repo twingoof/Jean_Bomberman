@@ -22,12 +22,16 @@ namespace ECS {
             ~Moveable();
 
             ECS::Vector3<float> getVelocity() const;
+            float getSpeed() const;
 
             void setVelocity(const ECS::Vector3<float> &newValue);
             void setVelocity(float x, float y, float z);
+            void setSpeed(float value);
 
         private:
             ECS::Vector3<float> _velocity;
+            float _speed;
+
     };
 };
 
