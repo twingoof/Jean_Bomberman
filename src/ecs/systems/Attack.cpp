@@ -6,19 +6,18 @@
 */
 
 #include "Attack.hpp"
-
-#include <math.h>
+#include <cmath>
 
 void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 {
     raylib::Controls controls;
     ECS::GetEntityInVector vect(entity);
-    ECS::Attacker &tmp = vect.getEntityByName("player0").getComponent<ECS::Attacker>(ATTACKER);
+    ECS::Attacker &tmp = std::get<1>(vect.getEntityByName("player0")).getComponent<ECS::Attacker>(ATTACKER);
     ECS::Entity e;
 
     if (controls.isKeyPressed(raylib::Keys::KEY_SPACE)) {
         if (tmp.isReload()) {
-            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(vect.getEntityByName("player0").getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage());
+            e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(std::get<1>(vect.getEntityByName("player0")).getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage(), tmp.getRange());
             entity.push_back(e);
             tmp.reload();
             this->_bombId++;
@@ -36,7 +35,7 @@ void ECS::Attack::exploseBombs(std::vector<ECS::Entity> &entity)
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (t.getTimeElapsed() > 3) {
+        if (t.getTimeElapsed() > t.getRestartTime()) {
             this->manageErase(entity, (*it));
             if ((it + 1) == entity.end()){
                 entity.erase(it);
@@ -47,37 +46,31 @@ void ECS::Attack::exploseBombs(std::vector<ECS::Entity> &entity)
     }
 }
 
-void ECS::Attack::manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb) {
+void ECS::Attack::manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb)
+{
     ECS::Entity &tmp = bomb;
+    ECS::Attacker &a = tmp.getComponent<ECS::Attacker>(ECS::ATTACKER);
     int spaceBtwEnt = 1;
 
     killPosKillable(entities, tmp);
-    for (int i = 0; i < 1; i++) {
-        if (killTopKillable(entities, tmp, spaceBtwEnt)) {
+    for (int i = 0; i < a.getRange(); i++) {
+        if (killTopKillable(entities, tmp, spaceBtwEnt))
             spaceBtwEnt++;
-        } else
-            break;
     }
     spaceBtwEnt = 1;
-    for (int i = 0; i < 1; i++) {
-        if (killBotKillable(entities, tmp, spaceBtwEnt)) {
+    for (int i = 0; i < a.getRange(); i++) {
+        if (killBotKillable(entities, tmp, spaceBtwEnt))
             spaceBtwEnt++;
-        } else
-            break;
     }
     spaceBtwEnt = 1;
-    for (int i = 0; i < 1; i++) {
-        if (killLeftKillable(entities, tmp, spaceBtwEnt)) {
+    for (int i = 0; i < a.getRange(); i++) {
+        if (killLeftKillable(entities, tmp, spaceBtwEnt))
             spaceBtwEnt++;
-        } else
-            break;
     }
     spaceBtwEnt = 1;
-    for (int i = 0; i < 1; i++) {
-        if (killRightKillable(entities, tmp, spaceBtwEnt)) {
+    for (int i = 0; i < a.getRange(); i++) {
+        if (killRightKillable(entities, tmp, spaceBtwEnt))
             spaceBtwEnt++;
-        } else
-            break;
     }
 }
 
@@ -209,6 +202,7 @@ bool ECS::Attack::killRightKillable(std::vector<ECS::Entity> &entities, ECS::Ent
     }
     return (true);
 }
+
 ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
 {
     ECS::Vector3<float> bombPos(0, 0, 0);
@@ -246,8 +240,7 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
     bombPos.Z += 3;
 
     return (bombPos);
-} 
-
+}
 
 bool ECS::Attack::posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator)
 {

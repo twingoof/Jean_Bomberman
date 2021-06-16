@@ -8,6 +8,7 @@
 #ifndef COLLIDER_HPP_
 #define COLLIDER_HPP_
 
+#include "Collectible.hpp"
 #include "Transform.hpp"
 #include "Collision.hpp"
 #include "Moveable.hpp"
@@ -27,7 +28,7 @@ namespace ECS {
 
         private:
             void isWindowColliding(ECS::Entity &entity);
-            void isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
+            int isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
 
     };
 };

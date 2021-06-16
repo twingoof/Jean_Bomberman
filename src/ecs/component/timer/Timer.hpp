@@ -14,16 +14,20 @@
 namespace ECS {
     class Timer : public IComponent {
         public:
-            Timer() = default;
+            Timer(double restartTime = 3.0);
             ~Timer() = default;
 
             void startClock();
             void restartClock();
             double getTimeElapsed();
 
+            double getRestartTime() const;
+
         protected:
         private:
             ECS::Clock _clock;
+            double _restartTime;
+
     };
 };
 

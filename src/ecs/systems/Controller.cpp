@@ -18,19 +18,19 @@ void ECS::Controller::moveEntity(ECS::Entity &entity)
     int i = 0;
 
     if (controls.isKeyDown(raylib::Keys::KEY_UP)) {
-        newVel.Z = -0.275;
+        newVel.Z = -m.getSpeed();
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_DOWN)) {
-        newVel.Z = 0.275;
+        newVel.Z = m.getSpeed();
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_LEFT)) {
-        newVel.X = -0.275;
+        newVel.X = -m.getSpeed();
         i = 1;
     }
     if (controls.isKeyDown(raylib::Keys::KEY_RIGHT)) {
-        newVel.X = 0.275;
+        newVel.X = m.getSpeed();
         i = 1;
     }
     if (i == 0)
