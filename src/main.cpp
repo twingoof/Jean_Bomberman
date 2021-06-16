@@ -38,10 +38,9 @@ int main()
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
 
-    window.initWindow(1600, 900, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
+    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
     window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
-    ECS::GetEntityInVector vect(gameEntities);
     clock.startClock();
     while (!window.windowShouldClose()) {
         window.beginDrawing();
@@ -49,10 +48,16 @@ int main()
         window.clearWindow(RAYWHITE);
         DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            std::tuple<bool, ECS::Entity &> player = vect.getEntityByName("player0");
-            if (std::get<0>(player) == false)
+            if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
+                std::cout << "Equality" << std::endl;
                 break;
-            ctrl.moveEntity(std::get<1>(player));
+            } else if (ECS::getNbEntitiesByName("player", gameEntities) == 1) {
+                std::cout << "And the winner is: " << std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", gameEntities).begin())).getName() << std::endl;
+                break;
+            }
+            std::vector<std::tuple<bool, ECS::Entity &>> players = ECS::getEntitiesByName("player", gameEntities);
+            for (auto it = players.begin(); it != players.end(); it++)
+                ctrl.moveEntity(std::get<1>(*it));
             atk.manageBombs(gameEntities);
             cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);

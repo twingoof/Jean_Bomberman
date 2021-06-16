@@ -14,20 +14,9 @@
 #include <tuple>
 
 namespace ECS {
-    class GetEntityInVector {
-        public:
-            GetEntityInVector() = default;
-            GetEntityInVector(std::vector<ECS::Entity> &entities);
-            GetEntityInVector(const GetEntityInVector &vectorEntity) = default;
-            ~GetEntityInVector() = default;
-
-            std::tuple<bool, ECS::Entity &>getEntityByName(std::string name);
-            std::vector<ECS::Entity> &getEntityInVector();
-
-        protected:
-        private:
-            std::vector<ECS::Entity> &_entities;
-    };
+    int getNbEntitiesByName(std::string name, std::vector<ECS::Entity> &entities);
+    std::tuple<bool, ECS::Entity &>getEntityByName(std::string name, std::vector<ECS::Entity> &entities);
+    std::vector<std::tuple<bool, ECS::Entity &>>getEntitiesByName(std::string name, std::vector<ECS::Entity> &entities);
 };
 
 #endif /* !GETENTITYINVECTOR_HPP_ */

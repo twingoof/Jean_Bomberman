@@ -28,6 +28,7 @@ namespace ECS {
         private:
             void exploseBombs(std::vector<ECS::Entity> &entity);
             void manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
+            void killPosKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
             bool killTopKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);

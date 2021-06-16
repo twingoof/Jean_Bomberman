@@ -29,7 +29,9 @@ MapGenerator::~MapGenerator()
 void MapGenerator::insideMap(int x, int y, std::string &line)
 {
     if (/*(*/x == 0/* || x == std::get<0>(dimensions) - 1) */&& /*(*/y == 0/* || y == std::get<1>(dimensions) - 1)*/)
-        line += 'S';
+        line += '1';
+    else if (x == std::get<0>(dimensions) - 1 && y == std::get<1>(dimensions) - 1)
+        line += '2';
     else if (x % 2 == 0 || y % 2 == 0) {
         if (this->isPlayerSpawn(x, y))
             line += ' ';
@@ -77,6 +79,8 @@ void MapGenerator::generateMap(void)
 
 std::vector<ECS::Entity> MapGenerator::generateMapEntities()
 {
+    std::map<std::string, raylib::Keys> fstControls{{"up", raylib::Keys::KEY_UP}, {"down", raylib::Keys::KEY_DOWN}, {"left", raylib::Keys::KEY_LEFT}, {"right", raylib::Keys::KEY_RIGHT}, {"bomb", raylib::Keys::KEY_L},};
+    std::map<std::string, raylib::Keys> sndControls{{"up", raylib::Keys::KEY_W}, {"down", raylib::Keys::KEY_S}, {"left", raylib::Keys::KEY_A}, {"right", raylib::Keys::KEY_D}, {"bomb", raylib::Keys::KEY_SPACE},};
     std::vector<ECS::Entity> mapEntities;
     std::vector<std::string>::iterator it;
     ECS::Entity e;
@@ -95,8 +99,10 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
                 e = (Presets::createSoftWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z)));
             else if (c == '#')
                 e = Presets::createWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z));
-            else if (c == 'S')
-                e = Presets::createPlayer("player0", ECS::Vector3<float>(x, 0, z));
+            else if (c == '1')
+                e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls);
+            else if (c == '2')
+                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), sndControls);
             mapEntities.push_back(e);
             x += 3;
         }
