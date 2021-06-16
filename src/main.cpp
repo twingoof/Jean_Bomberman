@@ -19,37 +19,18 @@
 #include "MapGenerator.hpp"
 #include "vectors/ECSVector.hpp"
 
+unsigned int ECS::Drawable3D::currentId = 0;
+
 int main()
 {
-    MapGenerator map(11, 11);
-    raylib::Window &window = raylib::Window::getWindow();
-    raylib::Camera3D camera({0, 45, 20}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
-    ECS::Renderer r;
-    std::vector<ECS::Entity> gameEntities;
-    ECS::Entity e;
-    ECS::Transform t({0, 0, 0}, {10, 10, 10});
-    ECS::Drawable3D d3(ECS::RECT, t.getSize());
+    std::vector<ECS::Drawable3D> v;
 
-    d3.setColor({255, 0, 0, 255});
-    d3.setWColor({255, 0, 255, 255});
-    window.initWindow(1600, 900, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
-    window.setWindowFPS(60);
-    window.setMainCamera(camera);
-
-    e.addComponent<ECS::Drawable3D>(d3, ECS::DRAWABLE3D);
-    e.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
-    gameEntities.push_back(e);
-
-    while (!window.windowShouldClose())
-    {
-        window.clearWindow(RAYWHITE);
-        window.beginDrawing();
-        window.begin3DMode();
-        DrawGrid(50, 1);
-        r.draw(gameEntities);
-        window.end3DMode();
-        window.endDrawing();
+    for (int i = 0; i <= 10; i++) {
+        ECS::Drawable3D d(ECS::CIRCLE, {i, i, i});
+        v.push_back(d);
     }
-    window.closeWindow();
-    return 0;
+
+    for (const auto& item : v) {
+        std::cout<<"Id: "<<item.getId()<<" Size: "<<item.getSize().X<<" "<<item.getSize().Y<<" "<<item.getSize().Z<<std::endl;
+    }
 }

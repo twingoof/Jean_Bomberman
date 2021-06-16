@@ -73,8 +73,7 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
 
 void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable)
 {
-    raylib::Model model;
-    
+
     switch (drawable.getType())
     {
     case ECS::DrawableType::CIRCLE :
@@ -87,7 +86,6 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
         }
     case ECS::DrawableType::RECT :
         {
-            ::Texture2D tex("../assets/doxygen_logo.png");
             ECS::Vector3<int> size = drawable.getSize();
             ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
             ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
@@ -98,12 +96,15 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
     case ECS::DrawableType::CUSTOM :
         {
             raylib::Vector3 pos;
+            raylib::Model model;
+            ::Texture2D texture = ::LoadTexture("../assets/skin.png");
 
             model = model.loadModel(drawable.getMeshPath());
+            model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
-            model.drawModel(pos, 1, RED);
+            model.drawModel(pos, 0.5, RED);
             break;
         }
     default:

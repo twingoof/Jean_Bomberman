@@ -8,7 +8,8 @@
 
 #include <utility>
 
-ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size) {
+ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size) : _id(currentId++)
+{
     this->_meshPath = std::move(meshPath);
     this->_size = size;
     this->_type = ECS::DrawableType::CUSTOM;
@@ -16,9 +17,13 @@ ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size)
     this->_wColor = {0, 0, 0, 0};
 }
 
-ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) = default;
+ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) :
+_id(drawable3D._id), _meshPath(drawable3D._meshPath), _texturePath(drawable3D._texturePath),
+_size(drawable3D._size), _type(drawable3D._type), _color(drawable3D._color), _wColor(drawable3D._wColor)
+{
+}
 
-ECS::Drawable3D::Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size)
+ECS::Drawable3D::Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size) : _id(currentId++)
 {
     this->_meshPath = "";
     this->_size = size;
@@ -48,11 +53,11 @@ void ECS::Drawable3D::setWColor(const ECS::Vector4<unsigned char> wColor)
     this->_wColor = wColor;
 }
 
-const std::string ECS::Drawable3D::getMeshPath() const {
+std::string ECS::Drawable3D::getMeshPath() const {
     return this->_meshPath;
 }
 
-const ECS::Vector3<int> ECS::Drawable3D::getSize() const {
+ECS::Vector3<int> ECS::Drawable3D::getSize() const {
     return this->_size;
 }
 
@@ -70,3 +75,19 @@ ECS::Vector4<unsigned char> ECS::Drawable3D::getWColor() const
 {
     return (this->_wColor);
 }
+
+void ECS::Drawable3D::setTexturePath(std::string texturePath)
+{
+    this->_texturePath = std::move(texturePath);
+}
+
+unsigned int ECS::Drawable3D::getId() const
+{
+    return (this->_id);
+}
+
+std::string ECS::Drawable3D::getTexturePath() const
+{
+    return (this->_texturePath);
+}
+
