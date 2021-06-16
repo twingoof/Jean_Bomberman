@@ -12,7 +12,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
     for (auto it = entity.begin(); it != entity.end(); it++) {
         ECS::Killable kill;
         try {
-            kill = (*it.base()).getComponent<ECS::Killable>(ECS::KILLABLE);
+            kill = (*it).getComponent<ECS::Killable>(ECS::KILLABLE);
         } catch(std::out_of_range &e) {
             continue;
         }

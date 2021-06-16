@@ -27,7 +27,7 @@ int main()
 {
     MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z);
     raylib::Window &window = raylib::Window::getWindow();
-    raylib::Camera3D camera((Vector3){0, 45, 20}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    raylib::Camera3D camera({0, 45, 20}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
     ECS::Renderer r;
     ECS::Kill kill;
@@ -38,7 +38,7 @@ int main()
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
 
-    window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
+    window.initWindow(1600, 900, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
     window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
     ECS::GetEntityInVector vect(gameEntities);
@@ -59,6 +59,7 @@ int main()
         }
         r.draw(gameEntities);
         window.end3DMode();
+        DrawFPS(10, 10);
         window.endDrawing();
     }
     window.closeWindow();

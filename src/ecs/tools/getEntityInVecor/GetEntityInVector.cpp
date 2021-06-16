@@ -12,14 +12,11 @@ ECS::GetEntityInVector::GetEntityInVector(std::vector<ECS::Entity> &entities)
 
 ECS::Entity &ECS::GetEntityInVector::getEntityByName(std::string name)
 {
-    try {
-        for (auto it = this->_entities.begin(); it != this->_entities.end(); it++) {
-            if ((*it.base()).getName() == name)
-                return (*it);
-        }
-    } catch (std::out_of_range error) {
-        throw(error);
+    for (auto it = this->_entities.begin(); it != this->_entities.end(); it++) {
+        if ((*it).getName() == name)
+            return (*it);
     }
+    
 }
 
 std::vector<ECS::Entity> &ECS::GetEntityInVector::getEntityInVector(void)

@@ -28,13 +28,11 @@ namespace ECS {
         private:
             void exploseBombs(std::vector<ECS::Entity> &entity);
             void manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
-            void killPosKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb);
             bool killTopKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             ECS::Vector3<float> _findBombPos(ECS::Transform playerT);
-            bool posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator);
             
             unsigned int _bombId = 0;
     };
