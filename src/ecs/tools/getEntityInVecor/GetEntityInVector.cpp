@@ -15,7 +15,7 @@ std::tuple<bool, ECS::Entity &>ECS::GetEntityInVector::getEntityByName(std::stri
 {
     try {
         for (auto it = this->_entities.begin(); it != this->_entities.end(); it++) {
-            if ((*it.base()).getName() == name) {
+            if ((*it).getName() == name) {
                 return (std::forward_as_tuple(true, *it));
             }
         }

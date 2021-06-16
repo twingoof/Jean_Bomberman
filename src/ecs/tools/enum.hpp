@@ -21,7 +21,7 @@ namespace ECS {
     {
         DRAWABLE2D,
         DRAWABLE3D,
-        CLICKABLE, 
+        CLICKABLE,
         MOVEABLE,
         KILLABLE,
         PHYSICS,
