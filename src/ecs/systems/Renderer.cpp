@@ -8,12 +8,15 @@
 #include "Renderer.hpp"
 
 #include "Circle.hpp"
+#include "Cube.hpp"
 #include "Image.hpp"
 #include "Model.hpp"
 #include "Rectangle.hpp"
 #include "Text.hpp"
 #include "Texture.hpp"
 #include "Transform.hpp"
+#include "Window.hpp"
+
 
 ECS::Renderer::Renderer() = default;
 
@@ -41,7 +44,7 @@ void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
         }
 
         if (!noDraw)
-            std::cerr<<"ERROR: "<<"entity"<<" has no Drawabale component."<<std::endl;
+            std::cerr<<"ERROR: "<<entity.getName()<<" has no Drawabale component."<<std::endl;
     }
 }
 
@@ -71,6 +74,7 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
 void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable)
 {
     raylib::Model model;
+    
     switch (drawable.getType())
     {
     case ECS::DrawableType::CIRCLE :
@@ -83,16 +87,18 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
         }
     case ECS::DrawableType::RECT :
         {
+            ::Texture2D tex("../assets/doxygen_logo.png");
             ECS::Vector3<int> size = drawable.getSize();
             ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
             ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
-            DrawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
-            DrawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
+            raylib::drawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
+            raylib::drawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
             break;
         }
     case ECS::DrawableType::CUSTOM :
         {
             raylib::Vector3 pos;
+
             model = model.loadModel(drawable.getMeshPath());
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);

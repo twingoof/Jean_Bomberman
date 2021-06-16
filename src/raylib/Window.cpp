@@ -128,6 +128,14 @@ void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
     }
 }
 
+void raylib::Window::begin3DMode()
+{
+    if (_isDrawing && !_2dActivated) {
+        ::BeginMode3D(this->_camera);
+        _3dActivated = true;
+    }
+}
+
 bool raylib::Window::is2DMode(void) const
 {
     return (_2dActivated);
@@ -201,4 +209,9 @@ void raylib::Window::closeWindow(void)
 {
     if (_isInitialized)
         ::CloseWindow();
+}
+
+void raylib::Window::setMainCamera(const raylib::Camera3D &camera)
+{
+    this->_camera = camera;
 }

@@ -18,6 +18,8 @@ namespace raylib {
             Camera3D(Vector3 camPos, Vector3 camTarget, Vector3 camUp, float camFovY, int type);
             ~Camera3D();
 
+            Camera3D &operator=(const Camera3D &cpy);
+
             void setMode(int mode);
             void update();
 

@@ -23,25 +23,29 @@ int main()
 {
     MapGenerator map(11, 11);
     raylib::Window &window = raylib::Window::getWindow();
-    raylib::Camera3D camera((Vector3){20, 20, 20}, (Vector3){0, 0, 0}, (Vector3){0, 1, 0}, 45, CAMERA_PERSPECTIVE);
-    std::vector<ECS::Entity> mapEntities;
+    raylib::Camera3D camera({0, 45, 20}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     ECS::Renderer r;
-    ECS::Controller d;
-    ECS::Displacer p;
-    ECS::Collider c;
     std::vector<ECS::Entity> gameEntities;
-    ECS::Entity pl = Presets::createPlayer("player", ECS::Vector3<float>(2, 0, 1));
+    ECS::Entity e;
+    ECS::Transform t({0, 0, 0}, {10, 10, 10});
+    ECS::Drawable3D d3(ECS::RECT, t.getSize());
 
-    window.initWindow(1920, 1080, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
-    gameEntities = map.generateMapEntities();
-    gameEntities.push_back(pl);
+    d3.setColor({255, 0, 0, 255});
+    d3.setWColor({255, 0, 255, 255});
+    window.initWindow(1600, 900, "Bonjour Jeremy", FLAG_WINDOW_RESIZABLE);
+    window.setWindowFPS(60);
+    window.setMainCamera(camera);
+
+    e.addComponent<ECS::Drawable3D>(d3, ECS::DRAWABLE3D);
+    e.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
+    gameEntities.push_back(e);
+
     while (!window.windowShouldClose())
     {
-        window.beginDrawing();
-        window.begin3DMode(camera);
         window.clearWindow(RAYWHITE);
-        DrawGrid(50, 1.0f);
-        p.moveEntity(gameEntities);
+        window.beginDrawing();
+        window.begin3DMode();
+        DrawGrid(50, 1);
         r.draw(gameEntities);
         window.end3DMode();
         window.endDrawing();

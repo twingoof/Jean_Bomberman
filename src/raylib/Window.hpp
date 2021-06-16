@@ -8,6 +8,7 @@
 #ifndef WINDOW_HPP_
 #define WINDOW_HPP_
 
+#include "Camera.hpp"
 #include "Vector2.hpp"
 #include "raylib.h"
 #include <string>
@@ -112,6 +113,8 @@ namespace raylib {
 
             void begin3DMode(const ::Camera3D &actualCam);
 
+            void begin3DMode();
+
             bool is2DMode() const;
 
             bool is3DMode() const;
@@ -136,6 +139,12 @@ namespace raylib {
              * @param fpsValue Window's Frame Per Second (FPS) Limit
              */
             Window &setWindowFPS(const int fpsValue);
+
+            /**
+             * @brief Set window main camera
+             * @param raylib::Camera3D Already initialized camera
+             */
+            void setMainCamera(const raylib::Camera3D &camera);
 
             /**
              * @brief Retrieve Window FPS Count
@@ -186,6 +195,8 @@ namespace raylib {
             bool _isInitialized;
             bool _2dActivated;
             bool _3dActivated;
+
+            Camera3D _camera;
 
     };
 };

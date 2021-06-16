@@ -27,7 +27,14 @@ void raylib::drawCubeWiresV(::Vector3 position, ::Vector3 size, ::Color tint)
     ::DrawCubeWiresV(position, size, tint);
 }
 
-void raylib::drawTexturedCube(::Texture2D texture, ::Vector3 position, float width, float height, float length, ::Color tint)
+void raylib::drawTexturedCube(raylib::Texture texture, ::Vector3 position, float width, float height, float length, ::Color tint)
 {
-    ::DrawCubeTexture(texture, position, width, height, length, tint);
+    ::Texture2D tex;
+    tex.format = texture.format;
+    tex.height = texture.height;
+    tex.id = texture.id;
+    tex.mipmaps = texture.mipmaps;
+    tex.width = texture.width;
+
+    ::DrawCubeTexture(tex, position, width, height, length, tint);
 }

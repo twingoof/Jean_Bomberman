@@ -10,6 +10,8 @@
 
 #include "raylib.h"
 
+#include "Texture.hpp"
+
 namespace raylib {
 
     void drawCube(::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
@@ -20,7 +22,7 @@ namespace raylib {
 
     void drawCubeWiresV(::Vector3 position, ::Vector3 size, ::Color tint = {255, 255, 255, 255});
 
-    void drawTexturedCube(::Texture2D texture, ::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
+    void drawTexturedCube(raylib::Texture texture, ::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
 
 };
 
