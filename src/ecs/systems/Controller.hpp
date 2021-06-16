@@ -23,10 +23,10 @@ namespace ECS {
             ~Controller() = default;
 
             void moveEntity(std::vector<ECS::Entity> &entity);
-            bool canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &player);
-            bool canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity &player);
-            bool canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity &player);
-            bool canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity &player);
+            bool canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed);
+            bool canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed);
+            bool canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed);
+            bool canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed);
 
         protected:
         private:

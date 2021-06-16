@@ -18,126 +18,109 @@ void ECS::Controller::moveEntity(std::vector<ECS::Entity> &entity)
             ECS::Moveable &m = (*it).getComponent<ECS::Moveable>(MOVEABLE);
             raylib::Controls controls;
             ECS::Vector3<float> newVel;
-            int i = 0;
+            float speed = m.getSpeed();
             
             if (controls.isKeyDown(m.getKeys()["up"])) {
-                if (canMoveTop(entity, *it)) {
-                    newVel.Z = -(m.getSpeed());
-                    i = 1;
-                }
+                if (canMoveTop(entity, *it, speed))
+                    newVel.Z = -(speed);
             }
             if (controls.isKeyDown(m.getKeys()["down"])) {
-                if (canMoveDown(entity, *it)) {
-                    newVel.Z = m.getSpeed();
-                    i = 1;
-                }
+                if (canMoveDown(entity, *it, speed))
+                    newVel.Z = speed;
             }
             if (controls.isKeyDown(m.getKeys()["left"])) {
-                if (canMoveLeft(entity, *it)) {
-                    newVel.X = -(m.getSpeed());
-                    i = 1;
-                }
+                if (canMoveLeft(entity, *it, speed))
+                    newVel.X = -(speed);
             }
             if (controls.isKeyDown(m.getKeys()["right"])) {
-                if (canMoveRight(entity, *it)) {
-                    newVel.X = m.getSpeed();
-                    i = 1;
-                }
+                if (canMoveRight(entity, *it, speed))
+                    newVel.X = speed;
             }
-            if (i == 0)
-                m.setVelocity({0, 0, 0});
             m.setVelocity(newVel);
         } catch (std::out_of_range &e) {}
     }
 }
 
-bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &player)
+bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed)
 {
     ECS::Transform play = player.getComponent<ECS::Transform>(TRANSFORM);
-    ::Rectangle p = {play.getPosition().X, play.getPosition().Z - player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), play.getSize().X, play.getSize().Z};
+    ::Rectangle p= {play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0, (play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0) - speed, static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
         if ((*it).getName().find("bomb") != (*it).getName().npos)
             continue;
-        if ((*it).getName().find("bonus") != (*it).getName().npos)
-            continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
-        ::Rectangle other = {t.getPosition().X, t.getPosition().Z + player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), t.getSize().X, t.getSize().Z};
+        ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
+        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
                 entity.erase(it);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
     }
     return true;
 }
 
-bool ECS::Controller::canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity &player)
+bool ECS::Controller::canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed)
 {
     ECS::Transform play = player.getComponent<ECS::Transform>(TRANSFORM);
-    ::Rectangle p = {play.getPosition().X, play.getPosition().Z + player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), play.getSize().X, play.getSize().Z};
+    ::Rectangle p = {(play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0), (play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0) + speed, static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
         if ((*it).getName().find("bomb") != (*it).getName().npos)
             continue;
-        if ((*it).getName().find("bonus") != (*it).getName().npos)
-            continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
-        ::Rectangle other = {t.getPosition().X, t.getPosition().Z - player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), t.getSize().X, t.getSize().Z};
+        ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
+        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
-                ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
-                collectible.setBonus(player);
+                (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE).setBonus(player);
                 entity.erase(it);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
     }
     return true;
 }
-bool ECS::Controller::canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity &player)
+bool ECS::Controller::canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed)
 {
     ECS::Transform play = player.getComponent<ECS::Transform>(TRANSFORM);
-    ::Rectangle p = {play.getPosition().X - player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), play.getPosition().Z, play.getSize().X, play.getSize().Z};
+    ::Rectangle p = {(play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0) - speed, play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0, static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
         if ((*it).getName().find("bomb") != (*it).getName().npos)
             continue;
-        if ((*it).getName().find("bonus") != (*it).getName().npos)
-            continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
-        ::Rectangle other = {t.getPosition().X + player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), t.getPosition().Z, t.getSize().X, t.getSize().Z};
+        ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
+        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
                 entity.erase(it);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
     }
     return true;
 }
 
-bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity &player)
+bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed)
 {
     ECS::Transform play = player.getComponent<ECS::Transform>(TRANSFORM);
-    ::Rectangle p = {play.getPosition().X + player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), play.getPosition().Z, play.getSize().X, play.getSize().Z};
+    ::Rectangle p = {(play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0) + speed, play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0, static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
@@ -145,15 +128,15 @@ bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity
         if ((*it).getName().find("bomb") != (*it).getName().npos)
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
-        ::Rectangle other = {t.getPosition().X - player.getComponent<ECS::Moveable>(MOVEABLE).getSpeed(), t.getPosition().Z, t.getSize().X, t.getSize().Z};
+        ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
+        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
                 entity.erase(it);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
     }
