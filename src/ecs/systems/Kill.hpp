@@ -23,7 +23,7 @@ namespace ECS {
             Kill();
             ~Kill() = default;
 
-            void deleteWall(std::vector<ECS::Entity> &entity);
+            void deleteWall(std::vector<ECS::Entity> &entities);
 
         protected:
         private:

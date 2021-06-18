@@ -108,13 +108,13 @@ void ECS::Attack::killPosKillable(std::vector<ECS::Entity> &entities, ECS::Entit
 
     for (auto it = entities.begin(); it != entities.end(); it++) {
         try {
-            t = (*it.base()).getComponent<ECS::Transform>(TRANSFORM);
+            t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         } catch(std::out_of_range &e) {
             continue;
         }
         if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), 0, 0)) {
             try {
-                (*it.base()).getComponent<ECS::Killable>(KILLABLE).takeDamage(bomb.getComponent<ECS::Attacker>(ATTACKER).getDamage());
+                (*it).getComponent<ECS::Killable>(KILLABLE).takeDamage(bomb.getComponent<ECS::Attacker>(ATTACKER).getDamage());
             } catch(std::out_of_range &e) {
                 break;
             }

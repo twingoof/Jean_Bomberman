@@ -12,7 +12,7 @@
 #include "Collider.hpp"
 
 ECS::Controller::Controller()
-    :collectBonus("../assets/boom.mp3")
+    :collectBonus("../assets/bonus.mp3")
 {}
 
 void ECS::Controller::moveEntity(std::vector<ECS::Entity> &entity)

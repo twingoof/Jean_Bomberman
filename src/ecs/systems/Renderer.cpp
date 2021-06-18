@@ -60,9 +60,9 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
             raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
             break;
         case CUSTOM:
-            if (!this->_isTLoaded(drawable.getId()))
+            if (!this->_isTLoaded(drawable.getTId()))
                 this->_loadTextureInCache(drawable);
-            raylib::drawTexture(this->_getTextureFromCache(drawable.getId()), position.X, position.Y, WHITE);
+            raylib::drawTexture(this->_getTextureFromCache(drawable.getTId()), position.X, position.Y, WHITE);
             break;
     }
 }
@@ -94,7 +94,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
                     drawable.loaded = true;
                     this->_loadTextureInCache(drawable);
                 }
-                raylib::drawTexturedCube(this->_getTextureFromCache(drawable.getId()), position, size, WHITE);
+                raylib::drawTexturedCube(this->_getTextureFromCache(drawable.getTId()), position, size, WHITE);
             }
             raylib::drawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
             break;
@@ -104,9 +104,9 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
             raylib::Vector3 pos;
             raylib::Model model;
 
-            if (!this->_isMloaded(drawable.getId()))
+            if (!this->_isMloaded(drawable.getTId()))
                 this->_loadModelInCache(drawable);
-            model = this->_getModelFromCache(drawable.getId());
+            model = this->_getModelFromCache(drawable.getTId());
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
@@ -120,21 +120,21 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
 
 void ECS::Renderer::_loadTextureInCache(const ECS::Drawable2D& drawable) {
     raylib::Texture texture(drawable.getSpritePath());
-    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getId(), texture);
+    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getTId(), texture);
 
     this->_loadedTextures.insert(toInsert);
 }
 
 void ECS::Renderer::_loadTextureInCache(const ECS::Drawable3D& drawable) {
     raylib::Texture texture(drawable.getTexturePath());
-    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getId(), texture);
+    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getTId(), texture);
 
     this->_loadedTextures.insert(toInsert);
 }
 
 void ECS::Renderer::_loadModelInCache(const ECS::Drawable3D& drawable) {
     raylib::Model model(drawable.getMeshPath());
-    std::pair<unsigned int, raylib::Model> toInsert = std::make_pair(drawable.getId(), model);
+    std::pair<unsigned int, raylib::Model> toInsert = std::make_pair(drawable.getTId(), model);
 
     this->_loadedModels.insert(toInsert);
 

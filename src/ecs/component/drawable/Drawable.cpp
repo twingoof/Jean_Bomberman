@@ -7,8 +7,10 @@
 
 #include "Drawable.hpp"
 
-ECS::Drawable::Drawable() : _id(currentId++), loaded(false) {}
+unsigned int ECS::Drawable::currentTId;
 
-unsigned int ECS::Drawable::getId() const {
-    return (this->_id);
+ECS::Drawable::Drawable() : loaded(false), _tId(currentTId++) {}
+
+unsigned int ECS::Drawable::getTId() const {
+    return (this->_tId);
 }

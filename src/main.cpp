@@ -35,6 +35,7 @@ int main()
     window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
     window.initAudioDevice();
     window.setWindowFPS(60);
+    window.setMainCamera(camera);
     ECS::Renderer r;
     ECS::Kill kill;
     ECS::Attack atk;
@@ -46,10 +47,6 @@ int main()
     gameEntities = map.generateMapEntities();
     clock.startClock();
     while (!window.windowShouldClose()) {
-        window.beginDrawing();
-        window.begin3DMode(camera);
-        window.clearWindow(RAYWHITE);
-        //DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
             if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
                 std::cout << "Equality" << std::endl;
@@ -67,9 +64,11 @@ int main()
             clock.restartClock();
         }
         r.draw(gameEntities);
-        window.end3DMode();
-        DrawFPS(10, 10);
-        window.endDrawing();
+//        window.clearWindow(MAGENTA);
+//        window.beginDrawing();
+//        DrawGrid(50, 1.0f);
+//        DrawFPS(10, 10);
+//        window.endDrawing();
     }
     window.stopAudioDevice();
     window.closeWindow();
