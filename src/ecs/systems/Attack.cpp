@@ -7,6 +7,12 @@
 
 #include "Attack.hpp"
 #include <cmath>
+#include "Sound.hpp"
+#include "Music.hpp"
+
+ECS::Attack::Attack()
+    :bombExpl("../assets/boom.mp3")
+{}
 
 void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 {
@@ -21,6 +27,8 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
             std::map<std::string, raylib::Keys> keys = player.getComponent<ECS::Moveable>(MOVEABLE).getKeys();
             if (controls.isKeyPressed(keys["bomb"])) {
                 if (tmp.isReload()) {
+                    if (this->checkBombPos(this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), entity) == false)
+                        continue;
                     e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage(), tmp.getRange());
                     entity.push_back(e);
                     tmp.reload();
@@ -44,6 +52,7 @@ void ECS::Attack::exploseBombs(std::vector<ECS::Entity> &entity)
             continue;
         }
         if (t.getTimeElapsed() > t.getRestartTime()) {
+            bombExpl.playSound();
             this->manageErase(entity, (*it));
             if ((it + 1) == entity.end()){
                 entity.erase(it);
@@ -260,4 +269,17 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
 bool ECS::Attack::posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator)
 {
     return (CheckCollisionRecs({t1.getPosition().X, t1.getPosition().Z, static_cast<float>(t1.getSize().X), static_cast<float>(t1.getSize().Z)}, {t2.getPosition().X + t2_x_multiplicator * t2.getSize().X, t2.getPosition().Z + t2_y_multiplicator * t2.getSize().Z, static_cast<float>(t2.getSize().X), static_cast<float>(t2.getSize().Z)}));
+}
+
+bool ECS::Attack::checkBombPos(ECS::Vector3<float> pos, std::vector<ECS::Entity> &entity)
+{
+    for (auto it = entity.begin(); it != entity.end(); it++) {
+        if ((*it).getName().find("bomb") == (*it).getName().npos)
+            continue;
+        ECS::Transform tEntity = (*it).getComponent<ECS::Transform>(TRANSFORM);
+        std::cout << "X: " << tEntity.getPosition().X << " Z: " << tEntity.getPosition().Z << " Name: " << (*it).getName() << std::endl;
+        if (tEntity.getPosition() == pos)
+            return false;
+    }
+    return true;
 }

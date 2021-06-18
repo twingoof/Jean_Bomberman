@@ -22,6 +22,7 @@
 #include "Clock.hpp"
 #include "Kill.hpp"
 #include "GetEntityInVector.hpp"
+#include "Sound.hpp"
 
 int main()
 {
@@ -29,17 +30,18 @@ int main()
     raylib::Window &window = raylib::Window::getWindow();
     raylib::Camera3D camera({0, 60, 10}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
+
+    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    window.initAudioDevice();
+    window.setWindowFPS(60);
     ECS::Renderer r;
     ECS::Kill kill;
     ECS::Attack atk;
     ECS::Controller ctrl;
     ECS::Displacer disp;
-    ECS::Collider cld;
+    //ECS::Collider cld;
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
-
-    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
-    window.setWindowFPS(60);
     gameEntities = map.generateMapEntities();
     clock.startClock();
     while (!window.windowShouldClose()) {
@@ -68,6 +70,7 @@ int main()
         DrawFPS(10, 10);
         window.endDrawing();
     }
+    window.stopAudioDevice();
     window.closeWindow();
     return 0;
 }

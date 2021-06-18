@@ -15,11 +15,12 @@
 #include <vector>
 #include "Controls.hpp"
 #include "GetEntityInVector.hpp"
+#include "Sound.hpp"
 
 namespace ECS {
     class Attack {
         public:
-            Attack() = default;
+            Attack();
             ~Attack() = default;
 
             void manageBombs(std::vector<ECS::Entity> &entity);
@@ -33,9 +34,13 @@ namespace ECS {
             bool killBotKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killLeftKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
             bool killRightKillable(std::vector<ECS::Entity> &entities, ECS::Entity &bomb, int spaceBtwEnt);
+
             ECS::Vector3<float> _findBombPos(ECS::Transform playerT);
+            bool checkBombPos(ECS::Vector3<float> pos, std::vector<ECS::Entity> &entity);
             bool posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator);
             unsigned int _bombId = 0;
+            raylib::Sound bombExpl;
+
     };
 };
 
