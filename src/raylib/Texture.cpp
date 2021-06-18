@@ -126,6 +126,16 @@ void raylib::Texture::setTexture(const ::Texture &old)
     this->format = old.format;
 }
 
+raylib::Texture &raylib::Texture::operator=(const raylib::Texture &rHand) {
+    this->height = rHand.height;
+    this->width = rHand.width;
+    this->id = rHand.id;
+    this->format = rHand.format;
+    this->mipmaps = rHand.mipmaps;
+
+    return (*this);
+}
+
 namespace raylib {
     void drawTexture(raylib::Texture texture, int posX, int posY, ::Color color)
     {

@@ -18,16 +18,16 @@ ECS::Renderer::Renderer() = default;
 
 ECS::Renderer::~Renderer() = default;
 
-void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
+void ECS::Renderer::draw(std::vector<ECS::Entity> &entities) {
     raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
     window.clearWindow(RAYWHITE);
     window.beginDrawing();
-    for (const auto &entity : entities) {
+    for (auto &entity : entities) {
         noDraw = false;
         try {
-            ECS::Drawable2D drawable = entity.getComponent<ECS::Drawable2D>(DRAWABLE2D);
+            ECS::Drawable2D &drawable = entity.getComponent<ECS::Drawable2D>(DRAWABLE2D);
             this->_draw2D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
@@ -35,7 +35,7 @@ void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
         }
 
         try {
-            ECS::Drawable3D drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
+            ECS::Drawable3D &drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
             window.begin3DMode();
             this->_draw3D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
             window.end3DMode();
@@ -68,7 +68,7 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
     }
 }
 
-void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D& drawable)
+void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D &drawable)
 {
 
     raylib::Model model;

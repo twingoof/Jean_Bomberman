@@ -33,7 +33,7 @@ namespace ECS {
             Renderer();
             ~Renderer();
     
-            void draw(const std::vector<ECS::Entity> &entities);
+            void draw(std::vector<ECS::Entity> &entities);
         private:
             void _draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D& drawable);
             void _draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D& drawable);
