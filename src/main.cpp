@@ -26,10 +26,10 @@
 
 int main()
 {
-    int nbPlayer = 2;
+    int nbPlayer = 4;
     MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
-    raylib::Camera3D camera({0, 60, 10}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
 
     window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
@@ -49,7 +49,7 @@ int main()
         window.beginDrawing();
         window.begin3DMode(camera);
         window.clearWindow(RAYWHITE);
-        DrawGrid(50, 1.0f);
+        //DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
             if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
                 std::cout << "Equality" << std::endl;

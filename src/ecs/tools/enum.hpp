@@ -9,11 +9,11 @@
 #define ENUM_HPP_
 
 #ifndef MAP_SIZE_X
-#define MAP_SIZE_X  15
+#define MAP_SIZE_X  19
 #endif
 
 #ifndef MAP_SIZE_Z
-#define MAP_SIZE_Z  12
+#define MAP_SIZE_Z  17
 #endif
 
 namespace ECS {

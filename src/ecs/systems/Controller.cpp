@@ -11,6 +11,10 @@
 #include "vectors/ECSVector.hpp"
 #include "Collider.hpp"
 
+ECS::Controller::Controller()
+    :collectBonus("../assets/boom.mp3")
+{}
+
 void ECS::Controller::moveEntity(std::vector<ECS::Entity> &entity)
 {
     for (auto it = entity.begin(); it != entity.end(); it++) {
@@ -57,6 +61,7 @@ bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
+                collectBonus.playSound();
                 entity.erase(it);
                 return true;
             } else
@@ -82,6 +87,7 @@ bool ECS::Controller::canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity 
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE).setBonus(player);
                 entity.erase(it);
+                collectBonus.playSound();
                 return true;
             } else
                 return false;
@@ -105,6 +111,7 @@ bool ECS::Controller::canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity 
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
+                collectBonus.playSound();
                 entity.erase(it);
                 return true;
             } else
@@ -130,6 +137,7 @@ bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
                 collectible.setBonus(player);
+                collectBonus.playSound();
                 entity.erase(it);
                 return true;
             } else

@@ -234,8 +234,8 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
     double modX = 0.0;
     double modZ = 0.0;
 
-    mRelPlayPos.X = static_cast<float>(((MAP_SIZE_X / 2) - playerT.getPosition().X) - 1.5f);
-    mRelPlayPos.Z = static_cast<float>(((MAP_SIZE_Z / 2) - playerT.getPosition().Z) - 1.5f);
+    mRelPlayPos.X = static_cast<float>(((MAP_SIZE_X / 2) - playerT.getPosition().X) - 3.f);
+    mRelPlayPos.Z = static_cast<float>(((MAP_SIZE_Z / 2) - playerT.getPosition().Z) - 3.f);
 
     modX = fmod(mRelPlayPos.X, 3);
     modZ = fmod(mRelPlayPos.Z, 3);
@@ -260,8 +260,8 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
         bombPos.Z -= mRelPlayPos.Z + (3 - modZ);
     }
 
-    bombPos.X += 3;
-    bombPos.Z += 3;
+    bombPos.X += 6;
+    bombPos.Z += 6;
 
     return (bombPos);
 }

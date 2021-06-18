@@ -15,11 +15,12 @@
 #include <ctime>
 #include "Controls.hpp"
 #include "enum.hpp"
+#include "Sound.hpp"
 
 namespace ECS {
     class Kill {
         public:
-            Kill() = default;
+            Kill();
             ~Kill() = default;
 
             void deleteWall(std::vector<ECS::Entity> &entity);
@@ -27,6 +28,7 @@ namespace ECS {
         protected:
         private:
             int _bonusId;
+            raylib::Sound playerDead;
 
     };
 };

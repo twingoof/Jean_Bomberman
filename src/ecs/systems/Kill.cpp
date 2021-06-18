@@ -7,6 +7,10 @@
 
 #include "Kill.hpp"
 
+ECS::Kill::Kill()
+    : playerDead("./assets/boom/mp3")
+{}
+
 void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
 {
     int type = 0;
@@ -23,7 +27,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
         }
         if (!kill.getLife()) {
             if ((*it).getName().find("wall") != (*it).getName().npos) {
-                if (std::rand() % 1 == 0) {
+                if (std::rand() % 3 == 0) {
                     type = std::rand() % 3;
                     if (type == 0)
                         bonusType = ECS::BonusType::MOVE;
@@ -35,6 +39,9 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
                     this->_bonusId++;
                     entity.push_back(newCollectible);
                 }
+            }
+            if ((*it).getName().find("player") == (*it).getName().npos) {
+                playerDead.playSound();
             }
             entity.erase(it);
         }

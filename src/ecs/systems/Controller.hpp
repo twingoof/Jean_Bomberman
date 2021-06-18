@@ -13,11 +13,12 @@
 #include "Moveable.hpp"
 #include "Window.hpp"
 #include "Entity.hpp"
+#include "Sound.hpp"
 
 namespace ECS {
     class Controller {
         public:
-            Controller() = default;
+            Controller();
             Controller(const Controller &oldController) = default;
             Controller &operator=(const Controller &oldController) = default;
             ~Controller() = default;
@@ -30,6 +31,7 @@ namespace ECS {
 
         protected:
         private:
+            raylib::Sound collectBonus;
     };
 };
 
