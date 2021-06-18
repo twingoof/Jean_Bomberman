@@ -8,20 +8,22 @@
 #include "Renderer.hpp"
 
 #include "Circle.hpp"
+#include "Cube.hpp"
 #include "Image.hpp"
-#include "Model.hpp"
 #include "Rectangle.hpp"
-#include "Text.hpp"
-#include "Texture.hpp"
 #include "Transform.hpp"
+#include "Window.hpp"
 
 ECS::Renderer::Renderer() = default;
 
 ECS::Renderer::~Renderer() = default;
 
 void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
+    raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
+    window.clearWindow(MAGENTA);
+    window.beginDrawing();
     for (const auto &entity : entities) {
         noDraw = false;
         try {
@@ -34,15 +36,17 @@ void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
 
         try {
             ECS::Drawable3D drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
+            window.begin3DMode();
             this->_draw3D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
-
+            window.end3DMode();
         } catch (std::out_of_range &e) {
             noDraw = true;
         }
 
         if (!noDraw)
-            std::cerr<<"ERROR: "<<"entity"<<" has no Drawabale component."<<std::endl;
+            std::cerr<<"ERROR: "<<entity.getName()<<" has no Drawabale component."<<std::endl;
     }
+    window.endDrawing();
 }
 
 void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable)
@@ -56,20 +60,18 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
             raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
             break;
         case CUSTOM:
-            raylib::Image img;
-            raylib::Texture tex;
-            ECS::Vector4<unsigned char> col = {255, 255, 255, 255};
-
-            img.loadImage(drawable.getSpritePath());
-            tex.loadFromImage(img);
-            raylib::drawTexture(tex, position.X, position.Y, WHITE);
+            if (!this->_isTLoaded(drawable.getId()))
+                this->_loadTextureInCache(drawable);
+            raylib::drawTexture(this->_getTextureFromCache(drawable.getId()), position.X, position.Y, WHITE);
             break;
     }
 }
 
 void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable)
 {
+
     raylib::Model model;
+
     switch (drawable.getType())
     {
     case ECS::DrawableType::CIRCLE :
@@ -85,18 +87,28 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
             ECS::Vector3<int> size = drawable.getSize();
             ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
             ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
-            DrawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
-            DrawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
+            if (drawable.getTexturePath().empty())
+                raylib::drawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
+            else {
+                if (!this->_isTLoaded(drawable.getId()))
+                    this->_loadTextureInCache(drawable);
+                raylib::drawTexturedCube(this->_getTextureFromCache(drawable.getId()), position, size, WHITE);
+            }
+            raylib::drawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
             break;
         }
     case ECS::DrawableType::CUSTOM :
         {
             raylib::Vector3 pos;
-            model = model.loadModel(drawable.getMeshPath());
+            raylib::Model model;
+
+            if (!this->_isMloaded(drawable.getId()))
+                this->_loadModelInCache(drawable);
+            model = this->_getModelFromCache(drawable.getId());
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
-            model.drawModel(pos, 1, RED);
+            model.drawModel(pos, 0.5, RED);
             break;
         }
     default:
@@ -104,4 +116,68 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
     }
 }
 
+void ECS::Renderer::_loadTextureInCache(const ECS::Drawable2D& drawable) {
+    raylib::Texture texture(drawable.getSpritePath());
+    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getId(), texture);
 
+    this->_loadedTextures.insert(toInsert);
+}
+
+void ECS::Renderer::_loadTextureInCache(const ECS::Drawable3D& drawable) {
+    raylib::Texture texture(drawable.getTexturePath());
+    std::pair<unsigned int, raylib::Texture> toInsert = std::make_pair(drawable.getId(), texture);
+
+    this->_loadedTextures.insert(toInsert);
+}
+
+void ECS::Renderer::_loadModelInCache(const ECS::Drawable3D& drawable) {
+    raylib::Model model(drawable.getMeshPath());
+    std::pair<unsigned int, raylib::Model> toInsert = std::make_pair(drawable.getId(), model);
+
+    this->_loadedModels.insert(toInsert);
+
+    if (!drawable.getTexturePath().empty()) {
+        ::Texture texture = ::LoadTexture(drawable.getTexturePath().c_str());
+        model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
+    }
+}
+
+raylib::Texture ECS::Renderer::_getTextureFromCache(const unsigned int id) {
+    raylib::Texture texture;
+
+    try {
+        texture = this->_loadedTextures.at(id);
+    } catch (std::out_of_range &e) {
+        std::cerr<<"Drawable["<<id<<"] has no loaded texture."<<std::endl;
+    }
+    return (texture);
+}
+
+raylib::Model ECS::Renderer::_getModelFromCache(const unsigned int id) {
+    raylib::Model model;
+
+    try {
+        model = this->_loadedModels.at(id);
+    } catch (std::out_of_range &e) {
+        std::cerr<<"Drawable["<<id<<"] has no loaded model."<<std::endl;
+    }
+    return (model);
+}
+
+bool ECS::Renderer::_isMloaded(unsigned int id) {
+    try {
+        this->_loadedModels.at(id);
+    } catch (std::out_of_range &e) {
+        return (false);
+    }
+    return (true);
+}
+
+bool ECS::Renderer::_isTLoaded(unsigned int id) {
+    try {
+        this->_loadedTextures.at(id);
+    } catch (std::out_of_range &e) {
+        return (false);
+    }
+    return (true);
+}

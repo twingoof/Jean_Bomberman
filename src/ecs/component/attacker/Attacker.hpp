@@ -89,7 +89,7 @@ namespace ECS {
              * @param damage 
              */
             void setDamage(unsigned short damage);
-            
+
             /**
              * @fn getRange()
              * @brief Get the Range object

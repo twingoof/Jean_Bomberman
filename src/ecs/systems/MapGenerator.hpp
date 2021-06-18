@@ -8,14 +8,14 @@
 #ifndef MAPGENERATOR_HPP_
 #define MAPGENERATOR_HPP_
 
+#include "Drawable3D.hpp"
+#include "ECSVector.hpp"
+#include "Presets.hpp"
+#include "Entity.hpp"
+#include "Model.hpp"
 #include <string>
 #include <vector>
 #include <ctime>
-#include "Entity.hpp"
-#include "Drawable3D.hpp"
-#include "Presets.hpp"
-#include "ECSVector.hpp"
-#include "Model.hpp"
 
 class MapGenerator {
     public:

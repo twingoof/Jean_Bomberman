@@ -7,7 +7,7 @@
 
 #include "Displacer.hpp"
 #include "Moveable.hpp"
-#include "transform/Transform.hpp"
+#include "Transform.hpp"
 
 void ECS::Displacer::moveEntity(std::vector<ECS::Entity> &entities)
 {

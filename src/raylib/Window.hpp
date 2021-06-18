@@ -19,6 +19,7 @@
 #define WINDOW_HPP_
 
 #include "Vector2.hpp"
+#include "Camera.hpp"
 #include "raylib.h"
 #include <string>
 
@@ -180,6 +181,12 @@ namespace raylib {
             Window &setWindowFPS(const int fpsValue);
 
             /**
+             * @brief Set window main camera
+             * @param raylib::Camera3D Already initialized camera
+             */
+            void setMainCamera(const raylib::Camera3D &camera);
+
+            /**
              * @brief Retrieve Window FPS Count
              * @return Int FPS Count value
              */
@@ -276,6 +283,9 @@ namespace raylib {
             bool _isPhysicInitialized;
             bool _isAudioInitialized;
             bool _isWindowInitialized;
+            bool _isInitialized;
+
+            Camera3D _camera;
 
     };
 };

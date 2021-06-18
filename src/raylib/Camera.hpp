@@ -51,6 +51,8 @@ namespace raylib {
              */
             ~Camera3D();
 
+            Camera3D &operator=(const Camera3D &cpy);
+
             /**
              * @fn void setMode(int mode)
              * @brief Set camera mode

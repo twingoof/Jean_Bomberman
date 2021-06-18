@@ -19,7 +19,7 @@
 #define DRAWABLE2D_HPP_
 
 #include "enum.hpp"
-#include "IComponent.hpp"
+#include "Drawable.hpp"
 #include "ECSVector.hpp"
 #include <iostream>
 
@@ -27,10 +27,7 @@
  * @namespace ECS
  */
 namespace ECS {
-    /**
-     * @class Drawable2D Drawable2D.hpp "src/ecs/component/drawable2d/Drawable2D.hpp"
-     */
-    class Drawable2D : public ECS::IComponent {
+    class Drawable2D : public ECS::Drawable {
         public:
             /**
              * @fn Drawable2D() = default

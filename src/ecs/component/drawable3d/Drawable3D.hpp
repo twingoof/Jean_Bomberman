@@ -71,7 +71,7 @@ namespace ECS {
              * @fn ~Drawable3D()
              * @brief Destroy the Drawable 3 D object
              */
-            ~Drawable3D();
+            ~Drawable3D() override;
 
             /**
              * @fn void setMeshPath(std::string meshPath)
@@ -88,6 +88,8 @@ namespace ECS {
              * @param size New size
              */
             void setSize(const ECS::Vector3<int>& size);
+
+            void setTexturePath(std::string texturePath);
 
             /**
              * @fn void setColor(const ECS::Vector4<unsigned char> color)
@@ -111,7 +113,7 @@ namespace ECS {
              * 
              * @return const std::string 
              */
-            const std::string getMeshPath() const;
+            std::string getMeshPath() const;
 
             /**
              * @fn const ECS::Vector3<int> getSize() const
@@ -119,7 +121,7 @@ namespace ECS {
              * 
              * @return const ECS::Vector3<int> 
              */
-            const ECS::Vector3<int> getSize() const;
+            ECS::Vector3<int> getSize() const;
 
             /**
              * @fn ECS::DrawableType getType() const
@@ -127,6 +129,10 @@ namespace ECS {
              * 
              * @return ECS::DrawableType 
              */
+            unsigned int getId() const;
+
+            std::string getTexturePath() const;
+
             ECS::DrawableType getType() const;
 
             /**
@@ -145,8 +151,12 @@ namespace ECS {
              */
             ECS::Vector4<unsigned char> getWColor() const;
 
+            static unsigned int currentId;
+        protected:
         private:
+            unsigned int _id;
             std::string _meshPath;
+            std::string _texturePath;
             ECS::Vector3<int> _size;
             ECS::DrawableType _type;
             ECS::Vector4<unsigned char> _color;
