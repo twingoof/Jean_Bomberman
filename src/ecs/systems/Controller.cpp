@@ -19,7 +19,7 @@ void ECS::Controller::moveEntity(std::vector<ECS::Entity> &entity)
             raylib::Controls controls;
             ECS::Vector3<float> newVel;
             float speed = m.getSpeed();
-            
+
             if (controls.isKeyDown(m.getKeys()["up"])) {
                 if (canMoveTop(entity, *it, speed))
                     newVel.Z = -(speed);
@@ -53,7 +53,6 @@ bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
-        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
@@ -79,7 +78,6 @@ bool ECS::Controller::canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity 
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
-        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE).setBonus(player);
@@ -103,7 +101,6 @@ bool ECS::Controller::canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity 
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
-        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);
@@ -129,7 +126,6 @@ bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0, t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0, t.getSize().X, t.getSize().Z};
-        // std::cout << "[ x=" << before.x << ", y=" << before.y << ", width=" << before.width << ", height=" << before.height << "] => [ x=" << p.x << ", y=" << p.y << ", width=" << p.width << ", height=" << p.height << "]" << "[ x=" << other.x << ", y=" << other.y << ", width=" << other.width << ", height=" << other.height << "]" << std::endl;
         if (raylib::checkCollisionRecs(p, other)) {
             if ((*it).getName().find("bonus") != (*it).getName().npos) {
                 ECS::Collectible &collectible = (*it).getComponent<ECS::Collectible>(ECS::COLLECTIBLE);

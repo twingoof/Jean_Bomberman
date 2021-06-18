@@ -26,8 +26,3 @@ void ECS::Killable::takeDamage(short damage)
     else
         this->_life -= damage;
 }
-
-bool ECS::Killable::isAlive(void)
-{
-    return (this->_life > 0);
-}
