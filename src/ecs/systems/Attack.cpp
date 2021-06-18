@@ -11,7 +11,7 @@
 #include "Music.hpp"
 
 ECS::Attack::Attack()
-    :bombExpl("../assets/boom.mp3")
+    :bombExpl("../assets/explosion.mp3")
 {}
 
 void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
