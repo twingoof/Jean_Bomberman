@@ -28,9 +28,7 @@ raylib::Texture::Texture(const std::string &filePath)
 }
 
 raylib::Texture::~Texture(void)
-{
-    this->unload();
-}
+{}
 
 void raylib::Texture::unload(void)
 {

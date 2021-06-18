@@ -11,7 +11,7 @@
 ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size) : ECS::Drawable()
 {
     this->_meshPath = std::move(meshPath);
-    this->_texturePath = "";
+    this->_texturePath = "../assets/box.png";
     this->_size = size;
     this->_type = ECS::DrawableType::CUSTOM;
     this->_color = {255, 255, 255, 255};
@@ -19,7 +19,7 @@ ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size)
 }
 
 ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) :
-ECS::Drawable(), _meshPath(drawable3D._meshPath), _texturePath(drawable3D._texturePath),
+_meshPath(drawable3D._meshPath), _texturePath(drawable3D._texturePath),
 _size(drawable3D._size), _type(drawable3D._type), _color(drawable3D._color), _wColor(drawable3D._wColor)
 {
 }
@@ -91,5 +91,16 @@ unsigned int ECS::Drawable3D::getId() const
 std::string ECS::Drawable3D::getTexturePath() const
 {
     return (this->_texturePath);
+}
+
+ECS::Drawable3D &ECS::Drawable3D::operator=(const ECS::Drawable3D &rHand) {
+    this->_texturePath = rHand._texturePath;
+    this->_color = rHand._color;
+    this->_meshPath = rHand._meshPath;
+    this->_size = rHand._size;
+    this->_wColor = rHand._wColor;
+    this->_type = rHand._type;
+    this->_id = rHand._id;
+    return (*this);
 }
 

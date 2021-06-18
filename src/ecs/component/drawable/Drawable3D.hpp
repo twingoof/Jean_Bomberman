@@ -18,7 +18,7 @@ namespace ECS {
     class Drawable3D: public ECS::Drawable {
         public:
             Drawable3D(std::string meshPath, const ECS::Vector3<int>& size);
-            Drawable3D &operator=(const Drawable3D &rHand) = default;
+            Drawable3D &operator=(const Drawable3D &rHand);
             Drawable3D(const Drawable3D &drawable3D);
             Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size);
             ~Drawable3D() override;

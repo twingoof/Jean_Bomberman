@@ -16,10 +16,11 @@ namespace ECS {
             Drawable();
 
             unsigned int getId() const;
+            bool loaded;
 
             static unsigned int currentId;
         protected:
-            const unsigned int _id;
+            unsigned int _id;
         private:
     };
 }

@@ -7,7 +7,7 @@
 
 #include "Drawable.hpp"
 
-ECS::Drawable::Drawable() : _id(currentId++) {}
+ECS::Drawable::Drawable() : _id(currentId++), loaded(false) {}
 
 unsigned int ECS::Drawable::getId() const {
     return (this->_id);

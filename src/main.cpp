@@ -20,7 +20,7 @@
 #include "MapGenerator.hpp"
 #include "vectors/ECSVector.hpp"
 
-unsigned int ECS::Drawable3D::currentId = 0;
+unsigned int ECS::Drawable::currentId = 0;
 
 //int main()
 //{
@@ -43,14 +43,18 @@ int main()
     ECS::Renderer r;
     raylib::Window &window = raylib::Window::getWindow();
     window.initWindow(1600, 900, "Bojour", FLAG_WINDOW_RESIZABLE);
-    raylib::Camera3D camera3D({20, 20, 0}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    raylib::Camera3D camera3D({50, 50, 1}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     window.setMainCamera(camera3D);
-    ECS::Drawable2D d2("../assets/skin.png", {10, 10, 10}, ECS::CUSTOM);
-    ECS::Transform t({50.f, 50.f, 50.f}, {20, 20, 20});
+    ECS::Transform t({0.f, 0.f, 0.f}, {20, 20, 20});
+    ECS::Drawable3D d3(ECS::RECT, t.getSize());
     ECS::Entity e;
-    e.addComponent<ECS::Drawable2D>(d2, ECS::DRAWABLE2D);
+
+    d3.setTexturePath("../assets/box.png");
+    e.addComponent<ECS::Drawable3D>(d3, ECS::DRAWABLE3D);
     e.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     v.push_back(e);
+
+    std::cout<<"Id: "<<d3.getId()<<std::endl;
 
     while (!window.windowShouldClose()) {
         r.draw(v);
