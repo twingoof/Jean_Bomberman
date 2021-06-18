@@ -56,7 +56,7 @@ namespace ECS {
              * @fn void addComponent(T& component, ComponentType type)
              * @brief Add a component
              * 
-             * @tparam T 
+             * @tparam T Component class
              * @param component New component
              * @param type Component's type
              */

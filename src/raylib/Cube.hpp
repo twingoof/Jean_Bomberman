@@ -10,6 +10,7 @@
 
 #include "raylib.h"
 
+#include "ECSVector.hpp"
 #include "Texture.hpp"
 
 namespace raylib {
@@ -22,7 +23,7 @@ namespace raylib {
 
     void drawCubeWiresV(::Vector3 position, ::Vector3 size, ::Color tint = {255, 255, 255, 255});
 
-    void drawTexturedCube(raylib::Texture texture, ::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
+    void drawTexturedCube(raylib::Texture texture, ECS::Vector3<float> position, ECS::Vector3<int> size, ::Color tint = {255, 255, 255, 255});
 
 };
 

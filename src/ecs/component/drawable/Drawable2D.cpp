@@ -8,7 +8,7 @@
 #include "Drawable2D.hpp"
 #include <iostream>
 
-ECS::Drawable2D::Drawable2D(std::string spritePath, ECS::Vector3<int> size, ECS::DrawableType type) : ECS::IComponent()
+ECS::Drawable2D::Drawable2D(std::string spritePath, ECS::Vector3<int> size, ECS::DrawableType type) : ECS::Drawable()
 {
     this->_spritePath = spritePath;
     this->_size = size;

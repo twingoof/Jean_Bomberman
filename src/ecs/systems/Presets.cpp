@@ -46,6 +46,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({255, 0, 0, 255});
+    d.setTexturePath("../assets/skin.png");
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);

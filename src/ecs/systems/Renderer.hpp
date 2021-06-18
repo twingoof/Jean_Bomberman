@@ -15,7 +15,8 @@
 #include "Drawable3D.hpp"
 #include "enum.hpp"
 #include "Entity.hpp"
-#include "IComponent.hpp"
+#include "Texture.hpp"
+#include "Model.hpp"
 
 #include <map>
 #include <memory>
@@ -36,6 +37,19 @@ namespace ECS {
         private:
             void _draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable);
             void _draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable);
+
+            void _loadTextureInCache(const ECS::Drawable2D& drawable);
+            void _loadTextureInCache(const ECS::Drawable3D& drawable);
+            void _loadModelInCache(const ECS::Drawable3D& drawable);
+
+            raylib::Texture _getTextureFromCache(const unsigned int id);
+            raylib::Model _getModelFromCache(const unsigned int id);
+
+            std::map<unsigned int, raylib::Texture> _loadedTextures;
+            std::map<unsigned int, raylib::Model> _loadedModels;
+
+            bool _isTLoaded(unsigned int id);
+            bool _isMloaded(unsigned int id);
     };
 
 }
