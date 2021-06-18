@@ -21,7 +21,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
         } catch(std::out_of_range &e) {
             continue;
         }
-        if (!kill.isAlive()) {
+        if (!kill.getLife()) {
             if ((*it).getName().find("wall") != (*it).getName().npos) {
                 if (std::rand() % 1 == 0) {
                     type = std::rand() % 3;

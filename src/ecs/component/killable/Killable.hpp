@@ -21,7 +21,6 @@ namespace ECS {
 
             short getLife(void) const;
             void takeDamage(short damage);
-            bool isAlive(void);
 
         private:
             short _life;
