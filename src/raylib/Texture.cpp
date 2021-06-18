@@ -114,6 +114,15 @@ void raylib::Texture::draw(::Vector3 position, float wdth, float hght, float len
     ::DrawCubeTexture(*this, position, wdth, hght, length, tint);
 }
 
+void raylib::Texture::drawScaled(::Texture texture, ::Vector2 position, float rotation, float scaleW, float scaleH, ::Color tint)
+{
+    ::Rectangle source = {0.0f, 0.0f, (float)texture.width, (float)texture.height};
+    ::Rectangle dest = {position.x, position.y, (float)texture.width * scaleW, (float)texture.height * scaleH};
+    ::Vector2 origin = {0.0f, 0.0f};
+
+    ::DrawTexturePro(texture, source, dest, origin, rotation, tint);
+}
+
 void raylib::Texture::setMaterial(::Material &material, int type)
 {
     ::SetMaterialTexture((::Material *)(&material), type, *this);
