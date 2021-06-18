@@ -5,6 +5,16 @@
 ** Vector4
 */
 
+/**
+ * @file Vector4.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Vector4 class
+ * @version 0.1
+ * @date 2021-06-18
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef VECTOR4_HPP_
 #define VECTOR4_HPP_
 

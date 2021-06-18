@@ -17,3 +17,4 @@ build-linux/
 Makefile
 src/main.cpp
 a.out
+main.c

@@ -29,7 +29,6 @@ namespace ECS {
      */
     class Renderer {
         public:
-    
             Renderer();
             ~Renderer();
     

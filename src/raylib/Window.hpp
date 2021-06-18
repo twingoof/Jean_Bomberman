@@ -5,17 +5,37 @@
 ** Window
 */
 
+/**
+ * @file Window.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Window class
+ * @version 0.1
+ * @date 2021-06-18
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef WINDOW_HPP_
 #define WINDOW_HPP_
 
-#include "Camera.hpp"
 #include "Vector2.hpp"
+#include "Camera.hpp"
 #include "raylib.h"
 #include <string>
 
 namespace raylib {
+    /**
+     * @class Window Window.hpp "src/raylib/Window.hpp"
+     */
     class Window {
         public:
+            // Window Encapsulation
+
+            /**
+             * @fn static Window &getWindow()
+             * @brief Get the Signleton Window object
+             * @return Window& Singleton Window
+             */
             static Window &getWindow();
 
             /**
@@ -109,18 +129,38 @@ namespace raylib {
              */
             void beginDrawing();
 
+            /**
+             * @brief Set 2D Mode for a given camera
+             * @param actualCam Camera 2D to set 2DMode for
+             */
             void begin2DMode(const ::Camera2D &actualCam);
 
+            /**
+             * @brief Set 3D Mode for a given camera
+             * @param actualCam Camera 3D to set 3DMode for
+             */
             void begin3DMode(const ::Camera3D &actualCam);
 
-            void begin3DMode();
-
+            /**
+             * @brief Tells if 2DMode is activated for a camera
+             * @return True if 2DMode is enabled, false otherwise
+             */
             bool is2DMode() const;
 
+            /**
+             * @brief Tells if 3DMode is activated for a camera
+             * @return True if 3DMode is enabled, false otherwise
+             */
             bool is3DMode() const;
 
+            /**
+             * @brief Disable 2DMode
+             */
             void end2DMode();
 
+            /**
+             * @brief Disable 3DMode
+             */
             void end3DMode();
 
             /**
@@ -158,6 +198,19 @@ namespace raylib {
             Window &maximizeWindow();
 
             /**
+             * @brief Set window's minimal dimensions
+             * @param minWidth Minimal width
+             * @param minHeight Minimal height
+             */
+            void setWindowMinSize(int minWidth, int minHeight);
+
+            /**
+             * @brief Get mouse position on screen
+             * @return Vector2 Poisition of the mouse on screen
+             */
+            ::Vector2 getMousePosition() const;
+
+            /**
              * @brief Minimize window if resizable.
              */
             Window &minimizeWindow();
@@ -168,9 +221,17 @@ namespace raylib {
              */
             ::Vector2 getScaleFactorDPI() const;
 
-            int getWindowWidth() const;
+            /**
+             * @brief Get the actual Window width
+             * @return int Actual Screen width
+             */
+            int getWindowWidth();
 
-            int getWindowHeight() const;
+            /**
+             * @brief Get the actual Window height
+             * @return int Actual Screen Height
+             */
+            int getWindowHeight();
 
             /**
              * @brief Close window.
@@ -178,6 +239,30 @@ namespace raylib {
             void closeWindow();
 
             ~Window();
+
+            // Audio Device Encapsulation
+
+            /**
+             * @brief Initialize Audio for actual window
+             */
+            void initAudioDevice();
+
+            /**
+             * @brief Check if window's audio is properly initialized.
+             * @return True if the window's audio is properly initialized, False otherwise
+             */
+            bool isAudioReady() const;
+
+            /**
+             * @brief Set Audio Device volume
+             * @param volumeValue Volume to set
+             */
+            void setMasterVolume(float volumeValue) const;
+
+            /**
+             * @brief Stops AudiDevice
+             */
+            void stopAudioDevice();
 
         protected:
 
@@ -192,9 +277,13 @@ namespace raylib {
             bool _isHidden;
             bool _isDrawing;
             bool _fullscreen;
-            bool _isInitialized;
             bool _2dActivated;
             bool _3dActivated;
+
+            bool _isPhysicInitialized;
+            bool _isAudioInitialized;
+            bool _isWindowInitialized;
+            bool _isInitialized;
 
             Camera3D _camera;
 

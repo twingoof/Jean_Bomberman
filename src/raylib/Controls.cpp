@@ -34,3 +34,31 @@ bool raylib::Controls::isKeyReleased(int key)
         return (true);
     return (false);
 }
+
+bool raylib::Controls::isMouseButtonPressed(int button)
+{
+    if (::IsMouseButtonPressed(button))
+        return (true);
+    return (false);
+}
+
+bool raylib::Controls::isMouseButtonReleased(int button)
+{
+    if (::IsMouseButtonReleased(button))
+        return (true);
+    return (false);
+}
+
+bool raylib::Controls::isMouseButtonUp(int button)
+{
+    if (::IsMouseButtonUp(button))
+        return (true);
+    return (false);
+}
+
+bool raylib::Controls::isMouseButtonDown(int button)
+{
+    if (::IsMouseButtonDown(button))
+        return (true);
+    return (false);
+}

@@ -63,7 +63,6 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
             if (!this->_isTLoaded(drawable.getId()))
                 this->_loadTextureInCache(drawable);
             raylib::drawTexture(this->_getTextureFromCache(drawable.getId()), position.X, position.Y, WHITE);
-            
             break;
     }
 }

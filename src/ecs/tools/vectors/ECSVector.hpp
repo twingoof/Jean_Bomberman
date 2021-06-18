@@ -40,6 +40,10 @@ namespace ECS {
                 return (*this);
             }
 
+            bool operator==(const ECS::Vector3<T> &rHand) {
+                return (this->X == rHand.X && this->Y == rHand.Y && this->Z == rHand.Z);
+            }
+
             T X;
             T Y;
             T Z;
@@ -75,6 +79,10 @@ namespace ECS {
                 this->Z = rHand.Z;
                 this->A = rHand.A;
                 return (*this);
+            }
+
+            bool operator==(const ECS::Vector4<T> &rHand) {
+                return (this->X == rHand.X && this->Y == rHand.Y && this->Z == rHand.Z && this->A == rHand.A);
             }
 
             T X;

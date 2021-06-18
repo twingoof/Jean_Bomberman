@@ -10,51 +10,68 @@
 #include "Window.hpp"
 #include "Camera.hpp"
 #include "Displacer.hpp"
-#include "Drawable.hpp"
 #include "Renderer.hpp"
 #include "Presets.hpp"
+#include "Attack.hpp"
 #include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
 #include "Transform.hpp"
 #include "MapGenerator.hpp"
 #include "vectors/ECSVector.hpp"
-
-unsigned int ECS::Drawable::currentId = 0;
-
-//int main()
-//{
-//    std::vector<ECS::Drawable2D> v;
-//
-//    for (int i = 0; i <= 10; i++) {
-//        ECS::Drawable2D d("../assets/skin.png", {10, 10, 10}, ECS::CIRCLE);
-//        v.push_back(d);
-//    }
-//
-//    for (const auto& item : v) {
-//        std::cout<<"Id: "<<item.getId()<<" Size: "<<item.getSize().X<<" "<<item.getSize().Y<<" "<<item.getSize().Z<<std::endl;
-//    }
-//}
+#include "Clock.hpp"
+#include "Kill.hpp"
+#include "GetEntityInVector.hpp"
+#include "Sound.hpp"
 
 int main()
 {
-    std::vector<ECS::Entity> v;
-//    v.push_back(Presets::createWall("pouet", {0.0f, 0.0f, 0.0f}));
-    ECS::Renderer r;
+    int nbPlayer = 4;
+    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
-    window.initWindow(1600, 900, "Bojour", FLAG_WINDOW_RESIZABLE);
-    raylib::Camera3D camera3D({50, 50, 1}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
-    window.setMainCamera(camera3D);
-    ECS::Transform t({0.f, 0.f, 0.f}, {20, 20, 20});
-    ECS::Drawable3D d3(ECS::RECT, t.getSize());
-    ECS::Entity e;
+    raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    std::vector<ECS::Entity> mapEntities;
 
-    d3.setTexturePath("../assets/box.png");
-    e.addComponent<ECS::Drawable3D>(d3, ECS::DRAWABLE3D);
-    e.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
-    v.push_back(e);
-
+    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    window.initAudioDevice();
+    window.setWindowFPS(60);
+    ECS::Renderer r;
+    ECS::Kill kill;
+    ECS::Attack atk;
+    ECS::Controller ctrl;
+    ECS::Displacer disp;
+    //ECS::Collider cld;
+    ECS::Clock clock;
+    std::vector<ECS::Entity> gameEntities;
+    gameEntities = map.generateMapEntities();
+    clock.startClock();
     while (!window.windowShouldClose()) {
-        r.draw(v);
+        window.beginDrawing();
+        window.begin3DMode(camera);
+        window.clearWindow(RAYWHITE);
+        //DrawGrid(50, 1.0f);
+        if (clock.getTimeElapsed() > 0.01) {
+            if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
+                std::cout << "Equality" << std::endl;
+                break;
+            } else if (ECS::getNbEntitiesByName("player", gameEntities) == 1) {
+                std::cout << "And the winner is: " << std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", gameEntities).begin())).getName() << std::endl;
+                break;
+            }
+            std::vector<std::tuple<bool, ECS::Entity &>> players = ECS::getEntitiesByName("player", gameEntities);
+            ctrl.moveEntity(gameEntities);
+            atk.manageBombs(gameEntities);
+            //cld.checkCollision(gameEntities);
+            disp.moveEntity(gameEntities);
+            kill.deleteWall(gameEntities);
+            clock.restartClock();
+        }
+        r.draw(gameEntities);
+        window.end3DMode();
+        DrawFPS(10, 10);
+        window.endDrawing();
     }
+    window.stopAudioDevice();
+    window.closeWindow();
+    return 0;
 }
