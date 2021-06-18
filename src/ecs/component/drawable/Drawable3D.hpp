@@ -17,19 +17,18 @@
 namespace ECS {
     class Drawable3D: public ECS::Drawable {
         public:
-            Drawable3D(std::string meshPath, const ECS::Vector3<int>& size);
-            Drawable3D &operator=(const Drawable3D &rHand) = default;
-            Drawable3D(const Drawable3D &drawable3D);
-            Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size);
+            Drawable3D(std::string meshPath, const ECS::Vector3<int>& size, std::string texturePath = "");
+            Drawable3D &operator=(Drawable3D rHand);
+            Drawable3D(const Drawable3D &drawable3D) = default;
+            Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size, std::string texturePath = "");
             ~Drawable3D() override;
 
             void setMeshPath(std::string meshPath);
             void setTexturePath(std::string texturePath);
             void setSize(const ECS::Vector3<int>& size);
-            void setColor(const ECS::Vector4<unsigned char> color);
-            void setWColor(const ECS::Vector4<unsigned char> wColor);
+            void setColor(ECS::Vector4<unsigned char> color);
+            void setWColor(ECS::Vector4<unsigned char> wColor);
 
-            unsigned int getId() const;
             std::string getMeshPath() const;
             std::string getTexturePath() const;
             ECS::Vector3<int> getSize() const;

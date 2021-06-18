@@ -28,9 +28,7 @@ raylib::Texture::Texture(const std::string &filePath)
 }
 
 raylib::Texture::~Texture(void)
-{
-    this->unload();
-}
+{}
 
 void raylib::Texture::unload(void)
 {
@@ -135,6 +133,16 @@ void raylib::Texture::setTexture(const ::Texture &old)
     this->width = old.width;
     this->mipmaps = old.mipmaps;
     this->format = old.format;
+}
+
+raylib::Texture &raylib::Texture::operator=(const raylib::Texture &rHand) {
+    this->height = rHand.height;
+    this->width = rHand.width;
+    this->id = rHand.id;
+    this->format = rHand.format;
+    this->mipmaps = rHand.mipmaps;
+
+    return (*this);
 }
 
 namespace raylib {

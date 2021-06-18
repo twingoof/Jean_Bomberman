@@ -8,26 +8,27 @@
 
 #include <utility>
 
-ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size) : ECS::Drawable()
+ECS::Drawable3D::Drawable3D(std::string meshPath, const ECS::Vector3<int>& size, std::string texturePath) : ECS::Drawable()
 {
     this->_meshPath = std::move(meshPath);
-    this->_texturePath = "";
+    this->_texturePath = std::move(texturePath);
     this->_size = size;
     this->_type = ECS::DrawableType::CUSTOM;
     this->_color = {255, 255, 255, 255};
     this->_wColor = {0, 0, 0, 0};
 }
 
-ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) :
-ECS::Drawable(), _meshPath(drawable3D._meshPath), _texturePath(drawable3D._texturePath),
-_size(drawable3D._size), _type(drawable3D._type), _color(drawable3D._color), _wColor(drawable3D._wColor)
-{
-}
+//ECS::Drawable3D::Drawable3D(const Drawable3D &drawable3D) :
+//_meshPath(drawable3D._meshPath), _texturePath(drawable3D._texturePath),
+//_size(drawable3D._size), _type(drawable3D._type), _color(drawable3D._color), _wColor(drawable3D._wColor)
+//{
+//    this->loaded = drawable3D.loaded;
+//}
 
-ECS::Drawable3D::Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size) : ECS::Drawable()
+ECS::Drawable3D::Drawable3D(ECS::DrawableType type, const ECS::Vector3<int>& size, std::string texturePath) : ECS::Drawable()
 {
     this->_meshPath = "";
-    this->_texturePath = "";
+    this->_texturePath = std::move(texturePath);
     this->_size = size;
     this->_type = type;
     this->_color = {0, 255, 0, 255};
@@ -83,13 +84,20 @@ void ECS::Drawable3D::setTexturePath(std::string texturePath)
     this->_texturePath = std::move(texturePath);
 }
 
-unsigned int ECS::Drawable3D::getId() const
-{
-    return (this->_id);
-}
-
 std::string ECS::Drawable3D::getTexturePath() const
 {
     return (this->_texturePath);
+}
+
+ECS::Drawable3D &ECS::Drawable3D::operator=(ECS::Drawable3D rHand) {
+    this->_texturePath = rHand._texturePath;
+    this->_color = rHand._color;
+    this->_meshPath = rHand._meshPath;
+    this->_size = rHand._size;
+    this->_wColor = rHand._wColor;
+    this->_type = rHand._type;
+    this->_id = rHand._id;
+    this->loaded = rHand.loaded;
+    return (*this);
 }
 

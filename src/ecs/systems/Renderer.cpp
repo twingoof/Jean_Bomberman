@@ -18,16 +18,16 @@ ECS::Renderer::Renderer() = default;
 
 ECS::Renderer::~Renderer() = default;
 
-void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
+void ECS::Renderer::draw(std::vector<ECS::Entity> &entities) {
     raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
-    window.clearWindow(MAGENTA);
+    window.clearWindow(RAYWHITE);
     window.beginDrawing();
-    for (const auto &entity : entities) {
+    for (auto &entity : entities) {
         noDraw = false;
         try {
-            ECS::Drawable2D drawable = entity.getComponent<ECS::Drawable2D>(DRAWABLE2D);
+            ECS::Drawable2D &drawable = entity.getComponent<ECS::Drawable2D>(DRAWABLE2D);
             this->_draw2D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
         }
         catch (std::out_of_range &e) {
@@ -35,7 +35,7 @@ void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
         }
 
         try {
-            ECS::Drawable3D drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
+            ECS::Drawable3D &drawable = entity.getComponent<ECS::Drawable3D>(DRAWABLE3D);
             window.begin3DMode();
             this->_draw3D(entity.getComponent<Transform>(TRANSFORM).getPosition(), drawable);
             window.end3DMode();
@@ -49,7 +49,7 @@ void ECS::Renderer::draw(const std::vector<ECS::Entity> &entities) {
     window.endDrawing();
 }
 
-void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Drawable2D& drawable)
+void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D& drawable)
 {
     switch (drawable.getType()) {
 
@@ -67,7 +67,7 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, const ECS::Draw
     }
 }
 
-void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Drawable3D& drawable)
+void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D &drawable)
 {
 
     raylib::Model model;
@@ -90,8 +90,10 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, const ECS::Draw
             if (drawable.getTexturePath().empty())
                 raylib::drawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
             else {
-                if (!this->_isTLoaded(drawable.getId()))
+                if (!drawable.loaded) {
+                    drawable.loaded = true;
                     this->_loadTextureInCache(drawable);
+                }
                 raylib::drawTexturedCube(this->_getTextureFromCache(drawable.getId()), position, size, WHITE);
             }
             raylib::drawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
@@ -136,10 +138,10 @@ void ECS::Renderer::_loadModelInCache(const ECS::Drawable3D& drawable) {
 
     this->_loadedModels.insert(toInsert);
 
-    if (!drawable.getTexturePath().empty()) {
-        ::Texture texture = ::LoadTexture(drawable.getTexturePath().c_str());
-        model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
-    }
+//    if (!drawable.getTexturePath().empty()) {
+//        ::Texture texture = ::LoadTexture(drawable.getTexturePath().c_str());
+//        model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
+//    }
 }
 
 raylib::Texture ECS::Renderer::_getTextureFromCache(const unsigned int id) {
