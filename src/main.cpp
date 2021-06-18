@@ -26,7 +26,8 @@
 
 int main()
 {
-    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z);
+    int nbPlayer = 2;
+    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
     raylib::Camera3D camera({0, 60, 10}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;

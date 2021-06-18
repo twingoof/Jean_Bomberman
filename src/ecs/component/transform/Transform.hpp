@@ -26,10 +26,21 @@ namespace ECS {
             ECS::Vector3<float> &getLastPosition();
             ECS::Vector3<int> &getSize();
 
+            int &getSpeed();
+            int &getRange();
+            int &getReload();
+
+            void addSpeed(int speed);
+            void addRange(int range);
+            void addReload(int reload);
+
         private:
             ECS::Vector3<float> _position;
             ECS::Vector3<float> _lastPosition;
             ECS::Vector3<int> _size;
+            int _speed;
+            int _range;
+            int _reload;
     };
 };
 

@@ -8,8 +8,9 @@
 #include "MapGenerator.hpp"
 #include "raylib.h"
 
-MapGenerator::MapGenerator(int width, int height)
+MapGenerator::MapGenerator(int width, int height, int nbPlayer)
 {
+    this->_nbPlayer = nbPlayer;
     if (width % 2 == 0)
         width++;
     else if (width < 5)
@@ -24,14 +25,55 @@ MapGenerator::MapGenerator(int width, int height)
 }
 
 MapGenerator::~MapGenerator()
-{}
+{
+}
 
-void MapGenerator::insideMap(int x, int y, std::string &line)
+void MapGenerator::insideMap2P(int x, int y, std::string &line)
 {
     if (/*(*/x == 0/* || x == std::get<0>(dimensions) - 1) */&& /*(*/y == 0/* || y == std::get<1>(dimensions) - 1)*/)
         line += '1';
     else if (x == std::get<0>(dimensions) - 1 && y == std::get<1>(dimensions) - 1)
         line += '2';
+    else if (x % 2 == 0 || y % 2 == 0) {
+        if (this->isPlayerSpawn(x, y))
+            line += ' ';
+        else if (std::rand() % 10)
+            line += 'D';
+        else
+            line += ' ';
+    } else
+        line += '#';
+}
+
+void MapGenerator::insideMap3P(int x, int y, std::string &line)
+{
+    if (x == 0 && y == 0)
+        line += '1';
+    else if (x == 0 && y == std::get<1>(dimensions) - 1)
+        line += '2';
+    else if (x == std::get<0>(dimensions) - 1 && y == 0)
+        line += '3';
+    else if (x % 2 == 0 || y % 2 == 0) {
+        if (this->isPlayerSpawn(x, y))
+            line += ' ';
+        else if (std::rand() % 10)
+            line += 'D';
+        else
+            line += ' ';
+    } else
+        line += '#';
+}
+
+void MapGenerator::insideMap4P(int x, int y, std::string &line)
+{
+    if (x == 0 && y == 0)
+        line += '1';
+    else if (x == 0 && y == std::get<1>(dimensions) - 1)
+        line += '2';
+    else if (x == std::get<0>(dimensions) - 1 && y == 0)
+        line += '3';
+    else if (x == std::get<0>(dimensions) - 1 && y == std::get<1>(dimensions) - 1)
+        line += '4';
     else if (x % 2 == 0 || y % 2 == 0) {
         if (this->isPlayerSpawn(x, y))
             line += ' ';
@@ -69,7 +111,19 @@ void MapGenerator::generateMap(void)
     for (int i = 0; i < std::get<1>(dimensions); i++) {
         line += '#';
         for (int j = 0; j < std::get<0>(dimensions); j++)
-            this->insideMap(j, i, line);
+            switch (this->_nbPlayer) {
+            case 2:
+                this->insideMap2P(j, i, line);
+                break;
+            case 3:
+                this->insideMap3P(j, i, line);
+                break;
+            case 4:
+                this->insideMap4P(j, i, line);
+                break;
+            default:
+                break;
+            }
         line += '#';
         this->_map.push_back(line);
         line.clear();
@@ -103,6 +157,10 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
                 e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls);
             else if (c == '2')
                 e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), sndControls);
+            else if (c == '3')
+                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), sndControls);
+            else if (c == '4')
+                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), sndControls);
             mapEntities.push_back(e);
             x += 3;
         }
