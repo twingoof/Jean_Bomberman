@@ -277,7 +277,6 @@ bool ECS::Attack::checkBombPos(ECS::Vector3<float> pos, std::vector<ECS::Entity>
         if ((*it).getName().find("bomb") == (*it).getName().npos)
             continue;
         ECS::Transform tEntity = (*it).getComponent<ECS::Transform>(TRANSFORM);
-        std::cout << "X: " << tEntity.getPosition().X << " Z: " << tEntity.getPosition().Z << " Name: " << (*it).getName() << std::endl;
         if (tEntity.getPosition() == pos)
             return false;
     }

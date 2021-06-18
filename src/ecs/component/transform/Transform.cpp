@@ -7,7 +7,7 @@
 
 #include "Transform.hpp"
 
-ECS::Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size): _position(position), _lastPosition(position), _size(size)
+ECS::Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size): _position(position), _lastPosition(position), _size(size), _speed(0), _range(0), _reload(0)
 {}
 
 void ECS::Transform::setPosition(ECS::Vector3<float> newPosition)
@@ -42,4 +42,33 @@ ECS::Vector3<float> &ECS::Transform::getLastPosition()
 ECS::Vector3<int> &ECS::Transform::getSize()
 {
     return (this->_size);
+}
+
+int &ECS::Transform::getSpeed()
+{
+    return(this->_speed);
+}
+
+int &ECS::Transform::getRange()
+{
+    return (this->_range);
+}
+int &ECS::Transform::getReload()
+{
+    return (this->_reload);
+}
+
+void ECS::Transform::addSpeed(int speed)
+{
+    this->_speed += speed;
+}
+
+void ECS::Transform::addRange(int range)
+{
+    this->_range += range;
+}
+
+void ECS::Transform::addReload(int reload)
+{
+    this->_reload += reload;
 }
