@@ -54,8 +54,6 @@ int main()
     e.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     v.push_back(e);
 
-    std::cout<<"Id: "<<d3.getId()<<std::endl;
-
     while (!window.windowShouldClose()) {
         r.draw(v);
     }
