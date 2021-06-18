@@ -23,6 +23,9 @@
 #include <string>
 
 namespace raylib {
+    /**
+     * @class Window Window.hpp "src/raylib/Window.hpp"
+     */
     class Window {
         public:
             // Window Encapsulation
