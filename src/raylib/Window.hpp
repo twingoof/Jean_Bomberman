@@ -5,6 +5,16 @@
 ** Window
 */
 
+/**
+ * @file Window.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Window class
+ * @version 0.1
+ * @date 2021-06-18
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef WINDOW_HPP_
 #define WINDOW_HPP_
 
@@ -17,6 +27,11 @@ namespace raylib {
         public:
             // Window Encapsulation
 
+            /**
+             * @fn static Window &getWindow()
+             * @brief Get the Signleton Window object
+             * @return Window& Singleton Window
+             */
             static Window &getWindow();
 
             /**

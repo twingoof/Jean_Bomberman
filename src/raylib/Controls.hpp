@@ -5,6 +5,16 @@
 ** Controls
 */
 
+/**
+ * @file Controls.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain the Controls class
+ * @version 0.1
+ * @date 2021-06-18
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef INDIE_CONTROLS_HPP
 #define INDIE_CONTROLS_HPP
 
@@ -12,6 +22,9 @@
 #include "raylib.h"
 
 namespace raylib {
+    /**
+     * @enum Keys
+     */
     enum Keys {
 
         // Alphanumeric keys
@@ -25,7 +38,7 @@ namespace raylib {
         KEY_SEVEN           = 55,
         KEY_EIGHT           = 56,
         KEY_NINE            = 57,
-        KEY_A               = 65,
+        KEY_A               = 81, //65 In QWERTY MODE
         KEY_B               = 66,
         KEY_C               = 67,
         KEY_D               = 68,
@@ -37,11 +50,11 @@ namespace raylib {
         KEY_J               = 74,
         KEY_K               = 75,
         KEY_L               = 76,
-        KEY_M               = 77,
+        KEY_M               = 59, //77 In QWERTY MODE
         KEY_N               = 78,
         KEY_O               = 79,
         KEY_P               = 80,
-        KEY_Q               = 81,
+        KEY_Q               = 65, //81 In QWERTY MODE
         KEY_R               = 82,
         KEY_S               = 83,
         KEY_T               = 84,
@@ -124,21 +137,117 @@ namespace raylib {
         KEY_VOLUME_DOWN     = 25
     };
 
+    /**
+     * @class Controls Controls.hpp "src/raylib/Controls.hpp"
+     */
     class Controls {
         public:
+            /**
+             * @fn Controls() = default
+             * @brief Construct a new Controls object
+             * 
+             */
             Controls() = default;
+
+            /**
+             * @fn Controls(const Controls &oldControls) = default
+             * @brief Construct a new Controls object
+             * 
+             * @param oldControls Controls Class to copy
+             */
             Controls(const Controls &oldControls) = default;
+
+            /**
+             * @fn Controls(const Controls &oldControls) = default
+             * @brief Construct a new Controls object
+             * 
+             * @param oldControls Controls Class to copy
+             */
             Controls &operator=(const Controls &oldControls) = default;
+
+            /**
+             * @fn ~Controls() = default
+             * @brief Destroy the Controls object
+             */
             ~Controls() = default;
 
+            /**
+             * @fn bool isKeyDown(int key)
+             * @brief Checks if key is down
+             * 
+             * @param key Key code
+             * @return true If key is down
+             * @return false Otherwise
+             */
             bool isKeyDown(int key);
+
+            /**
+             * @fn bool isKeyPressed(int key)
+             * @brief Cheks if a key is pressed
+             * 
+             * @param key Key code
+             * @return true If pressed
+             * @return false Otherwise
+             */
             bool isKeyPressed(int key);
+
+            /**
+             * @fn bool isKeyUp(int key)
+             * @brief Cheks if key is Up
+             * 
+             * @param key Key code
+             * @return true If key is up
+             * @return false Otherwise
+             */
             bool isKeyUp(int key);
+
+            /**
+             * @fn bool isKeyReleased(int key)
+             * @brief Checks if key is released
+             * 
+             * @param key Key code
+             * @return true If key is released
+             * @return false Otherwise
+             */
             bool isKeyReleased(int key);
 
+            /**
+             * @fn bool isMouseButtonPressed(int button)
+             * @brief Checks if mouse button is pressed
+             * 
+             * @param button Mouse button code
+             * @return true If button pressed
+             * @return false Otherwise
+             */
             bool isMouseButtonPressed(int button);
+            /**
+             * @fn bool isMouseButtonReleased(int button)
+             * @brief Checks if button is released
+             * 
+             * @param button Mouse button code
+             * @return true If button down
+             * @return false Otherwise
+             */
             bool isMouseButtonReleased(int button);
+
+            /**
+             * @fn bool isMouseButtonDown(int button)
+             * @brief Checks if 
+             * 
+             * @param button Mouse button code
+             * @return true If button is down
+             * @return false Otherwise
+             */
             bool isMouseButtonDown(int button);
+
+            /**
+             * @fn bool isMouseButtonUp(int button)
+             * @brief Checks if mouse button is up
+             * 
+             * @param button Mouse button code
+             * @return true If button is released
+             * @return false Otherwise
+             */
             bool isMouseButtonUp(int button);
 
         protected:
