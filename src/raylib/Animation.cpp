@@ -49,7 +49,7 @@ void raylib::unloadModelAnimations(std::vector<::ModelAnimation> modelAnimation,
 std::vector<raylib::Animation> raylib::loadAnimations(const std::string &filePath, int animsCount)
 {
     std::vector<raylib::Animation> newAnim;
-    auto newAnimC = ::LoadModelAnimations(filePath.c_str(), reinterpret_cast<int *>(animsCount));
+    auto newAnimC = ::LoadModelAnimations(filePath.c_str(), &animsCount);
 
     if (newAnimC == nullptr)
         return (newAnim);

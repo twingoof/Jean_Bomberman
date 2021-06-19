@@ -40,7 +40,7 @@ void raylib::Model::unloadModel(void)
 
 void raylib::Model::drawModel(void)
 {
-    ::Vector3 spaceVect;
+    ::Vector3 spaceVect = {0, 0, 0};
 
     this->drawModel(spaceVect, 0.0f);
 }

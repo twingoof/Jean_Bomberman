@@ -34,7 +34,7 @@ namespace raylib {
      * @param fontSize Font size
      * @param tint Text color
      */
-    void drawText(const std::string &text, int posX, int posY, float fontSize, ::Color tint = {255, 255, 255, 255});
+    void drawText(const std::string &text, int posX, int posY, int fontSize, ::Color tint = {255, 255, 255, 255});
 
     /**
      * @fn void drawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint = {255, 255, 255, 255})
@@ -46,7 +46,7 @@ namespace raylib {
      * @param fontSize Font size
      * @param tint Text color
      */
-    void drawText(::Font &font, const std::string &text, ::Vector2 position, int fontSize, ::Color tint = {255, 255, 255, 255});
+    void drawText(::Font &font, const std::string &text, ::Vector2 position, float fontSize, ::Color tint = {255, 255, 255, 255});
 
     /**
      * @fn int measureText(const std::string &text, float fontSize)
@@ -56,7 +56,7 @@ namespace raylib {
      * @param fontSize Font size
      * @return int Text size
      */
-    int measureText(const std::string &text, float fontSize);
+    int measureText(const std::string &text, int fontSize);
 
 };
 
