@@ -25,11 +25,7 @@ void raylib::Window::initWindow(const int width, const int height, const std::st
         ::SetWindowState(flag);
     _width = width;
     _height = height;
-<<<<<<< HEAD
     _isWindowInitialized = true;
-=======
-    _isInitialized = true;
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
 }
 
 raylib::Window &raylib::Window::clearState(const unsigned int flag)
@@ -70,11 +66,7 @@ bool raylib::Window::windowShouldClose(void) const
 
 bool raylib::Window::isReady(void) const
 {
-<<<<<<< HEAD
     return (_isWindowInitialized);
-=======
-    return (::IsWindowReady());
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
 }
 
 bool raylib::Window::isFullscreen(void)
@@ -136,8 +128,6 @@ void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
     }
 }
 
-<<<<<<< HEAD
-=======
 void raylib::Window::begin3DMode()
 {
     if (_isDrawing && !_2dActivated) {
@@ -146,7 +136,6 @@ void raylib::Window::begin3DMode()
     }
 }
 
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
 bool raylib::Window::is2DMode(void) const
 {
     return (_2dActivated);
@@ -201,7 +190,6 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (*this);
 }
 
-<<<<<<< HEAD
 void raylib::Window::setWindowMinSize(int minWidth, int minHeight)
 {
     ::SetWindowMinSize(minWidth, minHeight);
@@ -212,14 +200,11 @@ void raylib::Window::setWindowMinSize(int minWidth, int minHeight)
     return (::GetMousePosition());
 }
 
-=======
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
 ::Vector2 raylib::Window::getScaleFactorDPI(void) const
 {
     return (::GetWindowScaleDPI());
 }
 
-<<<<<<< HEAD
 int raylib::Window::getWindowWidth(void)
 {
     _width = ::GetScreenWidth();
@@ -229,21 +214,11 @@ int raylib::Window::getWindowWidth(void)
 int raylib::Window::getWindowHeight(void)
 {
     _height = ::GetScreenHeight();
-=======
-int raylib::Window::getWindowWidth(void) const
-{
-    return (_width);
-}
-
-int raylib::Window::getWindowHeight(void) const
-{
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
     return (_height);
 }
 
 void raylib::Window::closeWindow(void)
 {
-<<<<<<< HEAD
     if (_isWindowInitialized) {
         ::CloseWindow();
         _isWindowInitialized = false;
@@ -272,13 +247,4 @@ void raylib::Window::stopAudioDevice(void)
         ::CloseAudioDevice();
         _isAudioInitialized = false;
     }
-=======
-    if (_isInitialized)
-        ::CloseWindow();
-}
-
-void raylib::Window::setMainCamera(const raylib::Camera3D &camera)
-{
-    this->_camera = camera;
->>>>>>> df6f81fb020c12fe598a49314e25c7b4d41cb36f
 }

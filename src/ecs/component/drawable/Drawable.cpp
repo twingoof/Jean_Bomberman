@@ -6,6 +6,7 @@
 */
 
 #include "Drawable.hpp"
+unsigned int ECS::Drawable::currentId;
 
 ECS::Drawable::Drawable() : _id(currentId++), loaded(false) {}
 

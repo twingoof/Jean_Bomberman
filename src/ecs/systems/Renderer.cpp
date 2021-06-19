@@ -22,7 +22,7 @@ void ECS::Renderer::draw(std::vector<ECS::Entity> &entities) {
     raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
-    window.clearWindow(RAYWHITE);
+    window.clearWindow(MAGENTA);
     window.beginDrawing();
     for (auto &entity : entities) {
         noDraw = false;
@@ -62,7 +62,9 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
         case CUSTOM:
             if (!this->_isTLoaded(drawable.getId()))
                 this->_loadTextureInCache(drawable);
-            raylib::drawTexture(this->_getTextureFromCache(drawable.getId()), position.X, position.Y, WHITE);
+            float scaleW = drawable.getSize().X / 1300.0f;
+            float scaleH = drawable.getSize().Y / 600.0f;
+            this->_getTextureFromCache(drawable.getId()).drawScaled({position.X, position.Y}, 0, scaleW, scaleH, WHITE);
             break;
     }
 }

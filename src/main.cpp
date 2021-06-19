@@ -23,6 +23,12 @@
 #include "Kill.hpp"
 #include "GetEntityInVector.hpp"
 #include "Sound.hpp"
+#include "MenuGenerator.hpp"
+#include "ButtonClickManager.hpp"
+
+void test() {
+    std::cout << "Lancement du play";
+}
 
 int main()
 {
@@ -30,11 +36,12 @@ int main()
     MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
     raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
-    std::vector<ECS::Entity> mapEntities;
 
-    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
-    window.initAudioDevice();
-    window.setWindowFPS(60);
+    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    std::vector<ECS::Entity> &menuEntities = menu.getMenuEntities();
+    // raylib::Camera3D camera({0, 60, 10}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    // std::vector<ECS::Entity> mapEntities;
+    // std::vector<ECS::Entity> gameEntities;
     ECS::Renderer r;
     ECS::Kill kill;
     ECS::Attack atk;
@@ -42,32 +49,24 @@ int main()
     ECS::Displacer disp;
     //ECS::Collider cld;
     ECS::Clock clock;
-    std::vector<ECS::Entity> gameEntities;
-    gameEntities = map.generateMapEntities();
+    ECS::ButtonClickManager btnManager;
+
+    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    window.setWindowFPS(60);
+    window.initAudioDevice();
+    menu.initMenuGenerator(&test);
     clock.startClock();
     while (!window.windowShouldClose()) {
+        if (menu.needToExit())
+            break;
         window.beginDrawing();
-        window.begin3DMode(camera);
         window.clearWindow(RAYWHITE);
-        //DrawGrid(50, 1.0f);
         if (clock.getTimeElapsed() > 0.01) {
-            if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
-                std::cout << "Equality" << std::endl;
-                break;
-            } else if (ECS::getNbEntitiesByName("player", gameEntities) == 1) {
-                std::cout << "And the winner is: " << std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", gameEntities).begin())).getName() << std::endl;
-                break;
-            }
-            std::vector<std::tuple<bool, ECS::Entity &>> players = ECS::getEntitiesByName("player", gameEntities);
-            ctrl.moveEntity(gameEntities);
-            atk.manageBombs(gameEntities);
-            //cld.checkCollision(gameEntities);
-            disp.moveEntity(gameEntities);
-            kill.deleteWall(gameEntities);
+            btnManager.checkButtonArea(menuEntities);
+            menu.updateEntities();
             clock.restartClock();
         }
-        r.draw(gameEntities);
-        window.end3DMode();
+        r.draw(menuEntities);
         DrawFPS(10, 10);
         window.endDrawing();
     }
