@@ -9,23 +9,38 @@
 
 void ECS::ButtonClickManager::checkButtonArea(std::vector<ECS::Entity> &entities)
 {
-    ECS::Clickable clickable;
+    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
     raylib::Controls c;
 
     for (auto it = entities.begin(); it != entities.end(); it++) {
-        if (buttonIsOverflow((*it))) {
-            try {
-                clickable = (*it).getComponent<ECS::Clickable>(ECS::CLICKABLE);
-                ECS::Drawable2D &d = (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D);
-                d.setSpritePath(changeSpritePath(d.getSpritePath()));
-            } catch (std::out_of_range &e) {
-                continue;
+        try {
+            ECS::Clickable clickable = (*it).getComponent<ECS::Clickable>(ECS::CLICKABLE);
+            ECS::Drawable2D &d = (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D);
+            std::string path = d.getSpritePath();
+            ECS::Vector3<int> size;
+            bool isOverflow = buttonIsOverflow(*it);
+            if (isOverflow && path.find("Unic.png") == path.npos && path.find("Colored.png") == path.npos) {
+                size = d.getSize();
+                std::cout << d.getSpritePath() << " - ";
+                d = menu.getMenuSprites().find(getColoredSpritePath(path))->second;
+                d.setSize(size);
+                std::cout << d.getSpritePath() << " - " << (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D).getSpritePath() << std::endl;
+                if (c.isMouseButtonPressed(raylib::MouseButton::MOUSE_BUTTON_LEFT) && buttonIsPressed(*it)) {
+                    clickable.callback();
+                    return;
+                }
+            } else if (!isOverflow && path.find("Unic.png") == path.npos && path.find("Colored.png") != path.npos) {
+                std::cout << d.getSpritePath() << " - ";
+                size = d.getSize();
+                d = menu.getMenuSprites().find(getUncoloredSpritePath(path))->second;
+                d.setSize(size);
+                std::cout << d.getSpritePath() << " - " << (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D).getSpritePath() << std::endl;
             }
-            if (c.isMouseButtonPressed(raylib::MouseButton::MOUSE_BUTTON_LEFT) && buttonIsPressed(*it))
-                clickable.callback();
-            break;
+        } catch (std::out_of_range &e) {
+            continue;
         }
     }
+    // menu.setMenuEntities(entities);
 }
 
 bool ECS::ButtonClickManager::buttonIsOverflow(ECS::Entity &entity)
@@ -48,13 +63,18 @@ bool ECS::ButtonClickManager::buttonIsPressed(ECS::Entity &entity)
     return (false);
 }
 
-std::string ECS::ButtonClickManager::changeSpritePath(std::string spritePath)
+std::string ECS::ButtonClickManager::getColoredSpritePath(std::string spritePath)
 {
     std::string toAdd = "Colored.png";
 
-    if (spritePath.find(toAdd) != spritePath.npos)
-        return (spritePath);
     spritePath = spritePath.substr(0, spritePath.size() - 4);
-    std::cout << spritePath + toAdd << std::endl;
+    return (spritePath + toAdd);
+}
+
+std::string ECS::ButtonClickManager::getUncoloredSpritePath(std::string spritePath)
+{
+    std::string toAdd = ".png";
+
+    spritePath = spritePath.substr(0, spritePath.size() - 11);
     return (spritePath + toAdd);
 }

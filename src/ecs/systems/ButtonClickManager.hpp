@@ -14,6 +14,7 @@
 #include "Clickable.hpp"
 #include "Collision.hpp"
 #include "Drawable2D.hpp"
+#include "MenuGenerator.hpp"
 #include <vector>
 
 namespace ECS {
@@ -28,7 +29,8 @@ namespace ECS {
 
         protected:
         private:
-            std::string changeSpritePath(std::string spritePath);
+            std::string getColoredSpritePath(std::string spritePath);
+            std::string getUncoloredSpritePath(std::string spritePath);
     };
 };
 

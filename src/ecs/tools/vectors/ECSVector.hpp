@@ -18,14 +18,14 @@ namespace ECS {
             Vector3(const ECS::Vector3<T> &cpy) : X(cpy.X), Y(cpy.Y), Z(cpy.Z) {};
             ~Vector3() = default;
 
-            Vector3 &operator+=(const ECS::Vector3<T> &rHand)
+            ECS::Vector3<T> &operator+=(const ECS::Vector3<T> &rHand)
             {
                 this->X += rHand.X;
                 this->Y += rHand.Y;
                 this->Z += rHand.Z;
                 return (*this);
             }
-            Vector3 &operator*(const T rHand)
+            ECS::Vector3<T> &operator*(const T rHand)
             {
                 this->X *= rHand;
                 this->Y *= rHand;
@@ -33,7 +33,7 @@ namespace ECS {
                 return (*this);
 
             }
-            Vector3 &operator=(const ECS::Vector3<T> &rHand) {
+            ECS::Vector3<T> &operator=(const ECS::Vector3<T> &rHand) {
                 this->X = rHand.X;
                 this->Y = rHand.Y;
                 this->Z = rHand.Z;

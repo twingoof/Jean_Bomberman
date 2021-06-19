@@ -19,16 +19,17 @@ namespace menu {
         public:
             ~MenuGenerator() = default;
 
+            static MenuGenerator &getMenuGenerator();
             void initMenuGenerator(void(*callback)(), float volume = 1.0f, int nbPlayers = 2);
 
             std::vector<ECS::Entity> &getMenuEntities();
+            std::map<std::string, ECS::Drawable2D> &getMenuSprites();
             std::map<int, std::map<std::string, raylib::Keys>> getPlayerKeys() const;
             float getVolume() const;
             int getNbPlayers() const;
             bool needToExit() const;
 
             void updateEntities();
-
             // _menuPage = 0
             void generateMenu();
             // _menuPage = 1
@@ -41,8 +42,6 @@ namespace menu {
             void generateOptions();
             // _menuPage = 5
             void generateCredits();
-            // _menuPage = 6
-            void generateKeysInputSelection();
 
             void setMenuEntities(std::vector<ECS::Entity> &entities);
             void setPlayerKeys(std::map<int, std::map<std::string, raylib::Keys>> playerKeys);
@@ -51,13 +50,12 @@ namespace menu {
             void setExit();
             void setKey(int playerIndex, std::string binding);
 
-            static MenuGenerator &getMenuGenerator();
-
         private:
             MenuGenerator() = default;
             MenuGenerator(const MenuGenerator &) = delete;
             const MenuGenerator &operator=(const MenuGenerator &) = delete;
             std::map<int, std::map<std::string, raylib::Keys>> _playerKeys;
+            std::map<std::string, ECS::Drawable2D> _sprites;
             std::vector<ECS::Entity> _menuEntities;
             void(*_callbackPlay)();
             float _volume;

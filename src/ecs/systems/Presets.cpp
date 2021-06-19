@@ -7,6 +7,19 @@
 
 #include "Presets.hpp"
 
+ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), ECS::Drawable2D &d)
+{
+    ECS::Entity entity(name);
+    ECS::Transform t(position, size);
+    ECS::Clickable c(callback);
+
+    d.setSize(t.getSize());
+    entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
+    entity.addComponent<ECS::Clickable>(c, ECS::CLICKABLE);
+    entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);
+    return (entity);
+}
+
 ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath)
 {
     ECS::Entity entity(name);
@@ -16,6 +29,17 @@ ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Clickable>(c, ECS::CLICKABLE);
+    entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);
+    return (entity);
+}
+
+ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, ECS::Drawable2D &d)
+{
+    ECS::Entity entity(name);
+    ECS::Transform t(position, size);
+
+    d.setSize(t.getSize());
+    entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);
     return (entity);
 }

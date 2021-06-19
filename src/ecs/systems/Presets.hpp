@@ -24,7 +24,11 @@
 
 namespace Presets
 {
+    ECS::Entity createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), ECS::Drawable2D &d);
+
     ECS::Entity createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath);
+
+    ECS::Entity createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, ECS::Drawable2D &d);
 
     ECS::Entity createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, std::string spritePath);
 

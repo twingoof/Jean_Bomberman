@@ -71,9 +71,6 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
 
 void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D &drawable)
 {
-
-    raylib::Model model;
-
     switch (drawable.getType())
     {
     case ECS::DrawableType::CIRCLE :

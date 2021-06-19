@@ -33,10 +33,8 @@ void test() {
 int main()
 {
     int nbPlayer = 4;
-    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
+    // MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
-    raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
-
     menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
     std::vector<ECS::Entity> &menuEntities = menu.getMenuEntities();
     // raylib::Camera3D camera({0, 60, 10}, {0, 0, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
@@ -46,7 +44,7 @@ int main()
     ECS::Kill kill;
     ECS::Attack atk;
     ECS::Controller ctrl;
-    ECS::Displacer disp;
+    // ECS::Displacer disp;
     //ECS::Collider cld;
     ECS::Clock clock;
     ECS::ButtonClickManager btnManager;
@@ -61,7 +59,7 @@ int main()
             break;
         window.beginDrawing();
         window.clearWindow(RAYWHITE);
-        if (clock.getTimeElapsed() > 0.01) {
+        if (clock.getTimeElapsed() > 0.1) {
             btnManager.checkButtonArea(menuEntities);
             menu.updateEntities();
             clock.restartClock();
