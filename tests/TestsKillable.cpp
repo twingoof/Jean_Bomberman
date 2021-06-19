@@ -5,33 +5,33 @@
 ** Created by prost,
 */
 
-#include "Killable.hpp"
+// #include "Killable.hpp"
 
-#include <criterion/criterion.h>
+// #include <criterion/criterion.h>
 
-Test(Killable, constructor) {
-    Killable killable(120);
+// Test(Killable, constructor) {
+//     Killable killable(120);
 
-    cr_assert_eq(killable.getLife(), 120);
-}
+//     cr_assert_eq(killable.getLife(), 120);
+// }
 
-Test(Killable, takeDamage) {
-    Killable killable(120);
+// Test(Killable, takeDamage) {
+//     Killable killable(120);
 
-    killable.takeDamage(100);
-    cr_assert_eq(killable.getLife(), 20);
-}
+//     killable.takeDamage(100);
+//     cr_assert_eq(killable.getLife(), 20);
+// }
 
-Test(Killable, isAlive) {
-    Killable killable(120);
+// Test(Killable, isAlive) {
+//     Killable killable(120);
 
-    killable.takeDamage(100);
-    cr_assert_eq(killable.isAlive(), true);
-}
+//     killable.takeDamage(100);
+//     cr_assert_eq(killable.isAlive(), true);
+// }
 
-Test(Killable, isNotAlive) {
-    Killable killable(120);
+// Test(Killable, isNotAlive) {
+//     Killable killable(120);
 
-    killable.takeDamage(120);
-    cr_assert_eq(killable.isAlive(), false);
-}
+//     killable.takeDamage(120);
+//     cr_assert_eq(killable.isAlive(), false);
+// }
