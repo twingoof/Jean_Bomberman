@@ -19,7 +19,7 @@ jobs:
 
       - name: cmake
         run: mkdir build && cd build && cmake ..
-      - name: make
+      - name: make bomberman
         run: make -C build
       - name: Archive binary
         uses: actions/upload-artifact@v1
