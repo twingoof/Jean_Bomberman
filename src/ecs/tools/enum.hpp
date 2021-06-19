@@ -8,29 +8,48 @@
 #ifndef ENUM_HPP_
 #define ENUM_HPP_
 
-enum ComponentType
-{
-    DRAWABLE2D,
-    DRAWABLE3D,
-    CLICKABLE, 
-    MOVEABLE,
-    KILLABLE,
-    PHYSICS,
-    COLLECTIBLE,
-    ATTACKER,
-};
+#ifndef MAP_SIZE_X
+#define MAP_SIZE_X  19
+#endif
 
-enum DrawableType {
-    CIRCLE,
-    RECT
-};
+#ifndef MAP_SIZE_Z
+#define MAP_SIZE_Z  17
+#endif
 
-typedef struct texture2D_s {
-    int height;
-    int width;
-    int mipmaps;
-    int format;
-    unsigned int id;
-} texture2D_t;
+namespace ECS {
+    enum ComponentType
+    {
+        DRAWABLE2D,
+        DRAWABLE3D,
+        CLICKABLE,
+        MOVEABLE,
+        KILLABLE,
+        PHYSICS,
+        COLLECTIBLE,
+        ATTACKER,
+        TRANSFORM,
+        TIMER
+    };
+
+    enum BonusType {
+        MOVE,
+        RANGE,
+        RELOAD
+    };
+
+    enum DrawableType {
+        CIRCLE,
+        RECT,
+        CUSTOM
+    };
+
+    typedef struct texture2D_s {
+        int height;
+        int width;
+        int mipmaps;
+        int format;
+        unsigned int id;
+    } texture2D_t;
+};
 
 #endif /* !ENUM_HPP_ */

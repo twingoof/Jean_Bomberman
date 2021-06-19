@@ -7,50 +7,70 @@
 
 #include "Collider.hpp"
 #include "Moveable.hpp"
-#include "enum.hpp"
 #include "Window.hpp"
+#include "Camera.hpp"
+#include "Displacer.hpp"
+#include "Renderer.hpp"
+#include "Presets.hpp"
+#include "Attack.hpp"
 #include "Controller.hpp"
 #include "Text.hpp"
 #include "Displacer.hpp"
-#include "Renderer2D.hpp"
+#include "Transform.hpp"
+#include "MapGenerator.hpp"
+#include "vectors/ECSVector.hpp"
 #include "Clock.hpp"
+#include "Kill.hpp"
+#include "GetEntityInVector.hpp"
+#include "Sound.hpp"
 
 int main()
 {
-    /*raylib::Window &window = raylib::Window::getWindow();
-    ECSVector3 pos = {90,90,90};
-    ECSVector3 vel = {0, 0, 0};
-    Entity e(pos, pos);
-    Drawable2D d("Bonjour", {10, 10, 10}, CIRCLE);
-    std::vector<Entity> v;
-    Renderer2D r;
-    Moveable m(e.getPosition());
-    Collider c;
-    Displacer dbis;
-    Controller ctller;
-    ECS::Clock clock;
+    int nbPlayer = 4;
+    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
+    raylib::Window &window = raylib::Window::getWindow();
+    raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
+    std::vector<ECS::Entity> mapEntities;
 
+    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    window.initAudioDevice();
     window.setWindowFPS(60);
-    e.addComponent<Drawable2D>(d, DRAWABLE2D);
-    e.addComponent<Moveable>(m, MOVEABLE);
-    m.setVelocity(vel);
-    v.push_back(e);
-    window.initWindow(800, 450, "raylib [core] example - basic window", FLAG_WINDOW_RESIZABLE);
+    window.setMainCamera(camera);
+    ECS::Renderer r;
+    ECS::Kill kill;
+    ECS::Attack atk;
+    ECS::Controller ctrl;
+    ECS::Displacer disp;
+    //ECS::Collider cld;
+    ECS::Clock clock;
+    std::vector<ECS::Entity> gameEntities;
+    gameEntities = map.generateMapEntities();
     clock.startClock();
-    while (!WindowShouldClose()) {
-        window.beginDrawing();
-            window.clearWindow(RAYWHITE);
-        //            dbis.moveEntity(e, m.getVelocity());
-            if (clock.getTimeElapsed() >= 0.06) {
-                ctller.moveEntity(e);
-                dbis.moveEntity(e);
-                clock.restartClock();
+    while (!window.windowShouldClose()) {
+        if (clock.getTimeElapsed() > 0.01) {
+            if (ECS::getNbEntitiesByName("player", gameEntities) == 0) {
+                std::cout << "Equality" << std::endl;
+                break;
+            } else if (ECS::getNbEntitiesByName("player", gameEntities) == 1) {
+                std::cout << "And the winner is: " << std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", gameEntities).begin())).getName() << std::endl;
+                break;
             }
-            c.checkWindowCollisiton(e);
-            r.draw(v);
-        window.endDrawing();
+            std::vector<std::tuple<bool, ECS::Entity &>> players = ECS::getEntitiesByName("player", gameEntities);
+            ctrl.moveEntity(gameEntities);
+            atk.manageBombs(gameEntities);
+            //cld.checkCollision(gameEntities);
+            disp.moveEntity(gameEntities);
+            kill.deleteWall(gameEntities);
+            clock.restartClock();
+        }
+        r.draw(gameEntities);
+//        window.clearWindow(MAGENTA);
+//        window.beginDrawing();
+//        DrawGrid(50, 1.0f);
+//        DrawFPS(10, 10);
+//        window.endDrawing();
     }
+    window.stopAudioDevice();
     window.closeWindow();
-    return 0;*/
-    return (0);
+    return 0;
 }

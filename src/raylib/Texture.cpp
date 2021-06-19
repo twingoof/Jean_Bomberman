@@ -28,9 +28,7 @@ raylib::Texture::Texture(const std::string &filePath)
 }
 
 raylib::Texture::~Texture(void)
-{
-    this->unload();
-}
+{}
 
 void raylib::Texture::unload(void)
 {
@@ -114,6 +112,15 @@ void raylib::Texture::draw(::Vector3 position, float wdth, float hght, float len
     ::DrawCubeTexture(*this, position, wdth, hght, length, tint);
 }
 
+void raylib::Texture::drawScaled(::Texture texture, ::Vector2 position, float rotation, float scaleW, float scaleH, ::Color tint)
+{
+    ::Rectangle source = {0.0f, 0.0f, (float)texture.width, (float)texture.height};
+    ::Rectangle dest = {position.x, position.y, (float)texture.width * scaleW, (float)texture.height * scaleH};
+    ::Vector2 origin = {0.0f, 0.0f};
+
+    ::DrawTexturePro(texture, source, dest, origin, rotation, tint);
+}
+
 void raylib::Texture::setMaterial(::Material &material, int type)
 {
     ::SetMaterialTexture((::Material *)(&material), type, *this);
@@ -126,4 +133,28 @@ void raylib::Texture::setTexture(const ::Texture &old)
     this->width = old.width;
     this->mipmaps = old.mipmaps;
     this->format = old.format;
+}
+
+raylib::Texture &raylib::Texture::operator=(const raylib::Texture &rHand) {
+    this->height = rHand.height;
+    this->width = rHand.width;
+    this->id = rHand.id;
+    this->format = rHand.format;
+    this->mipmaps = rHand.mipmaps;
+
+    return (*this);
+}
+
+namespace raylib {
+    void drawTexture(raylib::Texture texture, int posX, int posY, ::Color color)
+    {
+        ::Texture t;
+        t.format = texture.format;
+        t.height = texture.height;
+        t.id = texture.id;
+        t.mipmaps = texture.mipmaps;
+        t.width = texture.width;
+
+        ::DrawTexture(t, posX, posY, color);
+    }
 }

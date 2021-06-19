@@ -7,49 +7,62 @@
 
 #include "Attacker.hpp"
 
-Attacker::Attacker(unsigned int ammo, unsigned short damage)
-    : _baseDamage(damage)
+ECS::Attacker::Attacker(double reloadTime, unsigned short damage)
+    : _baseDamage(damage), _range(1)
 {
-    this->_ammo = ammo;
+    this->_clock.startClock();
+    this->_reloadTime = reloadTime;
     this->_damage = damage;
 }
 
-Attacker::~Attacker() = default;
+ECS::Attacker::~Attacker() = default;
 
-unsigned int Attacker::getAmmo() const
+double ECS::Attacker::getReloadTime() const
 {
-    return (this->_ammo);
+    return (this->_reloadTime);
 }
 
-unsigned short Attacker::getDamage() const
+unsigned short ECS::Attacker::getDamage() const
 {
     return (this->_damage);
 }
 
-unsigned short Attacker::getBaseDamage() const
+unsigned short ECS::Attacker::getBaseDamage() const
 {
     return (this->_baseDamage);
 }
 
-void Attacker::setAmmo(unsigned int ammo)
+void ECS::Attacker::setReloadTime(double reloadTime)
 {
-    this->_ammo = ammo;
+    this->_reloadTime = reloadTime;
 }
 
-void Attacker::setDamage(unsigned short damage)
+void ECS::Attacker::setDamage(unsigned short damage)
 {
     this->_damage = damage;
 }
 
-void Attacker::dealDamage(Killable &target)
-{
-    if (this->_ammo > 0) {
-        this->_ammo = (this->_ammo - 1);
-        target.takeDamage(this->_damage);
-    }
-}
-
-void Attacker::resetDamage()
+void ECS::Attacker::resetDamage()
 {
     this->_damage = this->_baseDamage;
+}
+
+bool ECS::Attacker::isReload(void)
+{
+    return (this->_clock.getTimeElapsed() > this->_reloadTime);
+}
+
+void ECS::Attacker::reload(void)
+{
+    this->_clock.restartClock();
+}
+
+int ECS::Attacker::getRange() const
+{
+    return (_range);
+}
+
+void ECS::Attacker::setRange(int newVal)
+{
+    _range = newVal;
 }

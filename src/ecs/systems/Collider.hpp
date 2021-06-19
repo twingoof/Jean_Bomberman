@@ -8,17 +8,29 @@
 #ifndef COLLIDER_HPP_
 #define COLLIDER_HPP_
 
+#include "Collectible.hpp"
+#include "Transform.hpp"
+#include "Collision.hpp"
+#include "Moveable.hpp"
 #include "Entity.hpp"
+#include "Window.hpp"
+#include "Entity.hpp"
+#include <algorithm>
+#include <vector>
 
-class Collider {
-    public:
-        Collider() = default;
-        ~Collider() = default;
+namespace ECS {
+    class Collider {
+        public:
+            Collider() = default;
+            ~Collider() = default;
 
-        void checkCollision(Entity &first, Entity &second);
-        void checkWindowCollisiton(Entity &first);
+            void checkCollision(std::vector<ECS::Entity> &scene);
 
-    private:
+        private:
+            void isWindowColliding(ECS::Entity &entity);
+            int isEntitesColliding(ECS::Entity &fEntity, ECS::Entity &sEntity);
+
+    };
 };
 
 #endif /* !COLLIDER_HPP_ */

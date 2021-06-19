@@ -9,7 +9,7 @@
 
 raylib::Model::Model(const std::string &filePath)
 {
-    this->setModel(LoadModel(filePath.c_str()));
+    this->setModel(this->loadModel(filePath.c_str()));
 }
 
 raylib::Model::Model(const ::Model &old)
@@ -25,12 +25,17 @@ raylib::Model &raylib::Model::operator=(const ::Model &old)
 
 raylib::Model::~Model()
 {
-    this->unloadModel();
+    // this->unloadModel();
 }
 
 void raylib::Model::unloadModel(void)
 {
     ::UnloadModel(*this);
+}
+
+::Model raylib::Model::loadModel(const std::string &filePath)
+{
+    return (::LoadModel(filePath.c_str()));
 }
 
 void raylib::Model::drawModel(void)

@@ -37,12 +37,3 @@ Test(Attacker, resetDamage) {
     attacker.resetDamage();
     cr_assert_eq(attacker.getDamage(), 100);
 }
-
-Test(Attacker, dealDamage) {
-    Attacker attacker(3, 100);
-    Killable defender(120);
-
-    attacker.dealDamage(defender);
-    cr_assert_eq(attacker.getAmmo(), 2);
-    cr_assert_eq(defender.getLife(), 20);
-}

@@ -6,13 +6,13 @@
 */
 
 #include "OSRedirector.hpp"
-#include "ECSVector3.hpp"
+#include "ECSVector.hpp"
 #include "Physics.hpp"
 
 Test(Physics_constructor, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 position(1, 2, 3);
+    ECSVector size(1, 2, 3);
+    ECSVector position(1, 2, 3);
     Physics physics(size, position);
 
     cr_assert_eq(physics.getSize().getX(), 1);
@@ -26,8 +26,8 @@ Test(Physics_constructor, normal_usage)
 
 Test(Physics_setLayer, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 position(1, 2, 3);
+    ECSVector size(1, 2, 3);
+    ECSVector position(1, 2, 3);
     Physics physics(size, position);
 
     physics.setLayer(2);
@@ -36,9 +36,9 @@ Test(Physics_setLayer, normal_usage)
 
 Test(Physics_setSize, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 newSize(4, 5, 6);
-    ECSVector3 position(1, 2, 3);
+    ECSVector size(1, 2, 3);
+    ECSVector newSize(4, 5, 6);
+    ECSVector position(1, 2, 3);
     Physics physics(size, position);
 
     physics.setSize(newSize);
@@ -49,9 +49,9 @@ Test(Physics_setSize, normal_usage)
 
 Test(Physics_setPosition, normal_usage)
 {
-    ECSVector3 size(1, 2, 3);
-    ECSVector3 position(1, 2, 3);
-    ECSVector3 newPosition(4, 5, 6);
+    ECSVector size(1, 2, 3);
+    ECSVector position(1, 2, 3);
+    ECSVector newPosition(4, 5, 6);
     Physics physics(size, position);
 
     physics.setPosition(newPosition);

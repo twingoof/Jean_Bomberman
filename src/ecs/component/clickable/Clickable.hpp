@@ -19,50 +19,53 @@
 #define CLICKABLE_HPP_
 
 #include "IComponent.hpp"
-/**
- * @class Callback Callback.hpp "src/ecs/component/clickable/Clickable.hpp"
- */
-class Clickable : public IComponent {
-    public:
-        /**
-         * @fn Callback(void(*callback)())
-         * @brief Construct a new Callback object
-         * 
-         * @param callback Function to callback
-         */
-        Clickable(void(*callback)() = nullptr);
 
-        Clickable &operator=(const Clickable &clickable) = default;
-        /**
-         * @fn ~Callback()
-         * @brief Destroy the Callback object
-         */
-        ~Clickable();
+namespace ECS {
+    /**
+     * @class Callback Callback.hpp "src/ecs/component/clickable/Clickable.hpp"
+     */
+    class Clickable : public ECS::IComponent {
+        public:
+            /**
+             * @fn Callback(void(*callback)())
+             * @brief Construct a new Callback object
+             * 
+             * @param callback Function to callback
+             */
+            Clickable(void(*callback)() = nullptr);
 
-        /**
-         * @fn void callback()
-         * @brief Use the callback
-         */
-        void callback();
+            Clickable &operator=(const Clickable &clickable) = default;
+            /**
+             * @fn ~Callback()
+             * @brief Destroy the Callback object
+             */
+            ~Clickable();
 
-        /**
-         * @fn void setCallback(void(*callback)())
-         * @brief Set the callback
-         * 
-         * @param callback Function to callback
-         */
-        void setCallback(void(*callback)());
+            /**
+             * @fn void callback()
+             * @brief Use the callback
+             */
+            void callback();
 
-        /**
-         * @fn void (*getCallback())()
-         * @brief Get the callback. For test purpose only.
-         * 
-         * @return void(*callback)()
-         */
-        void (*getCallback())();
+            /**
+             * @fn void setCallback(void(*callback)())
+             * @brief Set the callback
+             * 
+             * @param callback Function to callback
+             */
+            void setCallback(void(*callback)());
 
-    private:
-        void (*_callback)(); /**< Callback*/
+            /**
+             * @fn void (*getCallback())()
+             * @brief Get the callback. For test purpose only.
+             * 
+             * @return void(*callback)()
+             */
+            void (*getCallback())();
+
+        private:
+            void (*_callback)(); /**< Callback*/
+    };
 };
 
 #endif /* !CLICKABLE_HPP_ */

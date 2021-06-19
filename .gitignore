@@ -11,8 +11,10 @@ doc
 build
 
 #Files
-cmake-build-debug
-cmake-build-release
+cmake-build-*
 build/
 build-linux/
 Makefile
+src/main.cpp
+a.out
+main.c

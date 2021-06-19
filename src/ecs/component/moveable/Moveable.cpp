@@ -7,64 +7,69 @@
 
 #include "Moveable.hpp"
 
-Moveable::Moveable(int posX, int posY, int posZ, ECSVector3 velocity)
-    : _position(ECSVector3(posX, posY, posZ)), _velocityVector(velocity)
-{}
+ECS::Moveable::Moveable(): _velocity(), _speed(0.1) {}
 
-Moveable::Moveable(ECSVector3 &position, ECSVector3 velocity) : _position(position), _velocityVector(velocity) {}
-
-Moveable::~Moveable() = default;
-
-void Moveable::moveX(int offsetX)
+ECS::Moveable::Moveable(ECS::Vector3<float> &velocity, std::map<std::string, raylib::Keys> keys) : _velocity(velocity), _speed(0.15)
 {
-    this->_position.setX(offsetX);
+    this->_keyUp = keys["up"];
+    this->_keyDown = keys["down"];
+    this->_keyLeft = keys["left"];
+    this->_keyRight = keys["right"];
+    this->_keyBomb = keys["bomb"];
 }
 
-void Moveable::moveY(int offsetY)
+ECS::Moveable::~Moveable() = default;
+
+void ECS::Moveable::setVelocity(const ECS::Vector3<float> &newVector)
 {
-    this->_position.setY(offsetY);
+    this->_velocity = newVector;
 }
 
-void Moveable::moveZ(int offsetZ)
+void ECS::Moveable::setVelocity(float x, float y, float z)
 {
-    this->_position.setZ(offsetZ);
+    this->_velocity.X = x;
+    this->_velocity.Y = y;
+    this->_velocity.Z = z;
 }
 
-void Moveable::move(int offsetX, int offsetY, int offsetZ)
+void ECS::Moveable::setKeys(std::map<std::string, raylib::Keys> keys)
 {
-    this->_position._x += offsetX;
-    this->_position._y += offsetY;
-    this->_position._z += offsetZ;
+    this->_keyUp = keys["up"];
+    this->_keyDown = keys["down"];
+    this->_keyLeft = keys["left"];
+    this->_keyRight = keys["right"];
+    this->_keyBomb = keys["bomb"];
 }
 
-void Moveable::move(ECSVector3 offsetPosition)
+void ECS::Moveable::setSpeed(float speedVal)
 {
-    this->_position += offsetPosition;
+    this->_speed = speedVal;
 }
 
-void Moveable::place(int offsetX, int offsetY, int offsetZ)
+ECS::Vector3<float> ECS::Moveable::getVelocity(void) const
 {
-    this->_position.setX(offsetX);
-    this->_position.setY(offsetY);
-    this->_position.setZ(offsetZ);
+    return (this->_velocity);
 }
 
-void Moveable::place(ECSVector3 offsetPosition)
+std::map<std::string, raylib::Keys> ECS::Moveable::getKeys() const
 {
-    this->_position = offsetPosition;
+    std::map<std::string, raylib::Keys> keys;
+
+    keys["up"] = this->_keyUp;
+    keys["down"] = this->_keyDown;
+    keys["left"] = this->_keyLeft;
+    keys["right"] = this->_keyRight;
+    keys["bomb"] = this->_keyBomb;
+    return (keys);
 }
 
-const ECSVector3 Moveable::getPosition() const
+float ECS::Moveable::getSpeed(void) const
 {
-    return (_position);
+    return (this->_speed);
 }
 
-void Moveable::setVelocity(const ECSVector3 &newVector)
+ECS::Moveable &ECS::Moveable::operator=(const ECS::Moveable& rHand)
 {
-    _velocityVector = newVector;
-}
-
-ECSVector3 &Moveable::getVelocity(void) const
-{
-    return (_velocityVector);
+    this->_velocity = rHand._velocity;
+    return (*this);
 }

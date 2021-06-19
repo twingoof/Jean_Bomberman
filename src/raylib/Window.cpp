@@ -25,7 +25,7 @@ void raylib::Window::initWindow(const int width, const int height, const std::st
         ::SetWindowState(flag);
     _width = width;
     _height = height;
-    _isInitialized = true;
+    _isWindowInitialized = true;
 }
 
 raylib::Window &raylib::Window::clearState(const unsigned int flag)
@@ -66,7 +66,7 @@ bool raylib::Window::windowShouldClose(void) const
 
 bool raylib::Window::isReady(void) const
 {
-    return (::IsWindowReady());
+    return (_isWindowInitialized);
 }
 
 bool raylib::Window::isFullscreen(void)
@@ -122,8 +122,16 @@ void raylib::Window::begin2DMode(const ::Camera2D &actualCamera)
 
 void raylib::Window::begin3DMode(const ::Camera3D &actualCamera)
 {
-    if (_isDrawing && _2dActivated) {
+    if (_isDrawing && !_2dActivated) {
         ::BeginMode3D(actualCamera);
+        _3dActivated = true;
+    }
+}
+
+void raylib::Window::begin3DMode()
+{
+    if (_isDrawing && !_2dActivated) {
+        ::BeginMode3D(this->_camera);
         _3dActivated = true;
     }
 }
@@ -182,23 +190,66 @@ raylib::Window &raylib::Window::minimizeWindow(void)
     return (*this);
 }
 
+void raylib::Window::setWindowMinSize(int minWidth, int minHeight)
+{
+    ::SetWindowMinSize(minWidth, minHeight);
+}
+
+::Vector2 raylib::Window::getMousePosition() const
+{
+    return (::GetMousePosition());
+}
+
 ::Vector2 raylib::Window::getScaleFactorDPI(void) const
 {
     return (::GetWindowScaleDPI());
 }
 
-int raylib::Window::getWindowWidth(void) const
+int raylib::Window::getWindowWidth(void)
 {
+    _width = ::GetScreenWidth();
     return (_width);
 }
 
-int raylib::Window::getWindowHeight(void) const
+int raylib::Window::getWindowHeight(void)
 {
+    _height = ::GetScreenHeight();
     return (_height);
 }
 
 void raylib::Window::closeWindow(void)
 {
-    if (_isInitialized)
+    if (_isWindowInitialized) {
         ::CloseWindow();
+        _isWindowInitialized = false;
+    }
+}
+
+void raylib::Window::initAudioDevice(void)
+{
+    ::InitAudioDevice();
+    _isAudioInitialized = true;
+}
+
+bool raylib::Window::isAudioReady(void) const
+{
+    return (_isAudioInitialized);
+}
+
+void raylib::Window::setMasterVolume(float volumeValue) const
+{
+    ::SetMasterVolume(volumeValue);
+}
+
+void raylib::Window::stopAudioDevice(void)
+{
+    if (_isAudioInitialized) {
+        ::CloseAudioDevice();
+        _isAudioInitialized = false;
+    }
+}
+
+void raylib::Window::setMainCamera(const raylib::Camera3D &camera)
+{
+    this->_camera = camera;
 }

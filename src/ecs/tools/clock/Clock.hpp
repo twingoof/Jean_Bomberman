@@ -25,8 +25,8 @@ namespace ECS {
         protected:
 
         private:
-            std::chrono::_V2::steady_clock::time_point _startTick;
-            std::chrono::_V2::steady_clock::time_point _endTick;
+            std::chrono::steady_clock::time_point _startTick;
+            std::chrono::steady_clock::time_point _endTick;
 
             std::chrono::duration<double> _duration;
             float _tick;

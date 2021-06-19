@@ -20,6 +20,16 @@ raylib::Camera3D::Camera3D(Vector3 camPos, Vector3 camTarget, Vector3 camUp, flo
 
 raylib::Camera3D::~Camera3D() = default;
 
+raylib::Camera3D &raylib::Camera3D::operator=(const raylib::Camera3D &cam)
+{
+    this->fovy = cam.fovy;
+    this->position = cam.position;
+    this->projection = cam.projection;
+    this->target = cam.target;
+    this->up = cam.up;
+    return (*this);
+}
+
 void raylib::Camera3D::setMode(int mode)
 {
     ::SetCameraMode(*this, mode);
