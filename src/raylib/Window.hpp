@@ -142,6 +142,11 @@ namespace raylib {
             void begin3DMode(const ::Camera3D &actualCam);
 
             /**
+             * @brief Set 3D Mode for the set up main camera
+             */
+            void begin3DMode();
+
+            /**
              * @brief Tells if 2DMode is activated for a camera
              * @return True if 2DMode is enabled, false otherwise
              */

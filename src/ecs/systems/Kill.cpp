@@ -7,43 +7,47 @@
 
 #include "Kill.hpp"
 
+#include <random>
+
 ECS::Kill::Kill()
-    : playerDead("./assets/boom/mp3")
+    : playerDead("../assets/mort.mp3")
 {}
 
-void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entity)
+void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entities)
 {
-    int type = 0;
-    ECS::BonusType bonusType;
-    ECS::Entity newCollectible;
+    ECS::Killable k;
+    std::vector<std::vector<ECS::Entity>::iterator> toRm;
+    std::vector<ECS::Entity> toAdd;
 
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    for (auto it = entity.begin(); it != entity.end(); it++) {
-        ECS::Killable kill;
+    for (auto it = entities.begin(); it != entities.end(); it++) {
+        ECS::Entity e = (*it);
         try {
-            kill = (*it.base()).getComponent<ECS::Killable>(ECS::KILLABLE);
-        } catch(std::out_of_range &e) {
+            k = e.getComponent<ECS::Killable>(ECS::KILLABLE);
+        } catch (std::out_of_range &e) {
             continue;
         }
-        if (!kill.getLife()) {
-            if ((*it).getName().find("wall") != (*it).getName().npos) {
-                if (std::rand() % 3 == 0) {
-                    type = std::rand() % 3;
-                    if (type == 0)
-                        bonusType = ECS::BonusType::MOVE;
-                    else if (type == 1)
-                        bonusType = ECS::BonusType::RANGE;
-                    else
-                        bonusType = ECS::BonusType::RELOAD;
-                    newCollectible = Presets::createBonus("bonus" + std::to_string(this->_bonusId), (*it).getComponent<ECS::Transform>(ECS::TRANSFORM).getPosition(), bonusType);
-                    this->_bonusId++;
-                    entity.push_back(newCollectible);
+        if (k.getLife() <= 0) {
+            if (e.getName().find("player") != std::string::npos) {
+                playerDead.playSound();
+            } else {
+                std::srand(std::time(nullptr));
+                if (std::rand() % 1 == 0) {
+                    ECS::BonusType bonusType = static_cast<ECS::BonusType>(std::rand() % 3);
+                    ECS::Transform t;
+                    try {
+                        t = e.getComponent<ECS::Transform>(ECS::TRANSFORM);
+                        toAdd.push_back(Presets::createBonus("bonus" + std::to_string(this->_bonusId++), t.getPosition(), bonusType));
+                    } catch (std::out_of_range &err) {
+                        std::cerr<<"ERROR: "<<e.getName()<<" has no transform component."<<std::endl;
+                    }
                 }
             }
-            if ((*it).getName().find("player") == (*it).getName().npos) {
-                playerDead.playSound();
-            }
-            entity.erase(it);
+            toRm.insert(toRm.begin(), it);
         }
     }
+
+    for (const auto &it: toRm)
+        entities.erase(it);
+    for (const auto &e: toAdd)
+        entities.push_back(e);
 }

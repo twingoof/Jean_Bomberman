@@ -11,7 +11,7 @@
 #include "Music.hpp"
 
 ECS::Attack::Attack()
-    :bombExpl("../assets/boom.mp3")
+    :bombExpl("../assets/explosion.mp3")
 {}
 
 void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
@@ -27,7 +27,7 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
             std::map<std::string, raylib::Keys> keys = player.getComponent<ECS::Moveable>(MOVEABLE).getKeys();
             if (controls.isKeyPressed(keys["bomb"])) {
                 if (tmp.isReload()) {
-                    if (this->checkBombPos(this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), entity) == false)
+                    if (!this->checkBombPos(this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), entity))
                         continue;
                     e = Presets::createBomb("bomb-" + std::to_string(this->_bombId), this->_findBombPos(player.getComponent<ECS::Transform>(TRANSFORM)), tmp.getDamage(), tmp.getRange());
                     entity.push_back(e);
@@ -44,23 +44,26 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
 
 void ECS::Attack::exploseBombs(std::vector<ECS::Entity> &entity)
 {
+    std::vector<std::vector<ECS::Entity>::iterator> toRm;
+
     for (auto it = entity.begin(); it != entity.end(); it++) {
+        ECS::Entity e = (*it);
+        if (e.getName().find("bomb") == std::string::npos)
+            continue;
         ECS::Timer t;
         try {
-            t = (*it).getComponent<ECS::Timer>(TIMER);
-        } catch(std::out_of_range &e) {
+            t = e.getComponent<ECS::Timer>(ECS::TIMER);
+        } catch (std::out_of_range &e) {
             continue;
         }
         if (t.getTimeElapsed() > t.getRestartTime()) {
             bombExpl.playSound();
-            this->manageErase(entity, (*it));
-            if ((it + 1) == entity.end()){
-                entity.erase(it);
-                break;
-            }
-            entity.erase(it);
+            this->manageErase(entity, e);
+            toRm.insert(toRm.begin(), it);
         }
     }
+    for (const auto &it: toRm)
+        entity.erase(it);
 }
 
 void ECS::Attack::manageErase(std::vector<ECS::Entity> &entities, ECS::Entity &bomb)
@@ -108,13 +111,13 @@ void ECS::Attack::killPosKillable(std::vector<ECS::Entity> &entities, ECS::Entit
 
     for (auto it = entities.begin(); it != entities.end(); it++) {
         try {
-            t = (*it.base()).getComponent<ECS::Transform>(TRANSFORM);
+            t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         } catch(std::out_of_range &e) {
             continue;
         }
         if (posIsColliding(t, bomb.getComponent<ECS::Transform>(TRANSFORM), 0, 0)) {
             try {
-                (*it.base()).getComponent<ECS::Killable>(KILLABLE).takeDamage(bomb.getComponent<ECS::Attacker>(ATTACKER).getDamage());
+                (*it).getComponent<ECS::Killable>(KILLABLE).takeDamage(bomb.getComponent<ECS::Attacker>(ATTACKER).getDamage());
             } catch(std::out_of_range &e) {
                 break;
             }
