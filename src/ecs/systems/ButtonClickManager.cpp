@@ -18,29 +18,27 @@ void ECS::ButtonClickManager::checkButtonArea(std::vector<ECS::Entity> &entities
             ECS::Drawable2D &d = (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D);
             std::string path = d.getSpritePath();
             ECS::Vector3<int> size;
-            bool isOverflow = buttonIsOverflow(*it);
-            if (isOverflow && path.find("Unic.png") == path.npos && path.find("Colored.png") == path.npos) {
-                size = d.getSize();
-                std::cout << d.getSpritePath() << " - ";
-                d = menu.getMenuSprites().find(getColoredSpritePath(path))->second;
-                d.setSize(size);
-                std::cout << d.getSpritePath() << " - " << (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D).getSpritePath() << std::endl;
+            if (buttonIsOverflow(*it)) {
+                if (path.find("Unic.png") == path.npos && path.find("Colored.png") == path.npos) {
+                    size = d.getSize();
+                    d = menu.getMenuSprites().find(getColoredSpritePath(path))->second;
+                    d.setSize(size);
+                }
                 if (c.isMouseButtonPressed(raylib::MouseButton::MOUSE_BUTTON_LEFT) && buttonIsPressed(*it)) {
                     clickable.callback();
                     return;
                 }
-            } else if (!isOverflow && path.find("Unic.png") == path.npos && path.find("Colored.png") != path.npos) {
-                std::cout << d.getSpritePath() << " - ";
-                size = d.getSize();
-                d = menu.getMenuSprites().find(getUncoloredSpritePath(path))->second;
-                d.setSize(size);
-                std::cout << d.getSpritePath() << " - " << (*it).getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D).getSpritePath() << std::endl;
+            } else {
+                if (path.find("Unic.png") == path.npos && path.find("Colored.png") != path.npos) {
+                    size = d.getSize();
+                    d = menu.getMenuSprites().find(getUncoloredSpritePath(path))->second;
+                    d.setSize(size);
+                }
             }
         } catch (std::out_of_range &e) {
             continue;
         }
     }
-    // menu.setMenuEntities(entities);
 }
 
 bool ECS::ButtonClickManager::buttonIsOverflow(ECS::Entity &entity)

@@ -15,12 +15,13 @@ namespace ECS {
         public:
             Drawable();
 
-            unsigned int getId() const;
+            unsigned int getTId() const;
+            void setTId();
             bool loaded;
 
-            static unsigned int currentId;
+            static unsigned int currentTId;
         protected:
-            unsigned int _id;
+            unsigned int _tId;
         private:
     };
 }

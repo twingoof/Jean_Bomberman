@@ -59,6 +59,7 @@ namespace menu {
             std::vector<ECS::Entity> _menuEntities;
             void(*_callbackPlay)();
             float _volume;
+            float _scrollingTop;
             int _nbPlayers;
             int _menuPage;
             int _width;

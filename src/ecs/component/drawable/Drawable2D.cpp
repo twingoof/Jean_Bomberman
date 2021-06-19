@@ -17,15 +17,6 @@ ECS::Drawable2D::Drawable2D(std::string spritePath, ECS::Vector3<int> size, ECS:
 
 ECS::Drawable2D::~Drawable2D() = default;
 
-ECS::Drawable2D &ECS::Drawable2D::operator=(const ECS::Drawable2D &drawable)
-{
-    this->_type = drawable._type;
-    this->_spritePath = drawable._spritePath;
-    this->_size = drawable._size;
-    this->_color = drawable._color;
-    return (*this);
-}
-
 void ECS::Drawable2D::setSpritePath(std::string spritePath)
 {
     this->_spritePath = spritePath;

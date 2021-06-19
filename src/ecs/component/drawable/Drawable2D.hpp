@@ -52,7 +52,7 @@ namespace ECS {
              * @param drawable Drawable2D object to copy
              * @return Drawable2D& 
              */
-            Drawable2D &operator=(const Drawable2D &drawable);
+            Drawable2D &operator=(const Drawable2D &drawable) = default;
 
             /**
              * @fn ~Drawable2D() override

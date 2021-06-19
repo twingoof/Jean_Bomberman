@@ -96,7 +96,7 @@ ECS::Drawable3D &ECS::Drawable3D::operator=(ECS::Drawable3D rHand) {
     this->_size = rHand._size;
     this->_wColor = rHand._wColor;
     this->_type = rHand._type;
-    this->_id = rHand._id;
+    this->_tId = rHand._tId;
     this->loaded = rHand.loaded;
     return (*this);
 }
