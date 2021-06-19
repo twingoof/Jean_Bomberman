@@ -28,7 +28,7 @@ namespace raylib {
     class Texture: public ::Texture {
         public:
             Texture() = default;
-            explicit Texture(const ::Texture &old);
+            Texture(const ::Texture &old);
             Texture(const ::Image &image);
             Texture(const ::Image &image, int layout);
             Texture(const std::string &filePath);

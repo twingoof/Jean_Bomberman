@@ -48,7 +48,7 @@ void ECS::Controller::moveEntity(std::vector<ECS::Entity> &entity)
 bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &player, float speed)
 {
     ECS::Transform play = player.getComponent<ECS::Transform>(TRANSFORM);
-    ::Rectangle p= {static_cast<float>(play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0, (play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0) - speed), static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
+    ::Rectangle p = {static_cast<float>(play.getPosition().X - static_cast<float>(play.getSize().X) / 2.0), static_cast<float>((play.getPosition().Z - static_cast<float>(play.getSize().Z) / 2.0) - speed), static_cast<float>(play.getSize().X), static_cast<float>(play.getSize().Z)};
 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
