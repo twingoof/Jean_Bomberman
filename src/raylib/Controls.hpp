@@ -267,6 +267,8 @@ namespace raylib {
              */
             bool isMouseButtonUp(int button);
 
+            int getCharacterPressed();
+
         protected:
 
         private:
