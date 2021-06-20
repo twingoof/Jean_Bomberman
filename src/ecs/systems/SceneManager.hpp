@@ -40,6 +40,7 @@ class SceneManager {
         void displayScene();
         void displayMenuScene();
         void displayGameScene();
+        void displayEndScene();
 
         void setScene(int scene);
         bool getExitStatus() const;
@@ -54,6 +55,7 @@ class SceneManager {
         int _scene;
         int _width;
         int _height;
+        int _playerWin;
         bool _exit;
         ECS::Attack _atk;
         ECS::ButtonClickManager _btnManager;
