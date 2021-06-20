@@ -19,11 +19,9 @@ void SceneManager::initSceneManager(void(*callback)())
     raylib::Window &window = raylib::Window::getWindow();
     menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
 
-    this->_width = 1600;
-    this->_height = 900;
-    window.initWindow(this->_width, this->_height, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    this->_width = window.getWindowWidth();
+    this->_height = window.getWindowHeight();
     window.setWindowFPS(60);
-    window.initAudioDevice();
     menu.initMenuGenerator(callback);
     this->_clock.startClock();
     this->_scene = 0;
@@ -71,7 +69,6 @@ void SceneManager::displayGameScene()
         }
         this->_ctrl.moveEntity(this->_gameEntities);
         this->_atk.manageBombs(this->_gameEntities);
-        //cld.checkCollision(this->_gameEntities);
         this->_disp.moveEntity(this->_gameEntities);
         this->_kill.deleteWall(this->_gameEntities);
         if (window.getWindowWidth() != this->_width || window.getWindowHeight() != this->_height) {
@@ -93,7 +90,7 @@ void SceneManager::setScene(int scene)
         raylib::Window &window = raylib::Window::getWindow();
         raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
         window.setMainCamera(camera);
-        MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, menu.getNbPlayers());
+        ECS::MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, menu.getNbPlayers());
         this->_gameEntities = map.generateMapEntities();
         this->_hud.createHudEntities(this->_gameEntities);
     }

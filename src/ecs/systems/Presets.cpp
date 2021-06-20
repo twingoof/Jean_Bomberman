@@ -58,7 +58,7 @@ ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position,
 ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(3, 3, 3);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({0, 0, 0, 255});
@@ -71,7 +71,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
 ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(2, 2, 2);
+    ECS::Vector3<int> size(2, 1, 2);
     ECS::Attacker a(1, 100);
     ECS::Killable k(100);
     ECS::Transform t(position, size);
@@ -90,7 +90,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
 ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> position)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(3, 3, 3);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Killable k(20);
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
@@ -105,7 +105,7 @@ ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> positi
 ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, int damages, int range)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(3, 3, 3);
+    ECS::Vector3<int> size(3, 1, 3);
     ECS::Attacker a(3, damages);
     ECS::Transform t(position, size);
     ECS::Timer timer;
