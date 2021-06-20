@@ -21,6 +21,9 @@
 #include "Window.hpp"
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @enum Keys
