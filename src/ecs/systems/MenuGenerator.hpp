@@ -14,7 +14,7 @@
 #include <vector>
 #include <functional>
 
-namespace menu {
+namespace ECS {
     class MenuGenerator {
         public:
             ~MenuGenerator() = default;
