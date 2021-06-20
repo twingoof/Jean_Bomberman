@@ -379,7 +379,6 @@ void menu::MenuGenerator::setVolume()
                 cursorT.setPosition({window.getMousePosition().x - static_cast<float>(cursorT.getSize().X) / 2.0f, cursorT.getPosition().Y, cursorT.getPosition().Z});
                 this->_volume = (window.getMousePosition().x - static_cast<float>(cursorT.getSize().X) / 2.0f - static_cast<float>(width) / 6.5f) / (static_cast<float>(width) / 2.28f);
             }
-            std::cout << "Volume: " << static_cast<int>(this->_volume * 100 + .5) / 100.0f << std::endl;
             window.setMasterVolume(static_cast<int>(this->_volume * 100 + .5) / 100.0f);
             break;
         }

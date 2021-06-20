@@ -26,6 +26,7 @@
 #include "Controls.hpp"
 #include "enum.hpp"
 #include "Sound.hpp"
+#include "GetEntityInVector.hpp"
 
 /**
  * @namespace ECS
