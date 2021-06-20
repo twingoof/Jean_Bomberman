@@ -55,10 +55,10 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
     switch (drawable.getType()) {
 
         case CIRCLE:
-            raylib::drawCircle(position.X, position.Y, position.Z);
+            raylib::drawCircle(static_cast<int>(position.X), static_cast<int>(position.Y), position.Z);
             break;
         case RECT:
-            raylib::drawRectangle(position.X, position.Y, drawable.getSize().X, drawable.getSize().Y);
+            raylib::drawRectangle(static_cast<int>(position.X), static_cast<int>(position.Y), drawable.getSize().X, drawable.getSize().Y);
             break;
         case CUSTOM:
             if (!this->_isTLoaded(drawable.getTId()))
@@ -78,8 +78,8 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
         {
             ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
             ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
-            DrawSphere({position.X, position.Y, position.Z}, drawable.getSize().X, color);
-            DrawSphereWires({position.X, position.Y, position.Z}, drawable.getSize().X, 16, 16, wColor);
+            DrawSphere({position.X, position.Y, position.Z}, static_cast<float>(drawable.getSize().X), color);
+            DrawSphereWires({position.X, position.Y, position.Z}, static_cast<float>(drawable.getSize().X), 16, 16, wColor);
             break;
         }
     case ECS::DrawableType::RECT :
@@ -88,7 +88,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
             ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
             ::Color wColor = {drawable.getWColor().X, drawable.getWColor().Y, drawable.getWColor().Z, drawable.getWColor().A};
             if (drawable.getTexturePath().empty())
-                raylib::drawCube({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, color);
+                raylib::drawCube({position.X, position.Y, position.Z}, static_cast<float>(size.X), static_cast<float>(size.Y), static_cast<float>(size.Z), color);
             else {
                 if (!drawable.loaded) {
                     drawable.loaded = true;
@@ -96,7 +96,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
                 }
                 raylib::drawTexturedCube(this->_getTextureFromCache(drawable.getTId()), position, size, WHITE);
             }
-            raylib::drawCubeWires({position.X, position.Y, position.Z}, size.X, size.Y, size.Z, wColor);
+            raylib::drawCubeWires({position.X, position.Y, position.Z}, static_cast<float>(size.X), static_cast<float>(size.Y), static_cast<float>(size.Z), wColor);
             break;
         }
     case ECS::DrawableType::CUSTOM :
@@ -165,7 +165,7 @@ raylib::Model ECS::Renderer::_getModelFromCache(const unsigned int id) {
     }
     return (model);
 }
-
+#pragma warning(disable: 4834)
 bool ECS::Renderer::_isMloaded(unsigned int id) {
     try {
         this->_loadedModels.at(id);
@@ -183,3 +183,4 @@ bool ECS::Renderer::_isTLoaded(unsigned int id) {
     }
     return (true);
 }
+#pragma warning(default: 4834)
