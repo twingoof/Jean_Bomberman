@@ -5,6 +5,16 @@
 ** enum
 */
 
+/**
+ * @file Attack.hpp
+ * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
+ * @brief File that contain all the enum
+ * @version 0.1
+ * @date 2021-06-20
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #ifndef ENUM_HPP_
 #define ENUM_HPP_
 
@@ -16,7 +26,13 @@
 #define MAP_SIZE_Z  17
 #endif
 
+/**
+ * @namespace ECS
+ */
 namespace ECS {
+    /**
+     * @enum ComponentType
+     */
     enum ComponentType
     {
         DRAWABLE2D,
@@ -31,12 +47,18 @@ namespace ECS {
         TIMER
     };
 
+    /**
+     * @enum BonusType
+     */
     enum BonusType {
         MOVE,
         RANGE,
         RELOAD
     };
 
+    /**
+     * @enum DrawableType
+     */
     enum DrawableType {
         CIRCLE,
         RECT,
