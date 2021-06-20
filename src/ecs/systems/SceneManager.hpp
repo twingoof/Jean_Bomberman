@@ -63,6 +63,7 @@ namespace ECS {
              */
             ~SceneManager() = default;
 
+            void displayEndScene();
 
             /**
              * @fn void initSceneManager(void(*callback)())
@@ -83,7 +84,7 @@ namespace ECS {
              * @brief Display menu scene
              */
             void displayMenuScene();
-            
+
             /**
              * @fn void displayGameScene()
              * @brief Display game
@@ -144,6 +145,7 @@ namespace ECS {
             int _scene;
             int _width;
             int _height;
+            int _playerWin;
             bool _exit;
             ECS::Attack _atk;
             ECS::ButtonClickManager _btnManager;

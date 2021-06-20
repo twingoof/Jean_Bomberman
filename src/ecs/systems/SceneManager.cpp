@@ -25,6 +25,7 @@ void ECS::SceneManager::initSceneManager(void(*callback)())
     menu.initMenuGenerator(callback);
     this->_clock.startClock();
     this->_scene = 0;
+    this->_playerWin = -1;
     this->_exit = false;
 }
 
@@ -34,6 +35,8 @@ void ECS::SceneManager::displayScene()
         displayMenuScene();
     else if (this->_scene == 1) {
         displayGameScene();
+    } else {
+        displayEndScene();
     }
 }
 
@@ -60,12 +63,9 @@ void ECS::SceneManager::displayGameScene()
     raylib::Window &window = raylib::Window::getWindow();
 
     if (this->_clock.getTimeElapsed() > 0.01) {
-        if (ECS::getNbEntitiesByName("player", this->_gameEntities) == 0) {
-            std::cout << "Equality" << std::endl;
-            this->_exit = true; //! Display la scène de fin
-        } else if (ECS::getNbEntitiesByName("player", this->_gameEntities) == 1) {
-            std::cout << "And the winner is: " << std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", this->_gameEntities).begin())).getName() << std::endl;
-            this->_exit = true; //! Display la scène de fin
+        if (ECS::getNbEntitiesByName("player", this->_gameEntities) <= 1) {
+            this->setScene(2);
+            return;
         }
         this->_ctrl.moveEntity(this->_gameEntities);
         this->_atk.manageBombs(this->_gameEntities);
@@ -80,6 +80,45 @@ void ECS::SceneManager::displayGameScene()
     }
     this->_renderer.draw(this->_gameEntities);
     DrawFPS(10, 10);
+}
+
+void ECS::SceneManager::displayEndScene()
+{
+    raylib::Window &window = raylib::Window::getWindow();
+    std::vector<std::tuple<bool, ECS::Entity &>> winPlayer;
+
+    if (this->_playerWin == -1) {
+        if (ECS::getNbEntitiesByName("player", this->_gameEntities) == 0)
+            this->_playerWin = 0;
+        else
+            this->_playerWin = std::stoi(std::get<ECS::Entity &>(*(ECS::getEntitiesByName("player", this->_gameEntities).begin())).getName().substr(6));
+    }
+    if (this->_clock.getTimeElapsed() > 0.5) {
+        this->_gameEntities.clear();
+        this->_gameEntities.push_back(Presets::createImage("BackgroundMenu", {0.0f, 0.0f, 0.0f}, {this->_width, this->_height, 0}, "../assets/BackgroundGame.png"));
+        switch (this->_playerWin)
+        {
+            case 0:
+                this->_gameEntities.push_back(Presets::createImage("Equality", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/DrawGame.png"));
+                break;
+            case 1:
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer1", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer1.png"));
+                break;
+            case 2:
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer2", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer2.png"));
+                break;
+            case 3:
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer3", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer3.png"));
+                break;
+            case 4:
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer4", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer4.png"));
+                break;
+            default:
+                break;
+        }
+        this->_clock.restartClock();
+    }
+    this->_renderer.draw(this->_gameEntities);
 }
 
 void ECS::SceneManager::setScene(int scene)
