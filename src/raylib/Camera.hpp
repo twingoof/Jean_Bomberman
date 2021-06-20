@@ -21,6 +21,9 @@
 #include "Vector3.hpp"
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Camera3D Camera.hpp "src/raylib/Camera.hpp"
