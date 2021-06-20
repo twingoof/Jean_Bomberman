@@ -8,7 +8,7 @@
 #include "SceneManager.hpp"
 
 void launchPlay() {
-    SceneManager &sceneMng = SceneManager::getSceneManager();
+    ECS::SceneManager &sceneMng = ECS::SceneManager::getSceneManager();
 
     sceneMng.setScene(1);
 }
@@ -19,7 +19,7 @@ int main()
     window.initWindow(1600, 900, "Jean-Bomberman3D", FLAG_WINDOW_RESIZABLE);
     window.initAudioDevice();
 
-    SceneManager &sceneMng = SceneManager::getSceneManager();
+    ECS::SceneManager &sceneMng = ECS::SceneManager::getSceneManager();
     sceneMng.initSceneManager(&launchPlay);
     while (!window.windowShouldClose()) {
         if (sceneMng.getExitStatus())

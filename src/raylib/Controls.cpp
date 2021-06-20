@@ -62,3 +62,8 @@ bool raylib::Controls::isMouseButtonDown(int button)
         return (true);
     return (false);
 }
+
+int raylib::Controls::getCharacterPressed(void)
+{
+    return (::GetCharPressed());
+}

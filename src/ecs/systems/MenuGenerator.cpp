@@ -9,49 +9,49 @@
 
 void callbackMenu()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateMenu();
 }
 
 void callbackTuto()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateTuto();
 }
 
 void callbackOptions()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateOptions();
 }
 
 void callbackCredits()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateCredits();
 }
 
 void callbackTuto1()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateTuto1();
 }
 
 void callbackTuto2()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.generateTuto2();
 }
 
 void callbackQuit()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.setExit();
 }
 
 void callbackTwoPlayers()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     if (menu.getNbPlayers() != 2) {
         menu.setNbPlayers(2);
         menu.generateOptions();
@@ -60,7 +60,7 @@ void callbackTwoPlayers()
 
 void callbackThreePlayers()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     if (menu.getNbPlayers() != 3) {
         menu.setNbPlayers(3);
         menu.generateOptions();
@@ -69,7 +69,7 @@ void callbackThreePlayers()
 
 void callbackFourPlayers()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     if (menu.getNbPlayers() != 4) {
         menu.setNbPlayers(4);
         menu.generateOptions();
@@ -78,11 +78,11 @@ void callbackFourPlayers()
 
 void callbackSetVolume()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     menu.setVolume();
 }
 
-void menu::MenuGenerator::initMenuGenerator(void(*callbackPlay)(), float volume, int nbPlayers)
+void ECS::MenuGenerator::initMenuGenerator(void(*callbackPlay)(), float volume, int nbPlayers)
 {
     raylib::Window &window = raylib::Window::getWindow();
 
@@ -177,37 +177,37 @@ void menu::MenuGenerator::initMenuGenerator(void(*callbackPlay)(), float volume,
     this->generateMenu();
 }
 
-std::vector<ECS::Entity> &menu::MenuGenerator::getMenuEntities()
+std::vector<ECS::Entity> &ECS::MenuGenerator::getMenuEntities()
 {
     return (this->_menuEntities);
 }
 
-std::map<std::string, ECS::Drawable2D> &menu::MenuGenerator::getMenuSprites()
+std::map<std::string, ECS::Drawable2D> &ECS::MenuGenerator::getMenuSprites()
 {
     return (this->_sprites);
 }
 
-std::map<int, std::map<std::string, raylib::Keys>> menu::MenuGenerator::getPlayerKeys() const
+std::map<int, std::map<std::string, raylib::Keys>> ECS::MenuGenerator::getPlayerKeys() const
 {
     return (this->_playerKeys);
 }
 
-float menu::MenuGenerator::getVolume() const
+float ECS::MenuGenerator::getVolume() const
 {
     return (this->_volume);
 }
 
-int menu::MenuGenerator::getNbPlayers() const
+int ECS::MenuGenerator::getNbPlayers() const
 {
     return (this->_nbPlayers);
 }
 
-bool menu::MenuGenerator::needToExit() const
+bool ECS::MenuGenerator::needToExit() const
 {
     return (this->_quit);
 }
 
-void menu::MenuGenerator::updateEntities()
+void ECS::MenuGenerator::updateEntities()
 {
     raylib::Window &window = raylib::Window::getWindow();
 
@@ -239,7 +239,7 @@ void menu::MenuGenerator::updateEntities()
     this->_height = window.getWindowHeight();
 }
 
-void menu::MenuGenerator::generateMenu()
+void ECS::MenuGenerator::generateMenu()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -256,7 +256,7 @@ void menu::MenuGenerator::generateMenu()
     this->_menuEntities.push_back(Presets::createButton("Quit", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 3.0f + static_cast<float>(height) / 9.0f * 4.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackQuit, this->_sprites["../assets/Quit.png"]));
 }
 
-void menu::MenuGenerator::generateTuto()
+void ECS::MenuGenerator::generateTuto()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -270,7 +270,7 @@ void menu::MenuGenerator::generateTuto()
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
 
-void menu::MenuGenerator::generateTuto1()
+void ECS::MenuGenerator::generateTuto1()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -285,7 +285,7 @@ void menu::MenuGenerator::generateTuto1()
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
 
-void menu::MenuGenerator::generateTuto2()
+void ECS::MenuGenerator::generateTuto2()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -299,7 +299,7 @@ void menu::MenuGenerator::generateTuto2()
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
 
-void menu::MenuGenerator::generateOptions()
+void ECS::MenuGenerator::generateOptions()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -327,7 +327,7 @@ void menu::MenuGenerator::generateOptions()
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
 
-void menu::MenuGenerator::generateCredits()
+void ECS::MenuGenerator::generateCredits()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -351,17 +351,17 @@ void menu::MenuGenerator::generateCredits()
     }
 }
 
-void menu::MenuGenerator::setMenuEntities(std::vector<ECS::Entity> &entities)
+void ECS::MenuGenerator::setMenuEntities(std::vector<ECS::Entity> &entities)
 {
     this->_menuEntities = entities;
 }
 
-void menu::MenuGenerator::setPlayerKeys(std::map<int, std::map<std::string, raylib::Keys>> playerKeys)
+void ECS::MenuGenerator::setPlayerKeys(std::map<int, std::map<std::string, raylib::Keys>> playerKeys)
 {
     this->_playerKeys = playerKeys;
 }
 
-void menu::MenuGenerator::setVolume()
+void ECS::MenuGenerator::setVolume()
 {
     raylib::Window &window = raylib::Window::getWindow();
     int width = window.getWindowWidth();
@@ -385,17 +385,17 @@ void menu::MenuGenerator::setVolume()
     }
 }
 
-void menu::MenuGenerator::setNbPlayers(int nbPlayers)
+void ECS::MenuGenerator::setNbPlayers(int nbPlayers)
 {
     this->_nbPlayers = nbPlayers;
 }
 
-void menu::MenuGenerator::setExit()
+void ECS::MenuGenerator::setExit()
 {
     this->_quit = true;
 }
 
-void menu::MenuGenerator::setKey(int playerIndex, std::string keyBinding)
+void ECS::MenuGenerator::setKey(int playerIndex, std::string keyBinding)
 {
     int newKey = 0;
 
@@ -404,8 +404,8 @@ void menu::MenuGenerator::setKey(int playerIndex, std::string keyBinding)
     this->_playerKeys[playerIndex][keyBinding] = static_cast<raylib::Keys>(newKey);
 }
 
-menu::MenuGenerator &menu::MenuGenerator::getMenuGenerator()
+ECS::MenuGenerator &ECS::MenuGenerator::getMenuGenerator()
 {
-    static menu::MenuGenerator tmp;
+    static ECS::MenuGenerator tmp;
     return (tmp);
 };

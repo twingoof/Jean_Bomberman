@@ -20,6 +20,7 @@ raylib::Window::~Window() = default;
 
 void raylib::Window::initWindow(const int width, const int height, const std::string &winName, const unsigned int flag)
 {
+    ::SetTraceLogLevel(LOG_NONE);
     ::InitWindow(width, height, winName.c_str());
     if (!::IsWindowState(flag))
         ::SetWindowState(flag);
