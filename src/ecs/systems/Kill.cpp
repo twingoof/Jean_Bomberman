@@ -31,7 +31,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entities)
                 playerDead.playSound();
             } else {
                 std::srand(std::time(nullptr));
-                if (std::rand() % 1 == 0) {
+                if (std::rand() % 7 == 0) {
                     ECS::BonusType bonusType = static_cast<ECS::BonusType>(std::rand() % 3);
                     ECS::Transform t;
                     try {

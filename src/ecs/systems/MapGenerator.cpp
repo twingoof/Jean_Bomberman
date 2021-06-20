@@ -133,8 +133,10 @@ void MapGenerator::generateMap(void)
 
 std::vector<ECS::Entity> MapGenerator::generateMapEntities()
 {
-    std::map<std::string, raylib::Keys> fstControls{{"up", raylib::Keys::KEY_UP}, {"down", raylib::Keys::KEY_DOWN}, {"left", raylib::Keys::KEY_LEFT}, {"right", raylib::Keys::KEY_RIGHT}, {"bomb", raylib::Keys::KEY_L},};
-    std::map<std::string, raylib::Keys> sndControls{{"up", raylib::Keys::KEY_W}, {"down", raylib::Keys::KEY_S}, {"left", raylib::Keys::KEY_A}, {"right", raylib::Keys::KEY_D}, {"bomb", raylib::Keys::KEY_SPACE},};
+    std::map<std::string, raylib::Keys> fstControls{{"up", raylib::Keys::KEY_UP}, {"down", raylib::Keys::KEY_DOWN}, {"left", raylib::Keys::KEY_LEFT}, {"right", raylib::Keys::KEY_RIGHT}, {"bomb", raylib::Keys::KEY_RIGHT_CONTROL},};
+    std::map<std::string, raylib::Keys> scndControls{{"up", raylib::Keys::KEY_W}, {"down", raylib::Keys::KEY_S}, {"left", raylib::Keys::KEY_Q}, {"right", raylib::Keys::KEY_D}, {"bomb", raylib::Keys::KEY_SPACE},};
+    std::map<std::string, raylib::Keys> thrdControls{{"up", raylib::Keys::KEY_O}, {"down", raylib::Keys::KEY_L}, {"left", raylib::Keys::KEY_K}, {"right", raylib::Keys::KEY_M}, {"bomb", raylib::Keys::KEY_P},};
+    std::map<std::string, raylib::Keys> fourControls{{"up", raylib::Keys::KEY_F1}, {"down", raylib::Keys::KEY_F2}, {"left", raylib::Keys::KEY_F3}, {"right", raylib::Keys::KEY_F4}, {"bomb", raylib::Keys::KEY_F5},};
     std::vector<ECS::Entity> mapEntities;
     std::vector<std::string>::iterator it;
     ECS::Entity e;
@@ -156,11 +158,11 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
             else if (c == '1')
                 e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls);
             else if (c == '2')
-                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), scndControls);
             else if (c == '3')
-                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), thrdControls);
             else if (c == '4')
-                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), fourControls);
             mapEntities.push_back(e);
             x += 3;
         }

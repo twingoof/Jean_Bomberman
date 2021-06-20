@@ -16,8 +16,10 @@ void launchPlay() {
 int main()
 {
     raylib::Window &window = raylib::Window::getWindow();
-    SceneManager &sceneMng = SceneManager::getSceneManager();
+    window.initWindow(1600, 900, "Jean-Bomberman3D", FLAG_WINDOW_RESIZABLE);
+    window.initAudioDevice();
 
+    SceneManager &sceneMng = SceneManager::getSceneManager();
     sceneMng.initSceneManager(&launchPlay);
     while (!window.windowShouldClose()) {
         if (sceneMng.getExitStatus())
