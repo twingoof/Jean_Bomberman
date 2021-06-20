@@ -99,19 +99,19 @@ void ECS::SceneManager::displayEndScene()
         switch (this->_playerWin)
         {
             case 0:
-                this->_gameEntities.push_back(Presets::createImage("Equality", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/DrawGame.png"));
+                this->_gameEntities.push_back(Presets::createImage("Equality", {static_cast<float>(this->_width / 4), static_cast<float>(this->_height / 4), 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/DrawGame.png"));
                 break;
             case 1:
-                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer1", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer1.png"));
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer1", {static_cast<float>(this->_width / 4), static_cast<float>(this->_height / 4), 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer1.png"));
                 break;
             case 2:
-                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer2", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer2.png"));
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer2", {static_cast<float>(this->_width / 4), static_cast<float>(this->_height / 4), 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer2.png"));
                 break;
             case 3:
-                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer3", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer3.png"));
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer3", {static_cast<float>(this->_width / 4), static_cast<float>(this->_height / 4), 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer3.png"));
                 break;
             case 4:
-                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer4", {this->_width / 4, this->_height / 4, 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer4.png"));
+                this->_gameEntities.push_back(Presets::createImage("VictoryPlayer4", {static_cast<float>(this->_width / 4), static_cast<float>(this->_height / 4), 0.0f}, {this->_width / 2, this->_height / 2, 0}, "../assets/VictoryPlayer4.png"));
                 break;
             default:
                 break;

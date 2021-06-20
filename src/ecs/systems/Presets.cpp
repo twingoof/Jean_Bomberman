@@ -77,7 +77,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     ECS::Killable k(100);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition(), keys);
-    ECS::Drawable3D d("../assets/player.obj", t.getSize());
+    ECS::Drawable3D d("../assets/untitled.obj", t.getSize());
     d.setColor(color);
 
     entity.addComponent<ECS::Attacker>(a, ECS::ATTACKER);
