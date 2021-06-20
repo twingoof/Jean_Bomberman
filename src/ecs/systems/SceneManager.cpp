@@ -90,7 +90,7 @@ void SceneManager::setScene(int scene)
         raylib::Window &window = raylib::Window::getWindow();
         raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
         window.setMainCamera(camera);
-        MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, menu.getNbPlayers());
+        ECS::MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, menu.getNbPlayers());
         this->_gameEntities = map.generateMapEntities();
         this->_hud.createHudEntities(this->_gameEntities);
     }
