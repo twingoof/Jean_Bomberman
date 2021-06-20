@@ -1,7 +1,0 @@
- * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
-/**
- * @namespace ECS
- */
-    /**
-     * @class Collider Collider.hpp "src/ecs/systems/Collider.hpp"
-    */
