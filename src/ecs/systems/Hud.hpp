@@ -24,7 +24,7 @@ class Hud {
 
         void createHudEntities(std::vector<ECS::Entity> &gameEntities);
 
-        void updateHudEntities(std::vector<ECS::Entity> &gameEntities);
+        void updateHudEntities(std::vector<ECS::Entity> &gameEntities, int width, int height);
 
     protected:
 

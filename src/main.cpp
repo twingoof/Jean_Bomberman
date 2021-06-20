@@ -28,8 +28,8 @@
 int main()
 {
     int nbPlayer = 4;
-    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Window &window = raylib::Window::getWindow();
+    MapGenerator map(MAP_SIZE_X, MAP_SIZE_Z, nbPlayer);
     raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
 
@@ -66,9 +66,9 @@ int main()
             disp.moveEntity(gameEntities);
             kill.deleteWall(gameEntities);
             if (window.getWindowWidth() != baseW || window.getWindowHeight() != baseH) {
-                hud.updateHudEntities(gameEntities);
                 baseW = window.getWindowWidth();
                 baseH = window.getWindowHeight();
+                hud.updateHudEntities(gameEntities, baseW, baseH);
             }
             clock.restartClock();
         }
