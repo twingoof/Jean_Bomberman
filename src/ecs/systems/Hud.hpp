@@ -14,22 +14,24 @@
 #include "Entity.hpp"
 #include <vector>
 
-class Hud {
-    public:
-        Hud() = default;
-        Hud(std::vector<ECS::Entity> &gameEntites);
-        Hud(const Hud &rHand) = default;
-        Hud &operator=(const Hud &rHand) = default;
-        ~Hud() = default;
+namespace ECS {
+    class Hud {
+        public:
+            Hud() = default;
+            Hud(std::vector<ECS::Entity> &gameEntites);
+            Hud(const Hud &rHand) = default;
+            Hud &operator=(const Hud &rHand) = default;
+            ~Hud() = default;
 
-        void createHudEntities(std::vector<ECS::Entity> &gameEntities);
+            void createHudEntities(std::vector<ECS::Entity> &gameEntities);
 
-        void updateHudEntities(std::vector<ECS::Entity> &gameEntities, int width, int height);
+            void updateHudEntities(std::vector<ECS::Entity> &gameEntities, int width, int height);
 
-    protected:
+        protected:
 
-    private:
+        private:
 
+    };
 };
 
 #endif /* !HUD_HPP_ */

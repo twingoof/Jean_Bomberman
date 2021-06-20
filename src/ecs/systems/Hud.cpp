@@ -9,12 +9,12 @@
 
 // Taille de l'image / taille de la fenêtre
 
-Hud::Hud(std::vector<ECS::Entity> &gameEntites)
+ECS::Hud::Hud(std::vector<ECS::Entity> &gameEntites)
 {
     this->createHudEntities(gameEntites);
 }
 
-void Hud::createHudEntities(std::vector<ECS::Entity> &gameEntities)
+void ECS::Hud::createHudEntities(std::vector<ECS::Entity> &gameEntities)
 {
     std::vector<std::tuple<bool, ECS::Entity &>> playerEnts;
     raylib::Window &window = raylib::Window::getWindow();
@@ -51,7 +51,7 @@ void Hud::createHudEntities(std::vector<ECS::Entity> &gameEntities)
     }
 }
 
-void Hud::updateHudEntities(std::vector<ECS::Entity> &gameEntities, int width, int height)
+void ECS::Hud::updateHudEntities(std::vector<ECS::Entity> &gameEntities, int width, int height)
 {
     std::vector<std::tuple<bool, ECS::Entity &>> hudEnts;
     float scaleX = static_cast<float>(width) / 5.0;
