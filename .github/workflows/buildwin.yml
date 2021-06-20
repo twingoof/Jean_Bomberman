@@ -2,9 +2,9 @@ name: Build windows
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
   workflow_dispatch:
 
@@ -18,7 +18,7 @@ jobs:
       - name: cmake
         run: mkdir build && cd build && cmake ..
       - name: MSVC
-        run: cmake --build build
+        run: cmake --build build --target bomberman
       - name: Archive binary
         uses: actions/upload-artifact@v1
         with:

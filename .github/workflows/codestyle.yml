@@ -1,0 +1,25 @@
+name: Check C++ coding style with cpplint
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install python and pip
+        run: sudo apt update --yes && sudo apt upgrade --yes && sudo apt install python3 python3-pip
+      - name: Install cpplint
+        run: python3 -m pip install cpplint
+      - name: Run cpplint
+        run: cpplint --quiet --recursive --extension=cpp,hpp $GITHUB_WORKSPACE/src/

@@ -2,9 +2,9 @@ name: Build linux (ubuntu)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
   workflow_dispatch:
 
@@ -19,8 +19,8 @@ jobs:
 
       - name: cmake
         run: mkdir build && cd build && cmake ..
-      - name: make
-        run: make -C build
+      - name: make bomberman
+        run: make -C build bomberman
       - name: Archive binary
         uses: actions/upload-artifact@v1
         with:

@@ -1,10 +1,20 @@
 #File extensions
 *.so
 *.o
+*.gc*
+unit-test
 
 #Folders
 .vscode
 .idea
 doc
 build
+
 #Files
+cmake-build-*
+build/
+build-linux/
+Makefile
+src/main.cpp
+a.out
+main.c

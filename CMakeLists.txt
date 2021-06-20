@@ -1,9 +1,9 @@
-
 cmake_minimum_required(VERSION 3.17)
 project(indie)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_modules/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 find_package(raylib REQUIRED)
 
@@ -11,12 +11,12 @@ file(GLOB_RECURSE SRC src/**/*.cpp)
 file(GLOB_RECURSE TEST tests/*.cpp)
 
 if (MSVC)
-    add_compile_options(/W4)
+    add_compile_options(/W2)
 else ()
-    add_compile_options(-Wall -Wextra -Wshadow -Wno-narrowing)
+    add_compile_options(-Wall -Wshadow -Wno-unused -Wno-deprecated-copy)
 endif ()
 
-add_executable(bomberman ${SRC} src/main.cpp)
+add_executable(bomberman ${SRC} src/main.cpp src/raylib/Controls.cpp src/raylib/Controls.hpp src/ecs/component/IComponent.hpp)
 add_executable(unit_tests ${SRC} ${TEST} tests/OSRedirector.hpp)
 
 macro (HEADER_DIRECTORIES ret_l)
