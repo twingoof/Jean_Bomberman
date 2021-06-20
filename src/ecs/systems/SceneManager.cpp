@@ -31,6 +31,12 @@ void ECS::SceneManager::initSceneManager(void(*callback)())
 
 void ECS::SceneManager::displayScene()
 {
+    for (const auto &e: this->_gameEntities) {
+        if (e.getName().find("background") != std::string::npos) {
+            raylib::Window &window = raylib::Window::getWindow();
+            e.getComponent<ECS::Drawable2D>(ECS::DRAWABLE2D).setSize({window.getWindowWidth(), window.getWindowHeight(), 0});
+        }
+    }
     if (this->_scene == 0)
         displayMenuScene();
     else if (this->_scene == 1) {
