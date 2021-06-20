@@ -156,18 +156,19 @@ std::vector<ECS::Entity> ECS::MapGenerator::generateMapEntities()
             else if (c == '#')
                 e = Presets::createWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z));
             else if (c == '1')
-                e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls);
+                e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls, {255, 0, 0, 255});
             else if (c == '2')
-                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), scndControls);
+                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), scndControls, {255, 255, 0, 255});
             else if (c == '3')
-                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), thrdControls);
+                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), thrdControls, {0, 255, 0, 255});
             else if (c == '4')
-                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), fourControls);
+                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), fourControls, {0, 0, 255, 255});
             mapEntities.push_back(e);
             x += 3;
         }
         x = 0;
         z += 3;
     }
+    mapEntities.insert(mapEntities.begin(), Presets::createImage("background", {0., 0., 0.}, {1600, 900, 0}, "../assets/BackgroundGame.png"));
     return (mapEntities);
 }

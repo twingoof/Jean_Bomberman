@@ -34,7 +34,7 @@ namespace Presets
 
     ECS::Entity createWall(std::string name, ECS::Vector3<float> position);
 
-    ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys);
+    ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys, ECS::Vector4<unsigned char> color);
 
     ECS::Entity createSoftWall(std::string name, ECS::Vector3<float> position);
 

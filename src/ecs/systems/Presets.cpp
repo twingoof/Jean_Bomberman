@@ -69,7 +69,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
     return (entity);
 }
 
-ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys)
+ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys, ECS::Vector4<unsigned char> color)
 {
     ECS::Entity entity(name);
     ECS::Vector3<int> size(2, 1, 2);
@@ -77,8 +77,8 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     ECS::Killable k(100);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition(), keys);
-    ECS::Drawable3D d("../assets/player.png", t.getSize());
-    d.setColor({0, 255, 0, 255});
+    ECS::Drawable3D d("../assets/player.obj", t.getSize());
+    d.setColor(color);
 
     entity.addComponent<ECS::Attacker>(a, ECS::ATTACKER);
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
@@ -112,7 +112,7 @@ ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, 
     ECS::Transform t(position, size);
     ECS::Timer timer;
     ECS::Drawable3D d(ECS::CIRCLE, t.getSize());
-    d.setColor({255, 255, 0, 255});
+    d.setColor({0, 0, 0, 255});
     d.setTexturePath("../assets/bomb.png");
     a.setRange(range);
 
@@ -130,8 +130,21 @@ ECS::Entity Presets::createBonus(std::string name, ECS::Vector3<float> pos, ECS:
     ECS::Vector3<int> size(1, 2, 1);
     ECS::Transform t(pos, size);
     ECS::Collectible c(type);
-    ECS::Drawable3D d(ECS::CIRCLE, t.getSize());
+    ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({122, 222, 122, 255});
+
+    switch (type) {
+
+        case ECS::MOVE:
+            d.setTexturePath("../assets/bonusSpeed.png");
+            break;
+        case ECS::RANGE:
+            d.setTexturePath("../assets/bonusSizeBomb.png");
+            break;
+        case ECS::RELOAD:
+            d.setTexturePath("../assets/bonusSpeed.png");
+            break;
+    }
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);

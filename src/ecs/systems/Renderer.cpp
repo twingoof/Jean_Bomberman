@@ -103,6 +103,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
         {
             raylib::Vector3 pos;
             raylib::Model model;
+            ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
 
             if (!this->_isMloaded(drawable.getTId()))
                 this->_loadModelInCache(drawable);
@@ -110,7 +111,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
-            model.drawModel(pos, 1.5, RED);
+            model.drawModel(pos, 1.5, color);
             break;
         }
     default:
