@@ -110,7 +110,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
-            model.drawModel(pos, 0.5, RED);
+            model.drawModel(pos, 1.5, RED);
             break;
         }
     default:
