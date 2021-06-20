@@ -51,7 +51,6 @@ namespace ECS {
              */
             ~Renderer();
 
-
             /**
              * @fn 
              * @brief 

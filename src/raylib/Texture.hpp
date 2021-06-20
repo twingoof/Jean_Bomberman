@@ -213,18 +213,7 @@ namespace raylib {
              */
             void draw(::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
 
-            /**
-             * @fn void drawScaled(::Texture texture, ::Vector2 position, float rotation, float horizontlScale, float vertclScale, ::Color tint = {255, 255, 255, 255})
-             * @brief Draw the scaled texture
-             * 
-             * @param texture Texture to draw
-             * @param position Position
-             * @param rotation Rotation
-             * @param horizontlScale Horizontal scale
-             * @param vertclScale Verticale scale
-             * @param tint Color
-             */
-            void drawScaled(::Texture texture, ::Vector2 position, float rotation, float horizontlScale, float vertclScale, ::Color tint = {255, 255, 255, 255});
+            void drawScaled(::Vector2 position, float rotation, float horizontlScale, float vertclScale, ::Color tint = {255, 255, 255, 255});
 
             /**
              * @fn void setMaterial(::Material &material, int type = MATERIAL_MAP_NORMAL)
