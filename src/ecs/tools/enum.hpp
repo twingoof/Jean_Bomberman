@@ -42,14 +42,6 @@ namespace ECS {
         RECT,
         CUSTOM
     };
-
-    typedef struct texture2D_s {
-        int height;
-        int width;
-        int mipmaps;
-        int format;
-        unsigned int id;
-    } texture2D_t;
 };
 
 #endif /* !ENUM_HPP_ */
