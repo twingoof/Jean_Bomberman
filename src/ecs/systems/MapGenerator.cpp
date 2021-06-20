@@ -49,9 +49,9 @@ void ECS::MapGenerator::insideMap3P(int x, int y, std::string &line)
 {
     if (x == 0 && y == 0)
         line += '1';
-    else if (x == 0 && y == std::get<1>(dimensions) - 1)
-        line += '2';
     else if (x == std::get<0>(dimensions) - 1 && y == 0)
+        line += '2';
+    else if (x == 0 && y == std::get<1>(dimensions) - 1)
         line += '3';
     else if (x % 2 == 0 || y % 2 == 0) {
         if (this->isPlayerSpawn(x, y))
@@ -68,9 +68,9 @@ void ECS::MapGenerator::insideMap4P(int x, int y, std::string &line)
 {
     if (x == 0 && y == 0)
         line += '1';
-    else if (x == 0 && y == std::get<1>(dimensions) - 1)
-        line += '2';
     else if (x == std::get<0>(dimensions) - 1 && y == 0)
+        line += '2';
+    else if (x == 0 && y == std::get<1>(dimensions) - 1)
         line += '3';
     else if (x == std::get<0>(dimensions) - 1 && y == std::get<1>(dimensions) - 1)
         line += '4';
