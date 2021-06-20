@@ -310,7 +310,7 @@ void menu::MenuGenerator::generateOptions()
     this->_menuEntities.push_back(Presets::createImage("BackgroundOptions", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/BackgroundGame.png"]));
     this->_menuEntities.push_back(Presets::createImage("VolumeImage", {static_cast<float>(width) / 4.0f, static_cast<float>(height) / 9.0f * 2.0f}, {width / 2, height / 5}, this->_sprites["../assets/VolumeBarUnic.png"]));
     this->_menuEntities.push_back(Presets::createImage("VolumeButton", {static_cast<float>(width) / 6.5f + static_cast<float>(width) / 2.28f * this->_volume, static_cast<float>(height) / 9.0f * 2.45f}, {width / 4, height / 10}, this->_sprites["../assets/VolumeCursorUnic.png"]));
-    this->_menuEntities.push_back(Presets::createButton("VolumeClickable", {static_cast<float>(width) / 3.85f, static_cast<float>(height) / 9.0f * 2.61f}, {width / 2.09, height / 16}, &callbackSetVolume, this->_sprites["../assets/EmptyUnic.png"]));
+    this->_menuEntities.push_back(Presets::createButton("VolumeClickable", {static_cast<float>(width) / 3.85f, static_cast<float>(height) / 9.0f * 2.61f}, {static_cast<int>(width / 2.09), height / 16}, &callbackSetVolume, this->_sprites["../assets/EmptyUnic.png"]));
     if (this->_nbPlayers == 2) {
         this->_menuEntities.push_back(Presets::createButton("2Players", {static_cast<float>(width) / 8.0f, static_cast<float>(height) / 9.0f * 5.0f}, {width / 5, height / 12}, &callbackTwoPlayers, this->_sprites["../assets/2PlayersColoredUnic.png"]));
         this->_menuEntities.push_back(Presets::createButton("3Players", {static_cast<float>(width) / 2.0f - static_cast<float>(width) / 10.0f, static_cast<float>(height) / 9.0f * 5.0f}, {width / 5, height / 12}, &callbackThreePlayers, this->_sprites["../assets/3Players.png"]));
@@ -339,13 +339,13 @@ void menu::MenuGenerator::generateCredits()
         this->_menuEntities.clear();
         this->_menuEntities.push_back(Presets::createImage("BackgroundCredits", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/BackgroundGame.png"]));
         this->_menuEntities.push_back(Presets::createButton("Left", {75.0f, static_cast<float>(height) / 9.0f, static_cast<float>(height) / 22.0f}, {width / 12, height / 22, 0}, &callbackMenu, this->_sprites["../assets/ArrowLeft.png"]));
-        this->_menuEntities.push_back(Presets::createImage("CreditsPage", {window.getWindowWidth() / 6, window.getWindowHeight() / 2 + _scrollingTop, 0.0f}, {width / 1.5, height, 0}, this->_sprites["../assets/CreditPage.png"]));
+        this->_menuEntities.push_back(Presets::createImage("CreditsPage", {static_cast<float>(window.getWindowWidth() / 6.), static_cast<float>(window.getWindowHeight() / 2. + _scrollingTop), 0.0f}, {static_cast<int>(width / 1.5), height, 0}, this->_sprites["../assets/CreditPage.png"]));
     } else {
         this->_scrollingTop -= 5.0f;
         for (auto it = this->_menuEntities.begin(); it != this->_menuEntities.end(); it++) {
             if ((*it).getName() == "CreditsPage") {
                 ECS::Transform &creditsT = (*it).getComponent<ECS::Transform>(ECS::TRANSFORM);
-                creditsT.setPosition({window.getWindowWidth() / 6, window.getWindowHeight() / 2 + _scrollingTop, 0.0f});
+                creditsT.setPosition({static_cast<float>(window.getWindowWidth() / 6.), static_cast<float>(window.getWindowHeight() / 2. + _scrollingTop), 0.0f});
             }
         }
     }
