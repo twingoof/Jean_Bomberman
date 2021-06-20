@@ -42,6 +42,8 @@ namespace Presets
 
     ECS::Entity createBonus(std::string name, ECS::Vector3<float> position, ECS::BonusType bonusType);
 
+    ECS::Entity createBackground();
+
 };
 
 #endif /* !PRESETS_HPP_ */

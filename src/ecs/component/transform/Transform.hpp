@@ -61,6 +61,13 @@ namespace ECS {
             void setSize(ECS::Vector3<int> newSize);
 
             /**
+             * @fn void setScale(float scale)
+             * @brief Set scale to passed value
+             * @param scale new scale
+             */
+            void setScale(float scale);
+
+            /**
              * @fn getPosition()
              * @brief Get the Position object
              * 
@@ -103,6 +110,12 @@ namespace ECS {
              * @return int& 
              */
             int &getReload();
+            /**
+             * @fn float &getScale()
+             * @brief return scale value
+             * @return float scale
+             */
+            float &getScale();
 
             /**
              * @fn addSpeed()
@@ -133,6 +146,7 @@ namespace ECS {
             int _speed;
             int _range;
             int _reload;
+            float _scale;
     };
 };
 

@@ -7,17 +7,17 @@
 
 #include "SceneManager.hpp"
 
-SceneManager &SceneManager::getSceneManager()
+ECS::SceneManager &ECS::SceneManager::getSceneManager()
 {
     static SceneManager sceneManager;
 
     return (sceneManager);
 }
 
-void SceneManager::initSceneManager(void(*callback)())
+void ECS::SceneManager::initSceneManager(void(*callback)())
 {
     raylib::Window &window = raylib::Window::getWindow();
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
 
     this->_width = window.getWindowWidth();
     this->_height = window.getWindowHeight();
@@ -29,7 +29,7 @@ void SceneManager::initSceneManager(void(*callback)())
     this->_exit = false;
 }
 
-void SceneManager::displayScene()
+void ECS::SceneManager::displayScene()
 {
     if (this->_scene == 0)
         displayMenuScene();
@@ -40,9 +40,9 @@ void SceneManager::displayScene()
     }
 }
 
-void SceneManager::displayMenuScene()
+void ECS::SceneManager::displayMenuScene()
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     std::vector<ECS::Entity> &menuEntities = menu.getMenuEntities();
 
     if (menu.needToExit()) {
@@ -58,7 +58,7 @@ void SceneManager::displayMenuScene()
     DrawFPS(10, 10);
 }
 
-void SceneManager::displayGameScene()
+void ECS::SceneManager::displayGameScene()
 {
     raylib::Window &window = raylib::Window::getWindow();
 
@@ -82,12 +82,11 @@ void SceneManager::displayGameScene()
     DrawFPS(10, 10);
 }
 
-void SceneManager::displayEndScene()
+void ECS::SceneManager::displayEndScene()
 {
     raylib::Window &window = raylib::Window::getWindow();
     std::vector<std::tuple<bool, ECS::Entity &>> winPlayer;
 
-    std::cout << "uhnsiuhiufhsuiodhjfoui";
     if (this->_playerWin == -1) {
         if (ECS::getNbEntitiesByName("player", this->_gameEntities) == 0)
             this->_playerWin = 0;
@@ -122,9 +121,9 @@ void SceneManager::displayEndScene()
     this->_renderer.draw(this->_gameEntities);
 }
 
-void SceneManager::setScene(int scene)
+void ECS::SceneManager::setScene(int scene)
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
 
     if (scene == 1) {
         raylib::Window &window = raylib::Window::getWindow();
@@ -137,12 +136,12 @@ void SceneManager::setScene(int scene)
     this->_scene = scene;
 }
 
-bool SceneManager::getExitStatus() const
+bool ECS::SceneManager::getExitStatus() const
 {
     return (this->_exit);
 }
 
-int SceneManager::getScene() const
+int ECS::SceneManager::getScene() const
 {
     return (this->_scene);
 }

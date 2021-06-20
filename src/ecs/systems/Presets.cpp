@@ -62,6 +62,7 @@ ECS::Entity Presets::createWall(std::string name, ECS::Vector3<float> position)
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({0, 0, 0, 255});
+    d.setTexturePath("../assets/wall.png");
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
@@ -76,7 +77,7 @@ ECS::Entity Presets::createPlayer(std::string name, ECS::Vector3<float> position
     ECS::Killable k(100);
     ECS::Transform t(position, size);
     ECS::Moveable m(t.getPosition(), keys);
-    ECS::Drawable3D d(ECS::RECT, t.getSize());
+    ECS::Drawable3D d("../assets/player.png", t.getSize());
     d.setColor({0, 255, 0, 255});
 
     entity.addComponent<ECS::Attacker>(a, ECS::ATTACKER);
@@ -95,6 +96,7 @@ ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> positi
     ECS::Transform t(position, size);
     ECS::Drawable3D d(ECS::RECT, t.getSize());
     d.setColor({255, 0, 0, 255});
+    d.setTexturePath("../assets/box.png");
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable3D>(d, ECS::DRAWABLE3D);
@@ -105,12 +107,13 @@ ECS::Entity Presets::createSoftWall(std::string name, ECS::Vector3<float> positi
 ECS::Entity Presets::createBomb(std::string name, ECS::Vector3<float> position, int damages, int range)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(3, 1, 3);
+    ECS::Vector3<int> size(1, 1, 1);
     ECS::Attacker a(3, damages);
     ECS::Transform t(position, size);
     ECS::Timer timer;
-    ECS::Drawable3D d(ECS::RECT, t.getSize());
+    ECS::Drawable3D d(ECS::CIRCLE, t.getSize());
     d.setColor({255, 255, 0, 255});
+    d.setTexturePath("../assets/bomb.png");
     a.setRange(range);
 
     timer.startClock();
