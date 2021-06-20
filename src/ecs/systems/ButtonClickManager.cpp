@@ -9,7 +9,7 @@
 
 void ECS::ButtonClickManager::checkButtonArea(std::vector<ECS::Entity> &entities)
 {
-    menu::MenuGenerator &menu = menu::MenuGenerator::getMenuGenerator();
+    ECS::MenuGenerator &menu = ECS::MenuGenerator::getMenuGenerator();
     raylib::Controls c;
 
     for (auto it = entities.begin(); it != entities.end(); it++) {
