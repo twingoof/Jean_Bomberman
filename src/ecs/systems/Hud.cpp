@@ -32,16 +32,16 @@ void ECS::Hud::createHudEntities(std::vector<ECS::Entity> &gameEntities)
         hudName = "hud" + std::to_string(id);
         switch (id) {
             case 1:
-                newEnt = Presets::createImage(hudName, {0.0, 0.0, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/hud_left.png");
+                newEnt = Presets::createImage(hudName, {0.0, 0.0, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/player1_hud.png");
                 break;
             case 2:
-                newEnt = Presets::createImage(hudName, {static_cast<float>(window.getWindowWidth()) - scaleX, 0.0, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/hud_right.png");
+                newEnt = Presets::createImage(hudName, {static_cast<float>(window.getWindowWidth()) - scaleX, 0.0, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/player2_hud.png");
                 break;
             case 3:
-                newEnt = Presets::createImage(hudName, {0.0, static_cast<float>(window.getWindowHeight()) - scaleY, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/hud_left.png");
+                newEnt = Presets::createImage(hudName, {0.0, static_cast<float>(window.getWindowHeight()) - scaleY, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/player3_hud.png");
                 break;
             case 4:
-                newEnt = Presets::createImage(hudName, {static_cast<float>(window.getWindowWidth()) - scaleX, static_cast<float>(window.getWindowHeight()) - scaleY, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/hud_right.png");
+                newEnt = Presets::createImage(hudName, {static_cast<float>(window.getWindowWidth()) - scaleX, static_cast<float>(window.getWindowHeight()) - scaleY, 0.0}, {static_cast<int>(scaleX), static_cast<int>(scaleY), 0}, "../assets/player4_hud.png");
                 break;
             default:
                 continue;
