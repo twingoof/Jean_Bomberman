@@ -5,35 +5,35 @@
 ** TestsAttacker
 */
 
-#include <criterion/criterion.h>
-#include "Attacker.hpp"
+// #include <criterion/criterion.h>
+// #include "Attacker.hpp"
 
-Test(Attacker, constructor) {
-    Attacker attacker(3, 100);
+// Test(Attacker, constructor) {
+//     Attacker attacker(3, 100);
 
-    cr_assert_eq(attacker.getAmmo(), 3);
-    cr_assert_eq(attacker.getDamage(), 100);
-    cr_assert_eq(attacker.getBaseDamage(), 100);
-}
+//     cr_assert_eq(attacker.getAmmo(), 3);
+//     cr_assert_eq(attacker.getDamage(), 100);
+//     cr_assert_eq(attacker.getBaseDamage(), 100);
+// }
 
-Test(Attacker, setAmmo) {
-    Attacker attacker(3, 100);
+// Test(Attacker, setAmmo) {
+//     Attacker attacker(3, 100);
 
-    attacker.setAmmo(5);
-    cr_assert_eq(attacker.getAmmo(), 5);
-}
+//     attacker.setAmmo(5);
+//     cr_assert_eq(attacker.getAmmo(), 5);
+// }
 
-Test(Attacker, setDamage) {
-    Attacker attacker(3, 100);
+// Test(Attacker, setDamage) {
+//     Attacker attacker(3, 100);
 
-    attacker.setDamage(65);
-    cr_assert_eq(attacker.getDamage(), 65);
-}
+//     attacker.setDamage(65);
+//     cr_assert_eq(attacker.getDamage(), 65);
+// }
 
-Test(Attacker, resetDamage) {
-    Attacker attacker(3, 100);
+// Test(Attacker, resetDamage) {
+//     Attacker attacker(3, 100);
 
-    attacker.setDamage(65);
-    attacker.resetDamage();
-    cr_assert_eq(attacker.getDamage(), 100);
-}
+//     attacker.setDamage(65);
+//     attacker.resetDamage();
+//     cr_assert_eq(attacker.getDamage(), 100);
+// }

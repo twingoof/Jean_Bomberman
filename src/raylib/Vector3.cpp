@@ -12,11 +12,11 @@ raylib::Vector3::Vector3()
     this->setVector3({0.0, 0.0, 0.0});
 }
 
-raylib::Vector3::Vector3(float x, float y, float z)
+raylib::Vector3::Vector3(float X, float Y, float Z)
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
+    this->x = X;
+    this->y = Y;
+    this->z = Z;
 }
 
 raylib::Vector3::Vector3(const ::Vector3 &oldVector)

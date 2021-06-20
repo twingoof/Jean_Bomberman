@@ -23,6 +23,9 @@
 #include <vector>
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Model Model.hpp "src/raylib/Model.hpp"

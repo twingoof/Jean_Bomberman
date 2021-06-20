@@ -22,6 +22,9 @@
 #include <vector>
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Material Material.hpp "src/raylib/Material.hpp"

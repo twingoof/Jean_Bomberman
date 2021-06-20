@@ -25,6 +25,9 @@
 #include "ECSVector.hpp"
 #include "IComponent.hpp"
 
+/**
+ * @namespace ECS
+ */
 namespace ECS {
     /**
      * @class Entity Entity.hpp "src/ecs/entity/Entity.hpp"

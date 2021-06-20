@@ -21,6 +21,9 @@
 #include "raylib.h"
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Wave Wave.hpp "src/raylib/Wave.hpp"

@@ -20,13 +20,13 @@ void set()
 }
 
 Test(Clickable, constructor) {
-    Clickable clickable(&test);
+    ECS::Clickable clickable(&test);
 
     cr_assert_eq(clickable.getCallback(), test);
 }
 
 Test(Clickable, setCallback) {
-    Clickable clickable(&test);
+    ECS::Clickable clickable(&test);
 
     clickable.setCallback(&set);
     cr_assert_eq(clickable.getCallback(), set);

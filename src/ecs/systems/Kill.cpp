@@ -23,7 +23,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entities)
         ECS::Entity e = (*it);
         try {
             k = e.getComponent<ECS::Killable>(ECS::KILLABLE);
-        } catch (std::out_of_range &e) {
+        } catch (std::out_of_range &err) {
             continue;
         }
         if (k.getLife() <= 0) {
@@ -37,7 +37,7 @@ void ECS::Kill::deleteWall(std::vector<ECS::Entity> &entities)
                     try {
                         t = e.getComponent<ECS::Transform>(ECS::TRANSFORM);
                         toAdd.push_back(Presets::createBonus("bonus" + std::to_string(this->_bonusId++), t.getPosition(), bonusType));
-                    } catch (std::out_of_range &err) {
+                    } catch (std::out_of_range &errrr) {
                         std::cerr<<"ERROR: "<<e.getName()<<" has no transform component."<<std::endl;
                     }
                 }

@@ -137,11 +137,6 @@ void ECS::Renderer::_loadModelInCache(const ECS::Drawable3D& drawable) {
     std::pair<unsigned int, raylib::Model> toInsert = std::make_pair(drawable.getTId(), model);
 
     this->_loadedModels.insert(toInsert);
-
-//    if (!drawable.getTexturePath().empty()) {
-//        ::Texture texture = ::LoadTexture(drawable.getTexturePath().c_str());
-//        model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
-//    }
 }
 
 raylib::Texture ECS::Renderer::_getTextureFromCache(const unsigned int id) {
@@ -168,7 +163,7 @@ raylib::Model ECS::Renderer::_getModelFromCache(const unsigned int id) {
 #pragma warning(disable: 4834)
 bool ECS::Renderer::_isMloaded(unsigned int id) {
     try {
-        this->_loadedModels.at(id);
+        ::Model m =this->_loadedModels.at(id);
     } catch (std::out_of_range &e) {
         return (false);
     }
@@ -177,7 +172,7 @@ bool ECS::Renderer::_isMloaded(unsigned int id) {
 
 bool ECS::Renderer::_isTLoaded(unsigned int id) {
     try {
-        this->_loadedTextures.at(id);
+        ::Texture t = this->_loadedTextures.at(id);
     } catch (std::out_of_range &e) {
         return (false);
     }

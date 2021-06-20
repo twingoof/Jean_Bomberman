@@ -21,6 +21,9 @@
 #include "raylib.h"
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Music Music.hpp "src/raylib/Music.hpp"

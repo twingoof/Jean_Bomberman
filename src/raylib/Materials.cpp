@@ -57,7 +57,7 @@ void raylib::Material::setMaterial(const ::Material &oldMat)
 std::vector<raylib::Material> raylib::loadMaterials(const std::string &filePath, int materialCount)
 {
     std::vector<raylib::Material> newMaterials;
-    auto newMaterialC = ::LoadMaterials(filePath.c_str(), reinterpret_cast<int *>(materialCount));
+    auto newMaterialC = ::LoadMaterials(filePath.c_str(), &materialCount);
 
     if (newMaterialC == nullptr)
         return (newMaterials);

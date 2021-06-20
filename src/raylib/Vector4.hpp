@@ -20,17 +20,53 @@
 
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
+    /**
+     * @class Vector4 Vector4.hpp "src/raylib/Vector4.hpp"
+     */
     class Vector4 : public ::Vector4 {
         public:
+            /**
+             * @fn Vector4()
+             * @brief Construct a new Vector4
+             */
             Vector4();
+
+            /**
+             * @fn Vector4(const ::Vector4 &oldVector)
+             * @brief Construct a new Vector4
+             * 
+             * @param oldVector Vector to copy
+             */
             Vector4(const ::Vector4 &oldVector);
+
+            /**
+             * @fn Vector4 &operator=(const ::Vector4 &oldVector)
+             * @brief Copy constructor
+             * 
+             * @param oldVector Vector to copy
+             * @return Vector4& 
+             */
             Vector4 &operator=(const ::Vector4 &oldVector);
-            ~Vector4();
+
+            /**
+             * @fn ~Vector4() = default
+             * @brief Destroy the Vector4 object
+             */
+            ~Vector4() = default;
 
         protected:
 
         private:
+            /**
+             * @fn void setVector4(const ::Vector4 &oldVector)
+             * @brief Set the Vector
+             * 
+             * @param oldVector Vector value
+             */
             void setVector4(const ::Vector4 &oldVector);
 
     };

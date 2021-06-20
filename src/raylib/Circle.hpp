@@ -20,6 +20,9 @@
 
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
 
     /**

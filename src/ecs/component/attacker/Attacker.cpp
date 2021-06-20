@@ -8,11 +8,9 @@
 #include "Attacker.hpp"
 
 ECS::Attacker::Attacker(double reloadTime, unsigned short damage)
-    : _baseDamage(damage), _range(1)
+    : _range(1), _reloadTime(reloadTime), _damage(damage), _baseDamage(_damage)
 {
     this->_clock.startClock();
-    this->_reloadTime = reloadTime;
-    this->_damage = damage;
 }
 
 ECS::Attacker::~Attacker() = default;

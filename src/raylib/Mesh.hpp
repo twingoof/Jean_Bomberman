@@ -21,6 +21,9 @@
 #include "raylib.h"
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Mesh Mesh.hpp "src/raylib/Mesh.hpp"

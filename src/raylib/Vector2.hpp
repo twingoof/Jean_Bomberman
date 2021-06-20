@@ -20,16 +20,51 @@
 
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
+    /**
+     * @class Vector2 Vector2.hpp "src/raylib/Vector2.hpp"
+     */
     class Vector2 : public ::Vector2 {
         public:
+            /**
+             * @fn Vector2()
+             * @brief Construct a new Vector2
+             */
             Vector2();
+
+            /**
+             * @fn Vector2(const ::Vector2 &oldVector)
+             * @brief Construct a new Vector2
+             * 
+             * @param oldVector Vector to copy
+             */
             Vector2(const ::Vector2 &oldVector);
+
+            /**
+             * @fn Vector2 &operator=(const ::Vector2 &oldVector)
+             * @brief Copy constructor
+             * 
+             * @param oldVector Vector to copy
+             * @return Vector2& 
+             */
             Vector2 &operator=(const ::Vector2 &oldVector);
+
+            /**
+             * @fn ~Vector2() = default
+             * @brief Destroy the Vector2 object
+             */
             ~Vector2() = default;
 
-        protected:
         private:
+            /**
+             * @fn void setVector(const ::Vector2 &oldVector)
+             * @brief Set the Vector
+             * 
+             * @param oldVector Vector value
+             */
             void setVector(const ::Vector2 &oldVector);
     };
 }

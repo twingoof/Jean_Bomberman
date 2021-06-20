@@ -21,6 +21,9 @@
 #include "Vector2.hpp"
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
 
     /**

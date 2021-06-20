@@ -22,6 +22,9 @@
 #include "raylib.h"
 #include <string>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Font Font.hpp "src/raylib/Font.hpp"
