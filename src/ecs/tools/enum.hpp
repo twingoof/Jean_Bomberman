@@ -6,7 +6,7 @@
 */
 
 /**
- * @file Attack.hpp
+ * @file enum.hpp
  * @author gildas.gonzalez@epitech.eu; pierrick.prost@epitech.eu; pierrick.prost@epitech.eu; valentin.bouchet@epitech.eu; mathis.ragot@epitech.eu
  * @brief File that contain all the enum
  * @version 0.1
