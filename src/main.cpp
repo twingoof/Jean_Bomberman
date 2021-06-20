@@ -23,6 +23,7 @@
 #include "Kill.hpp"
 #include "GetEntityInVector.hpp"
 #include "Sound.hpp"
+#include "Hud.hpp"
 
 int main()
 {
@@ -32,7 +33,9 @@ int main()
     raylib::Camera3D camera({0, 80, 25}, {0, -10, 0}, {0, 1, 0}, 45, CAMERA_PERSPECTIVE);
     std::vector<ECS::Entity> mapEntities;
 
-    window.initWindow(1600, 900, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
+    int baseW = 1600;
+    int baseH = 900;
+    window.initWindow(baseW, baseH, "Demo Multiplayer", FLAG_WINDOW_RESIZABLE);
     window.initAudioDevice();
     window.setWindowFPS(60);
     window.setMainCamera(camera);
@@ -45,6 +48,7 @@ int main()
     ECS::Clock clock;
     std::vector<ECS::Entity> gameEntities;
     gameEntities = map.generateMapEntities();
+    Hud hud(gameEntities);
     clock.startClock();
     while (!window.windowShouldClose()) {
         if (clock.getTimeElapsed() > 0.01) {
@@ -61,14 +65,14 @@ int main()
             //cld.checkCollision(gameEntities);
             disp.moveEntity(gameEntities);
             kill.deleteWall(gameEntities);
+            if (window.getWindowWidth() != baseW || window.getWindowHeight() != baseH) {
+                hud.updateHudEntities(gameEntities);
+                baseW = window.getWindowWidth();
+                baseH = window.getWindowHeight();
+            }
             clock.restartClock();
         }
         r.draw(gameEntities);
-//        window.clearWindow(MAGENTA);
-//        window.beginDrawing();
-//        DrawGrid(50, 1.0f);
-//        DrawFPS(10, 10);
-//        window.endDrawing();
     }
     window.stopAudioDevice();
     window.closeWindow();

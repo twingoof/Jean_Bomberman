@@ -13,6 +13,7 @@
 #include "Rectangle.hpp"
 #include "Transform.hpp"
 #include "Window.hpp"
+#include <iostream>
 
 ECS::Renderer::Renderer() = default;
 
@@ -22,7 +23,7 @@ void ECS::Renderer::draw(std::vector<ECS::Entity> &entities) {
     raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
-    window.clearWindow(RAYWHITE);
+    window.clearWindow(MAGENTA);
     window.beginDrawing();
     for (auto &entity : entities) {
         noDraw = false;
@@ -62,16 +63,15 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
         case CUSTOM:
             if (!this->_isTLoaded(drawable.getTId()))
                 this->_loadTextureInCache(drawable);
-            raylib::drawTexture(this->_getTextureFromCache(drawable.getTId()), position.X, position.Y, WHITE);
+            float scaleW = drawable.getSize().X / 1300.0f;
+            float scaleH = drawable.getSize().Y / 600.0f;
+            this->_getTextureFromCache(drawable.getTId()).drawScaled({position.X, position.Y}, 0, scaleW, scaleH, WHITE);
             break;
     }
 }
 
 void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D &drawable)
 {
-
-    raylib::Model model;
-
     switch (drawable.getType())
     {
     case ECS::DrawableType::CIRCLE :

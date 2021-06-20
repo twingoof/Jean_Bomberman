@@ -35,7 +35,7 @@ void ECS::Attack::manageBombs(std::vector<ECS::Entity> &entity)
                     this->_bombId++;
                 }
             }
-        } catch (std::out_of_range &e) {
+        } catch (std::out_of_range &error) {
             continue;
         }
     }

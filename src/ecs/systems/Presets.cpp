@@ -7,13 +7,25 @@
 
 #include "Presets.hpp"
 
-ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath)
+ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), ECS::Drawable2D &d)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
     ECS::Clickable c(callback);
-    ECS::Drawable2D d(spritePath, t.getSize(), ECS::RECT);
+
+    d.setSize(t.getSize());
+    entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
+    entity.addComponent<ECS::Clickable>(c, ECS::CLICKABLE);
+    entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);
+    return (entity);
+}
+
+ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath)
+{
+    ECS::Entity entity(name);
+    ECS::Transform t(position, size);
+    ECS::Clickable c(callback);
+    ECS::Drawable2D d(spritePath, t.getSize(), ECS::CUSTOM);
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Clickable>(c, ECS::CLICKABLE);
@@ -21,12 +33,22 @@ ECS::Entity Presets::createButton(std::string name, ECS::Vector3<float> position
     return (entity);
 }
 
-ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position, std::string spritePath)
+ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, ECS::Drawable2D &d)
 {
     ECS::Entity entity(name);
-    ECS::Vector3<int> size(1, 1, 1);
     ECS::Transform t(position, size);
-    ECS::Drawable2D d(spritePath, t.getSize(), ECS::RECT);
+
+    d.setSize(t.getSize());
+    entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
+    entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);
+    return (entity);
+}
+
+ECS::Entity Presets::createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, std::string spritePath)
+{
+    ECS::Entity entity(name);
+    ECS::Transform t(position, size);
+    ECS::Drawable2D d(spritePath, t.getSize(), ECS::CUSTOM);
 
     entity.addComponent<ECS::Transform>(t, ECS::TRANSFORM);
     entity.addComponent<ECS::Drawable2D>(d, ECS::DRAWABLE2D);

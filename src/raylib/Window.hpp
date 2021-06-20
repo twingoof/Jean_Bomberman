@@ -142,8 +142,8 @@ namespace raylib {
             void begin3DMode(const ::Camera3D &actualCam);
 
             /**
-             * @brief Set 3D Mode for the set up main camera
-             */
+            * @brief Set 3D Mode for the set up main camera
+            */
             void begin3DMode();
 
             /**

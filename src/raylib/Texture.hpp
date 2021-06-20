@@ -53,7 +53,7 @@ namespace raylib {
             void draw(::Vector2 tiling, ::Vector2 offset, ::Rectangle quad, ::Color tint = {255, 255, 255, 255});
             void draw(::Vector3 position, float width, float height, float length, ::Color tint = {255, 255, 255, 255});
 
-            void drawScaled(::Texture texture, ::Vector2 position, float rotation, float horizontlScale, float vertclScale, ::Color tint = {255, 255, 255, 255});
+            void drawScaled(::Vector2 position, float rotation, float horizontlScale, float vertclScale, ::Color tint = {255, 255, 255, 255});
 
             void setMaterial(::Material &material, int type = MATERIAL_MAP_NORMAL);
 

@@ -8,24 +8,27 @@
 #ifndef HUD_HPP_
 #define HUD_HPP_
 
+#include "GetEntityInVector.hpp"
+#include "Transform.hpp"
+#include "Presets.hpp"
 #include "Entity.hpp"
 #include <vector>
 
 class Hud {
     public:
         Hud() = default;
-        Hud(const std::vector<ECS::Entity> &gameEntites);
+        Hud(std::vector<ECS::Entity> &gameEntites);
         Hud(const Hud &rHand) = default;
         Hud &operator=(const Hud &rHand) = default;
         ~Hud() = default;
 
-    protected:
-        void storeGameEntities(std::vector<ECS::Entity> gameEnts);
+        void createHudEntities(std::vector<ECS::Entity> &gameEntities);
 
-        std::vector<ECS::Entity> getGameEntities(void) const;
+        void updateHudEntities(std::vector<ECS::Entity> &gameEntities);
+
+    protected:
 
     private:
-        std::vector<ECS::Entity> _gameEntities;
 
 };
 
