@@ -23,6 +23,9 @@
 #include <vector>
 #include <memory>
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Animation Animation.hpp "src/raylib/Animation.hpp"
