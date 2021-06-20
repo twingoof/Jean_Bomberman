@@ -13,6 +13,7 @@
 #include "Rectangle.hpp"
 #include "Transform.hpp"
 #include "Window.hpp"
+#include <iostream>
 
 ECS::Renderer::Renderer() = default;
 
@@ -22,7 +23,7 @@ void ECS::Renderer::draw(std::vector<ECS::Entity> &entities) {
     raylib::Window &window = raylib::Window::getWindow();
     bool noDraw;
 
-    window.clearWindow(RAYWHITE);
+    window.clearWindow(MAGENTA);
     window.beginDrawing();
     for (auto &entity : entities) {
         noDraw = false;
@@ -62,7 +63,9 @@ void ECS::Renderer::_draw2D(const ECS::Vector3<float>& position, ECS::Drawable2D
         case CUSTOM:
             if (!this->_isTLoaded(drawable.getTId()))
                 this->_loadTextureInCache(drawable);
-            raylib::drawTexture(this->_getTextureFromCache(drawable.getTId()), static_cast<int>(position.X), static_cast<int>(position.Y), WHITE);
+            float scaleW = drawable.getSize().X / 1300.0f;
+            float scaleH = drawable.getSize().Y / 600.0f;
+            this->_getTextureFromCache(drawable.getTId()).drawScaled({position.X, position.Y}, 0, scaleW, scaleH, WHITE);
             break;
     }
 }
@@ -100,6 +103,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
         {
             raylib::Vector3 pos;
             raylib::Model model;
+            ::Color color = {drawable.getColor().X, drawable.getColor().Y, drawable.getColor().Z, drawable.getColor().A};
 
             if (!this->_isMloaded(drawable.getTId()))
                 this->_loadModelInCache(drawable);
@@ -107,7 +111,7 @@ void ECS::Renderer::_draw3D(const ECS::Vector3<float>& position, ECS::Drawable3D
             pos.x = static_cast<float>(position.X);
             pos.y = static_cast<float>(position.Y);
             pos.z = static_cast<float>(position.Z);
-            model.drawModel(pos, 0.5, RED);
+            model.drawModel(pos, 1.5, color);
             break;
         }
     default:
@@ -134,11 +138,6 @@ void ECS::Renderer::_loadModelInCache(const ECS::Drawable3D& drawable) {
     std::pair<unsigned int, raylib::Model> toInsert = std::make_pair(drawable.getTId(), model);
 
     this->_loadedModels.insert(toInsert);
-
-//    if (!drawable.getTexturePath().empty()) {
-//        ::Texture texture = ::LoadTexture(drawable.getTexturePath().c_str());
-//        model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
-//    }
 }
 
 raylib::Texture ECS::Renderer::_getTextureFromCache(const unsigned int id) {
@@ -162,7 +161,7 @@ raylib::Model ECS::Renderer::_getModelFromCache(const unsigned int id) {
     }
     return (model);
 }
-
+#pragma warning(disable: 4834)
 bool ECS::Renderer::_isMloaded(unsigned int id) {
     try {
         ::Model m =this->_loadedModels.at(id);
@@ -180,3 +179,4 @@ bool ECS::Renderer::_isTLoaded(unsigned int id) {
     }
     return (true);
 }
+#pragma warning(default: 4834)

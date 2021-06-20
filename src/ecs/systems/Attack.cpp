@@ -246,7 +246,7 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
     if (modX == 0) {
         bombPos.X -= mRelPlayPos.X;
     }
-    else if (modX < 1.5) {
+    else if (modX < 0.5) {
         bombPos.X -= mRelPlayPos.X - modX;
     }
     else {
@@ -271,7 +271,9 @@ ECS::Vector3<float> ECS::Attack::_findBombPos(ECS::Transform playerT)
 
 bool ECS::Attack::posIsColliding(ECS::Transform t1, ECS::Transform t2, int t2_x_multiplicator, int t2_y_multiplicator)
 {
-    return (CheckCollisionRecs({t1.getPosition().X, t1.getPosition().Z, static_cast<float>(t1.getSize().X), static_cast<float>(t1.getSize().Z)}, {t2.getPosition().X + t2_x_multiplicator * t2.getSize().X, t2.getPosition().Z + t2_y_multiplicator * t2.getSize().Z, static_cast<float>(t2.getSize().X), static_cast<float>(t2.getSize().Z)}));
+    ::Rectangle victim = {t1.getPosition().X, t1.getPosition().Z, static_cast<float>(t1.getSize().X), static_cast<float>(t1.getSize().Z)};
+    ::Rectangle bomb = {t2.getPosition().X + static_cast<float>(t2_x_multiplicator * 3), t2.getPosition().Z + static_cast<float>(t2_y_multiplicator * 3), static_cast<float>(t2.getSize().X), static_cast<float>(t2.getSize().Z)};
+    return (CheckCollisionRecs(victim, bomb));
 }
 
 bool ECS::Attack::checkBombPos(ECS::Vector3<float> pos, std::vector<ECS::Entity> &entity)

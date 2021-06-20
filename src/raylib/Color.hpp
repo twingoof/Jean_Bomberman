@@ -22,6 +22,9 @@
 #include "Vector3.hpp"
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @class Color Color.hpp "src/raylib/Color.hpp"

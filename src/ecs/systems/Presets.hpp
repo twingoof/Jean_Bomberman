@@ -17,25 +17,32 @@
 #include "Entity.hpp"
 #include "Timer.hpp"
 #include "enum.hpp"
+#include <functional>
 
 #ifndef PRESETS_HPP_
 #define PRESETS_HPP_
 
 namespace Presets
 {
-    ECS::Entity createButton(std::string name, ECS::Vector3<float> position, void(callback)(), std::string spritePath);
+    ECS::Entity createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), ECS::Drawable2D &d);
 
-    ECS::Entity createImage(std::string name, ECS::Vector3<float> position , std::string spritePath);
+    ECS::Entity createButton(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, void(callback)(), std::string spritePath);
+
+    ECS::Entity createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, ECS::Drawable2D &d);
+
+    ECS::Entity createImage(std::string name, ECS::Vector3<float> position, ECS::Vector3<int> size, std::string spritePath);
 
     ECS::Entity createWall(std::string name, ECS::Vector3<float> position);
 
-    ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys);
+    ECS::Entity createPlayer(std::string name, ECS::Vector3<float> position, std::map<std::string, raylib::Keys> keys, ECS::Vector4<unsigned char> color);
 
     ECS::Entity createSoftWall(std::string name, ECS::Vector3<float> position);
 
     ECS::Entity createBomb(std::string name, ECS::Vector3<float> position, int damages, int range);
 
     ECS::Entity createBonus(std::string name, ECS::Vector3<float> position, ECS::BonusType bonusType);
+
+    ECS::Entity createBackground();
 
 };
 

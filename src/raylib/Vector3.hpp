@@ -20,18 +20,63 @@
 
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
+    /**
+     * @class Vector3 Vector3.hpp "src/raylib/Vector3.hpp"
+     */
     class Vector3 : public ::Vector3 {
         public:
+            /**
+             * @fn Vector3()
+             * @brief Construct a new Vector3
+             */
             Vector3();
+
+            /**
+             * @fn Vector3(float X, float Y, float Z)
+             * @brief Construct a new Vector3 object
+             * 
+             * @param X X
+             * @param Y Y
+             * @param Z Z
+             */
             Vector3(float X, float Y, float Z);
+            
+            /**
+             * @fn Vector3(const ::Vector3 &oldVector)
+             * @brief Construct a new Vector3
+             * 
+             * @param oldVector Vector to copy
+             */
             Vector3(const ::Vector3 &oldVector);
+
+            /**
+             * @fn Vector3 &operator=(const ::Vector3 &oldVector)
+             * @brief Copy constructor
+             * 
+             * @param oldVector Vector to copy
+             * @return Vector3& 
+             */
             Vector3 &operator=(const ::Vector3 &oldVector);
+
+            /**
+             * @fn ~Vector3() = default
+             * @brief Destroy the Vector3 object
+             */
             ~Vector3() = default;
 
         protected:
 
         private:
+            /**
+             * @fn void setVector3(const ::Vector3 &oldVector)
+             * @brief Set the Vector
+             * 
+             * @param oldVector Vector value
+             */
             void setVector3(const ::Vector3 &oldVector);
 
     };

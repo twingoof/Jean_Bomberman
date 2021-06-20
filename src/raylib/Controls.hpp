@@ -21,6 +21,9 @@
 #include "Window.hpp"
 #include "raylib.h"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
     /**
      * @enum Keys
@@ -130,11 +133,25 @@ namespace raylib {
         KEY_KP_ADD          = 334,
         KEY_KP_ENTER        = 335,
         KEY_KP_EQUAL        = 336,
+
         // Android key buttons
         KEY_BACK            = 4,
         KEY_MENU            = 82,
         KEY_VOLUME_UP       = 24,
         KEY_VOLUME_DOWN     = 25
+    };
+
+    /**
+     * @enum MouseButton
+     */
+    enum MouseButton {
+        MOUSE_BUTTON_LEFT    = 0,
+        MOUSE_BUTTON_RIGHT   = 1,
+        MOUSE_BUTTON_MIDDLE  = 2,
+        MOUSE_BUTTON_SIDE    = 3,
+        MOUSE_BUTTON_EXTRA   = 4,
+        MOUSE_BUTTON_FORWARD = 5,
+        MOUSE_BUTTON_BACK    = 6,
     };
 
     /**
@@ -249,6 +266,8 @@ namespace raylib {
              * @return false Otherwise
              */
             bool isMouseButtonUp(int button);
+
+            int getCharacterPressed();
 
         protected:
 

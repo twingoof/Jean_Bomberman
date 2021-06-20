@@ -23,6 +23,9 @@
 #include "ECSVector.hpp"
 #include "Texture.hpp"
 
+/**
+ * @namespace raylib
+ */
 namespace raylib {
 
     /**

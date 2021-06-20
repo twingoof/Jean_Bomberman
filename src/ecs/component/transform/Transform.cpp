@@ -7,7 +7,7 @@
 
 #include "Transform.hpp"
 
-ECS::Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size): _position(position), _lastPosition(position), _size(size), _speed(0), _range(0), _reload(0)
+ECS::Transform::Transform(ECS::Vector3<float> position, ECS::Vector3<int> size): _position(position), _lastPosition(position), _size(size), _speed(0), _range(0), _reload(0), _scale(1.)
 {}
 
 void ECS::Transform::setPosition(ECS::Vector3<float> newPosition)
@@ -71,4 +71,14 @@ void ECS::Transform::addRange(int range)
 void ECS::Transform::addReload(int reload)
 {
     this->_reload += reload;
+}
+
+float &ECS::Transform::getScale()
+{
+    return (this->_scale);
+}
+
+void ECS::Transform::setScale(float scale)
+{
+    this->_scale = scale;
 }

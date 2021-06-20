@@ -8,7 +8,7 @@
 #include "MapGenerator.hpp"
 #include "raylib.h"
 
-MapGenerator::MapGenerator(int width, int height, int nbPlayer)
+ECS::MapGenerator::MapGenerator(int width, int height, int nbPlayer)
 {
     this->_nbPlayer = nbPlayer;
     if (width % 2 == 0)
@@ -24,11 +24,11 @@ MapGenerator::MapGenerator(int width, int height, int nbPlayer)
     this->generateMap();
 }
 
-MapGenerator::~MapGenerator()
+ECS::MapGenerator::~MapGenerator()
 {
 }
 
-void MapGenerator::insideMap2P(int x, int y, std::string &line)
+void ECS::MapGenerator::insideMap2P(int x, int y, std::string &line)
 {
     if (/*(*/x == 0/* || x == std::get<0>(dimensions) - 1) */&& /*(*/y == 0/* || y == std::get<1>(dimensions) - 1)*/)
         line += '1';
@@ -45,7 +45,7 @@ void MapGenerator::insideMap2P(int x, int y, std::string &line)
         line += '#';
 }
 
-void MapGenerator::insideMap3P(int x, int y, std::string &line)
+void ECS::MapGenerator::insideMap3P(int x, int y, std::string &line)
 {
     if (x == 0 && y == 0)
         line += '1';
@@ -64,7 +64,7 @@ void MapGenerator::insideMap3P(int x, int y, std::string &line)
         line += '#';
 }
 
-void MapGenerator::insideMap4P(int x, int y, std::string &line)
+void ECS::MapGenerator::insideMap4P(int x, int y, std::string &line)
 {
     if (x == 0 && y == 0)
         line += '1';
@@ -85,7 +85,7 @@ void MapGenerator::insideMap4P(int x, int y, std::string &line)
         line += '#';
 }
 
-bool MapGenerator::isPlayerSpawn(const int x, const int y)
+bool ECS::MapGenerator::isPlayerSpawn(const int x, const int y)
 {
     if ((x == 0 || x == 1 || x == std::get<0>(dimensions) - 1 || x == std::get<0>(dimensions) - 2))
         if ((y == 0 || y == 1 || y == std::get<1>(dimensions) - 1 || y == std::get<1>(dimensions) - 2))
@@ -93,7 +93,7 @@ bool MapGenerator::isPlayerSpawn(const int x, const int y)
     return (false);
 }
 
-void MapGenerator::addBorders(void)
+void ECS::MapGenerator::addBorders(void)
 {
     std::string line;
 
@@ -103,7 +103,7 @@ void MapGenerator::addBorders(void)
     line.clear();
 }
 
-void MapGenerator::generateMap(void)
+void ECS::MapGenerator::generateMap(void)
 {
     std::string line;
 
@@ -131,10 +131,12 @@ void MapGenerator::generateMap(void)
     this->addBorders();
 }
 
-std::vector<ECS::Entity> MapGenerator::generateMapEntities()
+std::vector<ECS::Entity> ECS::MapGenerator::generateMapEntities()
 {
-    std::map<std::string, raylib::Keys> fstControls{{"up", raylib::Keys::KEY_UP}, {"down", raylib::Keys::KEY_DOWN}, {"left", raylib::Keys::KEY_LEFT}, {"right", raylib::Keys::KEY_RIGHT}, {"bomb", raylib::Keys::KEY_L},};
-    std::map<std::string, raylib::Keys> sndControls{{"up", raylib::Keys::KEY_W}, {"down", raylib::Keys::KEY_S}, {"left", raylib::Keys::KEY_A}, {"right", raylib::Keys::KEY_D}, {"bomb", raylib::Keys::KEY_SPACE},};
+    std::map<std::string, raylib::Keys> fstControls{{"up", raylib::Keys::KEY_UP}, {"down", raylib::Keys::KEY_DOWN}, {"left", raylib::Keys::KEY_LEFT}, {"right", raylib::Keys::KEY_RIGHT}, {"bomb", raylib::Keys::KEY_RIGHT_CONTROL},};
+    std::map<std::string, raylib::Keys> scndControls{{"up", raylib::Keys::KEY_W}, {"down", raylib::Keys::KEY_S}, {"left", raylib::Keys::KEY_Q}, {"right", raylib::Keys::KEY_D}, {"bomb", raylib::Keys::KEY_SPACE},};
+    std::map<std::string, raylib::Keys> thrdControls{{"up", raylib::Keys::KEY_O}, {"down", raylib::Keys::KEY_L}, {"left", raylib::Keys::KEY_K}, {"right", raylib::Keys::KEY_M}, {"bomb", raylib::Keys::KEY_P},};
+    std::map<std::string, raylib::Keys> fourControls{{"up", raylib::Keys::KEY_F1}, {"down", raylib::Keys::KEY_F2}, {"left", raylib::Keys::KEY_F3}, {"right", raylib::Keys::KEY_F4}, {"bomb", raylib::Keys::KEY_F5},};
     std::vector<ECS::Entity> mapEntities;
     std::vector<std::string>::iterator it;
     ECS::Entity e;
@@ -154,18 +156,19 @@ std::vector<ECS::Entity> MapGenerator::generateMapEntities()
             else if (c == '#')
                 e = Presets::createWall("wall" + std::to_string(x) + std::to_string(z), ECS::Vector3<float>(x, 0, z));
             else if (c == '1')
-                e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls);
+                e = Presets::createPlayer("player1", ECS::Vector3<float>(x, 0, z), fstControls, {255, 0, 0, 255});
             else if (c == '2')
-                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player2", ECS::Vector3<float>(x, 0, z), scndControls, {255, 255, 0, 255});
             else if (c == '3')
-                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player3", ECS::Vector3<float>(x, 0, z), thrdControls, {0, 255, 0, 255});
             else if (c == '4')
-                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), sndControls);
+                e = Presets::createPlayer("player4", ECS::Vector3<float>(x, 0, z), fourControls, {0, 0, 255, 255});
             mapEntities.push_back(e);
             x += 3;
         }
         x = 0;
         z += 3;
     }
+    mapEntities.insert(mapEntities.begin(), Presets::createImage("background", {0., 0., 0.}, {1600, 900, 0}, "../assets/BackgroundGame.png"));
     return (mapEntities);
 }
