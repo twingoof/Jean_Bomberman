@@ -53,7 +53,7 @@ bool ECS::Controller::canMoveTop(std::vector<ECS::Entity> &entity, ECS::Entity &
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
-        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos)
+        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos || (*it).getName().find("background") != std::string::npos)
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {static_cast<float>(t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0), static_cast<float>(t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0), static_cast<float>(t.getSize().X), static_cast<float>(t.getSize().Z)};
@@ -79,7 +79,7 @@ bool ECS::Controller::canMoveDown(std::vector<ECS::Entity> &entity, ECS::Entity 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
-        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos)
+        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos || (*it).getName().find("background") != std::string::npos)
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {static_cast<float>(t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0), static_cast<float>(t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0), static_cast<float>(t.getSize().X), static_cast<float>(t.getSize().Z)};
@@ -103,7 +103,7 @@ bool ECS::Controller::canMoveLeft(std::vector<ECS::Entity> &entity, ECS::Entity 
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
-        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos)
+        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos || (*it).getName().find("background") != std::string::npos)
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {static_cast<float>(t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0), static_cast<float>(t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0), static_cast<float>(t.getSize().X), static_cast<float>(t.getSize().Z)};
@@ -129,7 +129,7 @@ bool ECS::Controller::canMoveRight(std::vector<ECS::Entity> &entity, ECS::Entity
     for (auto it = entity.begin(); it != entity.end(); it++) {
         if ((*it).getName() == player.getName())
             continue;
-        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos)
+        if ((*it).getName().find("bomb") != std::string::npos || (*it).getName().find("hud") != std::string::npos || (*it).getName().find("background") != std::string::npos)
             continue;
         ECS::Transform t = (*it).getComponent<ECS::Transform>(TRANSFORM);
         ::Rectangle other = {static_cast<float>(t.getPosition().X - static_cast<float>(t.getSize().X) / 2.0), static_cast<float>(t.getPosition().Z - static_cast<float>(t.getSize().Z) / 2.0), static_cast<float>(t.getSize().X), static_cast<float>(t.getSize().Z)};
