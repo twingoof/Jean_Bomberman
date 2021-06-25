@@ -168,11 +168,16 @@ void ECS::MenuGenerator::initMenuGenerator(void(*callbackPlay)(), float volume, 
 
     ECS::Drawable2D sprite16("../assets/EmptyUnic.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
     this->_sprites.emplace("../assets/EmptyUnic.png", sprite16);
-
     ECS::Drawable2D sprite20("../assets/Tutorial.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
     this->_sprites.emplace("../assets/Tutorial.png", sprite20);
     ECS::Drawable2D sprite20c("../assets/TutorialColored.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
     this->_sprites.emplace("../assets/TutorialColored.png", sprite20c);
+    ECS::Drawable2D sprite21("../assets/Tuto1.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
+    this->_sprites.emplace("../assets/Tuto1.png", sprite21);
+    ECS::Drawable2D sprite22("../assets/Tuto2.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
+    this->_sprites.emplace("../assets/Tuto2.png", sprite22);
+    ECS::Drawable2D sprite23("../assets/Tuto3.png", {window.getWindowHeight(), window.getWindowHeight()}, ECS::CUSTOM);
+    this->_sprites.emplace("../assets/Tuto3.png", sprite23);
 
     this->generateMenu();
 }
@@ -264,8 +269,7 @@ void ECS::MenuGenerator::generateTuto()
 
     this->_menuPage = 1;
     this->_menuEntities.clear();
-    this->_menuEntities.push_back(Presets::createImage("BackgroundTuto0", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/BackgroundGame.png"]));
-    //! Draw tuto 1
+    this->_menuEntities.push_back(Presets::createImage("Tuto1", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/Tuto1.png"]));
     this->_menuEntities.push_back(Presets::createButton("Right", {static_cast<float>(width) - 75.0f - static_cast<float>(width / 12), static_cast<float>(height) - static_cast<float>(height) / 9.0f * 5.0f, static_cast<float>(height) / 22.0f}, {width / 12, height / 22, 0}, &callbackTuto1, this->_sprites["../assets/ArrowRight.png"]));
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
@@ -278,8 +282,7 @@ void ECS::MenuGenerator::generateTuto1()
 
     this->_menuPage = 2;
     this->_menuEntities.clear();
-    this->_menuEntities.push_back(Presets::createImage("backgroundTuto1", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/BackgroundGame.png"]));
-    //! Draw tuto 2
+    this->_menuEntities.push_back(Presets::createImage("Tuto2", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/Tuto2.png"]));
     this->_menuEntities.push_back(Presets::createButton("Left", {75.0f, static_cast<float>(height) - static_cast<float>(height) / 9.0f * 5.0f, static_cast<float>(height) / 22.0f}, {width / 12, height / 22, 0}, &callbackTuto, this->_sprites["../assets/ArrowLeft.png"]));
     this->_menuEntities.push_back(Presets::createButton("Right", {static_cast<float>(width) - 75.0f - static_cast<float>(width / 12), static_cast<float>(height) - static_cast<float>(height) / 9.0f * 5.0f, static_cast<float>(height) / 22.0f}, {width / 12, height / 22, 0}, &callbackTuto2, this->_sprites["../assets/ArrowRight.png"]));
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
@@ -294,7 +297,7 @@ void ECS::MenuGenerator::generateTuto2()
     this->_menuPage = 3;
     this->_menuEntities.clear();
     this->_menuEntities.push_back(Presets::createImage("BackgroundTuto2", {0.0f, 0.0f, 0.0f}, {width, height, 0}, this->_sprites["../assets/BackgroundGame.png"]));
-    //! Draw tuto 3
+    this->_menuEntities.push_back(Presets::createImage("Tuto3", {100.0f + static_cast<float>(width) / 12.0f, static_cast<float>(height) / 9.0f, 0.0f}, {width - width / 12 - 200, height / 9 * 7, 0}, this->_sprites["../assets/Tuto3.png"]));
     this->_menuEntities.push_back(Presets::createButton("Left", {75.0f, static_cast<float>(height) - static_cast<float>(height) / 9.0f * 5.0f, static_cast<float>(height) / 22.0f}, {width / 12, height / 22, 0}, &callbackTuto1, this->_sprites["../assets/ArrowLeft.png"]));
     this->_menuEntities.push_back(Presets::createButton("Back To menu", {static_cast<float>(width) / 3.0f, static_cast<float>(height) / 9.0f * 8.0f, 0.0f}, {width / 3, height / 10, 0}, &callbackMenu, this->_sprites["../assets/Back.png"]));
 }
@@ -302,7 +305,7 @@ void ECS::MenuGenerator::generateTuto2()
 void ECS::MenuGenerator::generateOptions()
 {
     raylib::Window &window = raylib::Window::getWindow();
-    int width = window.getWindowWidth();
+    int width = window.getWindowWidth(); 
     int height = window.getWindowHeight();
 
     this->_menuPage = 4;
